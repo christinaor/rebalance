@@ -1,10 +1,45 @@
 // login
-.login-wrapper {
+.login-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto 0;
+  position: relative;
+
+}
+
+.login-container {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 32px auto 0;
+  display: flex;
+  justify-content: center;
+  // flex-shrink: 0;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.login-left {
+  width: 50%;
+  flex: 1 1 50%;
+}
+
+.login-right {
+  border: 1px solid black;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1 0 auto;
+  position: relative;
+  // margin: 40px auto 0;
 };
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
 
 
 .main-wrapper {

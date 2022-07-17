@@ -14,16 +14,24 @@
 
 const LoginPage = (props) => {
   return (
-    <div className="login-container">
-      <img className="center" src={piggybank} alt="minimalist piggy bank image" />
-      <br />
-        <form className="login-wrapper" id="signin" action="/signin" method="POST">
-            <input id="user" name="user" placeholder="user" type="text"></input>
-            {/* <br /> */}
-            <input id="pass" name="pass" placeholder="pass" type="text"></input>
-            {/* <br /> */}
-          <button id="login-submit" type="submit">Sign In!</button>
-        </form>
+    <div className="login-page-wrapper">
+      <div className="login-container">
+        <div className="login-left">
+          <img className="center" src={piggybank} alt="minimalist piggy bank image" />
+        </div>
+
+        <div className="login-right">
+          <div className="login-title">rebalance</div>
+          <form className="login-form" id="signin" action="/signin" method="POST">
+            <input id="user" name="user" placeholder="Email" type="text"></input>
+            <input id="pass" name="pass" placeholder="Password" type="text"></input>
+            <button id="login-submit" type="submit">Log In!</button>
+          </form>
+          <br />
+          <div className="login-signup-text">New to rebalance?</div>
+          <button id="signup-submit" type="submit">Sign Up Here!</button>
+        </div>
+      </div>
     </div>
   )
 }
