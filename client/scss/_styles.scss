@@ -1,0 +1,79 @@
+// login
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+};
+
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+};
+
+body {
+  background: $lightPurple;
+};
+
+.innerContainer {
+  display: flex;
+};
+
+.single-entry-container {
+  // max-width: 700px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+};
+
+.item-box {
+  max-width: 100px;
+  flex-grow: 1;
+};
+
+.name-box {
+  max-width: 100px;
+  flex-grow: 1;
+};
+
+.purchase_date-box {
+  max-width: 100px;
+  flex-grow: 1;
+};
+
+.item_name-box {
+  max-width: 100px;
+  flex-grow: 1;
+};
+
+.cost-box {
+  max-width: 100px;  
+  flex-grow: 1;
+};
+
+.notes-box {
+  max-width: 100px;
+  flex-grow: 1;
+};
+
+.searched-container {
+  display: flex;
+  // flex-direction: row;
+};
+
+
+.input-fields {
+  max-width: 100px;
+  display: flex;
+  flex-direction: column;
+};
+
+// general styling
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+};
