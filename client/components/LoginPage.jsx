@@ -9,8 +9,8 @@
  * ************************************
  */
 
- import React from "react";
- import piggybank from './../../assets/piggybank.png'
+import React from "react";
+import piggybank from './../../assets/piggybank.png'
 
 const LoginPage = (props) => {
   return (
