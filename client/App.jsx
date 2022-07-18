@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-// import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import MainContainer from './containers/MainContainer.jsx';
 import LoginPage from './components/LoginPage.jsx';
+import GenericError from './components/ErrorPage.jsx';
 
 function App() {
   return (
     <main>
       <Switch>
-        <Route path='/' component={LoginPage} exact />
-        <Route path='/home' component={MainContainer} />
-        <Route component={Error} />
+        {/* <Route path='/home' component={MainContainer}/>        
+        <Route path='/' component={LoginPage} exact /> */}
+        <Route path='/' component={MainContainer} exact/>        
+        <Route path='/login' component={LoginPage} />
+        <Route component={GenericError} />
       </Switch>
-      // <MainContainer/>
+      {/* <MainContainer/> */}
     </main>
   )
 }

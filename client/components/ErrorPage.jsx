@@ -1,6 +1,6 @@
 import React from "react";
 
-const ErrorPage = () => {
+const GenericError = () => {
   return (
     <div className="generic-error">
       Page not found!
@@ -8,4 +8,4 @@ const ErrorPage = () => {
   )
 }
 
-export default ErrorPage;
+export default GenericError;

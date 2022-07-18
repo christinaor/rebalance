@@ -48,8 +48,10 @@ module.exports = {
       publicPath: '/build',
       // directory: path.resolve(__dirname, 'build')
     },
-    proxy: {
-      '/': 'http://localhost:3000'
-    }
+    // 
+    // proxy: {
+    //   '/': 'http://localhost:3000'
+    // },
+    historyApiFallback: true, // automatically routes all endpoints to index.html and then returns 
   }
 }

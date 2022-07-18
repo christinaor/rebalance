@@ -58,7 +58,7 @@ import BalanceContainer from './BalanceContainer.jsx';
         <div>Reconciliation App</div>
         <nav>Nav Bar</nav>
 
-        <LoginPage />
+        {/* <LoginPage /> */}
 
         <h1 id="header">Balance with others here...</h1>        
         <div className="innerContainer">
