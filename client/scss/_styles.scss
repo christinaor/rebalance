@@ -24,8 +24,15 @@
   flex: 1 1 50%;
 }
 
-.login-right {
+.login-only-wrapper, .login-signup-wrapper {
   border: 1px solid black;
+  // margin: auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-right {
   width: 50%;
   display: flex;
   flex-direction: column;
