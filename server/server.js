@@ -1,10 +1,13 @@
 const express = require('express');
-const app = express();
 const path = require('path');
-const PORT = 3000;
-// const controller = require('./controller');
-const db = require('./model.js')
 
+const db = require('./model.js')
+// const controller = require('./controller');
+
+const PORT = 8888;
+
+// creating server
+const app = express();
 // handle parsing request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,7 +40,7 @@ app.use((err, req, res, next) => {
 // start server
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`)
-}); //listens on port 3000 -> http://localhost:3000/
+}); //listens on port 8888 -> http://localhost:8888/
 
 /**************************************
  * End here
@@ -51,9 +54,9 @@ app.listen(PORT, () => {
 // the only connection between frontend to backend is through the proxy server while devServer runs
 // app.use('/build', express.static(path.join(__dirname, '../build')));
 // serve index.html on the route '/'
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '../index.html'));
-});
+// app.get('/', (req, res) => {
+//   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
+// });
 
 // route handlers - directly in server unless need to be broken out later
 

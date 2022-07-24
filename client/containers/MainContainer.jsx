@@ -60,7 +60,14 @@ import BalanceContainer from './BalanceContainer.jsx';
 
         {/* <LoginPage /> */}
 
-        <h1 id="header">Balance with others here...</h1>        
+        <h1 id="header">Balance with others here...</h1>
+        <a href="asdf">To asdf</a>
+        <br />
+        <a href="./asdf">To ./asdf</a>
+        <br />
+        <a href="/asdf">To /asdf</a>
+        <br />
+        <a href="http://localhost:8081/asdf">To href</a>
         <div className="innerContainer">
           <PeopleContainer people={people} />
           <BalanceContainer />

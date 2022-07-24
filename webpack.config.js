@@ -50,7 +50,7 @@ module.exports = {
     },
     // 
     // proxy: {
-    //   '/': 'http://localhost:3000'
+    //   '/': 'http://localhost:8888'
     // },
     historyApiFallback: true, // automatically routes all endpoints to index.html and then returns 
   }
