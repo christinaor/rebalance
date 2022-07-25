@@ -19,29 +19,31 @@ app.use(express.urlencoded({ extended: true }));
 **************************************/
 
 // for production build
-app.get('/*', (req, res) => {
-  res.status(222).sendFile(path.resolve(__dirname, 'build', '../index.html'));
-});
+// app.get('/*', (req, res) => {
+//   res.status(222).sendFile(path.resolve(__dirname, 'build', '../index.html'));
+// });
 
 // get all items
 app.get('/api', (req, res) => {
-  res.status(222).send(res.locals.getItems)
+  res.locals.str = 'some data'
+  res.status(222).json(res.locals.str);
+  // send(res.locals.getItems)
 });
 
-// post an item
-app.post('/api', (req, res) => {
-  res.status(222).end();
-});
+// // post an item
+// app.post('/api', (req, res) => {
+//   res.status(222).end();
+// });
 
-// update an item
-app.update('/api', (req, res) => {
-  res.status(222).end();
-});
+// // update an item
+// app.update('/api', (req, res) => {
+//   res.status(222).end();
+// });
 
-// delete an item
-app.delete('/api', (req, res) => {
-  res.status(222).end();
-});
+// // delete an item
+// app.delete('/api', (req, res) => {
+//   res.status(222).end();
+// });
 
 // catchall
 app.use('*', (req, res) => res.status(404).send('This page does not exist! ):'));
