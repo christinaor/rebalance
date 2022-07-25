@@ -52,6 +52,6 @@ module.exports = {
     // proxy: {
     //   '/': 'http://localhost:8888'
     // },
-    historyApiFallback: true, // automatically routes all endpoints to index.html and then returns 
+    historyApiFallback: true, // automatically routes all endpoints to index.html if not 404, and then returns 
   }
 }

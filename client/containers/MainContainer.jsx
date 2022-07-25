@@ -9,24 +9,11 @@
  * ************************************
  */
 
-
-//  import { connect } from 'react-redux';
-//  import TotalsDisplay from '../components/TotalsDisplay.jsx';
-//  import MarketsContainer from './MarketsContainer.jsx';
-  // import from child components...
-
- // store passed into mapStateToProps is the store index.js in reducers file created as reducers
-// mapping totalCards to this.props
-//  const mapStateToProps = store => ({
-//   // add pertinent state here
-//   totalCards: store.markets.totalCards,
-//   totalMarkets: store.markets.totalMarkets
-// });
-
 import React, { useEffect, useState } from "react";
 import LoginPage from "../components/LoginPage.jsx";
 import PeopleContainer from './PeopleContainer.jsx';
 import BalanceContainer from './BalanceContainer.jsx';
+import DataList from "../components/DataList.jsx";
 
 // class MainContainer extends Component {
   // constructor(props) {
@@ -57,10 +44,9 @@ import BalanceContainer from './BalanceContainer.jsx';
       <div className="container">
         <div>Reconciliation App</div>
         <nav>Nav Bar</nav>
-
-        {/* <LoginPage /> */}
-
         <h1 id="header">Balance with others here...</h1>
+        <DataList />
+
         <a href="asdf">To asdf</a>
         <br />
         <a href="./asdf">To ./asdf</a>
@@ -78,3 +64,15 @@ import BalanceContainer from './BalanceContainer.jsx';
 };
 
 export default MainContainer;
+
+
+/*
+
+location: mysite.com/blog/1/data
+
+a href ./data -> mysite.com/blog/1/data
+a href ./asdf -> mysite.com/blog/1/asdf
+a href ../asdf -> mysite.com/blog/asdf
+
+
+*/
