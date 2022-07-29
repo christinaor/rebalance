@@ -52,10 +52,6 @@ describe("Filter function", () => {
 
     expect(filterByTerm(input, "link")).toEqual(output);
     expect(filterByTerm(input, "LINK")).toEqual(output);
-    
-
-
-    // expect(filterByTerm(input, "")).toEqual([]);
   });
 
   test("it should filter by a search term (uRl)", () => {
