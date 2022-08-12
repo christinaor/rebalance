@@ -1,18 +1,17 @@
 const express = require('express');
 const path = require('path');
-
-const db = require('./model.js')
-// const controller = require('./controller');
-
+const cors = require('cors');
+const db = require('./models/model.js')
+const apiRouter = require('./routes/api');
 const PORT = 8888;
 
 // creating server
 const app = express();
+// handles 'Access-Control-Allow-Origin' header for cross-site request forgery issue
+app.use(cors());
 // handle parsing request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
 
 /*************************************
  * Starting new routes here
@@ -24,11 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 // });
 
 // get all items
-app.get('/api', (req, res) => {
-  res.locals.str = 'some data'
-  res.status(222).json(res.locals.str);
-  // send(res.locals.getItems)
-});
+app.use('/api', apiRouter);
 
 // // post an item
 // app.post('/api', (req, res) => {
