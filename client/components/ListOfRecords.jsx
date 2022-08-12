@@ -16,7 +16,7 @@ const ListOfRecords = props => {
   const [recordsList, setRecordsList] = useState({})
 
   useEffect(() => {
-    fetch('/api')
+    fetch('/api/records')
       .then(response => response.json())
       .then(data => setRecordsList(data))
   }, []);
