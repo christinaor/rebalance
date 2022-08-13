@@ -6,4 +6,8 @@ router.get('/records', recordsController.getAllRecords, (req, res) => {
   res.status(200).json(res.locals.allRecords);
 });
 
+router.post('/records', recordsController.postRecord, (req, res) => {
+  res.status(200).end();
+});
+
 module.exports = router;
