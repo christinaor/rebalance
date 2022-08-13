@@ -16,6 +16,11 @@ const ListOfRecords = props => {
   const [recordsList, setRecordsList] = useState([]);
   const [populatedRecords, setPopulatedRecords] = useState(false);
   const [toggleRecordForm, setToggleRecordForm] = useState(false);
+  const [postedRecord, setPostedRecord] = useState({
+    name: null,
+    item: null,
+    cost: null
+  });
 
   useEffect(() => {
     console.log('ListOfRecords useEffect')
@@ -36,11 +41,10 @@ const ListOfRecords = props => {
       .catch((err) => {
         if (err.name === 'AbortError') {
           return 'Successfully aborted!';
-          
         } else return `Error getting records: ${err}`
       }
       )
-  }, []);
+  }, [setPopulatedRecords]);
 
   const recordElements = recordsList.map(record => {
     const { id, input_date, username, item_name, item_cost } = record;
@@ -56,7 +60,34 @@ const ListOfRecords = props => {
     )
   });
 
-  const handleClick = () => console.log('handleclick fired')
+  const postRecord = (e) => {
+    console.log('postRecord fired')
+    e.preventDefault(); // prevents default submission of form to action (blank here) and method
+    // console.log(e)
+    // fetch('/api/records', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(data
+    //     // {
+    //     // username: name,
+    //     // item_name: item,
+    //     // item_cost: cost
+    //   // }
+    //   )
+    // })
+    //   .then(() => {
+    //     console.log('added record!')
+    //     setPopulatedRecords(false);
+    //   })
+  };
+
+  // const handleSubmitToPost = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target)
+  //   // postRecord();
+  // }
 
   return (
     <div>
@@ -73,21 +104,21 @@ const ListOfRecords = props => {
       <br />
       <button onClick={() => setToggleRecordForm(!toggleRecordForm)}>{toggleRecordForm ? `Exit Adding A Record`: `Open Record Form`}</button>
       {
-      toggleRecordForm && <form action="api/records" method="POST">
+      toggleRecordForm && <form>
         <div>
           <label for="name">Name:</label>
-          <input name="name" type="text" id="records-post-name" />
+          <input name="name" type="text" id="records-post-name" onChange={(e) => setPostedRecord({...postedRecord, name: e.target.value})} />
         </div>
         <div>
           <label for="item">Item Purchased:</label>
-          <input name="item" type="text" id="records-post-item" />
+          <input name="item" type="text" id="records-post-item" onChange={(e) => setPostedRecord({...postedRecord, item: e.target.value})} />
         </div>
         <div>
           <label for="cost">Item Cost:</label>
-          <input name="cost" type="text" id="records-post-cost" />
+          <input name="cost" type="text" id="records-post-cost" onChange={(e) => setPostedRecord({...postedRecord, cost: e.target.value})} />
         </div>
         <div>
-          <button onClick={handleClick}>Add A Record</button>
+          <button type="submit" onClick={postRecord}>Add A Record</button>
         </div>
       </form>
       }
