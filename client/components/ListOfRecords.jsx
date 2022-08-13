@@ -31,20 +31,26 @@ const ListOfRecords = props => {
   }, []);
 
   const recordElements = recordsList.map(record => {
-    const { id, input_date, username, item_name } = record;
+    const { id, input_date, username, item_name, item_cost } = record;
     return (
       <Record 
-        id={`record${id}`}
+        key={`record${id}`}
+        id={id}
         input_date={input_date}
         username={username}
         item_name={item_name}
+        cost={item_cost}
       />
     )
   });
 
   return (
-    <div>
+    <div id="record-list-titles">
       List of Records:
+      <div>Record No.</div>
+      <div>Date Entered</div>
+      <div>Item</div>
+      <div>Cost</div>
       {recordElements}
     </div>
   )
