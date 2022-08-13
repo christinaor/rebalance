@@ -61,7 +61,7 @@ const ListOfRecords = props => {
 
   const postRecord = (e) => {
     console.log('postRecord fired')
-    e.preventDefault(); // prevents default submission of form to action (blank here) and method
+    e.preventDefault(); // prevents default submission attributes (action and method) of form 
     // console.log(e)
     fetch('/api/records', {
       method: 'POST',
@@ -78,7 +78,7 @@ const ListOfRecords = props => {
         console.log('added record!')
         setPopulatedRecords(false);
       })
-      .catch((err) => `Error getting records: ${err}`)
+      .catch(err => `Error adding records: ${err}`)
   };
 
   // const handleSubmitToPost = (e) => {
@@ -96,13 +96,14 @@ const ListOfRecords = props => {
           <span>Date Entered</span>
           <span>Item</span>
           <span>Cost</span>
+          <span>Other Actions</span>
         </div>
         {recordElements}
       </div>
       <br />
       <button onClick={() => setToggleRecordForm(!toggleRecordForm)}>{toggleRecordForm ? `Exit Adding A Record`: `Open Record Form`}</button>
       {
-      toggleRecordForm && <form>
+      toggleRecordForm && <form action="/api/records" method="POST">
         <div>
           <label for="name">Name:</label>
           <input name="name" type="text" id="records-post-name" onChange={(e) => setPostedRecord({...postedRecord, name: e.target.value})} />
