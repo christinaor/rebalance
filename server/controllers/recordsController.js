@@ -7,7 +7,7 @@ recordsController.getAllRecords = async (req, res, next) => {
   try {
     const getQuery = `SELECT * FROM test_table;`;
     const allRecords = await db.query(getQuery);
-    console.log('getting all records: ', allRecords)
+    // console.log('getting all records: ', allRecords)
     res.locals.allRecords = allRecords.rows;
     next();
   } catch(err) {
