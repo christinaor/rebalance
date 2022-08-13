@@ -58,10 +58,10 @@ body {
   background: $lightPurple;
 };
 
-// .innerContainer {
-//   display: flex;
-//   // flex: column;
-// };
+.innerContainer {
+  display: grid;
+  grid-auto-flow: column;
+};
 
 .single-entry-container {
   // max-width: 700px;
@@ -112,7 +112,11 @@ body {
   flex-direction: column;
 };
 
-/* * *   RECORDS GRID   * * */
+/*****   PEOPLE STYLING   *****/
+
+
+
+/*****   RECORDS GRID STYLING   *****/
 .records-grid-container {
   display: grid;
   // grid-template-columns: repeat(auto-fill, 400px);
@@ -124,7 +128,8 @@ body {
 .grid-record {
   display: grid;
   grid-auto-flow: column;
-  grid: 50px / auto auto auto auto;
+  // grid: 50px / auto auto auto auto;
+  grid: auto auto auto auto;
   grid-template-columns: repeat(auto-fill, 200px);
 }
 

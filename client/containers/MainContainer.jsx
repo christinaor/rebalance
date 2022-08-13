@@ -15,20 +15,6 @@ import PeopleContainer from './PeopleContainer.jsx';
 import BalanceContainer from './BalanceContainer.jsx';
 import ListOfRecords from "../components/ListOfRecords.jsx";
 
-// class MainContainer extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = { 
-  //     str: 'hello world',
-  //     dbData: [],
-  //     added: [],
-  //     searched: [],
-  //     budget: 0,
-  //     total: 0,
-  //     people: ['Frank', 'Boo'],
-  //   };
-  // }
-  // render() {
   const MainContainer = props => {
     useEffect(() => {
       // console.log('in useEffect')
@@ -39,7 +25,9 @@ import ListOfRecords from "../components/ListOfRecords.jsx";
         <div>Reconciliation App</div>
         <nav>Nav Bar</nav>
         <h1 id="header">Balance with others here...</h1>
-        <ListOfRecords />
+        <div className="innerContainer">
+          <PeopleContainer />
+          <ListOfRecords />
 
       {/*  / - root, always the very top
       ./asdf and asdf are the same - sibling
@@ -51,9 +39,6 @@ import ListOfRecords from "../components/ListOfRecords.jsx";
         <a href="../asdf">To /asdf</a> */}
         {/* <br />
         <a href="http://localhost:8081/asdf">To href</a> */}
-        <div className="innerContainer">
-          {/* <PeopleContainer people={people} /> */}
-          <BalanceContainer />
         </div>
       </div>
     );

@@ -9,19 +9,19 @@
  * ************************************
  */
 
- import React, { Component } from 'react';
+ import React, { useEffect, useState } from 'react';
 
  
 const PeopleContainer = props => {
   const [people, setPeople] = useState([]);
 
-  useEffect(() => {
-    first
+  // useEffect(() => {
+  //   first
   
-    return () => {
-      second
-    }
-  }, [])
+  //   return () => {
+  //     second
+  //   }
+  // }, [])
   
 
   return (
