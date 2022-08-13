@@ -13,13 +13,18 @@ import React, { useEffect, useState } from "react";
 import Record from "./Record.jsx";
 
 const ListOfRecords = props => {
-  const [recordsData, setRecordsData] = useState([]);
   const [recordsList, setRecordsList] = useState([]);
   const [populatedRecords, setPopulatedRecords] = useState(false);
 
   useEffect(() => {
     console.log('ListOfRecords useEffect')
-    fetch('/api/records')
+
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch('/api/records', {
+      signal: signal
+    })
       .then(response => response.json())
       .then(data => {
         console.log('get data here: ', data)
@@ -27,7 +32,13 @@ const ListOfRecords = props => {
         setPopulatedRecords(true);
         console.log('USEEFFECT RAN')
       })
-      .catch((err) => `Error getting records: ${err}`)
+      .catch((err) => {
+        if (err.name === 'AbortError') {
+          return 'Successfully aborted!';
+          
+        } else return `Error getting records: ${err}`
+      }
+      )
   }, []);
 
   const recordElements = recordsList.map(record => {
@@ -45,13 +56,17 @@ const ListOfRecords = props => {
   });
 
   return (
-    <div id="record-list-titles">
+    <div>
       List of Records:
-      <div>Record No.</div>
-      <div>Date Entered</div>
-      <div>Item</div>
-      <div>Cost</div>
-      {recordElements}
+      <div class="records-grid-container">
+        <div class="record-list-titles grid-record">
+          <span>Record No.</span>
+          <span>Date Entered</span>
+          <span>Item</span>
+          <span>Cost</span>
+        </div>
+        {recordElements}
+      </div>
     </div>
   )
 };
