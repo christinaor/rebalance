@@ -58,9 +58,10 @@ body {
   background: $lightPurple;
 };
 
-.innerContainer {
-  display: flex;
-};
+// .innerContainer {
+//   display: flex;
+//   // flex: column;
+// };
 
 .single-entry-container {
   // max-width: 700px;
@@ -110,6 +111,23 @@ body {
   display: flex;
   flex-direction: column;
 };
+
+/* * *   RECORDS GRID   * * */
+.records-grid-container {
+  display: grid;
+  // grid-template-columns: repeat(auto-fill, 400px);
+  grid-auto-flow: row;
+  // grid:  auto auto auto auto
+  // display: table-cell;
+}
+
+.grid-record {
+  display: grid;
+  grid-auto-flow: column;
+  grid: 50px / auto auto auto auto;
+  grid-template-columns: repeat(auto-fill, 200px);
+}
+
 
 // general styling
 
