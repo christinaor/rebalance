@@ -15,6 +15,7 @@ import Record from "./Record.jsx";
 const ListOfRecords = props => {
   const [recordsList, setRecordsList] = useState([]);
   const [populatedRecords, setPopulatedRecords] = useState(false);
+  const [toggleRecordForm, setToggleRecordForm] = useState(false);
 
   useEffect(() => {
     console.log('ListOfRecords useEffect')
@@ -55,11 +56,13 @@ const ListOfRecords = props => {
     )
   });
 
+  const handleClick = () => console.log('handleclick fired')
+
   return (
     <div>
       List of Records:
-      <div class="records-grid-container">
-        <div class="record-list-titles grid-record">
+      <div className="records-grid-container">
+        <div className="record-list-titles grid-record">
           <span>Record No.</span>
           <span>Date Entered</span>
           <span>Item</span>
@@ -67,6 +70,27 @@ const ListOfRecords = props => {
         </div>
         {recordElements}
       </div>
+      <br />
+      <button onClick={() => setToggleRecordForm(!toggleRecordForm)}>{toggleRecordForm ? `Exit Adding A Record`: `Open Record Form`}</button>
+      {
+      toggleRecordForm && <form action="api/records" method="POST">
+        <div>
+          <label for="name">Name:</label>
+          <input name="name" type="text" id="records-post-name" />
+        </div>
+        <div>
+          <label for="item">Item Purchased:</label>
+          <input name="item" type="text" id="records-post-item" />
+        </div>
+        <div>
+          <label for="cost">Item Cost:</label>
+          <input name="cost" type="text" id="records-post-cost" />
+        </div>
+        <div>
+          <button onClick={handleClick}>Add A Record</button>
+        </div>
+      </form>
+      }
     </div>
   )
 };
