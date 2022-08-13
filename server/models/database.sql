@@ -13,9 +13,6 @@ CREATE TABLE purchases(
   notes VARCHAR(255)
 );
 
-INSERT INTO purchases (item_name, cost, purchase_date, category, notes)
-VALUES ('pineapple', 2, '6/7/2022', 'groceries', 'craved pineapple :)');
-
 SELECT * FROM purchases;
 
 ALTER TABLE purchases
@@ -28,3 +25,29 @@ ADD name VARCHAR(30) NOT NULL;
 
 ALTER TABLE purchases DROP COLUMN name;
 ALTER TABLE purchases ALTER COLUMN name SET NOT NULL; 
+
+
+-- TEST TABLE FOR RECORDS
+CREATE TABLE test_table(
+	id SERIAL PRIMARY KEY,
+	input_date TIMESTAMP DEFAULT NOW(),
+	username VARCHAR(255) NOT NULL,
+	item_name VARCHAR(255) NOT NULL,
+	item_cost NUMERIC(12,2) NOT NULL
+);
+
+INSERT INTO test_table (username, item_name, item_cost)
+VALUES ('CO', 'pineapple', 3);
+INSERT INTO test_table (username, item_name, item_cost)
+VALUES ('LL', 'grapes', 1.5);
+INSERT INTO test_table (username, item_name, item_cost)
+VALUES ('CO', 'orange', 0.5);
+
+-- PEOPLE SCHEMA
+CREATE SCHEMA IF NOT EXISTS rebalance;
+
+CREATE TABLE rebalance.counterparties (
+  id SERIAL PRIMARY KEY,
+  counterparty_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL
+)
