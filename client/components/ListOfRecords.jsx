@@ -42,9 +42,8 @@ const ListOfRecords = props => {
         if (err.name === 'AbortError') {
           return 'Successfully aborted!';
         } else return `Error getting records: ${err}`
-      }
-      )
-  }, [setPopulatedRecords]);
+      })
+  }, [populatedRecords]);
 
   const recordElements = recordsList.map(record => {
     const { id, input_date, username, item_name, item_cost } = record;
@@ -64,23 +63,22 @@ const ListOfRecords = props => {
     console.log('postRecord fired')
     e.preventDefault(); // prevents default submission of form to action (blank here) and method
     // console.log(e)
-    // fetch('/api/records', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(data
-    //     // {
-    //     // username: name,
-    //     // item_name: item,
-    //     // item_cost: cost
-    //   // }
-    //   )
-    // })
-    //   .then(() => {
-    //     console.log('added record!')
-    //     setPopulatedRecords(false);
-    //   })
+    fetch('/api/records', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: postedRecord.name,
+        item_name: postedRecord.item,
+        item_cost: postedRecord.cost
+      })
+    })
+      .then(() => {
+        console.log('added record!')
+        setPopulatedRecords(false);
+      })
+      .catch((err) => `Error getting records: ${err}`)
   };
 
   // const handleSubmitToPost = (e) => {
