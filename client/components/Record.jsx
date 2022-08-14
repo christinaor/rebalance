@@ -19,15 +19,13 @@ const Record = (props) => {
         .then(response => response.json())
         .then(data => {
           console.log('getting one record: ', data)
-          setUpdatedRecord({id: data.id, item: data.item_name, cost: data.item_cost})
+          setUpdatedRecord({id: data[0].id, item: data[0].item_name, cost: data[0].item_cost})
         })
         .catch(err => `Error getting record to update: ${err}`)
 
     setToUpdate(true);
     }
   };
-
-
 
   const deleteRecord = (e) => {
     console.log('deleteRecord fired');

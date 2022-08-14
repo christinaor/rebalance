@@ -30,9 +30,8 @@ const ListOfRecords = props => {
     cost: null
   });
 
+  // RecordsList is rendered upon initial render
   useEffect(() => {
-    console.log('ListOfRecords useEffect')
-
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -41,16 +40,15 @@ const ListOfRecords = props => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('get data here: ', data)
-        setRecordsList(data)
-        setPopulatedRecords(true);
-        console.log('USEEFFECT RAN')
+        console.log('get data here: ', data);
+        setRecordsList(data);
       })
       .catch((err) => {
         if (err.name === 'AbortError') {
           return 'Successfully aborted!';
         } else return `Error getting records: ${err}`
       })
+      .finally(setPopulatedRecords(true))
   }, [populatedRecords]);
 
   const recordElements = recordsList.map(record => {
@@ -93,19 +91,20 @@ const ListOfRecords = props => {
       .then(() => {
         console.log('added record!')
         setPopulatedRecords(false);
+      })
+      .catch(err => `Error adding record: ${err}`)
+      .finally(
         setPostedRecord({
           name: '',
           item: '',
           cost: ''
         })
-      })
-      .catch(err => `Error adding record: ${err}`)
+      )
   };
 
   const updateRecord = (e) => {
     console.log('updateRecord fired');
     e.preventDefault();
-    console.log('in updateRecord checking updatedRecord: ', updatedRecord)
     fetch('api/records/', {
       method: 'PUT',
       headers: {
@@ -118,7 +117,6 @@ const ListOfRecords = props => {
       })
     })
       .then(() => {
-        console.log('updated record')
         setPopulatedRecords(false);
       })
       .catch(err => `Error updating record: ${err}`)
@@ -164,7 +162,9 @@ const ListOfRecords = props => {
           }
         </div>
 
-
+        {!toUpdate && 
+          <div className="update-form-placeholder">Select an action to update/delete a record.</div>
+        }
         {toUpdate &&
           <div className="updateForm">
             {`Update Record No. ${updatedRecord.id}:`}
