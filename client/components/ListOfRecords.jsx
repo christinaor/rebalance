@@ -78,7 +78,7 @@ const ListOfRecords = props => {
         console.log('added record!')
         setPopulatedRecords(false);
       })
-      .catch(err => `Error adding records: ${err}`)
+      .catch(err => `Error adding record: ${err}`)
   };
 
   // const handleSubmitToPost = (e) => {
