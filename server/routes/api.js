@@ -10,4 +10,8 @@ router.post('/records', recordsController.postRecord, (req, res) => {
   res.status(200).end();
 });
 
+router.delete('/records', recordsController.deleteRecord, (req, res) => {
+  res.status(200).end();
+})
+
 module.exports = router;

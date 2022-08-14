@@ -55,6 +55,8 @@ const ListOfRecords = props => {
         username={username}
         item_name={item_name}
         cost={item_cost}
+        populatedRecords={populatedRecords}
+        setPopulatedRecords={setPopulatedRecords}
       />
     )
   });

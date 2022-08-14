@@ -36,4 +36,21 @@ recordsController.postRecord = async (req, res, next) => {
   }
 };
 
+recordsController.deleteRecord = async (req, res, next) => {
+  try {
+    const { id } = req.body;
+    const params = [ id ];
+    const deleteQuery = `
+      DELETE FROM test_table WHERE id=$1;
+  `;
+  const executeDelete = await db.query(deleteQuery, params);
+  next();
+  } catch(err) {
+    return next({
+      log: `recordsController.deleteRecord contains an error: ${err}`,
+      message: {err: 'Error in recordsController.deleteRecord. Check server logs for more details!'}
+    })
+  }
+};
+
 module.exports = recordsController; 
