@@ -18,6 +18,23 @@ recordsController.getAllRecords = async (req, res, next) => {
   }
 };
 
+recordsController.getOneRecord = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const params = [ id ];
+    const getOneQuery = `SELECT * FROM test_table WHERE id=$1;`;
+    const oneRecord = await db.query(getOneQuery, params);
+    // console.log('getting all records: ', allRecords)
+    res.locals.oneRecord = oneRecord.rows;
+    next();
+  } catch(err) {
+    return next({
+      log: `recordsController.getOneRecord contains an error: ${err}`,
+      message: {err: 'Error in recordsController.getOneRecord. Check server logs for more details!'}
+    })
+  }
+};
+
 recordsController.postRecord = async (req, res, next) => {
   try {
     const { username, item_name, item_cost } = req.body;
@@ -32,6 +49,41 @@ recordsController.postRecord = async (req, res, next) => {
     return next({
       log: `recordsController.postRecord contains an error: ${err}`,
       message: {err: 'Error in recordsController.postRecord. Check server logs for more details!'}
+    })
+  }
+};
+
+recordsController.updateRecord = async (req, res, next) => {
+  try {
+    const { id, item_name, item_cost } = req.body;
+    const params = [ id, item_name, item_cost ];
+    let updateQuery = '';
+    if (item_name !== null && item_cost !== null) {
+      updateQuery = `
+        UPDATE FROM test_table
+        SET item_name=$2
+        SET item_cost=$3
+        WHERE ID=$1
+      ;`
+    } else if (item_name !== null) {
+      updateQuery = `
+        UPDATE FROM test_table
+        SET item_name=$2
+        WHERE ID=$1
+      ;`
+    } else {
+      updateQuery = `
+        UPDATE FROM test_table
+        SET item_cost=$3
+        WHERE ID=$1
+      ;`
+    }
+  const executeUpdate = await db.query(updateQuery, params);
+  next();
+  } catch(err) {
+    return next({
+      log: `recordsController.updateRecord contains an error: ${err}`,
+      message: {err: 'Error in recordsController.updateRecord. Check server logs for more details!'}
     })
   }
 };
