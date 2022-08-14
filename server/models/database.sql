@@ -43,6 +43,29 @@ VALUES ('LL', 'grapes', 1.5);
 INSERT INTO test_table (username, item_name, item_cost)
 VALUES ('CO', 'orange', 0.5);
 
+-- Conditional querying
+    -- if (item_name !== null && item_cost !== null) {
+    --   updateQuery = `
+    --     UPDATE test_table
+    --     SET item_name=$2, item_cost=$3
+    --     WHERE ID=$1
+    --   ;`
+    -- } else if (item_name !== null) {
+    --   updateQuery = `
+    --     UPDATE test_table
+    --     SET item_name=$2
+    --     WHERE ID=$1
+    --   ;`
+    -- } else {
+    --   updateQuery = `
+    --     UPDATE test_table
+    --     SET item_cost=$3
+    --     WHERE ID=$1
+    --   ;`
+    -- }
+
+
+
 -- PEOPLE SCHEMA
 CREATE SCHEMA IF NOT EXISTS rebalance;
 

@@ -57,27 +57,11 @@ recordsController.updateRecord = async (req, res, next) => {
   try {
     const { id, item_name, item_cost } = req.body;
     const params = [ id, item_name, item_cost ];
-    let updateQuery = '';
-    if (item_name !== null && item_cost !== null) {
-      updateQuery = `
-        UPDATE FROM test_table
-        SET item_name=$2
-        SET item_cost=$3
-        WHERE ID=$1
-      ;`
-    } else if (item_name !== null) {
-      updateQuery = `
-        UPDATE FROM test_table
-        SET item_name=$2
-        WHERE ID=$1
-      ;`
-    } else {
-      updateQuery = `
-        UPDATE FROM test_table
-        SET item_cost=$3
-        WHERE ID=$1
-      ;`
-    }
+    let updateQuery = `
+      UPDATE test_table
+      SET item_name=$2, item_cost=$3
+      WHERE ID=$1
+    `;
   const executeUpdate = await db.query(updateQuery, params);
   next();
   } catch(err) {
