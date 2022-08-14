@@ -1,10 +1,10 @@
 /**
  * ************************************
  *
- * @module  DataList
+ * @module  ListOfRecords
  * @author
  * @date
- * @description 
+ * @description Component holding state consisting of records list and conditional rendering
  *
  * ************************************
  */
@@ -21,7 +21,6 @@ const ListOfRecords = props => {
     item: '',
     cost: ''
   });
-
   const [actionsValue, setActionsValue] = useState('Select')
   const [toUpdate, setToUpdate] = useState(false);
   const [updatedRecord, setUpdatedRecord] = useState({
@@ -75,8 +74,7 @@ const ListOfRecords = props => {
 
   const postRecord = (e) => {
     console.log('postRecord fired')
-    e.preventDefault(); // prevents default submission attributes (action and method) of form 
-    // console.log(e)
+    e.preventDefault();
     fetch('/api/records', {
       method: 'POST',
       headers: {

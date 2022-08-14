@@ -1,10 +1,32 @@
+/**
+ * ************************************
+ *
+ * @module  Record
+ * @author
+ * @date
+ * @description Functional component conditionally renders other components in ListOfRecords through state changes
+ *
+ * ************************************
+ */
+
 import React, { useEffect, useState } from 'react'
 
 const Record = (props) => {
-  const { id, input_date, username, item_name, cost, populatedRecords, setPopulatedRecords, updatedRecord, setUpdatedRecord, toUpdate, setToUpdate, actionsValue, setActionsValue } = props;
-
-  // const [showUpdateOptions, setShowUpdateOptions] = useState(false);
-
+  const { 
+    id, 
+    input_date, 
+    username, 
+    item_name, 
+    cost, 
+    populatedRecords, 
+    setPopulatedRecords, 
+    updatedRecord, 
+    setUpdatedRecord, 
+    toUpdate, 
+    setToUpdate, 
+    actionsValue, 
+    setActionsValue 
+  } = props;
 
   const actionOptions = [
     { label: 'Select', value: 'Select' },
@@ -12,7 +34,12 @@ const Record = (props) => {
     { label: 'Delete', value: 'Delete' },
   ];  
 
-  const handleChange = (e) => {
+/*
+If "Update" is selected, get the data for selected record first and update updatedRecord for later when form is filled out.
+
+If "Delete" is selected, simply delete specified record.
+*/
+const handleChange = (e) => {
     if (e.target.value === 'Update') {
       // fetch a single record with corresponding id to fill in updatedRecord
       fetch(`api/records/${id}`)
@@ -22,8 +49,10 @@ const Record = (props) => {
           setUpdatedRecord({id: data[0].id, item: data[0].item_name, cost: data[0].item_cost})
         })
         .catch(err => `Error getting record to update: ${err}`)
-
     setToUpdate(true);
+    }
+    if (e.target.value === 'Delete') {
+      deleteRecord(e);
     }
   };
 
@@ -38,11 +67,11 @@ const Record = (props) => {
         id
       })
     })
-      .then(() => {
+      .catch(err => `Error deleting record: ${err}`)
+      .finally(() => {
         console.log('deleted record')
         setPopulatedRecords(false);
       })
-      .catch(err => `Error deleting record: ${err}`)
   };
 
   return (
@@ -57,9 +86,7 @@ const Record = (props) => {
             <option value={option.value}>{option.label}</option>
           ))}
         </select>
-        {/* <button onClick={deleteRecord}>Delete</button> */}
       </div>
-
     </div>
   )
 };
