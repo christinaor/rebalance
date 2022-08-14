@@ -58,9 +58,10 @@ body {
   background: $lightPurple;
 };
 
-.innerContainer {
+.inner-container {
   display: grid;
   grid-auto-flow: column;
+  grid-template-columns: 1fr 7fr
 };
 
 .single-entry-container {
@@ -128,9 +129,10 @@ body {
 .grid-record {
   display: grid;
   grid-auto-flow: column;
-  // grid: 50px / auto auto auto auto;
+  // grid: 50px / auto auto auto auto auto;
   grid: auto auto auto auto;
-  grid-template-columns: repeat(auto-fill, 200px);
+  // grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 

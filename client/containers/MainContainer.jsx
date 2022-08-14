@@ -25,7 +25,7 @@ import ListOfRecords from "../components/ListOfRecords.jsx";
         <div>Reconciliation App</div>
         <nav>Nav Bar</nav>
         <h1 id="header">Balance with others here...</h1>
-        <div className="innerContainer">
+        <div className="inner-container">
           <PeopleContainer />
           <ListOfRecords />
 
