@@ -61,6 +61,7 @@ body {
 .inner-container {
   display: grid;
   grid-auto-flow: column;
+  gap: 0 50px;
   grid-template-columns: 1fr 7fr
 };
 
@@ -122,6 +123,7 @@ body {
   display: grid;
   // grid-template-columns: repeat(auto-fill, 400px);
   grid-auto-flow: row;
+  gap: 5px
   // grid:  auto auto auto auto
   // display: table-cell;
 }
