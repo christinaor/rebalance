@@ -65,6 +65,11 @@ body {
   grid-template-columns: 1fr 7fr
 };
 
+.all-forms {
+  display: flex;
+  // justify-content: space-between;
+}
+
 .single-entry-container {
   // max-width: 700px;
   display: flex;
@@ -137,6 +142,21 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
+.records-post-form {
+  box-sizing: border-box;
+  border: 1px solid black;
+  min-height: 100px;
+  padding: 10px;
+
+}
+
+.inner-records-post-form {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+
+
+}
 
 // general styling
 

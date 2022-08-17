@@ -12,8 +12,9 @@
 import React, { useEffect, useState } from "react";
 import LoginPage from "../components/LoginPage.jsx";
 import PeopleContainer from './PeopleContainer.jsx';
-import BalanceContainer from './BalanceContainer.jsx';
+import AddRecord from "../components/AddRecord.jsx";
 import ListOfRecords from "../components/ListOfRecords.jsx";
+import RecordsContainer from "./RecordsContainer.jsx";
 
   const MainContainer = props => {
     useEffect(() => {
@@ -22,13 +23,14 @@ import ListOfRecords from "../components/ListOfRecords.jsx";
 
     return (
       <div className="container">
-        <div>Reconciliation App</div>
+        <header>Reconciliation App</header>
         <nav>Nav Bar</nav>
         <h1 id="header">Balance with others here...</h1>
         <div className="inner-container">
           <PeopleContainer />
-          <ListOfRecords />
-
+          <RecordsContainer />
+            {/* <AddRecord />
+            <ListOfRecords /> */}
       {/*  / - root, always the very top
       ./asdf and asdf are the same - sibling
       */}
