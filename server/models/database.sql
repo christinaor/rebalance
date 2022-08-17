@@ -66,7 +66,7 @@ VALUES ('CO', 'orange', 0.5);
 
 
 
--- PEOPLE SCHEMA
+-- PEOPLE TABLE
 CREATE SCHEMA IF NOT EXISTS rebalance;
 
 CREATE TABLE rebalance.counterparties (
@@ -74,3 +74,15 @@ CREATE TABLE rebalance.counterparties (
   counterparty_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL
 )
+
+-- LOGIN TABLE
+CREATE TABLE rebalance.login (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  pass VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL
+);
+
+INSERT INTO rebalance.login (username, pass, email)
+VALUES ('user1', 'pw', 'user1@test.com');
+
