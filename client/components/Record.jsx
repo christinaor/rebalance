@@ -32,7 +32,7 @@ const Record = (props) => {
     { label: 'Select', value: 'Select' },
     { label: 'Update', value: 'Update' },
     { label: 'Delete', value: 'Delete' },
-  ];  
+  ];
 
 /*
 If "Update" is selected, get the data for selected record first and update updatedRecord for later when form is filled out.

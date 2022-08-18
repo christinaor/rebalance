@@ -48,12 +48,7 @@ const RecordsContainer = props => {
 
   return (
     <div>
-      <AddRecord 
-        recordsList={recordsList}
-        setRecordsList={setRecordsList}
-        populatedRecords={populatedRecords}
-        setPopulatedRecords={setPopulatedRecords}
-      />
+
       <ListOfRecords 
         recordsList={recordsList}
         setRecordsList={setRecordsList}
@@ -64,16 +59,24 @@ const RecordsContainer = props => {
         toUpdate={toUpdate}
         setToUpdate={setToUpdate}
       />
-      <UpdateRecord 
-        recordsList={recordsList}
-        setRecordsList={setRecordsList}
-        populatedRecords={populatedRecords}
-        setPopulatedRecords={setPopulatedRecords}
-        updatedRecord={updatedRecord}
-        setUpdatedRecord={setUpdatedRecord}
-        toUpdate={toUpdate}
-        setToUpdate={setToUpdate}
-      />
+      <div className="add-or-update-wrapper">
+        <AddRecord 
+          recordsList={recordsList}
+          setRecordsList={setRecordsList}
+          populatedRecords={populatedRecords}
+          setPopulatedRecords={setPopulatedRecords}
+        />
+        <UpdateRecord 
+          recordsList={recordsList}
+          setRecordsList={setRecordsList}
+          populatedRecords={populatedRecords}
+          setPopulatedRecords={setPopulatedRecords}
+          updatedRecord={updatedRecord}
+          setUpdatedRecord={setUpdatedRecord}
+          toUpdate={toUpdate}
+          setToUpdate={setToUpdate}
+        />
+      </div>
     </div>
   )
 }
