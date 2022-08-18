@@ -14,13 +14,11 @@
  
 const CounterpartiesContainer = props => {
   const {
-    counterparties,
-    setCounterparties,
+    counterpartiesList,
+    setCounterpartiesList,
     populatedCounterparties,
     setPopulatedCounterparties
   } = props;
-
-
 
   useEffect(() => {
     const controller = new AbortController();
@@ -32,7 +30,7 @@ const CounterpartiesContainer = props => {
       .then(response => response.json())
       .then(data => {
         console.log('cp data here: ', data);
-        setCounterparties(data);
+        setCounterpartiesList(data);
       })
       .catch((err) => {
         if (err.name === 'AbortError') {
@@ -40,16 +38,18 @@ const CounterpartiesContainer = props => {
         } else return `Error getting records: ${err}`
       })
       .finally(setPopulatedCounterparties(false))
-  
-    return () => {
-      second
-    }
+
+    // return () => {
+    //   second
+    // }
   }, [populatedCounterparties])
   
+  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (<div>{counterpartyInfo.counterparty_name}</div>))
 
   return (
-    <div>
-      COUNTERPARTIES SIDEBAR HERE
+    <div className="left-counterparties">
+      <h2>Check your counterparties:</h2>
+      {counterpartySideElements}
     </div>
   )
 

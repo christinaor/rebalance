@@ -15,7 +15,7 @@ import CounterpartiesContainer from './CounterpartiesContainer.jsx';
 import RecordsContainer from "./RecordsContainer.jsx";
 
   const MainContainer = props => {
-    const [counterparties, setCounterparties] = useState([]);
+    const [counterpartiesList, setCounterpartiesList] = useState([]);
     const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
 
     return (
@@ -23,10 +23,10 @@ import RecordsContainer from "./RecordsContainer.jsx";
         <header>Reconciliation App</header>
         <nav>Nav Bar</nav>
         <h1 id="header">Balance with others here...</h1>
-        <div className="main-right-container">
+        <div className="main-inner-container">
           <CounterpartiesContainer 
-            counterparties={counterparties}
-            setCounterparties={setCounterparties}
+            counterpartiesList={counterpartiesList}
+            setCounterpartiesList={setCounterpartiesList}
             populatedCounterparties={populatedCounterparties}
             setPopulatedCounterparties={setPopulatedCounterparties}
           />

@@ -7,7 +7,6 @@ recordsController.getAllRecords = async (req, res, next) => {
   try {
     const getQuery = `SELECT * FROM test_table;`;
     const allRecords = await db.query(getQuery);
-    // console.log('getting all records: ', allRecords)
     res.locals.allRecords = allRecords.rows;
     next();
   } catch(err) {
@@ -24,7 +23,6 @@ recordsController.getOneRecord = async (req, res, next) => {
     const params = [ id ];
     const getOneQuery = `SELECT * FROM test_table WHERE id=$1;`;
     const oneRecord = await db.query(getOneQuery, params);
-    // console.log('getting all records: ', allRecords)
     res.locals.oneRecord = oneRecord.rows;
     next();
   } catch(err) {
