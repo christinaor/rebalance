@@ -75,6 +75,8 @@ CREATE TABLE rebalance.counterparties (
   email VARCHAR(255) NOT NULL
 )
 
+DELETE FROM rebalance.counterparties WHERE email='someemail@email.com';
+
 -- LOGIN TABLE
 CREATE TABLE rebalance.login (
   id SERIAL PRIMARY KEY,

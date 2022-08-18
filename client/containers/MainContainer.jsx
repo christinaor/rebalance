@@ -11,26 +11,26 @@
 
 import React, { useEffect, useState } from "react";
 import LoginPage from "../components/LoginPage.jsx";
-import PeopleContainer from './PeopleContainer.jsx';
-import AddRecord from "../components/AddRecord.jsx";
-import ListOfRecords from "../components/ListOfRecords.jsx";
+import CounterpartiesContainer from './CounterpartiesContainer.jsx';
 import RecordsContainer from "./RecordsContainer.jsx";
 
   const MainContainer = props => {
-    useEffect(() => {
-      // console.log('in useEffect')
-    }, [])
+    const [counterparties, setCounterparties] = useState([]);
+    const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
 
     return (
       <div className="container">
         <header>Reconciliation App</header>
         <nav>Nav Bar</nav>
         <h1 id="header">Balance with others here...</h1>
-        <div className="inner-container">
-          <PeopleContainer />
+        <div className="main-right-container">
+          <CounterpartiesContainer 
+            counterparties={counterparties}
+            setCounterparties={setCounterparties}
+            populatedCounterparties={populatedCounterparties}
+            setPopulatedCounterparties={setPopulatedCounterparties}
+          />
           <RecordsContainer />
-            {/* <AddRecord />
-            <ListOfRecords /> */}
       {/*  / - root, always the very top
       ./asdf and asdf are the same - sibling
       */}
