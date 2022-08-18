@@ -24,11 +24,13 @@ module.exports = {
       // compiling scss to css
       {
         test: /\.s?css/,
+        exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       // image loader
       {
         test: /\.(png|jpe?g|gif)$/i,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'file-loader',
