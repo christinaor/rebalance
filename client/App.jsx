@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import MainContainer from './containers/MainContainer.jsx';
 import LoginPage from './components/LoginPage.jsx';
 import NotFound from './components/NotFound.jsx';
 
 function App(props) {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [cookies, setCookie] = useCookies(['user']);
   // const [user, setUser] = useState(null);
-  // const [appIsReady, setAppIsReady] = useState(false);
+  const [appIsReady, setAppIsReady] = useState(false);
 
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
   useEffect(() => {
     // // const token = getCookie('user')
-    // console.log('in app.jsx useEffect')
+    console.log('in app.jsx useEffect')
     // const token = false;
     // if (!token) {
     //   console.log('no token, go to login')
@@ -23,28 +25,31 @@ function App(props) {
     //   setAppIsReady(true);
     //   navigate('/', { replace: true });
     // }
+    if (!cookies.user) {navigate('/login', { replace: true })}
+    else navigate('/', { replace: true })
+    setAppIsReady(true);
 
-  })
+  }, [cookies])
 
-  // if (appIsReady) {
+  if (appIsReady) {
     return (
       <main>
         <Routes>
-          {/* <Route path='/home' component={MainContainer}/>        
-          <Route path='/' component={LoginPage} exact /> */}
           <Route path='/' 
             element={<MainContainer />} exact />
-          <Route path='/login' element={<LoginPage />} />
+          <Route path='/login' element={<LoginPage 
+            cookies={cookies}
+            setCookie={setCookie}
+          />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {/* <MainContainer/> */}
       </main>
     )
-  // } else {
-  //   return (
-  //     <div>Rebalance is loading...</div>
-  //   )
-  // }
+  } else {
+    return (
+      <div>Rebalance is loading...</div>
+    )
+  }
 };
 
 // class App extends Component {

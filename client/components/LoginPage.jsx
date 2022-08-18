@@ -9,10 +9,17 @@
  * ************************************
  */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+// import { useCookies } from "react-cookie";
 import piggybank from './../../assets/piggybank.png'
-
 const LoginPage = (props) => {
+  const { 
+    cookies,
+    setCookie
+  } = props;
+
+  // setCookie('user', 'CO', { path: '/' });
+
   return (
     <div className="login-page-wrapper">
       <div className="login-container">
