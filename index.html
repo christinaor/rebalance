@@ -5,6 +5,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Budgeting</title>
+        <!-- 1- Webpack emits relative links to built assets.
+            2- When loading a page not directly under the root, built assets will fail to resolve, so a base must be specified so relative paths are resolved relative to the root.
+
+            Notes:
+            This also affects other paths across the app.
+            Cannot change the path of bundle in webpack.
+        -->
+        <base href="/" />
     </head>
     <div class="main-wrapper">
         <body>
