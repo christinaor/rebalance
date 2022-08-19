@@ -3,26 +3,31 @@ import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import MainContainer from './containers/MainContainer.jsx';
 import LoginPage from './components/LoginPage.jsx';
+import SignupPage from './components/SignupPage.jsx';
 import NotFound from './components/NotFound.jsx';
 
 function App(props) {
+  const [pressedSignup, setPressedSignup] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   // const [user, setUser] = useState(null);
   const [appIsReady, setAppIsReady] = useState(false);
 
   const navigate = useNavigate();
-  // setCookie('user', 'CO', { path: '/' });
 
   useEffect(() => {
     if (!cookies.user) {
-      navigate('/flow/login', { replace: true })
+      (pressedSignup) ? navigate('/flow/signup') 
+        : navigate('/flow/login', { replace: true })
+    // if (!cookies.user) {
+    //   // console.log(pressedSignup)
+    //   navigate('./flow/login', { replace: true })
     } else {
       navigate('/', { replace: true })
     }
     setAppIsReady(true);
 
-  }, [cookies])
+  }, [cookies, pressedSignup])
 
   if (appIsReady) {
     return (
@@ -37,7 +42,10 @@ function App(props) {
             setCookie={setCookie}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
+            pressedSignup={pressedSignup}
+            setPressedSignup={setPressedSignup}
           />} />
+          <Route path='/flow/signup' element={<SignupPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

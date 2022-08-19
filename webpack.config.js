@@ -47,6 +47,7 @@ module.exports = {
   ],
   devServer: {
     static: {
+      // publicPath: 'auto'
       publicPath: '/build',
       // directory: path.resolve(__dirname, 'build')
     },

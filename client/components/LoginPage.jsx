@@ -11,6 +11,7 @@
 
 import React, { useEffect, useState } from "react";
 import piggybank from './../../assets/piggybank.png'
+
 const LoginPage = (props) => {
   const [loginCreds, setLoginCreds] = useState({
     email: '',
@@ -24,7 +25,9 @@ const LoginPage = (props) => {
     setCookie,
     removeCookie,
     isLoggedIn,
-    setIsLoggedIn
+    setIsLoggedIn,
+    pressedSignup,
+    setPressedSignup
   } = props;
 
   const handleLogin = (e) => {
@@ -98,7 +101,9 @@ const LoginPage = (props) => {
 
         <div className="login-signup-wrapper">
           <h4>First time at RE:balance? Let's sign you up!</h4>
-          <button className="signup-login-page" type="submit">Sign Up Here!</button>
+          <button 
+            className="signup-login-button"
+            onClick={() => setPressedSignup(true)}>Sign Up Here!</button>
         </div>
       </article>
 
