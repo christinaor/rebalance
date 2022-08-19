@@ -7,11 +7,12 @@ import NotFound from './components/NotFound.jsx';
 
 function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   // const [user, setUser] = useState(null);
   const [appIsReady, setAppIsReady] = useState(false);
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  // setCookie('user', 'CO', { path: '/' });
 
   useEffect(() => {
     // // const token = getCookie('user')
@@ -25,8 +26,11 @@ function App(props) {
     //   setAppIsReady(true);
     //   navigate('/', { replace: true });
     // }
-    if (!cookies.user) {navigate('/login', { replace: true })}
-    else navigate('/', { replace: true })
+    if (!cookies.user) {
+      navigate('/login', { replace: true })
+    } else {
+      navigate('/', { replace: true })
+    }
     setAppIsReady(true);
 
   }, [cookies])
@@ -38,8 +42,12 @@ function App(props) {
           <Route path='/' 
             element={<MainContainer />} exact />
           <Route path='/login' element={<LoginPage 
+            navigate={navigate}
             cookies={cookies}
+            removeCookie={removeCookie}
             setCookie={setCookie}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
           />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
