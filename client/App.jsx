@@ -15,17 +15,6 @@ function App(props) {
   // setCookie('user', 'CO', { path: '/' });
 
   useEffect(() => {
-    // // const token = getCookie('user')
-    console.log('in app.jsx useEffect')
-    // const token = false;
-    // if (!token) {
-    //   console.log('no token, go to login')
-    //   navigate('/login', { replace: true });
-    // } else {
-    //   setIsLoggedIn(true);
-    //   setAppIsReady(true);
-    //   navigate('/', { replace: true });
-    // }
     if (!cookies.user) {
       navigate('/login', { replace: true })
     } else {
@@ -59,20 +48,5 @@ function App(props) {
     )
   }
 };
-
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-  
-//   render() {
-//     console.log('hello from app.jsx!')
-//     return(
-//       <div>
-//         <MainContainer/>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;

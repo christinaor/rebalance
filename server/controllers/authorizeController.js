@@ -4,8 +4,6 @@ const authorizeController = {};
 authorizeController.checkUser = async (req, res, next) => {
   try {
     const { email, pass } = req.body;
-    console.log('email: ', email)
-    console.log('pass', pass)
     const params = [ email, pass ];
     const getQuery = `SELECT * FROM rebalance.login WHERE email=$1 AND pass=$2;`;
     const userInfo = await db.query(getQuery, params);
@@ -14,12 +12,6 @@ authorizeController.checkUser = async (req, res, next) => {
       loginSuccess: userInfo.rows.length > 0,
       user: (userInfo.rows.length > 0) ? userInfo.rows[0].username : null
     };
-    console.log(userInfo)
-    console.log('before user reassignment')
-    // cannot assign this way for null - error comes up
-    // res.locals.loginResults[0].user = (userInfo.rows.length > 0) ? userInfo.rows[0].username : null;
-    // if (userInfo.rows.length > 0) res.locals.loginResults[0].user = userInfo.rows[0].username;
-    console.log(res.locals.loginResults)
     next();
   } catch(err) {
     return next({

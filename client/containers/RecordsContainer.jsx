@@ -35,7 +35,7 @@ const RecordsContainer = props => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('get data here: ', data);
+        console.log('get records here: ', data);
         setRecordsList(data);
       })
       .catch((err) => {

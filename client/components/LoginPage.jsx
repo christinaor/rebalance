@@ -10,7 +10,6 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { useCookies } from 'react-cookie';
 import piggybank from './../../assets/piggybank.png'
 const LoginPage = (props) => {
   const [loginCreds, setLoginCreds] = useState({
@@ -46,12 +45,12 @@ const LoginPage = (props) => {
           setIsLoggedIn(true);
           setCookie('user', data.user, { path: '/' });
           setFailedLogin(false);
-
+          // expiration of 1min for 'user' cookie
           setTimeout(() => {
             removeCookie('user', { path: '/' });
             setIsLoggedIn(false);            
             navigate('/login', { replace: true });
-          }, 10000)
+          }, 60000)
         } else setFailedLogin(true);
       })
       .catch(err => `Error checking credentials of user login: ${err}`)
@@ -62,8 +61,6 @@ const LoginPage = (props) => {
         })
       )
   }
-  console.log('set cookie blanked out')
-  // setCookie('user', 'CO', { path: '/' });
 
   return (
     <div className="login-page-wrapper">
