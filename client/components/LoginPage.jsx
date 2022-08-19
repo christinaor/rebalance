@@ -10,37 +10,50 @@
  */
 
 import React, { useEffect, useState } from "react";
-// import { useCookies } from "react-cookie";
 import piggybank from './../../assets/piggybank.png'
 const LoginPage = (props) => {
-  const { 
+  const {
     cookies,
-    setCookie
+    setCookie,
+    isLoggedIn,
+    setIsLoggedIn
   } = props;
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    fetch('/authorize/signin', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        pass: pass
+      })
+    })
+    
+  }
 
   // setCookie('user', 'CO', { path: '/' });
 
   return (
     <div className="login-page-wrapper">
-      <div className="login-container">
-          <img className="login-left" src={piggybank} alt="minimalist piggy bank image" />
+      <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" />
 
-        <div className="login-right">
-          <div className="login-only-wrapper">
-            <div className="login-title">rebalance</div>
-            <form className="login-form" id="signin" action="/signin" method="POST">
-              <input id="user" name="user" placeholder="Email" type="text"></input>
-              <input id="pass" name="pass" placeholder="Password" type="text"></input>
-              <button id="login-submit" type="submit">Log In!</button>
-            </form>
-          </div>
-          <br />
-          <div className="login-signup-wrapper">
-            <div className="login-signup-text">New to rebalance?</div>
-            <button id="signup-submit" type="submit">Sign Up Here!</button>
-          </div>
+      <article className="login-right">
+        <h1>RE:balance</h1>
+        <form className="login-form" id="signin" action="/authorize/signin" method="GET">
+          <input id="email" name="email" placeholder="Email" type="text"></input>
+          <input id="pass" name="pass" placeholder="Password" type="text"></input>
+          <button id="login-submit" type="submit">Log In!</button>
+        </form>
+        <br />
+        <div className="login-signup-wrapper">
+          <div className="login-signup-text">New to rebalance?</div>
+          <button id="signup-submit" type="submit" onClick={handleLogin}>Sign Up Here!</button>
         </div>
-      </div>
+      </article>
+
     </div>
   )
 }
