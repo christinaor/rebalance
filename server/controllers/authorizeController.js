@@ -8,6 +8,7 @@ authorizeController.checkUser = async (req, res, next) => {
     const getQuery = `SELECT * FROM rebalance.login WHERE email=$1 AND pass=$2;`;
     const userInfo = await db.query(getQuery);
     res.locals.loginSuccess = (userInfo.rows.length > 0);
+    if (res.locals.loginSuccess) res.locals.user = userInfo.rows.username
     next();
   } catch(err) {
     return next({

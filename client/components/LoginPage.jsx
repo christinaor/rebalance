@@ -13,6 +13,7 @@ import React, { useEffect, useState } from "react";
 import piggybank from './../../assets/piggybank.png'
 const LoginPage = (props) => {
   const {
+    navigate,
     cookies,
     setCookie,
     isLoggedIn,
@@ -31,7 +32,19 @@ const LoginPage = (props) => {
         pass: pass
       })
     })
-    
+      .then(response => response.json())
+      .then(data => {
+        if (data.loginSuccess) {
+          setCookie('user', data.user, { path: '/' });
+          setIsLoggedIn(true);
+          setTimeout(() => {
+            cookies.remove('user');
+            navigate('/login', { replace: true });
+            setIsLoggedIn(false);
+          }, 60000)
+        }
+      })
+      .catch(err => `Error checking credentials of user login: ${err}`)
   }
 
   // setCookie('user', 'CO', { path: '/' });
