@@ -10,7 +10,6 @@
  */
 
 import React, { useEffect, useState } from "react";
-import LoginPage from "../components/LoginPage.jsx";
 import CounterpartiesContainer from './CounterpartiesContainer.jsx';
 import RecordsContainer from "./RecordsContainer.jsx";
 

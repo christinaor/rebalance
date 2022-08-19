@@ -49,8 +49,8 @@ const LoginPage = (props) => {
           setTimeout(() => {
             removeCookie('user', { path: '/' });
             setIsLoggedIn(false);            
-            navigate('/login', { replace: true });
-          }, 60000)
+            navigate('/flow/login', { replace: true });
+          }, 1800000)
         } else setFailedLogin(true);
       })
       .catch(err => `Error checking credentials of user login: ${err}`)
@@ -67,7 +67,7 @@ const LoginPage = (props) => {
       <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" />
 
       <article className="login-right">
-        <h1>RE:balance</h1>
+        <h1>RE:balance<br /> Manage Your Reconciliations</h1>
         <form className="login-form" action="/authorize/signin" method="GET">
           <input 
             id="email" 
@@ -86,19 +86,19 @@ const LoginPage = (props) => {
             onChange={(e) => setLoginCreds({...loginCreds, pass: e.target.value})} 
           />
           <button 
-            id="login-submit" 
+            className="login-submit" 
             type="submit" 
             onClick={handleLogin}
           >Log In!</button>
         </form>
         { failedLogin &&
-          <div>Forget your password?</div>
+          <div>Forget your password or a new user?</div>
         }
         <br />
 
         <div className="login-signup-wrapper">
-          <div className="login-signup-text">New to rebalance?</div>
-          <button id="signup-submit" type="submit">Sign Up Here!</button>
+          <h4>First time at RE:balance? Let's sign you up!</h4>
+          <button className="signup-login-page" type="submit">Sign Up Here!</button>
         </div>
       </article>
 

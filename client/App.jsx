@@ -16,7 +16,7 @@ function App(props) {
 
   useEffect(() => {
     if (!cookies.user) {
-      navigate('/login', { replace: true })
+      navigate('/flow/login', { replace: true })
     } else {
       navigate('/', { replace: true })
     }
@@ -30,7 +30,7 @@ function App(props) {
         <Routes>
           <Route path='/' 
             element={<MainContainer />} exact />
-          <Route path='/login' element={<LoginPage 
+          <Route path='/flow/login' element={<LoginPage 
             navigate={navigate}
             cookies={cookies}
             removeCookie={removeCookie}

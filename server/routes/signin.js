@@ -3,8 +3,7 @@ const router = express.Router();
 const authorizeController = require('../controllers/authorizeController')
 
 router.post('/signin', authorizeController.checkUser, (req, res) => {
-  // res.status(222).json(res.locals.loginResults)
-  return res.status(201).json(res.locals.loginResults)
+  res.status(201).json(res.locals.loginResults)
 })
 
 module.exports = router;
