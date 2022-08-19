@@ -1,33 +1,33 @@
-// login
+/*****   LOGIN AND SIGNUP STYLING   *****/
 .login-page-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 30px auto 0;
   position: relative;
 
 }
 
-.login-container {
-  width: 100%;
-  box-sizing: border-box;
-  margin: 32px auto 0;
-  display: flex;
-  justify-content: center;
-  // flex-shrink: 0;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
-}
+// .login-container {
+//   width: 100%;
+//   box-sizing: border-box;
+//   margin: 32px auto 0;
+//   display: flex;
+//   justify-content: center;
+//   // flex-shrink: 0;
+//   // flex-direction: column;
+//   // justify-content: center;
+//   // align-items: center;
+// }
 
-.login-left {
+.login-left-img {
   width: 50%;
-  flex: 1 1 50%;
+  flex: 1 1 25%;
 }
 
-.login-only-wrapper, .login-signup-wrapper {
-  border: 1px solid black;
+.login-signup-wrapper {
+  // border: 1px solid black;
   // margin: auto;
-  padding: 32px;
+  // padding: 32px;
   display: flex;
   flex-direction: column;
 }
@@ -46,9 +46,21 @@
 .login-form {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
+.login-signup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+};
 
+// button
+.signup-login-page {
+  width: 150px;
+};
+
+/*****   MAIN STYLING   *****/
 .main-wrapper {
   display: flex;
   flex-direction: column;
@@ -58,79 +70,43 @@ body {
   background: $lightPurple;
 };
 
-.inner-container {
+.main-inner-container {
   display: grid;
   grid-auto-flow: column;
   gap: 0 50px;
   grid-template-columns: 1fr 7fr
 };
 
-.all-forms {
-  display: flex;
-  // justify-content: space-between;
-}
 
-.single-entry-container {
-  // max-width: 700px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-};
-
-.item-box {
-  max-width: 100px;
-  flex-grow: 1;
-};
-
-.name-box {
-  max-width: 100px;
-  flex-grow: 1;
-};
-
-.purchase_date-box {
-  max-width: 100px;
-  flex-grow: 1;
-};
-
-.item_name-box {
-  max-width: 100px;
-  flex-grow: 1;
-};
-
-.cost-box {
-  max-width: 100px;  
-  flex-grow: 1;
-};
-
-.notes-box {
-  max-width: 100px;
-  flex-grow: 1;
-};
-
-.searched-container {
-  display: flex;
-  // flex-direction: row;
-};
-
-
-.input-fields {
-  max-width: 100px;
+/*****   COUNTERPARTIES STYLING   *****/
+.left-counterparties {
   display: flex;
   flex-direction: column;
-};
-
-/*****   PEOPLE STYLING   *****/
-
+  border: 1px solid black;
+}
 
 
 /*****   RECORDS GRID STYLING   *****/
+.records-container {
+  // margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
 .records-grid-container {
   display: grid;
   // grid-template-columns: repeat(auto-fill, 400px);
   grid-auto-flow: row;
-  gap: 5px
+  gap: 5px;
   // grid:  auto auto auto auto
   // display: table-cell;
+}
+
+.inner-records-post-form {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
 }
 
 .grid-record {
@@ -142,27 +118,34 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
+.add-or-update-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .records-post-form {
   box-sizing: border-box;
   border: 1px solid black;
-  min-height: 100px;
+  min-height: 120px;
   padding: 10px;
-
+  flex-grow: 8;
+  flex-basis: 80%;
 }
 
-.inner-records-post-form {
-  display: flex;
-  gap: 20px;
+.records-update-form {
+  box-sizing: border-box;
+  border: 1px solid black;
+  min-height: 120px;
   padding: 10px;
-
-
+  flex-grow: 1;
 }
 
-// general styling
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-};
+// // general styling
+// .center {
+//   display: block;
+//   margin-left: auto;
+//   margin-right: auto;
+//   width: 50%;
+// };
