@@ -47,9 +47,9 @@ const AddRecord = (props) => {
     <div className="records-post-form">
       {/* <h2>Add A Record:</h2> */}
       <button onClick={() => setTogglePostRecordForm(!togglePostRecordForm)}>{togglePostRecordForm ? `Exit Adding A Record`: `Add A Record Here`}</button>
-      {
-      togglePostRecordForm && <form className="inner-records-post-form" action="/api/records" method="POST">
-        
+      
+      {togglePostRecordForm && 
+      <form className="inner-records-post-form" action="/api/records" method="POST">
         <div>
           <label for="name">Name:</label>
           <input name="name" type="text" value={postedRecord.name} id="records-post-name" onChange={(e) => setPostedRecord({...postedRecord, name: e.target.value})} />

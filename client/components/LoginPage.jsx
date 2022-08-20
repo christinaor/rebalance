@@ -69,7 +69,7 @@ const LoginPage = (props) => {
     <div className="login-page-wrapper">
       <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" />
 
-      <article className="login-right">
+      <div className="login-right">
         <h1>RE:balance<br /> Manage Your Reconciliations</h1>
         <form className="login-form" action="/authorize/signin" method="GET">
           <input 
@@ -105,7 +105,7 @@ const LoginPage = (props) => {
             className="signup-login-button"
             onClick={() => setPressedSignup(true)}>Sign Up Here!</button>
         </div>
-      </article>
+      </div>
 
     </div>
   )

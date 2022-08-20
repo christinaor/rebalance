@@ -48,6 +48,27 @@
   width: 150px;
 };
 
+.signup-page-wrapper {
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+};
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.signup-page-format {
+  min-width: 250px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
 /*****   MAIN STYLING   *****/
 .main-wrapper {
   display: flex;

@@ -21,4 +21,16 @@ authorizeController.checkUser = async (req, res, next) => {
   }
 };
 
+authorizeController.addUser = async(req, res, next) => {
+  try{
+
+  } catch(err) {
+    return next({
+      log: `authorizeController.addUser contains an error: ${err}`,
+      message: {err: 'Error in authorizeController.addUser. Check server logs for more details!'}
+    })
+  }
+}
+
+
 module.exports = authorizeController;
