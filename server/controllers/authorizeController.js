@@ -29,8 +29,10 @@ authorizeController.addUser = async (req, res, next) => {
     `
     const emailExists = await db.query(checkEmailQuery, params);
     if (emailExists.rows[0].exists) {
+      console.log('true in exists', emailExists.rows[0].exists)
       res.locals.signupSuccess = false;
     } else {
+      console.log('false does not exist', emailExists.rows[0].exists)
       res.locals.signupSuccess = true;
       const postQuery = `
         INSERT INTO rebalance.login (username, email, pass)
@@ -38,6 +40,7 @@ authorizeController.addUser = async (req, res, next) => {
       `
       const executePost = await db.query(postQuery, params);
     }
+    console.log(res.locals.signupSuccess)
     next();
   } catch(err) {
     return next({
