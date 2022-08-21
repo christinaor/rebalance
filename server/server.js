@@ -29,7 +29,7 @@ app.use('*', (req, res) => res.status(404).send('This page does not exist! ):'))
 // global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
+    log: 'Express global error handler caught unknown middleware error',
     status: 500,
     message: { err: 'An error occurred' },
   };
