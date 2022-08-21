@@ -40,7 +40,7 @@ recordsController.postRecord = async (req, res, next) => {
     const postQuery = `
       INSERT INTO test_table (username, item_name, item_cost)
       VALUES ($1, $2, $3);
-      `;
+    `;
     const executePost = await db.query(postQuery, params);
     next();
   } catch(err) {
