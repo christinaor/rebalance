@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom';
 
 const SignupPage = (props) => {
+  const { pressedSignup, setPressedSignup } = props;
+  
   const [signedUp, setSignedUp] = useState(false);
   const [accountExists, setAccountExists] = useState(false);
   const [signupCreds, setSignupCreds] = useState({
@@ -13,7 +15,6 @@ const SignupPage = (props) => {
   const navigate = useNavigate();
 
   const postSignupCreds = (e) => {
-    console.log('this is e: ',e)
     e.preventDefault();
     fetch('/authorize/signup', {
       method: 'POST',
@@ -31,8 +32,14 @@ const SignupPage = (props) => {
         if (signupSuccess) {
           setAccountExists(false);
           setSignedUp(true);
-          // setTimeout(() => navigate('/flow/login', { replace: true }), 5000);
-        } else setAccountExists(true);
+          setTimeout(() => {
+            navigate('/flow/login', { replace: true })
+            setPressedSignup(false);
+          }, 5000);
+        } else {
+          setSignedUp(false);
+          setAccountExists(true);
+        }
       })
       .catch(err => `Error adding user: ${err}`)
       .finally(
@@ -47,6 +54,7 @@ const SignupPage = (props) => {
     <div className="signup-page-wrapper">
       <h2>Sign Up Here:</h2>
       <br />
+      {!signedUp &&
       <form className="signup-form" action="/authorize/signup" method="POST">
         <div className="signup-page-format">
           <label for="username">Username</label>
@@ -63,13 +71,14 @@ const SignupPage = (props) => {
         <div>
           <button type="submit" onClick={postSignupCreds}>Create Account</button>
         </div>
-        {signedUp && 
-          <div>Success signing up! Now go login {':)'}</div>
-        }
-        {accountExists &&
-          <div>An account already exists - forget your password?</div>
-        }
       </form>
+      }
+      {signedUp && 
+          <div>Success signing up! Now go login {':)'}</div>
+      }
+      {accountExists &&
+        <div>An account already exists - forget your password?</div>
+      }
     </div>
   )
 };
