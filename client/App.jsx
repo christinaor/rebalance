@@ -10,7 +10,7 @@ function App(props) {
   const [pressedSignup, setPressedSignup] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
-  const [signedUp, setSignedUp] = useState(false);
+  // const [signedUp, setSignedUp] = useState(false);
   const [appIsReady, setAppIsReady] = useState(false);
 
   const navigate = useNavigate();
@@ -45,8 +45,10 @@ function App(props) {
             pressedSignup={pressedSignup}
             setPressedSignup={setPressedSignup} />} />
           <Route path='/flow/signup' element={<SignupPage 
-            signedUp={signedUp} 
-            setSignedUp={setSignedUp} />} />
+            // signedUp={signedUp} 
+            // setSignedUp={setSignedUp} 
+            />} 
+            />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

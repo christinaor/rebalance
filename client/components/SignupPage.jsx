@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate, Navigate } from 'react-router-dom';
 
 const SignupPage = (props) => {
-  const {
-    signedUp,
-    setSignedUp
-  } = props;
-
+  const [signedUp, setSignedUp] = useState(false);
+  const [accountExists, setAccountExists] = useState(false);
   const [signupCreds, setSignupCreds] = useState({
     username: '',
     email: '',
     pass: ''
   });
 
+  const navigate = useNavigate();
+
   const postSignupCreds = (e) => {
-    console.log(e)
+    console.log('this is e: ',e)
     e.preventDefault();
     fetch('/authorize/signup', {
       method: 'POST',
@@ -26,9 +26,13 @@ const SignupPage = (props) => {
         pass: signupCreds.pass
       })
     })
-      .then(() => {
-        setSignedUp(true);
-        setTimeout(() => {})
+      .then(response => response.json())
+      .then(signupSuccess => {
+        if (signupSuccess) {
+          setAccountExists(false);
+          setSignedUp(true);
+          // setTimeout(() => navigate('/flow/login', { replace: true }), 5000);
+        } else setAccountExists(true);
       })
       .catch(err => `Error adding user: ${err}`)
       .finally(
@@ -44,26 +48,29 @@ const SignupPage = (props) => {
       <h2>Sign Up Here:</h2>
       <br />
       <form className="signup-form" action="/authorize/signup" method="POST">
-          <div className="signup-page-format">
-            <label for="username">Username</label>
-            <input name="username" type="text" value={signupCreds.username} id="signup-post-username" onChange={(e) => setSignupCreds({...signupCreds, username: e.target.value})} />
-          </div>
-          <div className="signup-page-format">
-            <label for="email">Email</label>
-            <input name="email" type="text" value={signupCreds.email} id="signup-post-email" onChange={(e) => setSignupCreds({...signupCreds, email: e.target.value})} />
-          </div>
-          <div className="signup-page-format">
-            <label for="pass">Password</label>
-            <input name="pass" type="text" value={signupCreds.pass} id="signup-post-pass" onChange={(e) => setSignupCreds({...signupCreds, pass: e.target.value})} />
-          </div>
-          <div>
-            <button type="submit" onClick={postSignupCreds}>Create Account</button>
-          </div>
-          {signedUp && 
-            <div>Success signing up! {':)'}</div>
-          }
-        </form>
-      </div>
+        <div className="signup-page-format">
+          <label for="username">Username</label>
+          <input name="username" type="text" value={signupCreds.username} id="signup-post-username" onChange={(e) => setSignupCreds({...signupCreds, username: e.target.value})} />
+        </div>
+        <div className="signup-page-format">
+          <label for="email">Email</label>
+          <input name="email" type="text" value={signupCreds.email} id="signup-post-email" onChange={(e) => setSignupCreds({...signupCreds, email: e.target.value})} />
+        </div>
+        <div className="signup-page-format">
+          <label for="pass">Password</label>
+          <input name="pass" type="text" value={signupCreds.pass} id="signup-post-pass" onChange={(e) => setSignupCreds({...signupCreds, pass: e.target.value})} />
+        </div>
+        <div>
+          <button type="submit" onClick={postSignupCreds}>Create Account</button>
+        </div>
+        {signedUp && 
+          <div>Success signing up! Now go login {':)'}</div>
+        }
+        {accountExists &&
+          <div>An account already exists - forget your password?</div>
+        }
+      </form>
+    </div>
   )
 };
 
