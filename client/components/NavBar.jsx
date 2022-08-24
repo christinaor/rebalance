@@ -19,10 +19,10 @@ const NavBar = (props) => {
         Welcome to Rebalance!
       </li> */}
       <li>
-        <Link to="/settings">Settings</Link>
+        <Link to="/flow/settings">Settings</Link>
       </li>
       <li>
-        <Link to="/login">Logout</Link>
+        {/* <Link to="/flow/login">Logout</Link> */}
       </li>
     </div>
 

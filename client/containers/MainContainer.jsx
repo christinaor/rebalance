@@ -25,9 +25,10 @@ import LoginPage from "../components/LoginPage.jsx";
       <div className="container">
         <header>Reconciliation App</header>
         <NavBar />
-        <Route path='/settings' element={Settings} />
-        <Route path='/login' element={LoginPage} />
-
+        <Routes>
+          <Route path='/flow/settings' element={Settings} />
+          <Route path='/flow/login' element={LoginPage} />
+        </Routes>
         <h1 id="header">Balance with others here...</h1>
         <div className="main-inner-container">
           <CounterpartiesContainer 
