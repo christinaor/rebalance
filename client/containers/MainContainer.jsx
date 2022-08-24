@@ -18,15 +18,31 @@ import Settings from "../components/Settings.jsx"
 import LoginPage from "../components/LoginPage.jsx";
 
   const MainContainer = props => {
+    const { 
+      cookies, 
+      removeCookie, 
+      setCookie, 
+      isLoggedIn, 
+      setIsLoggedIn,
+      cookieTimeout,
+      setCookieTimeout
+    } = props;
     const [counterpartiesList, setCounterpartiesList] = useState([]);
     const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
 
     return (
       <div className="container">
-        <NavBar />
+        <NavBar 
+          cookies={cookies}
+          removeCookie={removeCookie}
+          setCookie={setCookie}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          cookieTimeout={cookieTimeout}
+          setCookieTimeout={setCookieTimeout} />
         <Routes>
-          <Route path='/flow/settings' element={Settings} />
-          <Route path='/flow/login' element={LoginPage} />
+          <Route path='/flow/settings' element={<Settings />} />
+          <Route path='/flow/login' element={<LoginPage />} />
         </Routes>
         <h1 id="header">Balance with others here...</h1>
         <div className="main-inner-container">

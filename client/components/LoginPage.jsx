@@ -10,6 +10,7 @@
  */
 
 import React, { useEffect, useState } from "react";
+import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import piggybank from './../../assets/piggybank.png'
 
 const LoginPage = (props) => {
@@ -27,7 +28,9 @@ const LoginPage = (props) => {
     isLoggedIn,
     setIsLoggedIn,
     pressedSignup,
-    setPressedSignup
+    setPressedSignup,
+    cookieTimeout,
+    setCookieTimeout
   } = props;
 
   const handleLogin = (e) => {
@@ -49,11 +52,11 @@ const LoginPage = (props) => {
           setCookie('user', data.user, { path: '/' });
           setFailedLogin(false);
           // expiration of 1min for 'user' cookie
-          setTimeout(() => {
+          setCookieTimeout(setTimeout(() => {
             removeCookie('user', { path: '/' });
             setIsLoggedIn(false);            
             navigate('/flow/login', { replace: true });
-          }, 1800000)
+          }, 50000));
         } else setFailedLogin(true);
       })
       .catch(err => `Error checking credentials of user login: ${err}`)
@@ -65,8 +68,11 @@ const LoginPage = (props) => {
       )
   }
 
-  return (
+  return ((!cookies.user) ?
     <div className="login-page-wrapper">
+      {/* TESTING COOKIES.USER: should have no cookies: 
+      {cookies.user} */}
+      
       <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" />
 
       <div className="login-right">
@@ -106,8 +112,14 @@ const LoginPage = (props) => {
             onClick={() => setPressedSignup(true)}>Sign Up Here!</button>
         </div>
       </div>
-
     </div>
+  :
+  (<div>cookies.user should be filled
+    {/* {cookies.user} */}
+    Redirecting to your RE:Balance Homepage...
+    {console.log('in the redirect from logout')}
+    {navigate('/', { replace: true })}
+  </div>)
   )
 }
 

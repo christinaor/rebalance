@@ -11,8 +11,19 @@
 
 import React, {useEffect, useState} from "react";
 import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
+import Logout from "./Logout.jsx";
 
 const NavBar = (props) => {
+  const { 
+    cookies, 
+    removeCookie, 
+    setCookie, 
+    isLoggedIn, 
+    setIsLoggedIn,
+    cookieTimeout,
+    setCookieTimeout
+  } = props;
+  
   return (
     <nav className="navigation">
       <Link to="/">
@@ -22,7 +33,14 @@ const NavBar = (props) => {
         <button>Settings</button>
       </Link>
       <Link to="/flow/login">
-        <button>Logout</button>
+        <Logout 
+          cookies={cookies}
+          removeCookie={removeCookie}
+          setCookie={setCookie}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          cookieTimeout={cookieTimeout}
+          setCookieTimeout={setCookieTimeout} />
       </Link>
     </nav>
 
