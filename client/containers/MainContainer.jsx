@@ -23,7 +23,6 @@ import LoginPage from "../components/LoginPage.jsx";
 
     return (
       <div className="container">
-        <header>Reconciliation App</header>
         <NavBar />
         <Routes>
           <Route path='/flow/settings' element={Settings} />

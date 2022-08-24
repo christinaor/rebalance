@@ -14,17 +14,17 @@ import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
 
 const NavBar = (props) => {
   return (
-    <div>
-      {/* <li>
-        Welcome to Rebalance!
-      </li> */}
-      <li>
-        <Link to="/flow/settings">Settings</Link>
-      </li>
-      <li>
-        {/* <Link to="/flow/login">Logout</Link> */}
-      </li>
-    </div>
+    <nav className="navigation">
+      <Link to="/">
+        <button>Home</button>
+      </Link>
+      <Link to="/flow/settings">
+        <button>Settings</button>
+      </Link>
+      <Link to="/flow/login">
+        <button>Logout</button>
+      </Link>
+    </nav>
 
   )
 };
