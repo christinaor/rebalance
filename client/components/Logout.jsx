@@ -23,7 +23,8 @@
   } = props;
 
   const logoutNow = (e) => {
-    setCookieTimeout(removeCookie('user', { path: '/' }));
+    setCookieTimeout(clearTimeout(cookieTimeout))
+    removeCookie('user', { path: '/' });
     setIsLoggedIn(false);
   }
   return (
