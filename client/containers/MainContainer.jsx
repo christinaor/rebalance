@@ -10,8 +10,12 @@
  */
 
 import React, { useEffect, useState } from "react";
+import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import CounterpartiesContainer from './CounterpartiesContainer.jsx';
 import RecordsContainer from "./RecordsContainer.jsx";
+import NavBar from "../components/NavBar.jsx"
+import Settings from "../components/Settings.jsx"
+import LoginPage from "../components/LoginPage.jsx";
 
   const MainContainer = props => {
     const [counterpartiesList, setCounterpartiesList] = useState([]);
@@ -20,7 +24,10 @@ import RecordsContainer from "./RecordsContainer.jsx";
     return (
       <div className="container">
         <header>Reconciliation App</header>
-        <nav>Nav Bar</nav>
+        <NavBar />
+        <Route path='/settings' element={Settings} />
+        <Route path='/login' element={LoginPage} />
+
         <h1 id="header">Balance with others here...</h1>
         <div className="main-inner-container">
           <CounterpartiesContainer 

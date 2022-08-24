@@ -15,9 +15,9 @@ import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
 const NavBar = (props) => {
   return (
     <div>
-      <li>
+      {/* <li>
         Welcome to Rebalance!
-      </li>
+      </li> */}
       <li>
         <Link to="/settings">Settings</Link>
       </li>
