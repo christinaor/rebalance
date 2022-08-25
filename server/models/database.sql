@@ -88,3 +88,14 @@ CREATE TABLE rebalance.login (
 INSERT INTO rebalance.login (username, pass, email)
 VALUES ('user1', 'pw', 'user1@test.com');
 
+-- RECORDS TABLE
+CREATE TABLE IF NOT EXISTS rebalance.records (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(255) NOT NULL,
+  counterparty_username VARCHAR(255) NOT NULL,
+	input_date TIMESTAMP DEFAULT NOW(),
+	item_name VARCHAR(255) NOT NULL,
+	item_cost NUMERIC(12,2) NOT NULL,
+  user_split NUMERIC(12,2) NOT NULL,
+  user_perc DECIMAL(5,2) NOT NULL CHECK(user_perc <= 100 AND user_perc >= 0),
+);
