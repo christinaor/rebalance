@@ -14,7 +14,7 @@ import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import CounterpartiesContainer from './CounterpartiesContainer.jsx';
 import RecordsContainer from "./RecordsContainer.jsx";
 import NavBar from "../components/NavBar.jsx"
-import Settings from "../components/Settings.jsx"
+import SettingsPage from "../components/SettingsPage.jsx"
 import LoginPage from "../components/LoginPage.jsx";
 
   const MainContainer = props => {
@@ -41,7 +41,7 @@ import LoginPage from "../components/LoginPage.jsx";
           cookieTimeout={cookieTimeout}
           setCookieTimeout={setCookieTimeout} />
         <Routes>
-          <Route path='/flow/settings' element={<Settings />} />
+          <Route path='/flow/settings' element={<SettingsPage />} />
           <Route path='/flow/login' element={<LoginPage />} />
         </Routes>
         <h1 id="header">Balance with others here...</h1>

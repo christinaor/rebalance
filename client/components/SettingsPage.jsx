@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module  Settings
+ * @module  SettingsPage
  * @author
  * @date
  * @description Settings page for user to change credentials
@@ -11,10 +11,11 @@
 
  import React, {useEffect, useState} from "react";
  
- const Settings = (props) => {
+ const SettingsPage = (props) => {
+
    return (
-    <div>Initial Settings Page</div>
+    <div>SettingsPage here</div>
    )
  };
  
- export default Settings;
+ export default SettingsPage;

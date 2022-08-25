@@ -56,7 +56,7 @@ const LoginPage = (props) => {
             removeCookie('user', { path: '/' });
             setIsLoggedIn(false);            
             navigate('/flow/login', { replace: true });
-          }, 50000));
+          }, 20000));
         } else setFailedLogin(true);
       })
       .catch(err => `Error checking credentials of user login: ${err}`)
@@ -68,11 +68,8 @@ const LoginPage = (props) => {
       )
   }
 
-  return ((!cookies.user) ?
+  return (
     <div className="login-page-wrapper">
-      {/* TESTING COOKIES.USER: should have no cookies: 
-      {cookies.user} */}
-      
       <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" />
 
       <div className="login-right">
@@ -113,13 +110,6 @@ const LoginPage = (props) => {
         </div>
       </div>
     </div>
-  :
-  (<div>cookies.user should be filled
-    {/* {cookies.user} */}
-    Redirecting to your RE:Balance Homepage...
-    {console.log('in the redirect from logout')}
-    {navigate('/', { replace: true })}
-  </div>)
   )
 }
 

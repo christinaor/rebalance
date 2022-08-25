@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie';
 import MainContainer from './containers/MainContainer.jsx';
 import LoginPage from './components/LoginPage.jsx';
 import SignupPage from './components/SignupPage.jsx';
+import SettingsPage from './components/SettingsPage.jsx';
 import NotFound from './components/NotFound.jsx';
 
 function App(props) {
@@ -53,8 +54,9 @@ function App(props) {
           <Route path='/flow/signup' 
             element={<SignupPage 
               pressedSignup={pressedSignup}
-              setPressedSignup={setPressedSignup} />} 
-            />
+              setPressedSignup={setPressedSignup} />} />
+          <Route path='/flow/settings'
+            element={<SettingsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

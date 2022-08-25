@@ -12,6 +12,7 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Logout from "./Logout.jsx";
+import SettingsPage from "./SettingsPage.jsx"
 
 const NavBar = (props) => {
   const { 
@@ -29,11 +30,12 @@ const NavBar = (props) => {
       <Link to="/">
         <button>Home</button>
       </Link>
+      {/* <Link to="/flow/settings" element={<SettingsPage />}> */}
       <Link to="/flow/settings">
         <button>Settings</button>
       </Link>
       <Link to="/flow/login">
-        <Logout 
+        <Logout
           cookies={cookies}
           removeCookie={removeCookie}
           setCookie={setCookie}
