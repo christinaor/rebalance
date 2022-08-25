@@ -56,7 +56,7 @@ const LoginPage = (props) => {
             removeCookie('user', { path: '/' });
             setIsLoggedIn(false);            
             navigate('/flow/login', { replace: true });
-          }, 20000));
+          }, 1000*60*60));
         } else setFailedLogin(true);
       })
       .catch(err => `Error checking credentials of user login: ${err}`)

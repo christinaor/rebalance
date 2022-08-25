@@ -42,7 +42,7 @@ import LoginPage from "../components/LoginPage.jsx";
           setCookieTimeout={setCookieTimeout} />
         <Routes>
           <Route path='/flow/settings' element={<SettingsPage />} />
-          <Route path='/flow/login' element={<LoginPage />} />
+          {/* <Route path='/flow/login' element={<LoginPage />} /> */}
         </Routes>
         <h1 id="header">Balance with others here...</h1>
         <div className="main-inner-container">

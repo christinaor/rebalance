@@ -34,12 +34,12 @@ const Record = (props) => {
     { label: 'Delete', value: 'Delete' },
   ];
 
-/*
-If "Update" is selected, get the data for selected record first and update updatedRecord for later when form is filled out.
+  /*
+  If "Update" is selected, get the data for selected record first and update updatedRecord for later when form is filled out.
 
-If "Delete" is selected, simply delete specified record.
-*/
-const handleChange = (e) => {
+  If "Delete" is selected, simply delete specified record.
+  */
+  const handleChange = (e) => {
     if (e.target.value === 'Update') {
       // fetch a single record with corresponding id to fill in updatedRecord
       fetch(`api/records/${id}`)
@@ -74,10 +74,21 @@ const handleChange = (e) => {
       })
   };
 
+  /*
+  Parse out date to be human-readable.
+  */
+  const recordDate = new Date(input_date);
+  const yyyy = recordDate.getFullYear();
+  let mm = recordDate.getMonth() + 1; // month starts at 0;
+  let dd = recordDate.getDate();
+
+  dd = (dd < 10) ? '0' + dd : dd;
+  mm = (mm < 10) ? '0' + mm : mm;
+
   return (
     <div className="record grid-record">
       <div>{id}</div>
-      <div>{input_date}</div>
+      <div>{`${mm}/${dd}/${yyyy}`}</div>
       <div>{item_name}</div>
       <div>{cost}</div>
       <div>
