@@ -99,3 +99,8 @@ CREATE TABLE IF NOT EXISTS rebalance.records (
   user_split NUMERIC(12,2) NOT NULL,
   user_perc DECIMAL(5,2) NOT NULL CHECK(user_perc <= 100 AND user_perc >= 0),
 );
+
+INSERT INTO rebalance.records (username, counterparty_username, item_name, item_cost, user_split, user_perc)
+VALUES ('CO', 'LL', 'oranges', '8', 6, 25);
+
+SELECT * FROM rebalance.records;
