@@ -5,7 +5,7 @@ const recordsController = {};
 
 recordsController.getAllRecords = async (req, res, next) => {
   try {
-    const getQuery = `SELECT * FROM test_table;`;
+    const getQuery = `SELECT * FROM rebalance.records;`;
     const allRecords = await db.query(getQuery);
     res.locals.allRecords = allRecords.rows;
     next();
