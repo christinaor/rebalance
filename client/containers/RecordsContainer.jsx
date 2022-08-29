@@ -26,13 +26,15 @@ const RecordsContainer = props => {
     cost: null
   });
 
-
-  // RecordsList is rendered upon initial render
+/**
+ * RecordsList is rendered for all counterparties the user has on inital render.
+ * useEffect runs when currentCounterparty changes so the RecordsList will reflect records with the counterparty selected only.
+ */
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    if (currentCounterparty) {
+    if (currentCounterparty !== null) {
       fetch('/api/records/counterparty', {
         signal: signal,
         method: 'POST',
@@ -70,12 +72,10 @@ const RecordsContainer = props => {
         })
         .finally(setPopulatedRecords(true))
     }
-
   }, [populatedRecords, currentCounterparty]);
 
   return (
     <div>
-
       <ListOfRecords 
         recordsList={recordsList}
         setRecordsList={setRecordsList}
@@ -85,8 +85,6 @@ const RecordsContainer = props => {
         setUpdatedRecord={setUpdatedRecord}
         toUpdate={toUpdate}
         setToUpdate={setToUpdate}
-        currentCounterparty={currentCounterparty}
-        setCurrentCounterparty={setCurrentCounterparty}
       />
       <div className="add-or-update-wrapper">
         <AddRecord 
