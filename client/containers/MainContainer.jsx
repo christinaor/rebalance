@@ -15,65 +15,61 @@ import CounterpartiesContainer from './CounterpartiesContainer.jsx';
 import RecordsContainer from "./RecordsContainer.jsx";
 import NavBar from "../components/NavBar.jsx"
 import SettingsPage from "../components/SettingsPage.jsx"
-import LoginPage from "../components/LoginPage.jsx";
 
-  const MainContainer = props => {
-    const { 
-      cookies, 
-      removeCookie, 
-      setCookie, 
-      isLoggedIn, 
-      setIsLoggedIn,
-      cookieTimeout,
-      setCookieTimeout
-    } = props;
-    const [counterpartiesList, setCounterpartiesList] = useState([]);
-    const [currentCounterparty, setCurrentCounterparty] = useState(null)
-    const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
+const MainContainer = props => {
+  const { 
+    cookies, 
+    removeCookie, 
+    setCookie, 
+    isLoggedIn, 
+    setIsLoggedIn,
+    cookieTimeout,
+    setCookieTimeout
+  } = props;
+  const [counterpartiesList, setCounterpartiesList] = useState([]);
+  const [currentCounterparty, setCurrentCounterparty] = useState(null)
+  const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
 
-    // Need useEffect to detect currentCounterparty
-
-    return (
-      <div className="container">
-        <NavBar 
-          cookies={cookies}
-          removeCookie={removeCookie}
-          setCookie={setCookie}
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          cookieTimeout={cookieTimeout}
-          setCookieTimeout={setCookieTimeout} />
-        <Routes>
-          <Route path='/flow/settings' element={<SettingsPage />} />
-          {/* <Route path='/flow/login' element={<LoginPage />} /> */}
-        </Routes>
-        <h1 id="header">Balance with others here...</h1>
-        <div className="main-inner-container">
-          <CounterpartiesContainer 
-            counterpartiesList={counterpartiesList}
-            setCounterpartiesList={setCounterpartiesList}
-            populatedCounterparties={populatedCounterparties}
-            setPopulatedCounterparties={setPopulatedCounterparties}
-            currentCounterparty={currentCounterparty}
-            setCurrentCounterparty={setCurrentCounterparty}
-          />
-          <RecordsContainer
-            currentCounterparty={currentCounterparty}
-            setCurrentCounterparty={setCurrentCounterparty} />
-      {/*  / - root, always the very top
-      ./asdf and asdf are the same - sibling
-      */}
-        {/* <a href="asdf">To asdf</a>
-        <br />
-        <a href="./asdf">To ./asdf</a>
-        <br />
-        <a href="../asdf">To /asdf</a> */}
-        {/* <br />
-        <a href="http://localhost:8081/asdf">To href</a> */}
-        </div>
+  return (
+    <div className="container">
+      <NavBar 
+        cookies={cookies}
+        removeCookie={removeCookie}
+        setCookie={setCookie}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        cookieTimeout={cookieTimeout}
+        setCookieTimeout={setCookieTimeout} />
+      <Routes>
+        <Route path='/flow/settings' element={<SettingsPage />} />
+        {/* <Route path='/flow/login' element={<LoginPage />} /> */}
+      </Routes>
+      <h1 id="header">Balance with others here...</h1>
+      <div className="main-inner-container">
+        <CounterpartiesContainer 
+          counterpartiesList={counterpartiesList}
+          setCounterpartiesList={setCounterpartiesList}
+          populatedCounterparties={populatedCounterparties}
+          setPopulatedCounterparties={setPopulatedCounterparties}
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
+        />
+        <RecordsContainer
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty} />
+    {/*  / - root, always the very top
+    ./asdf and asdf are the same - sibling
+    */}
+      {/* <a href="asdf">To asdf</a>
+      <br />
+      <a href="./asdf">To ./asdf</a>
+      <br />
+      <a href="../asdf">To /asdf</a> */}
+      {/* <br />
+      <a href="http://localhost:8081/asdf">To href</a> */}
       </div>
-    );
-  // };
+    </div>
+  );
 };
 
 export default MainContainer;
