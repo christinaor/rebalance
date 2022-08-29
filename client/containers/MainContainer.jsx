@@ -28,7 +28,10 @@ import LoginPage from "../components/LoginPage.jsx";
       setCookieTimeout
     } = props;
     const [counterpartiesList, setCounterpartiesList] = useState([]);
+    const [currentCounterparty, setCurrentCounterparty] = useState(null)
     const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
+
+    // Need useEffect to detect currentCounterparty
 
     return (
       <div className="container">
@@ -51,6 +54,8 @@ import LoginPage from "../components/LoginPage.jsx";
             setCounterpartiesList={setCounterpartiesList}
             populatedCounterparties={populatedCounterparties}
             setPopulatedCounterparties={setPopulatedCounterparties}
+            currentCounterparty={currentCounterparty}
+            setCurrentCounterparty={setCurrentCounterparty}
           />
           <RecordsContainer />
       {/*  / - root, always the very top

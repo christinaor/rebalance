@@ -17,7 +17,9 @@ const CounterpartiesContainer = props => {
     counterpartiesList,
     setCounterpartiesList,
     populatedCounterparties,
-    setPopulatedCounterparties
+    setPopulatedCounterparties,
+    currentCounterparty,
+    setCurrentCounterparty
   } = props;
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const CounterpartiesContainer = props => {
     // }
   }, [populatedCounterparties])
   
-  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (<div>{counterpartyInfo.counterparty_name}</div>))
+  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (<button onClick={setCurrentCounterparty(counterpartyInfo.counterparty_name)}>{counterpartyInfo.counterparty_name}</button>))
 
   return (
     <div className="left-counterparties">
