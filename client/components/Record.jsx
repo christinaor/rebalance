@@ -22,8 +22,6 @@ const Record = (props) => {
     userPercent,
     populatedRecords, 
     setPopulatedRecords,
-    currentCounterparty,
-    setCurrentCounterparty,
     updatedRecord, 
     setUpdatedRecord, 
     toUpdate, 
