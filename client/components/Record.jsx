@@ -21,13 +21,15 @@ const Record = (props) => {
     userSplit,
     userPercent,
     populatedRecords, 
-    setPopulatedRecords, 
+    setPopulatedRecords,
+    currentCounterparty,
+    setCurrentCounterparty,
     updatedRecord, 
     setUpdatedRecord, 
     toUpdate, 
     setToUpdate, 
     actionsValue, 
-    setActionsValue 
+    setActionsValue
   } = props;
 
   const actionOptions = [

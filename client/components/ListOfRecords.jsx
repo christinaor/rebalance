@@ -19,11 +19,14 @@ const ListOfRecords = props => {
     setRecordsList,
     populatedRecords,
     setPopulatedRecords,
+    currentCounterparty,
+    setCurrentCounterparty,
     updatedRecord,
     setUpdatedRecord,
     toUpdate,
     setToUpdate
   } = props;
+
   const [actionsValue, setActionsValue] = useState('Select')
 
   const recordElements = recordsList.map(record => {
@@ -40,6 +43,8 @@ const ListOfRecords = props => {
         userPercent={user_perc}
         populatedRecords={populatedRecords}
         setPopulatedRecords={setPopulatedRecords}
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty}
         updatedRecord={updatedRecord}
         setUpdatedRecord={setUpdatedRecord}
         toUpdate={toUpdate}

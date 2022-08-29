@@ -57,7 +57,9 @@ import LoginPage from "../components/LoginPage.jsx";
             currentCounterparty={currentCounterparty}
             setCurrentCounterparty={setCurrentCounterparty}
           />
-          <RecordsContainer />
+          <RecordsContainer
+            currentCounterparty={currentCounterparty}
+            setCurrentCounterparty={setCurrentCounterparty} />
       {/*  / - root, always the very top
       ./asdf and asdf are the same - sibling
       */}

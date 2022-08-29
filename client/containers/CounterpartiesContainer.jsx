@@ -54,7 +54,7 @@ const CounterpartiesContainer = props => {
       {counterpartySideElements}
     </div>
   )
-
+  
 }
 
 export default CounterpartiesContainer;

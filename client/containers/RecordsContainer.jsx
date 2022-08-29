@@ -15,6 +15,8 @@ import UpdateRecord from "../components/UpdateRecord.jsx";
 import ListOfRecords from '../components/ListOfRecords.jsx';
 
 const RecordsContainer = props => {
+  const { currentCounterparty, setCurrentCounterparty } = props;
+
   const [recordsList, setRecordsList] = useState([]);
   const [populatedRecords, setPopulatedRecords] = useState(false);
   const [toUpdate, setToUpdate] = useState(false);
@@ -58,6 +60,8 @@ const RecordsContainer = props => {
         setUpdatedRecord={setUpdatedRecord}
         toUpdate={toUpdate}
         setToUpdate={setToUpdate}
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty}
       />
       <div className="add-or-update-wrapper">
         <AddRecord 
@@ -65,6 +69,8 @@ const RecordsContainer = props => {
           setRecordsList={setRecordsList}
           populatedRecords={populatedRecords}
           setPopulatedRecords={setPopulatedRecords}
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
         />
         <UpdateRecord 
           recordsList={recordsList}
@@ -75,6 +81,8 @@ const RecordsContainer = props => {
           setUpdatedRecord={setUpdatedRecord}
           toUpdate={toUpdate}
           setToUpdate={setToUpdate}
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
         />
       </div>
     </div>
