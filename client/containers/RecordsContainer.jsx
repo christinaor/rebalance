@@ -32,21 +32,46 @@ const RecordsContainer = props => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    fetch('/api/records', {
-      signal: signal
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('get records here: ', data);
-        setRecordsList(data);
+    if (currentCounterparty) {
+      fetch('/api/records/counterparty', {
+        signal: signal,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          counterparty: currentCounterparty
+        })
       })
-      .catch((err) => {
-        if (err.name === 'AbortError') {
-          return 'Successfully aborted!';
-        } else return `Error getting records: ${err}`
+        .then(response => response.json())
+        .then(data => {
+          console.log('get records for counterparty and user only: ', data);
+          setRecordsList(data);
+        })
+        .catch((err) => {
+          if (err.name === 'AbortError') {
+            return 'Successfully aborted!';
+          } else return `Error getting records: ${err}`
+        })
+        .finally(setPopulatedRecords(true))
+    } else {
+      fetch('/api/records', {
+        signal: signal
       })
-      .finally(setPopulatedRecords(true))
-  }, [populatedRecords]);
+        .then(response => response.json())
+        .then(data => {
+          console.log('get records here: ', data);
+          setRecordsList(data);
+        })
+        .catch((err) => {
+          if (err.name === 'AbortError') {
+            return 'Successfully aborted!';
+          } else return `Error getting records: ${err}`
+        })
+        .finally(setPopulatedRecords(true))
+    }
+
+  }, [populatedRecords, currentCounterparty]);
 
   return (
     <div>

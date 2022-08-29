@@ -17,21 +17,37 @@ recordsController.getAllRecords = async (req, res, next) => {
   }
 };
 
-recordsController.getOneRecord = async (req, res, next) => {
+recordsController.getCounterpartyRecords = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const params = [ id ];
-    const getOneQuery = `SELECT * FROM test_table WHERE id=$1;`;
-    const oneRecord = await db.query(getOneQuery, params);
-    res.locals.oneRecord = oneRecord.rows;
+    const { counterparty } = req.body;
+    const params = [ counterparty ];
+    const getCounterpartyQuery = `SELECT * FROM rebalance.records WHERE counterparty_username=$1`
+    const records = await db.query(getCounterpartyQuery, params);
+    res.locals.counterpartyRecords = records.rows;
     next();
   } catch(err) {
     return next({
-      log: `recordsController.getOneRecord contains an error: ${err}`,
-      message: {err: 'Error in recordsController.getOneRecord. Check server logs for more details!'}
+      log: `recordsController.getCounterpartyRecords contains an error: ${err}`,
+      message: {err: 'Error in recordsController.getCounterpartyRecords. Check server logs for more details!'}
     })
   }
-};
+}
+
+// recordsController.getOneRecord = async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+//     const params = [ id ];
+//     const getOneQuery = `SELECT * FROM test_table WHERE id=$1;`;
+//     const oneRecord = await db.query(getOneQuery, params);
+//     res.locals.oneRecord = oneRecord.rows;
+//     next();
+//   } catch(err) {
+//     return next({
+//       log: `recordsController.getOneRecord contains an error: ${err}`,
+//       message: {err: 'Error in recordsController.getOneRecord. Check server logs for more details!'}
+//     })
+//   }
+// };
 
 recordsController.postRecord = async (req, res, next) => {
   try {
