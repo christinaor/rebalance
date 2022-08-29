@@ -56,9 +56,13 @@ const ListOfRecords = props => {
       <div className="records-grid-container">
         <div className="record-list-titles grid-record">
           <span>Record No.</span>
+          <span>Counterparty</span>
           <span>Date Entered</span>
           <span>Item</span>
           <span>Cost</span>
+          <span>User Split</span>
+          <span>Counterparty Split</span>
+          <span>User Percentage</span>
           <span>Other Actions</span>
         </div>
         {recordElements}
