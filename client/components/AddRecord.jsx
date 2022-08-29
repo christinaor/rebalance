@@ -3,20 +3,29 @@ import React, {useEffect, useState} from "react";
 const AddRecord = (props) => {
   const { 
     populatedRecords,
-    setPopulatedRecords
-
+    setPopulatedRecords,
+    currentCounterparty,
+    setCurrentCounterparty
   } = props;
 
   const [togglePostRecordForm, setTogglePostRecordForm] = useState(false);
   const [postedRecord, setPostedRecord] = useState({
-    name: '',
+    name: 'CO',
+    counterparty: currentCounterparty,
     item: '',
-    cost: ''
+    cost: '',
+    userPercent: 50
   });
+
+  useEffect(() => {
+    setPostedRecord({...postedRecord, counterparty: currentCounterparty})
+  }, [currentCounterparty])
 
   const postRecord = (e) => {
     console.log('postRecord fired')
     e.preventDefault();
+    // Add cases dealing with blanks/nulls in postedRecord
+    const splitCalculation = postedRecord.cost * postedRecord.userPercent / 100;
     fetch('/api/records', {
       method: 'POST',
       headers: {
@@ -24,8 +33,11 @@ const AddRecord = (props) => {
       },
       body: JSON.stringify({
         username: postedRecord.name,
-        item_name: postedRecord.item,
-        item_cost: postedRecord.cost
+        counterparty: postedRecord.counterparty,
+        item: postedRecord.item,
+        cost: postedRecord.cost,
+        split: splitCalculation,
+        percentage: postedRecord.userPercent
       })
     })
       .then(() => {
@@ -42,7 +54,6 @@ const AddRecord = (props) => {
       )
   };
 
-
   return (
     <div className="records-post-form">
       {/* <h2>Add A Record:</h2> */}
@@ -51,16 +62,16 @@ const AddRecord = (props) => {
       {togglePostRecordForm && 
       <form className="inner-records-post-form" action="/api/records" method="POST">
         <div>
-          <label for="name">Name:</label>
-          <input name="name" type="text" value={postedRecord.name} id="records-post-name" onChange={(e) => setPostedRecord({...postedRecord, name: e.target.value})} />
-        </div>
-        <div>
           <label for="item">Item Purchased:</label>
           <input name="item" type="text" value={postedRecord.item} id="records-post-item" onChange={(e) => setPostedRecord({...postedRecord, item: e.target.value})} />
         </div>
         <div>
           <label for="cost">Item Cost:</label>
           <input name="cost" type="text" value={postedRecord.cost} id="records-post-cost" onChange={(e) => setPostedRecord({...postedRecord, cost: e.target.value})} />
+        </div>
+        <div>
+          <label for="userPercent">Your Percent Split:</label>
+          <input name="userPercent" type="text" placeholder={50}value={postedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setPostedRecord({...postedRecord, userPercent: e.target.value})} />
         </div>
         <div>
           <button type="submit" onClick={postRecord}>Add A Record</button>
