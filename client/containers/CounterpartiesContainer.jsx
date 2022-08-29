@@ -46,7 +46,7 @@ const CounterpartiesContainer = props => {
     // }
   }, [populatedCounterparties])
   
-  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (<button onClick={setCurrentCounterparty(counterpartyInfo.counterparty_name)}>{counterpartyInfo.counterparty_name}</button>))
+  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (<button onClick={() => setCurrentCounterparty(counterpartyInfo.counterparty_name)}>{counterpartyInfo.counterparty_name}</button>))
 
   return (
     <div className="left-counterparties">
@@ -54,7 +54,6 @@ const CounterpartiesContainer = props => {
       {counterpartySideElements}
     </div>
   )
-  
 }
 
 export default CounterpartiesContainer;
