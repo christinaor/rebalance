@@ -51,11 +51,14 @@ recordsController.getCounterpartyRecords = async (req, res, next) => {
 
 recordsController.postRecord = async (req, res, next) => {
   try {
-    const { username, item_name, item_cost } = req.body;
-    const params = [ username, item_name, item_cost ];
+    const { username, counterparty, item, cost, split, percentage } = req.body;
+    const params = [ username, counterparty, item, cost, split, percentage ];
+    console.log('this is split: ',split)
+    // split = 1
+    // console.log(split)
     const postQuery = `
-      INSERT INTO test_table (username, item_name, item_cost)
-      VALUES ($1, $2, $3);
+      INSERT INTO rebalance.records (username, counterparty_username, item_name, item_cost, user_split, user_perc)
+      VALUES ($1, $2, $3, $4, $5, $6);
     `;
     const executePost = await db.query(postQuery, params);
     next();
