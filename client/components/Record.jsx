@@ -14,10 +14,12 @@ import React, { useEffect, useState } from 'react'
 const Record = (props) => {
   const { 
     id, 
-    input_date, 
-    username, 
-    item_name, 
+    counterpartyName,
+    inputDate,
+    itemName, 
     cost, 
+    userSplit,
+    userPercent,
     populatedRecords, 
     setPopulatedRecords, 
     updatedRecord, 
@@ -77,7 +79,7 @@ const Record = (props) => {
   /*
   Parse out date to be human-readable.
   */
-  const recordDate = new Date(input_date);
+  const recordDate = new Date(inputDate);
   const yyyy = recordDate.getFullYear();
   let mm = recordDate.getMonth() + 1; // month starts at 0;
   let dd = recordDate.getDate();
@@ -85,12 +87,23 @@ const Record = (props) => {
   dd = (dd < 10) ? '0' + dd : dd;
   mm = (mm < 10) ? '0' + mm : mm;
 
+  /**
+   * Calculate counterpartySplit using cost and userPercent
+   */
+  const counterpartySplit = (cost * userPercent / 100).toFixed(2);
+  const formattedUserPercent = (parseInt(userPercent)).toString() + '%'
+
+
   return (
     <div className="record grid-record">
       <div>{id}</div>
+      <div>{counterpartyName}</div>
       <div>{`${mm}/${dd}/${yyyy}`}</div>
-      <div>{item_name}</div>
+      <div>{itemName}</div>
       <div>{cost}</div>
+      <div>{userSplit}</div>
+      <div>{counterpartySplit}</div>
+      <div>{formattedUserPercent}</div>
       <div>
         <select value={actionsValue} onChange={handleChange}>
           {actionOptions.map(option => (

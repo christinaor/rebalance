@@ -27,15 +27,17 @@ const ListOfRecords = props => {
   const [actionsValue, setActionsValue] = useState('Select')
 
   const recordElements = recordsList.map(record => {
-    const { id, input_date, username, item_name, item_cost } = record;
+    const { id, counterparty_username, input_date, item_name, item_cost, user_split, user_perc } = record;
     return (
       <Record 
         key={`record${id}`}
         id={id}
-        input_date={input_date}
-        username={username}
-        item_name={item_name}
+        counterpartyName={counterparty_username}
+        inputDate={input_date}
+        itemName={item_name}
         cost={item_cost}
+        userSplit={user_split}
+        userPercent={user_perc}
         populatedRecords={populatedRecords}
         setPopulatedRecords={setPopulatedRecords}
         updatedRecord={updatedRecord}
