@@ -30,7 +30,7 @@ function App(props) {
     return (
       <main>
         <Routes>
-          <Route path='/' 
+          <Route path='/*' 
             element={<MainContainer 
               cookies={cookies}
               removeCookie={removeCookie}
