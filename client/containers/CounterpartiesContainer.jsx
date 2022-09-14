@@ -51,6 +51,7 @@ const CounterpartiesContainer = props => {
   return (
     <div className="left-counterparties">
       <h2>Check your counterparties:</h2>
+      <button onClick={() => setCurrentCounterparty(null)}>All Parties</button>
       {counterpartySideElements}
     </div>
   )
