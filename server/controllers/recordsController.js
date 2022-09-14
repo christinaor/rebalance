@@ -118,7 +118,7 @@ recordsController.deleteRecord = async (req, res, next) => {
     const { id } = req.body;
     const params = [ id ];
     const deleteQuery = `
-      DELETE FROM test_table WHERE id=$1;
+      DELETE FROM rebalance.records WHERE id=$1;
   `;
   const executeDelete = await db.query(deleteQuery, params);
   next();
