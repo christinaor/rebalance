@@ -44,14 +44,20 @@ const Record = (props) => {
   const handleChange = (e) => {
     if (e.target.value === 'Update') {
       // fetch a single record with corresponding id to fill in updatedRecord
+      console.log('finding id in records.jsx: ',id)
       fetch(`api/records/${id}`)
         .then(response => response.json())
         .then(data => {
           console.log('getting one record: ', data)
-          setUpdatedRecord({id: data[0].id, item: data[0].item_name, cost: data[0].item_cost})
+          setUpdatedRecord({
+            id: data[0].id,
+            item: data[0].item_name, 
+            cost: data[0].item_cost,
+            split: data[0].user_split
+          })
         })
         .catch(err => `Error getting record to update: ${err}`)
-    setToUpdate(true);
+      setToUpdate(true);
     }
     if (e.target.value === 'Delete') {
       deleteRecord(e);

@@ -21,9 +21,10 @@ const RecordsContainer = props => {
   const [populatedRecords, setPopulatedRecords] = useState(false);
   const [toUpdate, setToUpdate] = useState(false);
   const [updatedRecord, setUpdatedRecord] = useState({
-    id: 1,
+    id: null,
     item: null,
-    cost: null
+    cost: null,
+    split: null
   });
 
 /**

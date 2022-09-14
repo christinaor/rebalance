@@ -23,7 +23,8 @@ const UpdateRecord = (props) => {
       body: JSON.stringify({
         id: updatedRecord.id,
         item_name: updatedRecord.item,
-        item_cost: updatedRecord.cost
+        item_cost: updatedRecord.cost,
+        item_split: updatedRecord.split
       })
     })
       .then(() => {
@@ -44,19 +45,43 @@ const UpdateRecord = (props) => {
           <form action="/api/records" method="PUT">
           <div>
             <label for="item">Change Item:</label>
-            <input name="item" type="text" id="records-update-item" onChange={(e) => {
-              if (e.target.value !== '') {
-                setUpdatedRecord({...updatedRecord, item: e.target.value})
-              }
-            }} />
+            <input 
+              name="item" 
+              type="text" 
+              id="records-update-item" 
+              onChange={(e) => {
+                if (e.target.value !== '') {
+                  setUpdatedRecord({...updatedRecord, item: e.target.value})
+                }
+              }} 
+            />
           </div>
           <div>
             <label for="cost">Change Cost:</label>
-            <input name="cost" type="text" id="records-update-cost" onChange={(e) => {
-              if (e.target.value !== '') {
-                setUpdatedRecord({...updatedRecord, cost: e.target.value})
-              }
-            }} />
+            <input 
+              name="cost" 
+              type="text" 
+              id="records-update-cost" 
+              onChange={(e) => {
+                if (e.target.value !== '') {
+                  setUpdatedRecord({...updatedRecord, cost: e.target.value})
+                }
+              }} 
+            />
+          </div>
+          <div>
+            <label for="split">Change Your Split:</label>
+            <input 
+              name="split" 
+              type="number" 
+              step="0.01"
+              id="records-update-cost" 
+              onChange={(e) => {
+                if (e.target.value !== '') {
+                  setUpdatedRecord({...updatedRecord, cost: e.target.value})
+                }
+              }} 
+            />
           </div>
           <div>
             <button type="submit" onClick={updateRecord}>Update Record No. {updatedRecord.id}</button>
