@@ -33,6 +33,23 @@ recordsController.getCounterpartyRecords = async (req, res, next) => {
   }
 }
 
+recordsController.getOneRecordToUpdate = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const params = [ id ];
+    const getOneQuery = `SELECT * FROM rebalance.records WHERE id=$1;`;
+    const oneRecord = await db.query(getOneQuery, params);
+    res.locals.oneRecord = oneRecord.rows;
+    next();
+  } catch(err) {
+    return next({
+      log: `recordsController.getOneRecord contains an error: ${err}`,
+      message: {err: 'Error in recordsController.getOneRecord. Check server logs for more details!'}
+    })
+  }
+};
+
+
 // recordsController.getOneRecord = async (req, res, next) => {
 //   try {
 //     const { id } = req.params;

@@ -4,9 +4,9 @@ const recordsController = require('../controllers/recordsController');
 const counterpartiesController = require('../controllers/counterpartiesController')
 
 /* Records routes */
-// router.get('/records/:id', recordsController.getOneRecord, (req, res) => {
-//   res.status(200).json(res.locals.oneRecord);
-// });
+router.get('/records/:id', recordsController.getOneRecordToUpdate, (req, res) => {
+  res.status(200).json(res.locals.oneRecord);
+});
 
 router.get('/records', recordsController.getAllRecords, (req, res) => {
   res.status(200).json(res.locals.allRecords);
