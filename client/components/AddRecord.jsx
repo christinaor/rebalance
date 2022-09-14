@@ -26,6 +26,7 @@ const AddRecord = (props) => {
     e.preventDefault();
     // Add cases dealing with blanks/nulls in postedRecord
     const splitCalculation = postedRecord.cost * postedRecord.userPercent / 100;
+    console.log('this is split',splitCalculation)
     fetch('/api/records', {
       method: 'POST',
       headers: {
@@ -47,9 +48,11 @@ const AddRecord = (props) => {
       .catch(err => `Error adding record: ${err}`)
       .finally(
         setPostedRecord({
-          name: '',
+          name: 'CO',
+          counterparty: currentCounterparty,
           item: '',
-          cost: ''
+          cost: '',
+          userPercent: 50
         })
       )
   };
