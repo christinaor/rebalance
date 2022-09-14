@@ -24,7 +24,7 @@ const UpdateRecord = (props) => {
         id: updatedRecord.id,
         item_name: updatedRecord.item,
         item_cost: updatedRecord.cost,
-        item_split: updatedRecord.split
+        item_split: updatedRecord.perc
       })
     })
       .then(() => {
@@ -70,12 +70,12 @@ const UpdateRecord = (props) => {
             />
           </div>
           <div>
-            <label for="split">Change Your Split:</label>
+            <label for="perc">Change Your Split:</label>
             <input 
-              name="split" 
+              name="perc" 
               type="number" 
               step="0.01"
-              id="records-update-cost" 
+              id="records-update-perc" 
               onChange={(e) => {
                 if (e.target.value !== '') {
                   setUpdatedRecord({...updatedRecord, cost: e.target.value})

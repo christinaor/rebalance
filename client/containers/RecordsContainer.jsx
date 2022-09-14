@@ -24,7 +24,7 @@ const RecordsContainer = props => {
     id: null,
     item: null,
     cost: null,
-    split: null
+    perc: null
   });
 
 /**

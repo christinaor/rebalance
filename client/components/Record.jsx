@@ -53,7 +53,7 @@ const Record = (props) => {
             id: data[0].id,
             item: data[0].item_name, 
             cost: data[0].item_cost,
-            split: data[0].user_split
+            perc: data[0].user_perc
           })
         })
         .catch(err => `Error getting record to update: ${err}`)
