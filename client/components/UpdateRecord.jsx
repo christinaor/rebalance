@@ -24,7 +24,7 @@ const UpdateRecord = (props) => {
         id: updatedRecord.id,
         item_name: updatedRecord.item,
         item_cost: updatedRecord.cost,
-        item_split: updatedRecord.perc
+        perc_split: updatedRecord.perc
       })
     })
       .then(() => {
@@ -78,7 +78,7 @@ const UpdateRecord = (props) => {
               id="records-update-perc" 
               onChange={(e) => {
                 if (e.target.value !== '') {
-                  setUpdatedRecord({...updatedRecord, cost: e.target.value})
+                  setUpdatedRecord({...updatedRecord, perc: e.target.value})
                 }
               }} 
             />

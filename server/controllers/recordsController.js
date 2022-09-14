@@ -89,14 +89,21 @@ recordsController.postRecord = async (req, res, next) => {
 
 recordsController.updateRecord = async (req, res, next) => {
   try {
-    const { id, item_name, item_cost } = req.body;
-    const params = [ id, item_name, item_cost ];
+    const { id, item_name, item_cost, perc_split } = req.body;
+
+    const user_split = item_cost * perc_split / 100;
+    // const counterparty_split = item_cost - user_split;
+    
+    // calculating new splits based on updated percentage
+    const params = [ id, item_name, item_cost, perc_split, user_split ];
+
     let updateQuery = `
-      UPDATE test_table
-      SET item_name=$2, item_cost=$3
+      UPDATE rebalance.records
+      SET item_name=$2, item_cost=$3, user_perc=$4, user_split=$5
       WHERE ID=$1
     `;
   const executeUpdate = await db.query(updateQuery, params);
+
   next();
   } catch(err) {
     return next({
