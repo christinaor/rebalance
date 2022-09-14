@@ -15,7 +15,14 @@ import UpdateRecord from "../components/UpdateRecord.jsx";
 import ListOfRecords from '../components/ListOfRecords.jsx';
 
 const RecordsContainer = props => {
-  const { currentCounterparty, setCurrentCounterparty } = props;
+  const { 
+    currentCounterparty, 
+    setCurrentCounterparty,
+    userBalance,
+    setUserBalance,
+    counterpartyBalance,
+    setCounterpartyBalance
+  } = props;
 
   const [recordsList, setRecordsList] = useState([]);
   const [populatedRecords, setPopulatedRecords] = useState(false);
@@ -31,12 +38,14 @@ const RecordsContainer = props => {
  * RecordsList is rendered for all counterparties the user has on inital render.
  * useEffect runs when currentCounterparty changes so the RecordsList will reflect records with the counterparty selected only.
  */
-  useEffect(() => {
+  useEffect(async () => {
     const controller = new AbortController();
     const signal = controller.signal;
 
+    // retrieve records based on the current counterparty
+    let records;
     if (currentCounterparty !== null) {
-      fetch('/api/records/counterparty', {
+      records = await fetch('/api/records/counterparty', {
         signal: signal,
         method: 'POST',
         headers: {
@@ -47,25 +56,25 @@ const RecordsContainer = props => {
         })
       })
         .then(response => response.json())
-        .then(data => {
-          console.log('get records for counterparty and user only: ', data);
-          setRecordsList(data);
-        })
+        // .then(data => {
+        //   console.log('get records for counterparty and user only: ', data);
+        //   setRecordsList(data);
+        // })
         .catch((err) => {
           if (err.name === 'AbortError') {
             return 'Successfully aborted!';
-          } else return `Error getting records: ${err}`
+          } else return `Error getting records for specific counterparty: ${err}`
         })
         .finally(setPopulatedRecords(true))
     } else {
-      fetch('/api/records', {
+      records = await fetch('/api/records', {
         signal: signal
       })
         .then(response => response.json())
-        .then(data => {
-          console.log('get records here: ', data);
-          setRecordsList(data);
-        })
+        // .then(data => {
+        //   console.log('get all records here: ', data);
+        //   setRecordsList(data);
+        // })
         .catch((err) => {
           if (err.name === 'AbortError') {
             return 'Successfully aborted!';
@@ -73,6 +82,18 @@ const RecordsContainer = props => {
         })
         .finally(setPopulatedRecords(true))
     }
+
+    //
+    setRecordsList(records);
+    // calculate user and counterparty balances
+    let calculatedUserBalance = 0;
+    let calculatedCounterpartyBalance = 0;
+    for (const record of records) {
+      calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
+      calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
+    }
+    setUserBalance(calculatedUserBalance.toFixed(2));
+    setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
   }, [populatedRecords, currentCounterparty]);
 
   return (

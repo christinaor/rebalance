@@ -12,6 +12,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import CounterpartiesContainer from './CounterpartiesContainer.jsx';
+import { TotalBalanceContainer } from "./TotalBalanceContainer.jsx";
 import RecordsContainer from "./RecordsContainer.jsx";
 import NavBar from "../components/NavBar.jsx"
 import SettingsPage from "../components/SettingsPage.jsx"
@@ -28,6 +29,8 @@ const MainContainer = props => {
   } = props;
   const [counterpartiesList, setCounterpartiesList] = useState([]);
   const [currentCounterparty, setCurrentCounterparty] = useState(null)
+  const [userBalance, setUserBalance] = useState(null);
+  const [counterpartyBalance, setCounterpartyBalance] = useState(null);
   const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
 
   return (
@@ -45,6 +48,11 @@ const MainContainer = props => {
         {/* <Route path='/flow/login' element={<LoginPage />} /> */}
       </Routes>
       <h1 id="header">Balance with others here...</h1>
+      <TotalBalanceContainer 
+        userBalance={userBalance}
+        setUserBalance={setUserBalance}
+        counterpartyBalance={counterpartyBalance}
+        setCounterpartyBalance={setCounterpartyBalance} />
       <div className="main-inner-container">
         <CounterpartiesContainer 
           counterpartiesList={counterpartiesList}
@@ -56,7 +64,11 @@ const MainContainer = props => {
         />
         <RecordsContainer
           currentCounterparty={currentCounterparty}
-          setCurrentCounterparty={setCurrentCounterparty} />
+          setCurrentCounterparty={setCurrentCounterparty}
+          userBalance={userBalance}
+          setUserBalance={setUserBalance}
+          counterpartyBalance={counterpartyBalance}
+          setCounterpartyBalance={setCounterpartyBalance}  />
     {/*  / - root, always the very top
     ./asdf and asdf are the same - sibling
     */}

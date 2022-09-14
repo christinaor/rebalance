@@ -96,7 +96,7 @@ const Record = (props) => {
   /**
    * Calculate counterpartySplit using cost and userPercent
    */
-  const counterpartySplit = (cost * userPercent / 100).toFixed(2);
+  const counterpartySplit = (cost - (cost * userPercent / 100)).toFixed(2);
   const formattedUserPercent = (parseInt(userPercent)).toString() + '%'
 
 
