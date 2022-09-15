@@ -8,6 +8,7 @@ nav {
   margin: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 a, a:visited, a:hover, a:active {
@@ -19,7 +20,7 @@ a, a:visited, a:hover, a:active {
 }
 
 .nav-logo {
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 400;
   text-decoration: none;
 }
