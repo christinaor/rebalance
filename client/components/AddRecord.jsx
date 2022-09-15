@@ -8,7 +8,7 @@ const AddRecord = (props) => {
     setCurrentCounterparty
   } = props;
 
-  const [togglePostRecordForm, setTogglePostRecordForm] = useState(false);
+  // const [togglePostRecordForm, setTogglePostRecordForm] = useState(false);
   const [isEmptyCounterparty, setIsEmptyCounterparty] = useState(false);
   const [postedRecord, setPostedRecord] = useState({
     name: 'CO',
@@ -49,6 +49,7 @@ const AddRecord = (props) => {
         .then(() => {
           console.log('added record!')
           setPopulatedRecords(false);
+          setIsEmptyCounterparty(false);
         })
         .catch(err => `Error adding record: ${err}`)
         .finally(
@@ -66,12 +67,13 @@ const AddRecord = (props) => {
   return (
     <div className="records-post-form">
       {/* <h2>Add A Record:</h2> */}
-      <button onClick={() => setTogglePostRecordForm(!togglePostRecordForm)}>{togglePostRecordForm ? `Exit Adding A Record`: `Add A Record Here`}</button>
+      {/* <button onClick={() => setTogglePostRecordForm(!togglePostRecordForm)}>{togglePostRecordForm ? `Exit Adding A Record`: `Add A Record Here`}</button> */}
       {isEmptyCounterparty &&
       <div>Please choose a counterparty before adding!</div>
       }
-      {togglePostRecordForm && 
-      <form className="inner-records-post-form" action="/api/records" method="POST">
+      {/* {togglePostRecordForm &&  */}
+
+      <form className="post-form-inputs-wrapper" action="/api/records" method="POST">
         <div>
           <label for="item">Item Purchased:</label>
           <input name="item" type="text" value={postedRecord.item} id="records-post-item" onChange={(e) => setPostedRecord({...postedRecord, item: e.target.value})} />
@@ -85,10 +87,10 @@ const AddRecord = (props) => {
           <input name="userPercent" type="text" placeholder={50}value={postedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setPostedRecord({...postedRecord, userPercent: e.target.value})} />
         </div>
         <div>
-          <button type="submit" onClick={postRecord}>Add A Record</button>
+          <button type="submit" onClick={postRecord}>Add</button>
         </div>
       </form>
-      }
+      {/* } */}
   </div>
   )
 }

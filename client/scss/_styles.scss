@@ -116,17 +116,51 @@ a, a:visited, a:hover, a:active {
 /*****   COUNTERPARTIES STYLING   *****/
 .left-counterparties {
   margin: 10px;
-  padding: 10px;
+  // padding: 10px;
   display: flex;
   flex-direction: column;
   // border: 1px solid black;
 }
 
 
+/*****   RECORDS CONTAINER STYLING   *****/
+.add-record-wrapper{
+  // border: solid 1px;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+// .add-record-title {
+//   flex-basis: 50%;
+// }
+
+// .records-post-form {
+//   // box-sizing: border-box;
+//   display: flex;
+//   // border: 1px solid black;
+//   // min-height: 120px;
+//   // padding: 10px;
+//   flex-grow: 1;
+//   flex-basis: 50%;
+// }
+
+.post-form-inputs-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+
 /*****   RECORDS GRID STYLING   *****/
 .records-container {
   margin: 10px;
-  padding: 10px;
+  // padding: 10px;
   // border: 1px solid black;
 }
 
@@ -139,35 +173,24 @@ a, a:visited, a:hover, a:active {
   // display: table-cell;
 }
 
-.inner-records-post-form {
-  display: flex;
-  gap: 20px;
-  padding: 10px;
-}
+
 
 .grid-record {
   display: grid;
   grid-auto-flow: column;
   // grid: 50px / auto auto auto auto auto;
-  grid: auto auto auto auto;
+  grid: repeat(9, auto);
   // grid-template-columns: repeat(auto-fill, 200px);
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
-.add-or-update-wrapper {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
+// .add-or-update-wrapper {
+//   display: flex;
+//   justify-content: space-between;
+//   gap: 10px;
+// }
 
-.records-post-form {
-  box-sizing: border-box;
-  border: 1px solid black;
-  min-height: 120px;
-  padding: 10px;
-  flex-grow: 8;
-  flex-basis: 80%;
-}
+
 
 .records-update-form {
   box-sizing: border-box;

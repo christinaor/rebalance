@@ -11,6 +11,7 @@
 
 import React, { useEffect, useState } from "react";
 import Record from "./Record.jsx";
+import AddRecord from "./AddRecord.jsx";
 
 
 const ListOfRecords = props => {
@@ -59,8 +60,19 @@ const ListOfRecords = props => {
   return (
     <div className="records-container">
       <h2>List of Records between You and {checkedCounterparty}:</h2>
+      <div className="add-record-wrapper">
+        <h4 className="add-record-title">Add Record:</h4>
+        <AddRecord 
+          recordsList={recordsList}
+          setRecordsList={setRecordsList}
+          populatedRecords={populatedRecords}
+          setPopulatedRecords={setPopulatedRecords}
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
+        />        
+      </div>
       <div className="records-grid-container">
-        <div className="record-list-titles center grid-record">
+        <div className="center grid-record">
           <span>Record No.</span>
           <span>Counterparty</span>
           <span>Date Entered</span>

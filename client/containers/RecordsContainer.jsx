@@ -111,14 +111,14 @@ const RecordsContainer = props => {
         setCurrentCounterparty={setCurrentCounterparty}
       />
       <div className="add-or-update-wrapper">
-        <AddRecord 
+        {/* <AddRecord 
           recordsList={recordsList}
           setRecordsList={setRecordsList}
           populatedRecords={populatedRecords}
           setPopulatedRecords={setPopulatedRecords}
           currentCounterparty={currentCounterparty}
           setCurrentCounterparty={setCurrentCounterparty}
-        />
+        /> */}
         <UpdateRecord 
           recordsList={recordsList}
           setRecordsList={setRecordsList}
