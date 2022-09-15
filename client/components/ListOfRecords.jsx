@@ -22,11 +22,14 @@ const ListOfRecords = props => {
     updatedRecord,
     setUpdatedRecord,
     toUpdate,
-    setToUpdate
+    setToUpdate,
+    currentCounterparty,
+    setCurrentCounterparty
   } = props;
 
   const [actionsValue, setActionsValue] = useState('Select')
 
+  // create array of records to render later
   const recordElements = recordsList.map(record => {
     const { id, counterparty_username, input_date, item_name, item_cost, user_split, user_perc } = record;
     return (
@@ -51,11 +54,13 @@ const ListOfRecords = props => {
     )
   });
 
+  const checkedCounterparty = currentCounterparty ? currentCounterparty : 'All Parties';
+
   return (
     <div className="records-container">
-      <h2>List of Records:</h2>
+      <h2>List of Records between You and {checkedCounterparty}:</h2>
       <div className="records-grid-container">
-        <div className="record-list-titles grid-record">
+        <div className="record-list-titles center grid-record">
           <span>Record No.</span>
           <span>Counterparty</span>
           <span>Date Entered</span>

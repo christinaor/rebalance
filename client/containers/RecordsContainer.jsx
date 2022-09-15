@@ -107,6 +107,8 @@ const RecordsContainer = props => {
         setUpdatedRecord={setUpdatedRecord}
         toUpdate={toUpdate}
         setToUpdate={setToUpdate}
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty}
       />
       <div className="add-or-update-wrapper">
         <AddRecord 

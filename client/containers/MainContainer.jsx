@@ -55,7 +55,7 @@ const MainContainer = props => {
         counterpartyBalance={counterpartyBalance}
         setCounterpartyBalance={setCounterpartyBalance} />
       <div className="main-inner-container">
-        <CounterpartiesContainer 
+        <CounterpartiesContainer
           counterpartiesList={counterpartiesList}
           setCounterpartiesList={setCounterpartiesList}
           populatedCounterparties={populatedCounterparties}
@@ -69,7 +69,7 @@ const MainContainer = props => {
           userBalance={userBalance}
           setUserBalance={setUserBalance}
           counterpartyBalance={counterpartyBalance}
-          setCounterpartyBalance={setCounterpartyBalance}  />
+          setCounterpartyBalance={setCounterpartyBalance} />
     {/*  / - root, always the very top
     ./asdf and asdf are the same - sibling
     */}

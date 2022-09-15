@@ -101,9 +101,9 @@ const Record = (props) => {
 
 
   return (
-    <div className="record grid-record">
-      <div>{id}</div>
-      <div>{counterpartyName}</div>
+    <div className="record grid-record center">
+      <div className="center">{id}</div>
+      <div className="center">{counterpartyName}</div>
       <div>{`${mm}/${dd}/${yyyy}`}</div>
       <div>{itemName}</div>
       <div>{cost}</div>
