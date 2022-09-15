@@ -87,7 +87,7 @@ const ListOfRecords = props => {
 
   return (
     <div className="records-container">
-      <h2>List of Records with {checkedCounterparty}:</h2>
+      <h2>Records with {checkedCounterparty}:</h2>
       <div className="add-or-update-wrapper">
         <div className="record-filters">
           Sort by:
