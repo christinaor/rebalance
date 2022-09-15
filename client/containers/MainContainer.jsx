@@ -70,31 +70,9 @@ const MainContainer = props => {
           setUserBalance={setUserBalance}
           counterpartyBalance={counterpartyBalance}
           setCounterpartyBalance={setCounterpartyBalance} />
-    {/*  / - root, always the very top
-    ./asdf and asdf are the same - sibling
-    */}
-      {/* <a href="asdf">To asdf</a>
-      <br />
-      <a href="./asdf">To ./asdf</a>
-      <br />
-      <a href="../asdf">To /asdf</a> */}
-      {/* <br />
-      <a href="http://localhost:8081/asdf">To href</a> */}
       </div>
     </div>
   );
 };
 
 export default MainContainer;
-
-
-/*
-
-location: mysite.com/blog/1/data
-
-a href ./data -> mysite.com/blog/1/data
-a href ./asdf -> mysite.com/blog/1/asdf
-a href ../asdf -> mysite.com/blog/asdf
-
-
-*/
