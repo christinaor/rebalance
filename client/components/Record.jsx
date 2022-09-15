@@ -113,7 +113,7 @@ const Record = (props) => {
       <div>
         <select value={actionsValue} onChange={handleChange}>
           {actionOptions.map(option => (
-            <option value={option.value}>{option.label}</option>
+            <option key={`${option.value}${id}`} value={option.value}>{option.label}</option>
           ))}
         </select>
       </div>

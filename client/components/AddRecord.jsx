@@ -9,6 +9,7 @@ const AddRecord = (props) => {
   } = props;
 
   const [togglePostRecordForm, setTogglePostRecordForm] = useState(false);
+  const [isEmptyCounterparty, setIsEmptyCounterparty] = useState(false);
   const [postedRecord, setPostedRecord] = useState({
     name: 'CO',
     counterparty: currentCounterparty,
@@ -22,46 +23,53 @@ const AddRecord = (props) => {
   }, [currentCounterparty])
 
   const postRecord = (e) => {
-    console.log('postRecord fired')
-    e.preventDefault();
-    // Add cases dealing with blanks/nulls in postedRecord
-    const splitCalculation = postedRecord.cost * postedRecord.userPercent / 100;
-    console.log('this is split',splitCalculation)
-    fetch('/api/records', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: postedRecord.name,
-        counterparty: postedRecord.counterparty,
-        item: postedRecord.item,
-        cost: postedRecord.cost,
-        split: splitCalculation,
-        percentage: postedRecord.userPercent
-      })
-    })
-      .then(() => {
-        console.log('added record!')
-        setPopulatedRecords(false);
-      })
-      .catch(err => `Error adding record: ${err}`)
-      .finally(
-        setPostedRecord({
-          name: 'CO',
-          counterparty: currentCounterparty,
-          item: '',
-          cost: '',
-          userPercent: 50
+    e.preventDefault();    
+    console.log('currentCounterparty here', currentCounterparty)
+    if (currentCounterparty === null) {
+      return setIsEmptyCounterparty(true);
+    } else {
+      console.log('postRecord fired')
+      // Add cases dealing with blanks/nulls in postedRecord
+      const splitCalculation = postedRecord.cost * postedRecord.userPercent / 100;
+      console.log('this is split',splitCalculation)
+      fetch('/api/records', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: postedRecord.name,
+          counterparty: postedRecord.counterparty,
+          item: postedRecord.item,
+          cost: postedRecord.cost,
+          split: splitCalculation,
+          percentage: postedRecord.userPercent
         })
-      )
+      })
+        .then(() => {
+          console.log('added record!')
+          setPopulatedRecords(false);
+        })
+        .catch(err => `Error adding record: ${err}`)
+        .finally(
+          setPostedRecord({
+            name: 'CO',
+            counterparty: currentCounterparty,
+            item: '',
+            cost: '',
+            userPercent: 50
+          })
+        )
+    }
   };
 
   return (
     <div className="records-post-form">
       {/* <h2>Add A Record:</h2> */}
       <button onClick={() => setTogglePostRecordForm(!togglePostRecordForm)}>{togglePostRecordForm ? `Exit Adding A Record`: `Add A Record Here`}</button>
-      
+      {isEmptyCounterparty &&
+      <div>Please choose a counterparty before adding!</div>
+      }
       {togglePostRecordForm && 
       <form className="inner-records-post-form" action="/api/records" method="POST">
         <div>
