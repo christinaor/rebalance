@@ -111,14 +111,6 @@ const RecordsContainer = props => {
         setCurrentCounterparty={setCurrentCounterparty}
       />
       <div>
-        {/* <AddRecord 
-          recordsList={recordsList}
-          setRecordsList={setRecordsList}
-          populatedRecords={populatedRecords}
-          setPopulatedRecords={setPopulatedRecords}
-          currentCounterparty={currentCounterparty}
-          setCurrentCounterparty={setCurrentCounterparty}
-        /> */}
         <UpdateRecord 
           recordsList={recordsList}
           setRecordsList={setRecordsList}

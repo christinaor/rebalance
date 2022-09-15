@@ -73,7 +73,7 @@ const ListOfRecords = props => {
       <h2>List of Records with {checkedCounterparty}:</h2>
       <div className="add-or-update-wrapper">
         <div className="record-filters">
-          Filter:
+          Sort by:
           <button>Counterparty</button>
           <button>Date</button>
           <button>Cost</button>

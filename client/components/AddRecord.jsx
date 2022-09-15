@@ -75,12 +75,9 @@ const AddRecord = (props) => {
 
   return (
     <div className="records-post-form">
-      {/* <button onClick={() => setTogglePostRecordForm(!togglePostRecordForm)}>{togglePostRecordForm ? `Exit Adding A Record`: `Add A Record Here`}</button> */}
       {isEmptyCounterparty &&
       <div>Please choose a counterparty before adding!</div>
       }
-      {/* {togglePostRecordForm &&  */}
-
       <form className="records-post-inputs" action="/api/records" method="POST">
         <div className="display-flex-column">
           <label for="item">Item Purchased</label>
@@ -94,12 +91,11 @@ const AddRecord = (props) => {
           <label for="userPercent">Your Split (%)</label>
           <input name="userPercent" type="text" placeholder={50}value={postedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setPostedRecord({...postedRecord, userPercent: e.target.value})} />
         </div>
-        <div>
+        <div className="button-gap">
           <button type="submit" onClick={postRecord}>Add</button>
           <button onClick={cancelAdd}>Cancel</button>
         </div>
       </form>
-      {/* } */}
   </div>
   )
 }

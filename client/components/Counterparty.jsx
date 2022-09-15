@@ -18,18 +18,10 @@ const Counterparty = props => {
     counterpartyInfo
   } = props;
 
-  // Color change from hovering over a counterparty
-  const [onHoverColor, setOnHoverColor] = useState('#fafafa')
-  const cpButtonStyle = {
-    background: `${onHoverColor}`
-  };
-
   return (
     <div
       key={`cp${counterpartyInfo.id}`}
-      style={cpButtonStyle} 
-      onMouseEnter={() => setOnHoverColor('#c83f49')}
-      onMouseLeave={() => setOnHoverColor('#fafafa')}
+      className="cp-hover"
       onClick={() => setCurrentCounterparty(counterpartyInfo.counterparty_name)}>
         {counterpartyInfo.counterparty_name}
     </div>

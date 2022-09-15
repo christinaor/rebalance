@@ -22,12 +22,6 @@ const CounterpartiesContainer = props => {
     setCurrentCounterparty
   } = props;
 
-  // Color change from hovering over a counterparty
-  const [onHoverColor, setOnHoverColor] = useState('#fafafa')
-  const cpButtonStyle = {
-    background: `${onHoverColor}`
-  };
-
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -64,10 +58,8 @@ const CounterpartiesContainer = props => {
     <div className="left-counterparties">
       <h2>Counterparty:</h2>
       <div 
-        key={`cp0}`} 
-        style={cpButtonStyle} 
-        onMouseEnter={() => setOnHoverColor('#c83f49')}
-        onMouseLeave={() => setOnHoverColor('#fafafa')}
+        key={`cp0}`}
+        className="cp-hover"
         onClick={() => setCurrentCounterparty(null)}>All Parties</div>
       {counterpartySideElements}
     </div>
