@@ -13,11 +13,23 @@
 
  export const TotalBalanceContainer = (props) => {
   const {
+    currentCounterparty,
+    setCurrentCounterparty,
     userBalance,
     setUserBalance,
     counterpartyBalance,
     setCounterpartyBalance
   } = props;
 
-  return ` You owe ${userBalance} while your counterparty owes ${counterpartyBalance}`
+  let counterparty;
+  if (currentCounterparty !== null) { counterparty = currentCounterparty }
+  else { counterparty = 'All Parties' }
+
+  return (
+    <div className="total-balance-container">Current Balances:
+      <div>Amount you owe: {userBalance}</div>
+      <div>Amount owed from {counterparty}: {counterpartyBalance}</div>
+    </div>
+
+  )
  }
