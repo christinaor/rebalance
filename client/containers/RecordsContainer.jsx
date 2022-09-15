@@ -33,6 +33,7 @@ const RecordsContainer = props => {
     cost: null,
     perc: null
   });
+  const [sortedRecords, setSortedRecords] = useState(false);
 
 /**
  * RecordsList is rendered for all counterparties the user has on inital render.
@@ -44,7 +45,7 @@ const RecordsContainer = props => {
 
     // retrieve records based on the current counterparty
     let records;
-    if (currentCounterparty !== null) {
+    if (!sortedRecords && currentCounterparty !== null && currentCounterparty !== 'All Parties') {
       records = await fetch('/api/records/counterparty', {
         signal: signal,
         method: 'POST',
@@ -56,25 +57,18 @@ const RecordsContainer = props => {
         })
       })
         .then(response => response.json())
-        // .then(data => {
-        //   console.log('get records for counterparty and user only: ', data);
-        //   setRecordsList(data);
-        // })
         .catch((err) => {
           if (err.name === 'AbortError') {
             return 'Successfully aborted!';
           } else return `Error getting records for specific counterparty: ${err}`
         })
         .finally(setPopulatedRecords(true))
-    } else {
+    } else if (!sortedRecords) {
+      console.log('in the else grabbing all records')
       records = await fetch('/api/records', {
         signal: signal
       })
         .then(response => response.json())
-        // .then(data => {
-        //   console.log('get all records here: ', data);
-        //   setRecordsList(data);
-        // })
         .catch((err) => {
           if (err.name === 'AbortError') {
             return 'Successfully aborted!';
@@ -82,9 +76,8 @@ const RecordsContainer = props => {
         })
         .finally(setPopulatedRecords(true))
     }
+    if (!sortedRecords) setRecordsList(records);
 
-    //
-    setRecordsList(records);
     // calculate user and counterparty balances
     let calculatedUserBalance = 0;
     let calculatedCounterpartyBalance = 0;
@@ -94,7 +87,7 @@ const RecordsContainer = props => {
     }
     setUserBalance(calculatedUserBalance.toFixed(2));
     setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
-  }, [populatedRecords, currentCounterparty]);
+  }, [populatedRecords, currentCounterparty, sortedRecords]);
 
   return (
     <div>
@@ -109,6 +102,8 @@ const RecordsContainer = props => {
         setToUpdate={setToUpdate}
         currentCounterparty={currentCounterparty}
         setCurrentCounterparty={setCurrentCounterparty}
+        sortedRecords={sortedRecords}
+        setSortedRecords={setSortedRecords}
       />
       <div>
         <UpdateRecord 

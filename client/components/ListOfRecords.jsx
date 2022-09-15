@@ -25,7 +25,9 @@ const ListOfRecords = props => {
     toUpdate,
     setToUpdate,
     currentCounterparty,
-    setCurrentCounterparty
+    setCurrentCounterparty,
+    sortedRecords,
+    setSortedRecords
   } = props;
 
   const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
@@ -33,6 +35,21 @@ const ListOfRecords = props => {
   const [editButtonVisible, setEditButtonVisible] = useState(true);
   const [deleteButtonVisible, setDeleteButtonVisible] = useState(true);
   const [actionsValue, setActionsValue] = useState('Select')
+
+  // useEffect(() => {
+  //   console.log('useeffect for sort ran')
+  // }, [recordsList]);
+
+  const sortByCounterparty = async () => {
+    if (!sortedRecords) {
+      console.log('sorting records: ', recordsList)
+      await setRecordsList(recordsList.sort((a, b) => a.counterparty_username.localeCompare(b.counterparty_username)));
+      setSortedRecords(true);
+      console.log('done sorting:')
+    } else {
+      setSortedRecords(false);
+    }
+  };
 
   // Create array of records to render later
   const recordElements = recordsList.map(record => {
@@ -74,7 +91,7 @@ const ListOfRecords = props => {
       <div className="add-or-update-wrapper">
         <div className="record-filters">
           Sort by:
-          <button>Counterparty</button>
+          <button onClick={sortByCounterparty}>Counterparty</button>
           <button>Date</button>
           <button>Cost</button>
           <button>User Split</button>

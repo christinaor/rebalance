@@ -45,7 +45,6 @@ const MainContainer = props => {
         setCookieTimeout={setCookieTimeout} />
       <Routes>
         <Route path='/flow/settings' element={<SettingsPage />} />
-        {/* <Route path='/flow/login' element={<LoginPage />} /> */}
       </Routes>
       <TotalBalanceContainer
         currentCounterparty={currentCounterparty}
