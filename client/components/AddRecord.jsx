@@ -5,7 +5,11 @@ const AddRecord = (props) => {
     populatedRecords,
     setPopulatedRecords,
     currentCounterparty,
-    setCurrentCounterparty
+    setCurrentCounterparty,
+    toggleAddRecordForm,
+    setToggleAddRecordForm,
+    addRecordButtonVisible,
+    setAddRecordButtonVisible
   } = props;
 
   // const [togglePostRecordForm, setTogglePostRecordForm] = useState(false);
@@ -64,30 +68,35 @@ const AddRecord = (props) => {
     }
   };
 
+  const cancelAdd = () => {
+    setToggleAddRecordForm(!toggleAddRecordForm);
+    setAddRecordButtonVisible(!addRecordButtonVisible);
+  }
+
   return (
     <div className="records-post-form">
-      {/* <h2>Add A Record:</h2> */}
       {/* <button onClick={() => setTogglePostRecordForm(!togglePostRecordForm)}>{togglePostRecordForm ? `Exit Adding A Record`: `Add A Record Here`}</button> */}
       {isEmptyCounterparty &&
       <div>Please choose a counterparty before adding!</div>
       }
       {/* {togglePostRecordForm &&  */}
 
-      <form className="post-form-inputs-wrapper" action="/api/records" method="POST">
-        <div>
-          <label for="item">Item Purchased:</label>
+      <form className="records-post-inputs" action="/api/records" method="POST">
+        <div className="display-flex-column">
+          <label for="item">Item Purchased</label>
           <input name="item" type="text" value={postedRecord.item} id="records-post-item" onChange={(e) => setPostedRecord({...postedRecord, item: e.target.value})} />
         </div>
-        <div>
-          <label for="cost">Item Cost:</label>
+        <div className="display-flex-column">
+          <label for="cost">Item Cost ($)</label>
           <input name="cost" type="text" value={postedRecord.cost} id="records-post-cost" onChange={(e) => setPostedRecord({...postedRecord, cost: e.target.value})} />
         </div>
-        <div>
-          <label for="userPercent">Your Percent Split:</label>
+        <div className="display-flex-column">
+          <label for="userPercent">Your Split (%)</label>
           <input name="userPercent" type="text" placeholder={50}value={postedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setPostedRecord({...postedRecord, userPercent: e.target.value})} />
         </div>
         <div>
           <button type="submit" onClick={postRecord}>Add</button>
+          <button onClick={cancelAdd}>Cancel</button>
         </div>
       </form>
       {/* } */}

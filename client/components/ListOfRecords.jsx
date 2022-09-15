@@ -28,9 +28,13 @@ const ListOfRecords = props => {
     setCurrentCounterparty
   } = props;
 
+  const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
+  const [addRecordButtonVisible, setAddRecordButtonVisible] = useState(true);
+  const [editButtonVisible, setEditButtonVisible] = useState(true);
+  const [deleteButtonVisible, setDeleteButtonVisible] = useState(true);
   const [actionsValue, setActionsValue] = useState('Select')
 
-  // create array of records to render later
+  // Create array of records to render later
   const recordElements = recordsList.map(record => {
     const { id, counterparty_username, input_date, item_name, item_cost, user_split, user_perc } = record;
     return (
@@ -55,22 +59,57 @@ const ListOfRecords = props => {
     )
   });
 
+  // Set counterparties to All Parties if none selected
   const checkedCounterparty = currentCounterparty ? currentCounterparty : 'All Parties';
+
+
+  const clickedInitialAdd = () => {
+    setAddRecordButtonVisible(!addRecordButtonVisible);
+    setToggleAddRecordForm(!toggleAddRecordForm);
+  }
 
   return (
     <div className="records-container">
-      <h2>List of Records between You and {checkedCounterparty}:</h2>
-      <div className="add-record-wrapper">
-        <h4 className="add-record-title">Add Record:</h4>
-        <AddRecord 
-          recordsList={recordsList}
-          setRecordsList={setRecordsList}
-          populatedRecords={populatedRecords}
-          setPopulatedRecords={setPopulatedRecords}
-          currentCounterparty={currentCounterparty}
-          setCurrentCounterparty={setCurrentCounterparty}
-        />        
+      <h2>List of Records with {checkedCounterparty}:</h2>
+      <div className="add-or-update-wrapper">
+        <div className="record-filters">
+          Filter:
+          <button>Counterparty</button>
+          <button>Date</button>
+          <button>Cost</button>
+          <button>User Split</button>
+          <button>Counterparty Split</button>
+          <button>User Percentage</button>
+        </div>
+        <div className="record-buttons">
+          Make a change:
+          {addRecordButtonVisible &&
+          <button onClick={clickedInitialAdd}>Add</button>
+          }
+          {editButtonVisible &&
+            <button>Edit</button>
+          }
+          {deleteButtonVisible &&
+            <button>Delete</button>
+          }
+        </div>
       </div>
+      <div className="add-record-wrapper">   
+        {toggleAddRecordForm &&
+          <AddRecord 
+            recordsList={recordsList}
+            setRecordsList={setRecordsList}
+            populatedRecords={populatedRecords}
+            setPopulatedRecords={setPopulatedRecords}
+            currentCounterparty={currentCounterparty}
+            setCurrentCounterparty={setCurrentCounterparty}
+            toggleAddRecordForm={toggleAddRecordForm}
+            setToggleAddRecordForm={setToggleAddRecordForm}
+            addRecordButtonVisible={addRecordButtonVisible}
+            setAddRecordButtonVisible={setAddRecordButtonVisible}
+          />
+        }
+        </div>
       <div className="records-grid-container">
         <div className="center grid-record">
           <span>Record No.</span>

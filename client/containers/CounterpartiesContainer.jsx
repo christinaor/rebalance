@@ -1,16 +1,16 @@
 /**
  * ************************************
  *
- * @module  Counterparties
+ * @module  CounterpartiesContainer
  * @author
  * @date
- * @description stateless component that renders people components
+ * @description stateless container that renders Counterparty components
  *
  * ************************************
  */
 
- import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import Counterparty from "../components/Counterparty.jsx";
  
 const CounterpartiesContainer = props => {
   const {
@@ -21,6 +21,12 @@ const CounterpartiesContainer = props => {
     currentCounterparty,
     setCurrentCounterparty
   } = props;
+
+  // Color change from hovering over a counterparty
+  const [onHoverColor, setOnHoverColor] = useState('#fafafa')
+  const cpButtonStyle = {
+    background: `${onHoverColor}`
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -45,13 +51,24 @@ const CounterpartiesContainer = props => {
     //   second
     // }
   }, [populatedCounterparties])
-  
-  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (<button key={`cp${counterpartyInfo.id}`} onClick={() => setCurrentCounterparty(counterpartyInfo.counterparty_name)}>{counterpartyInfo.counterparty_name}</button>))
 
+  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (
+    <Counterparty 
+      counterpartyInfo={counterpartyInfo}
+      currentCounterparty={currentCounterparty}
+      setCurrentCounterparty={setCurrentCounterparty}
+    />
+  ))
+  
   return (
     <div className="left-counterparties">
-      <h2>Select a counterparty:</h2>
-      <button onClick={() => setCurrentCounterparty(null)}>All Parties</button>
+      <h2>Counterparty:</h2>
+      <div 
+        key={`cp0}`} 
+        style={cpButtonStyle} 
+        onMouseEnter={() => setOnHoverColor('#c83f49')}
+        onMouseLeave={() => setOnHoverColor('#fafafa')}
+        onClick={() => setCurrentCounterparty(null)}>All Parties</div>
       {counterpartySideElements}
     </div>
   )
