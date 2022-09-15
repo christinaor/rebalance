@@ -47,8 +47,9 @@ const MainContainer = props => {
         <Route path='/flow/settings' element={<SettingsPage />} />
         {/* <Route path='/flow/login' element={<LoginPage />} /> */}
       </Routes>
-      <h1 id="header">Balance with others here...</h1>
-      <TotalBalanceContainer 
+      <TotalBalanceContainer
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty}
         userBalance={userBalance}
         setUserBalance={setUserBalance}
         counterpartyBalance={counterpartyBalance}

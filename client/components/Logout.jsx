@@ -28,9 +28,9 @@
     setIsLoggedIn(false);
   }
   return (
-    <button className="nav-logout-button" onClick={logoutNow}>
+    <span className="nav-logout" onClick={logoutNow}>
       Logout
-    </button>
+    </span>
   )
 };
  

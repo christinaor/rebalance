@@ -26,23 +26,22 @@ const NavBar = (props) => {
   
   return (
     <nav className="navigation">
-      <Link to="/">
-        <button>Home</button>
-      </Link>
-      {/* <Link to="/flow/settings" element={<SettingsPage />}> */}
-      <Link to="/flow/settings">
-        <button>Settings</button>
-      </Link>
-      <Link to="/flow/login">
-        <Logout
-          cookies={cookies}
-          removeCookie={removeCookie}
-          setCookie={setCookie}
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          cookieTimeout={cookieTimeout}
-          setCookieTimeout={setCookieTimeout} />
-      </Link>
+      <a className="nav-logo" href="/">RE:Balance</a>
+      <span className="right-nav">
+        <Link className="flex-end" to="/flow/settings">
+          <span>Settings</span>
+        </Link>
+        <Link className="flex-end" to="/flow/login">
+          <Logout
+            cookies={cookies}
+            removeCookie={removeCookie}
+            setCookie={setCookie}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+            cookieTimeout={cookieTimeout}
+            setCookieTimeout={setCookieTimeout} />
+        </Link>
+      </span>
     </nav>
 
   )

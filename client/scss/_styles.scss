@@ -1,3 +1,46 @@
+
+/*****   MAIN STYLING   *****/
+body {
+  background: $lightPurple;
+  font-family: 'Avenir', Verdana,'Segoe UI', Tahoma, sans-serif
+};
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
+
+.nav-logo {
+  font-size: 50px;
+  text-decoration: none;
+}
+
+.nav-logout {
+  margin-top: 30px;
+  margin-left: 15px;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+};
+
+.main-inner-container {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0 50px;
+  grid-template-columns: 1fr 7fr
+};
+
+.total-balance-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /*****   LOGIN AND SIGNUP STYLING   *****/
 .login-page-wrapper {
   display: flex;
@@ -67,24 +110,6 @@
   display: flex;
   justify-content: space-between;
 }
-
-
-/*****   MAIN STYLING   *****/
-.main-wrapper {
-  display: flex;
-  flex-direction: column;
-};
-
-body {
-  background: $lightPurple;
-};
-
-.main-inner-container {
-  display: grid;
-  grid-auto-flow: column;
-  gap: 0 50px;
-  grid-template-columns: 1fr 7fr
-};
 
 
 /*****   COUNTERPARTIES STYLING   *****/
