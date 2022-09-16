@@ -36,13 +36,12 @@ const ListOfRecords = props => {
   const [deleteButtonVisible, setDeleteButtonVisible] = useState(true);
   const [actionsValue, setActionsValue] = useState('Select')
 
-  // useEffect(() => {
-  //   console.log('useeffect for sort ran')
-  // }, [recordsList]);
+  useEffect(() => {
+    if (currentCounterparty !== 'All Parties') setSortedRecords(false);
+  }, [currentCounterparty]);
 
   const sortByCounterparty = async () => {
-    if (!sortedRecords) {
-      console.log('sorting records: ', recordsList)
+    if (!sortedRecords && currentCounterparty === 'All Parties') {
       await setRecordsList(recordsList.sort((a, b) => a.counterparty_username.localeCompare(b.counterparty_username)));
       setSortedRecords(true);
       console.log('done sorting:')
@@ -76,10 +75,6 @@ const ListOfRecords = props => {
     )
   });
 
-  // Set counterparties to All Parties if none selected
-  const checkedCounterparty = currentCounterparty ? currentCounterparty : 'All Parties';
-
-
   const clickedInitialAdd = () => {
     setAddRecordButtonVisible(!addRecordButtonVisible);
     setToggleAddRecordForm(!toggleAddRecordForm);
@@ -87,7 +82,7 @@ const ListOfRecords = props => {
 
   return (
     <div className="records-container">
-      <h2>Records with {checkedCounterparty}:</h2>
+      <h2>Records with {currentCounterparty}:</h2>
       <div className="add-or-update-wrapper">
         <div className="record-filters">
           Sort by:

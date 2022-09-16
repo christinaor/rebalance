@@ -60,7 +60,7 @@ const CounterpartiesContainer = props => {
       <div 
         key={`cp0}`}
         className="cp-hover"
-        onClick={() => setCurrentCounterparty(null)}>All Parties</div>
+        onClick={() => setCurrentCounterparty('All Parties')}>All Parties</div>
       {counterpartySideElements}
     </div>
   )
