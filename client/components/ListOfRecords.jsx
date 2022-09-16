@@ -31,8 +31,8 @@ const ListOfRecords = props => {
   } = props;
 
   const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
-  const [editButtonVisible, setEditButtonVisible] = useState(true);
-  const [deleteButtonVisible, setDeleteButtonVisible] = useState(true);
+  const [inEditMode, setInEditMode] = useState(false);
+  const [inDeleteMode, setInDeleteMode] = useState(false);
   const [allButtonsVisible, setAllButtonsVisible] = useState(true);
   const [actionsValue, setActionsValue] = useState('Select')
 
@@ -77,19 +77,28 @@ const ListOfRecords = props => {
 
   // Set button visibilities based on whether one is clicked
   const clickedInitialAdd = () => {
-    setToggleAddRecordForm(!toggleAddRecordForm);
-    setAllButtonsVisible(!allButtonsVisible);
-  }
+    setToggleAddRecordForm(true);
+    setAllButtonsVisible(false);
+  };
   const cancelAdd = () => {
-    setToggleAddRecordForm(!toggleAddRecordForm);
-    setAllButtonsVisible(!allButtonsVisible);
-  }
+    setToggleAddRecordForm(false);
+    setAllButtonsVisible(true);
+  };
   const clickedInitialEdit = () => {
-    setAllButtonsVisible(!allButtonsVisible);
+    setInEditMode(true);
+    setAllButtonsVisible(false);
+  };
+  const cancelEdit = () => {
+    setInEditMode(false);
+    setAllButtonsVisible(true);
   }
-
   const clickedInitialDelete = () => {
-    setAllButtonsVisible(!allButtonsVisible);
+    setInDeleteMode(true);    
+    setAllButtonsVisible(false);
+  }
+  const cancelDelete = () => {
+    setInDeleteMode(false);
+    setAllButtonsVisible(true);
   }
 
   return (
@@ -109,12 +118,18 @@ const ListOfRecords = props => {
         <div className="record-buttons">
           <span>Make a change:</span>
             <button onClick={clickedInitialAdd}>Add</button>
-            <button>Edit</button>
-            <button>Delete</button>
+            <button onClick={clickedInitialEdit}>Edit</button>
+            <button onClick={clickedInitialDelete}>Delete</button>
         </div>
         )}
         {!allButtonsVisible && toggleAddRecordForm &&
-        <button onClick={cancelAdd}>Cancel</button>
+        <button onClick={cancelAdd}>Cancel Add</button>
+        }
+        {!allButtonsVisible && inEditMode &&
+        <button onClick={cancelEdit}>Cancel Edit</button>
+        }
+        {!allButtonsVisible && inDeleteMode &&
+        <button onClick={cancelDelete}>Cancel Delete</button>
         }
       </div>
       <div className="add-record-wrapper">   
