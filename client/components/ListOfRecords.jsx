@@ -31,9 +31,9 @@ const ListOfRecords = props => {
   } = props;
 
   const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
-  const [addRecordButtonVisible, setAddRecordButtonVisible] = useState(true);
   const [editButtonVisible, setEditButtonVisible] = useState(true);
   const [deleteButtonVisible, setDeleteButtonVisible] = useState(true);
+  const [allButtonsVisible, setAllButtonsVisible] = useState(true);
   const [actionsValue, setActionsValue] = useState('Select')
 
   useEffect(() => {
@@ -75,9 +75,15 @@ const ListOfRecords = props => {
     )
   });
 
+  // Set button visibilities based on whether one is clicked
   const clickedInitialAdd = () => {
-    setAddRecordButtonVisible(!addRecordButtonVisible);
     setToggleAddRecordForm(!toggleAddRecordForm);
+    setAllButtonsVisible(!allButtonsVisible)
+  }
+
+  const cancelAdd = () => {
+    setToggleAddRecordForm(!toggleAddRecordForm);
+    setAllButtonsVisible(!allButtonsVisible)
   }
 
   return (
@@ -93,18 +99,17 @@ const ListOfRecords = props => {
           <button>Counterparty Split</button>
           <button>User Percentage</button>
         </div>
+        {allButtonsVisible && (
         <div className="record-buttons">
-          Make a change:
-          {addRecordButtonVisible &&
-          <button onClick={clickedInitialAdd}>Add</button>
-          }
-          {editButtonVisible &&
+          <span>Make a change:</span>
+            <button onClick={clickedInitialAdd}>Add</button>
             <button>Edit</button>
-          }
-          {deleteButtonVisible &&
             <button>Delete</button>
-          }
         </div>
+        )}
+        {!allButtonsVisible && toggleAddRecordForm &&
+        <button onClick={cancelAdd}>Cancel</button>
+        }
       </div>
       <div className="add-record-wrapper">   
         {toggleAddRecordForm &&
@@ -117,8 +122,8 @@ const ListOfRecords = props => {
             setCurrentCounterparty={setCurrentCounterparty}
             toggleAddRecordForm={toggleAddRecordForm}
             setToggleAddRecordForm={setToggleAddRecordForm}
-            addRecordButtonVisible={addRecordButtonVisible}
-            setAddRecordButtonVisible={setAddRecordButtonVisible}
+            allButtonsVisible={allButtonsVisible}
+            setAllButtonsVisible={setAllButtonsVisible}
           />
         }
         </div>

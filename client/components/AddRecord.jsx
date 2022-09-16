@@ -6,10 +6,8 @@ const AddRecord = (props) => {
     setPopulatedRecords,
     currentCounterparty,
     setCurrentCounterparty,
-    toggleAddRecordForm,
-    setToggleAddRecordForm,
-    addRecordButtonVisible,
-    setAddRecordButtonVisible
+    allButtonsVisible,
+    setAllButtonsVisible
   } = props;
 
   // const [togglePostRecordForm, setTogglePostRecordForm] = useState(false);
@@ -68,10 +66,7 @@ const AddRecord = (props) => {
     }
   };
 
-  const cancelAdd = () => {
-    setToggleAddRecordForm(!toggleAddRecordForm);
-    setAddRecordButtonVisible(!addRecordButtonVisible);
-  }
+
 
   return (
     <div className="records-post-form">
@@ -93,7 +88,6 @@ const AddRecord = (props) => {
         </div>
         <div className="button-gap">
           <button type="submit" onClick={postRecord}>Add</button>
-          <button onClick={cancelAdd}>Cancel</button>
         </div>
       </form>
   </div>
