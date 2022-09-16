@@ -11,6 +11,7 @@ const SignupPage = (props) => {
     email: '',
     pass: ''
   });
+  const [showPass, setShowPass] = useState(false);
 
   const navigate = useNavigate();
 
@@ -66,7 +67,7 @@ const SignupPage = (props) => {
         </div>
         <div className="signup-page-format">
           <label for="pass">Password</label>
-          <input name="pass" type="text" value={signupCreds.pass} id="signup-post-pass" onChange={(e) => setSignupCreds({...signupCreds, pass: e.target.value})} />
+          <input name="pass" type={ showPass ? "text" : "password"} value={signupCreds.pass} id="signup-post-pass" onChange={(e) => setSignupCreds({...signupCreds, pass: e.target.value})} />
         </div>
         <div>
           <button type="submit" onClick={postSignupCreds}>Create Account</button>

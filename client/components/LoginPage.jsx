@@ -18,6 +18,7 @@ const LoginPage = (props) => {
     email: '',
     pass: ''
   })
+  const [showPass, setShowPass] = useState(false);
   const [failedLogin, setFailedLogin] = useState(false);
 
   const {
@@ -87,7 +88,7 @@ const LoginPage = (props) => {
             id="pass" 
             name="pass" 
             placeholder="Password" 
-            type="text" 
+            type={ showPass ? "text" : "password" }
             value={loginCreds.pass} 
             onChange={(e) => setLoginCreds({...loginCreds, pass: e.target.value})} 
           />
