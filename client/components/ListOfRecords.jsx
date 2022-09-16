@@ -78,12 +78,18 @@ const ListOfRecords = props => {
   // Set button visibilities based on whether one is clicked
   const clickedInitialAdd = () => {
     setToggleAddRecordForm(!toggleAddRecordForm);
-    setAllButtonsVisible(!allButtonsVisible)
+    setAllButtonsVisible(!allButtonsVisible);
   }
-
   const cancelAdd = () => {
     setToggleAddRecordForm(!toggleAddRecordForm);
-    setAllButtonsVisible(!allButtonsVisible)
+    setAllButtonsVisible(!allButtonsVisible);
+  }
+  const clickedInitialEdit = () => {
+    setAllButtonsVisible(!allButtonsVisible);
+  }
+
+  const clickedInitialDelete = () => {
+    setAllButtonsVisible(!allButtonsVisible);
   }
 
   return (
@@ -92,7 +98,7 @@ const ListOfRecords = props => {
       <div className="add-or-update-wrapper">
         <div className="record-filters">
           Sort by:
-          <button onClick={sortByCounterparty}>Counterparty</button>
+          {(currentCounterparty === 'All Parties') && <button onClick={sortByCounterparty}>Counterparty</button>}
           <button>Date</button>
           <button>Cost</button>
           <button>User Split</button>

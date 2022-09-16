@@ -205,6 +205,9 @@ a, a:visited, a:hover, a:active {
   justify-content: space-between;
 }
 
+.record-edit:hover .record-delete:hover {
+  background-color: #c83f49;
+}
 
 /*****   RECORDS GRID STYLING   *****/
 .records-grid-container {
