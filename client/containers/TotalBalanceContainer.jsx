@@ -32,16 +32,14 @@ export const TotalBalanceContainer = (props) => {
   const day = dayNames[lastDayWithTime.getDay()];
   const lastDayWithoutTime = `${day}, ${month} ${lastDayWithTime.getDate()}, ${dateYear}`  
 
-  let counterparty;
-  if (currentCounterparty !== null) { counterparty = currentCounterparty }
-  else { counterparty = 'All Parties' }
+  let counterparty = (currentCounterparty !== null) ? currentCounterparty : 'All Parties';
 
   return (
     <div className="total-balance-container">
         <div className="balances">
           <h3>Current Balances</h3>
-          <div>Amount you owe: {userBalance}</div>
-          <div>Amount owed from {counterparty}: {counterpartyBalance}</div>       
+          <div>Amount you owe: ${userBalance}</div>
+          <div>Amount owed from {counterparty}: ${counterpartyBalance}</div>       
         </div>
       <div className="due-date">
         <h3>Next Reconciliation Due Date</h3>
