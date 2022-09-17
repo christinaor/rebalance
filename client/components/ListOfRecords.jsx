@@ -71,6 +71,12 @@ const ListOfRecords = props => {
         setToUpdate={setToUpdate}
         actionsValue={actionsValue}
         setActionsValue={setActionsValue}
+        allButtonsVisible={allButtonsVisible}
+        setAllButtonsVisible={setAllButtonsVisible}
+        inEditMode={inEditMode}
+        setInEditMode={setInEditMode}
+        inDeleteMode={inDeleteMode}
+        setInDeleteMode={setInDeleteMode}
       />
     )
   });
@@ -145,6 +151,7 @@ const ListOfRecords = props => {
             setToggleAddRecordForm={setToggleAddRecordForm}
             allButtonsVisible={allButtonsVisible}
             setAllButtonsVisible={setAllButtonsVisible}
+
           />
         }
         </div>
@@ -158,7 +165,7 @@ const ListOfRecords = props => {
           <span>User Split</span>
           <span>Counterparty Split</span>
           <span>User Percentage</span>
-          <span>Other Actions</span>
+          { inEditMode &&<span>Other Actions</span> }
         </div>
         {recordElements}
       </div>

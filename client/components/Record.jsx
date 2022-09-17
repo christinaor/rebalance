@@ -27,7 +27,13 @@ const Record = (props) => {
     toUpdate, 
     setToUpdate, 
     actionsValue, 
-    setActionsValue
+    setActionsValue,
+    allButtonsVisible,
+    setAllButtonsVisible,
+    inEditMode,
+    setInEditMode,
+    inDeleteMode,
+    setInDeleteMode
   } = props;
 
   const actionOptions = [
@@ -101,7 +107,9 @@ const Record = (props) => {
 
 
   return (
-    <div className="record grid-record center">
+    <div 
+    // className="grid-record center `${record-edit-hover}` record-delete-hover"
+    className="grid-record center">
       <div className="center">{id}</div>
       <div className="center">{counterpartyName}</div>
       <div>{`${mm}/${dd}/${yyyy}`}</div>
@@ -110,6 +118,7 @@ const Record = (props) => {
       <div>{userSplit}</div>
       <div>{counterpartySplit}</div>
       <div>{formattedUserPercent}</div>
+      {inEditMode &&
       <div>
         <select value={actionsValue} onChange={handleChange}>
           {actionOptions.map(option => (
@@ -117,6 +126,7 @@ const Record = (props) => {
           ))}
         </select>
       </div>
+      }
     </div>
   )
 };
