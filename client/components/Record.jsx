@@ -88,6 +88,10 @@ const Record = (props) => {
       })
   };
 
+  const editOrDeleteRecord = (e) => {
+    if (inDeleteMode) deleteRecord(e);
+  }
+
   /*
   Parse out date to be human-readable.
   */
@@ -107,7 +111,10 @@ const Record = (props) => {
 
 
   return (
-    <div className={`grid-record center ${inEditMode ? `record-edit-hover` : `record-edit`} ${inDeleteMode ? `record-delete-hover` : `record-delete`}`}>
+    <div 
+      className={`grid-record center ${inEditMode ? `record-edit-hover` : `record-edit`} ${inDeleteMode ? `record-delete-hover` : `record-delete`}`}
+      onClick={editOrDeleteRecord}
+    >
       <div>{id}</div>
       <div>{counterpartyName}</div>
       <div>{`${mm}/${dd}/${yyyy}`}</div>
