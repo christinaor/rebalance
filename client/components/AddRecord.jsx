@@ -10,7 +10,6 @@ const AddRecord = (props) => {
     setAllButtonsVisible
   } = props;
 
-  // const [togglePostRecordForm, setTogglePostRecordForm] = useState(false);
   const [isEmptyCounterparty, setIsEmptyCounterparty] = useState(false);
   const [postedRecord, setPostedRecord] = useState({
     name: 'CO',
@@ -65,8 +64,6 @@ const AddRecord = (props) => {
         )
     }
   };
-
-
 
   return (
     <div className="records-post-form">
