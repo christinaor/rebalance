@@ -213,6 +213,16 @@ a, a:visited, a:hover, a:active {
   background-color: blueviolet;
 }
 
+.records-pending-update {
+  display: grid;
+  flex-direction: column;
+}
+
+.records-put-form {
+  display: grid;
+  grid-auto-flow: column;
+}
+
 /*****   RECORDS GRID STYLING   *****/
 .records-grid-container {
   display: grid;

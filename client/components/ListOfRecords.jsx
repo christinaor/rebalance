@@ -32,6 +32,7 @@ const ListOfRecords = props => {
 
   const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
   const [inEditMode, setInEditMode] = useState(false);
+  const [clickedRecordToEdit, setClickedRecordToEdit] = useState(false);
   const [inDeleteMode, setInDeleteMode] = useState(false);
   const [allButtonsVisible, setAllButtonsVisible] = useState(true);
   const [actionsValue, setActionsValue] = useState('Select')
@@ -77,6 +78,10 @@ const ListOfRecords = props => {
         setInEditMode={setInEditMode}
         inDeleteMode={inDeleteMode}
         setInDeleteMode={setInDeleteMode}
+        clickedRecordToEdit={clickedRecordToEdit}
+        setClickedRecordToEdit={setClickedRecordToEdit}
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty}
       />
     )
   });
@@ -97,6 +102,14 @@ const ListOfRecords = props => {
   const cancelEdit = () => {
     setInEditMode(false);
     setAllButtonsVisible(true);
+    // set update object state to null
+    setUpdatedRecord({
+      id: null,
+      item: null,
+      cost: null,
+      perc: null
+    });
+    setClickedRecordToEdit(false);
   }
   const clickedInitialDelete = () => {
     setInDeleteMode(true);    
@@ -154,6 +167,18 @@ const ListOfRecords = props => {
 
           />
         }
+
+      {/* {inEditMode && clickedRecordToEdit &&
+      <UpdateRecord 
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty}
+        updatedRecord={updatedRecord}
+        setUpdatedRecord={setUpdatedRecord}
+        clickedRecordToEdit={clickedRecordToEdit}
+        setClickedRecordToEdit={setClickedRecordToEdit}
+      />
+      } */}
+
         </div>
       <div className="records-grid-container">
         <div className="center grid-record">
@@ -165,7 +190,7 @@ const ListOfRecords = props => {
           <span>User Split</span>
           <span>Counterparty Split</span>
           <span>User Percentage</span>
-          { inEditMode &&<span>Other Actions</span> }
+          {/* { inEditMode &&<span>Other Actions</span> } */}
         </div>
         {recordElements}
       </div>

@@ -10,6 +10,7 @@
  */
 
 import React, { useEffect, useState } from 'react'
+import UpdateRecord from './UpdateRecord.jsx';
 
 const Record = (props) => {
   const { 
@@ -33,7 +34,11 @@ const Record = (props) => {
     inEditMode,
     setInEditMode,
     inDeleteMode,
-    setInDeleteMode
+    setInDeleteMode,
+    clickedRecordToEdit,
+    setClickedRecordToEdit,
+    currentCounterparty,
+    setCurrentCounterparty
   } = props;
 
   const actionOptions = [
@@ -90,6 +95,17 @@ const Record = (props) => {
 
   const editOrDeleteRecord = (e) => {
     if (inDeleteMode) deleteRecord(e);
+    // for update, update updatedRecord when clicked
+    if (inEditMode) {
+      console.log('in inEditMode console log: ', e.target)
+      setUpdatedRecord({
+        id: id,
+        item: itemName,
+        cost: cost,
+        perc: userPercent
+      });
+      setClickedRecordToEdit(true);
+    }
   }
 
   /*
@@ -111,27 +127,48 @@ const Record = (props) => {
 
 
   return (
-    <div 
-      className={`grid-record center ${inEditMode ? `record-edit-hover` : `record-edit`} ${inDeleteMode ? `record-delete-hover` : `record-delete`}`}
-      onClick={editOrDeleteRecord}
-    >
-      <div>{id}</div>
-      <div>{counterpartyName}</div>
-      <div>{`${mm}/${dd}/${yyyy}`}</div>
-      <div>{itemName}</div>
-      <div>{cost}</div>
-      <div>{userSplit}</div>
-      <div>{counterpartySplit}</div>
-      <div>{formattedUserPercent}</div>
-      {inEditMode &&
-      <div>
-        <select value={actionsValue} onChange={handleChange}>
-          {actionOptions.map(option => (
-            <option key={`${option.value}${id}`} value={option.value}>{option.label}</option>
-          ))}
-        </select>
+    <div className='records-pending-update'>
+      <div 
+        className={`grid-record center ${inEditMode ? `record-edit-hover` : `record-edit`} ${inDeleteMode ? `record-delete-hover` : `record-delete`}`}
+        onClick={editOrDeleteRecord}
+      >
+        <div>{id}</div>
+        <div>{counterpartyName}</div>
+        <div>{`${mm}/${dd}/${yyyy}`}</div>
+        <div>{itemName}</div>
+        <div>{cost}</div>
+        <div>{userSplit}</div>
+        <div>{counterpartySplit}</div>
+        <div>{formattedUserPercent}</div>
+
+        {/* {inEditMode &&
+        <div>
+          <select value={actionsValue} onChange={handleChange}>
+            {actionOptions.map(option => (
+              <option key={`${option.value}${id}`} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+        </div>
+        } */}
       </div>
-      }
+      {inEditMode && clickedRecordToEdit && (updatedRecord.id === id) &&
+        <UpdateRecord 
+          id={id}
+          counterpartyName={counterpartyName}
+          dateEntered={`${mm}/${dd}/${yyyy}`}
+          itemName={itemName}
+          cost={cost}
+          userSplit={userSplit}
+          counterpartySplit={counterpartySplit}
+          userPercent={userPercent}
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
+          updatedRecord={updatedRecord}
+          setUpdatedRecord={setUpdatedRecord}
+          clickedRecordToEdit={clickedRecordToEdit}
+          setClickedRecordToEdit={setClickedRecordToEdit}
+        />
+        }
     </div>
   )
 };

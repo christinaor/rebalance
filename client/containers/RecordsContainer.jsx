@@ -105,7 +105,7 @@ const RecordsContainer = props => {
         sortedRecords={sortedRecords}
         setSortedRecords={setSortedRecords}
       />
-      <div>
+      {/* <div>
         <UpdateRecord 
           recordsList={recordsList}
           setRecordsList={setRecordsList}
@@ -118,7 +118,7 @@ const RecordsContainer = props => {
           currentCounterparty={currentCounterparty}
           setCurrentCounterparty={setCurrentCounterparty}
         />
-      </div>
+      </div> */}
     </div>
   )
 }
