@@ -26,7 +26,7 @@ const AddRecord = (props) => {
   const postRecord = (e) => {
     e.preventDefault();    
     console.log('currentCounterparty here', currentCounterparty)
-    if (currentCounterparty === null) {
+    if (currentCounterparty === null || currentCounterparty === 'All Parties') {
       return setIsEmptyCounterparty(true);
     } else {
       console.log('postRecord fired')
