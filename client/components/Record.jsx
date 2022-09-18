@@ -107,11 +107,9 @@ const Record = (props) => {
 
 
   return (
-    <div 
-    // className="grid-record center `${record-edit-hover}` record-delete-hover"
-    className="grid-record center">
-      <div className="center">{id}</div>
-      <div className="center">{counterpartyName}</div>
+    <div className={`grid-record center ${inEditMode ? `record-edit-hover` : `record-edit`} ${inDeleteMode ? `record-delete-hover` : `record-delete`}`}>
+      <div>{id}</div>
+      <div>{counterpartyName}</div>
       <div>{`${mm}/${dd}/${yyyy}`}</div>
       <div>{itemName}</div>
       <div>{cost}</div>

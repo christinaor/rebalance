@@ -205,13 +205,13 @@ a, a:visited, a:hover, a:active {
   justify-content: space-between;
 }
 
-// .record-edit {
-//   background-color: #fafafa;
-// }
+.record-edit-hover, .record-delete-hover {
+  background-color: #fafafa;
+}
 
-// .record-edit-hover:hover .record-delete-hover:hover {
-//   background-color: #c83f49;
-// }
+.record-edit-hover:hover, .record-delete-hover:hover {
+  background-color: blueviolet;
+}
 
 /*****   RECORDS GRID STYLING   *****/
 .records-grid-container {
