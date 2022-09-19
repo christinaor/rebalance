@@ -10,7 +10,6 @@
  */
 
 import React, { useEffect, useState } from "react";
-import Counterparty from "../components/Counterparty.jsx";
  
 const CounterpartiesContainer = props => {
   const {
@@ -47,11 +46,14 @@ const CounterpartiesContainer = props => {
   }, [populatedCounterparties])
 
   const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (
-    <Counterparty 
-      counterpartyInfo={counterpartyInfo}
-      currentCounterparty={currentCounterparty}
-      setCurrentCounterparty={setCurrentCounterparty}
-    />
+    <div 
+      key={`cp${counterpartyInfo.id}`}
+      className="cp-hover"
+      onClick={() => setCurrentCounterparty(counterpartyInfo.counterparty_name)}
+    >
+      {counterpartyInfo.counterparty_name}
+    </div>
+
   ))
   
   return (
