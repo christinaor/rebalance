@@ -44,7 +44,7 @@ const RecordsContainer = props => {
     const signal = controller.signal;
 
     console.log('recordsContainer fired with populatedRecords', populatedRecords)
-    // retrieve records based on the current counterparty
+    // Retrieve records based on the current counterparty
     let records;
     if (!sortedRecords && currentCounterparty !== null && currentCounterparty !== 'All Parties') {
       records = await fetch('/api/records/counterparty', {
@@ -64,6 +64,7 @@ const RecordsContainer = props => {
           } else return `Error getting records for specific counterparty: ${err}`
         })
         .finally(setPopulatedRecords(true))
+    // Otherwise all records will be retrieved
     } else if (!sortedRecords) {
       console.log('in the else grabbing all records')
       records = await fetch('/api/records', {
@@ -79,7 +80,7 @@ const RecordsContainer = props => {
     }
     if (!sortedRecords) setRecordsList(records);
 
-    // calculate user and counterparty balances
+    // Calculate user and counterparty balances
     let calculatedUserBalance = 0;
     let calculatedCounterpartyBalance = 0;
     for (const record of records) {
@@ -106,20 +107,6 @@ const RecordsContainer = props => {
         sortedRecords={sortedRecords}
         setSortedRecords={setSortedRecords}
       />
-      {/* <div>
-        <UpdateRecord 
-          recordsList={recordsList}
-          setRecordsList={setRecordsList}
-          populatedRecords={populatedRecords}
-          setPopulatedRecords={setPopulatedRecords}
-          updatedRecord={updatedRecord}
-          setUpdatedRecord={setUpdatedRecord}
-          toUpdate={toUpdate}
-          setToUpdate={setToUpdate}
-          currentCounterparty={currentCounterparty}
-          setCurrentCounterparty={setCurrentCounterparty}
-        />
-      </div> */}
     </div>
   )
 }
