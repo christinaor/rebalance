@@ -45,8 +45,7 @@ const UpdateRecord = (props) => {
           item: null,
           cost: null,
           perc: null
-        }) 
-       
+        })
       })
       .catch(err => `Error updating record: ${err}`)
       .finally(setPopulatedRecords(false))
@@ -71,7 +70,7 @@ const UpdateRecord = (props) => {
         <input 
           name="item" 
           type="text" 
-          size={10}
+          size={15}
           placeholder={itemName}
           id="records-update-item" 
           onChange={(e) => {
@@ -86,7 +85,7 @@ const UpdateRecord = (props) => {
           name="cost" 
           type="text" 
           placeholder={cost}
-          size={10}
+          size={5}
           id="records-update-cost" 
           onChange={(e) => {
             if (e.target.value !== '') {
@@ -100,7 +99,7 @@ const UpdateRecord = (props) => {
       <div>
         <input 
           name="perc" 
-          type="number" 
+          type="number"
           step="0.01"
           size={10}
           placeholder={userPercent}
@@ -112,11 +111,11 @@ const UpdateRecord = (props) => {
           }} 
         />
       </div>
-      {/* <div>
-        <button type="submit" onClick={updateRecord}>Update Record No. {updatedRecord.id}</button>
-        <button onClick={cancelClicked}>Cancel Update</button>
-        {console.log('in UpdateRecord render checking updatedRecord: ', updatedRecord)}
-      </div> */}
+      <div className="center">
+        <button className="center update-button" type="submit" onClick={updateRecord}>Update No.{updatedRecord.id}</button>
+        {/* <button onClick={cancelClicked}>Cancel Update</button>
+        {console.log('in UpdateRecord render checking updatedRecord: ', updatedRecord)} */}
+      </div>
     </form>
   )
 }

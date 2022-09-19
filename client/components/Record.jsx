@@ -39,44 +39,11 @@ const Record = (props) => {
     setCurrentCounterparty
   } = props;
 
-  useEffect(() => {
-    console.log('populatedRecords in record: ', populatedRecords)
-  }, [populatedRecords])
+  // useEffect(() => {
+  //   console.log('populatedRecords in record: ', populatedRecords)
+  // }, [populatedRecords])
 
-  // const actionOptions = [
-  //   { label: 'Select', value: 'Select' },
-  //   { label: 'Update', value: 'Update' },
-  //   { label: 'Delete', value: 'Delete' },
-  // ];
-
-  /*
-  If "Update" is selected, get the data for selected record first and update updatedRecord for later when form is filled out.
-
-  If "Delete" is selected, simply delete specified record.
-  */
-  // const handleChange = (e) => {
-  //   if (e.target.value === 'Update') {
-  //     // fetch a single record with corresponding id to fill in updatedRecord
-  //     console.log('finding id in records.jsx: ',id)
-  //     fetch(`api/records/${id}`)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         console.log('getting one record: ', data)
-  //         setUpdatedRecord({
-  //           id: data[0].id,
-  //           item: data[0].item_name, 
-  //           cost: data[0].item_cost,
-  //           perc: data[0].user_perc
-  //         })
-  //       })
-  //       .catch(err => `Error getting record to update: ${err}`)
-  //     setToUpdate(true);
-  //   }
-  //   if (e.target.value === 'Delete') {
-  //     deleteRecord(e);
-  //   }
-  // };
-
+  // delete a record clicked based on its id
   const deleteRecord = (e) => {
     console.log('deleteRecord fired');
     fetch('api/records/', {
@@ -85,7 +52,7 @@ const Record = (props) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id
+        id: id
       })
     })
       .catch(err => `Error deleting record: ${err}`)
@@ -97,7 +64,7 @@ const Record = (props) => {
 
   const editOrDeleteRecord = (e) => {
     if (inDeleteMode) deleteRecord(e);
-    // for update, update updatedRecord when clicked
+    // For update, set updateRecord when record has been clicked
     if (inEditMode && !clickedRecordToEdit) {
       setUpdatedRecord({
         id: id,
@@ -105,21 +72,35 @@ const Record = (props) => {
         cost: cost,
         perc: userPercent
       });
-      // opens edit form when clickedRecordToEdit is true
-      setClickedRecordToEdit(!clickedRecordToEdit);
+      // Opens edit form when clickedRecordToEdit is set to true
+      setClickedRecordToEdit(true);
+    // Reset updateRecord if the same or different record is clicked
     } else if (inEditMode && clickedRecordToEdit) {
-      setUpdatedRecord({
-        id: null,
-        item: null,
-        cost: null,
-        perc: null
-      });
+      // If the id is different than the id in updatedRecord, then a different record was clicked, so updatedRecord should reflect info from this clicked record
+      if (updatedRecord.id !== id) {
+        console.log('in the if statement comparing ids')
+        setUpdatedRecord({
+          id: id,
+          item: itemName,
+          cost: cost,
+          perc: userPercent
+        });
+        setClickedRecordToEdit(true);
+      // If id is the same, the record already has clicekdRecordToEdit set to true, so clicking the same record should set it to false and reset updatedRecord
+      } else {
+        setUpdatedRecord({
+          id: null,
+          item: null,
+          cost: null,
+          perc: null
+        });
+        // Closes edit form for same record clicked when clickedRecordToEdit is set to false
+        setClickedRecordToEdit(false);
+      }
     }
   }
 
-  /*
-  Parse out date to be human-readable.
-  */
+  // Parse out date to be human-readable
   const recordDate = new Date(inputDate);
   const yyyy = recordDate.getFullYear();
   let mm = recordDate.getMonth() + 1; // month starts at 0;
@@ -128,9 +109,8 @@ const Record = (props) => {
   dd = (dd < 10) ? '0' + dd : dd;
   mm = (mm < 10) ? '0' + mm : mm;
 
-  /**
-   * Calculate counterpartySplit using cost and userPercent
-   */
+
+  // Calculate counterpartySplit using cost and userPercent
   const counterpartySplit = (cost - (cost * userPercent / 100)).toFixed(2);
   const formattedUserPercent = (parseInt(userPercent)).toString() + '%'
 
@@ -149,6 +129,7 @@ const Record = (props) => {
         <div>{userSplit}</div>
         <div>{counterpartySplit}</div>
         <div>{formattedUserPercent}</div>
+        <div></div>
       </div>
       {inEditMode && clickedRecordToEdit && (updatedRecord.id === id) &&
         <UpdateRecord 

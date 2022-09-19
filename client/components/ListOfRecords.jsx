@@ -170,10 +170,10 @@ const ListOfRecords = props => {
         }
       </div>
         {inDeleteMode && 
-          <div className="center margin-10px">Select a record below to delete...</div>
+          <div className="margin-10px">Select a record below to delete...</div>
         }
         {inEditMode &&
-          <div className="center margin-10px">Select a record below to edit...</div>
+          <div className="margin-10px">Select a record below to edit...</div>
         }
       <div className="records-grid-container">
         <div className="center grid-record">
@@ -185,6 +185,7 @@ const ListOfRecords = props => {
           <span>User Split</span>
           <span>Counterparty Split</span>
           <span>User Percentage</span>
+          <span></span>
         </div>
         {recordElements}
       </div>
