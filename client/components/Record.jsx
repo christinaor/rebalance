@@ -98,15 +98,22 @@ const Record = (props) => {
   const editOrDeleteRecord = (e) => {
     if (inDeleteMode) deleteRecord(e);
     // for update, update updatedRecord when clicked
-    if (inEditMode) {
-      console.log('in inEditMode console log: ', e.target)
+    if (inEditMode && !clickedRecordToEdit) {
       setUpdatedRecord({
         id: id,
         item: itemName,
         cost: cost,
         perc: userPercent
       });
-      setClickedRecordToEdit(true);
+      // opens edit form when clickedRecordToEdit is true
+      setClickedRecordToEdit(!clickedRecordToEdit);
+    } else if (inEditMode && clickedRecordToEdit) {
+      setUpdatedRecord({
+        id: null,
+        item: null,
+        cost: null,
+        perc: null
+      });
     }
   }
 

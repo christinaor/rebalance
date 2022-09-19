@@ -18,7 +18,9 @@ export const TotalBalanceContainer = (props) => {
     userBalance,
     setUserBalance,
     counterpartyBalance,
-    setCounterpartyBalance
+    setCounterpartyBalance,
+    numUnpaidBalances,
+    setNumUnpaidBalances
   } = props;
 
   // set last day as tentative due date
@@ -37,7 +39,8 @@ export const TotalBalanceContainer = (props) => {
         <div className="balances">
           <h3>Current Balances</h3>
           <div>Amount you owe: ${userBalance}</div>
-          <div>Amount owed from {currentCounterparty}: ${counterpartyBalance}</div>       
+          <div>Amount owed from {currentCounterparty}: ${counterpartyBalance}</div>
+          <div>No. Unpaid: {numUnpaidBalances}</div>
         </div>
       <div className="due-date">
         <h3>Next Reconciliation Due Date</h3>

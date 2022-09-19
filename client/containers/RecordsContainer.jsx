@@ -21,7 +21,9 @@ const RecordsContainer = props => {
     userBalance,
     setUserBalance,
     counterpartyBalance,
-    setCounterpartyBalance
+    setCounterpartyBalance,
+    numUnpaidBalances,
+    setNumUnpaidBalances
   } = props;
 
   const [recordsList, setRecordsList] = useState([]);
@@ -78,6 +80,7 @@ const RecordsContainer = props => {
         })
         .finally(setPopulatedRecords(true))
     }
+    setNumUnpaidBalances(records.length);
     if (!sortedRecords) setRecordsList(records);
 
     // Calculate user and counterparty balances

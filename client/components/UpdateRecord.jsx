@@ -63,16 +63,15 @@ const UpdateRecord = (props) => {
   }
 
   return (
-    <form className="records-put-form" action="/api/records" method="PUT">
+    <form className="records-put-form grid-record center" action="/api/records" method="PUT">
       <div>{id}</div>
       <div>{counterpartyName}</div>
       <div>{dateEntered}</div>
       <div>
-        {/* <label for="item">Change Item:</label> */}
         <input 
           name="item" 
           type="text" 
-          size={5}
+          size={10}
           placeholder={itemName}
           id="records-update-item" 
           onChange={(e) => {
@@ -83,12 +82,11 @@ const UpdateRecord = (props) => {
         />
       </div>
       <div>
-        {/* <label for="cost">Change Cost:</label> */}
         <input 
           name="cost" 
           type="text" 
           placeholder={cost}
-          size={5}
+          size={10}
           id="records-update-cost" 
           onChange={(e) => {
             if (e.target.value !== '') {
@@ -104,7 +102,7 @@ const UpdateRecord = (props) => {
           name="perc" 
           type="number" 
           step="0.01"
-          size={5}
+          size={10}
           placeholder={userPercent}
           id="records-update-perc" 
           onChange={(e) => {

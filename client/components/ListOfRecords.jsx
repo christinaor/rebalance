@@ -168,7 +168,13 @@ const ListOfRecords = props => {
 
           />
         }
-        </div>
+      </div>
+        {inDeleteMode && 
+          <div className="center margin-10px">Select a record below to delete...</div>
+        }
+        {inEditMode &&
+          <div className="center margin-10px">Select a record below to edit...</div>
+        }
       <div className="records-grid-container">
         <div className="center grid-record">
           <span>Record No.</span>

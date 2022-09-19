@@ -32,6 +32,7 @@ const MainContainer = props => {
   const [userBalance, setUserBalance] = useState(null);
   const [counterpartyBalance, setCounterpartyBalance] = useState(null);
   const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
+  const [numUnpaidBalances, setNumUnpaidBalances] = useState(0);
 
   return (
     <div className="container">
@@ -52,7 +53,9 @@ const MainContainer = props => {
         userBalance={userBalance}
         setUserBalance={setUserBalance}
         counterpartyBalance={counterpartyBalance}
-        setCounterpartyBalance={setCounterpartyBalance} />
+        setCounterpartyBalance={setCounterpartyBalance} 
+        numUnpaidBalances={numUnpaidBalances} 
+        setNumUnpaidBalances={setNumUnpaidBalances} />
       <div className="main-inner-container">
         <CounterpartiesContainer
           counterpartiesList={counterpartiesList}
@@ -68,7 +71,9 @@ const MainContainer = props => {
           userBalance={userBalance}
           setUserBalance={setUserBalance}
           counterpartyBalance={counterpartyBalance}
-          setCounterpartyBalance={setCounterpartyBalance} />
+          setCounterpartyBalance={setCounterpartyBalance} 
+          numUnpaidBalances={numUnpaidBalances} 
+          setNumUnpaidBalances={setNumUnpaidBalances} />
       </div>
     </div>
   );
