@@ -38,6 +38,7 @@ const ListOfRecords = props => {
   const [actionsValue, setActionsValue] = useState('Select')
 
   useEffect(() => {
+    console.log('in listofrecords useeffect: ', populatedRecords)
     if (currentCounterparty !== 'All Parties') setSortedRecords(false);
   }, [currentCounterparty]);
 
@@ -68,8 +69,8 @@ const ListOfRecords = props => {
         setPopulatedRecords={setPopulatedRecords}
         updatedRecord={updatedRecord}
         setUpdatedRecord={setUpdatedRecord}
-        toUpdate={toUpdate}
-        setToUpdate={setToUpdate}
+        // toUpdate={toUpdate}
+        // setToUpdate={setToUpdate}
         actionsValue={actionsValue}
         setActionsValue={setActionsValue}
         allButtonsVisible={allButtonsVisible}

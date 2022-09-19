@@ -23,7 +23,8 @@ const UpdateRecord = (props) => {
   } = props;
 
   const updateRecord = (e) => {
-    console.log('updateRecord fired');
+    console.log('updateRecord fired: ', updatedRecord);
+    console.log('current populated records is: ', populatedRecords)
     e.preventDefault();
     fetch('api/records/', {
       method: 'PUT',
@@ -38,11 +39,28 @@ const UpdateRecord = (props) => {
       })
     })
       .then(() => {
-        setPopulatedRecords(false);
+        setClickedRecordToEdit(false);
+        setUpdatedRecord({
+          id: null,
+          item: null,
+          cost: null,
+          perc: null
+        }) 
+       
       })
       .catch(err => `Error updating record: ${err}`)
-      .finally(setClickedRecordToEdit(false))
+      .finally(setPopulatedRecords(false))
   };
+
+  const cancelClicked = () => {
+    setClickedRecordToEdit(false);
+    setUpdatedRecord({
+      id: null,
+      item: null,
+      cost: null,
+      perc: null
+    }) 
+  }
 
   return (
     <form className="records-put-form" action="/api/records" method="PUT">
@@ -98,71 +116,11 @@ const UpdateRecord = (props) => {
       </div>
       <div>
         <button type="submit" onClick={updateRecord}>Update Record No. {updatedRecord.id}</button>
-        <button onClick={() => setClickedRecordToEdit(false)}>Cancel Update</button>
+        <button onClick={cancelClicked}>Cancel Update</button>
         {console.log('in UpdateRecord render checking updatedRecord: ', updatedRecord)}
       </div>
     </form>
   )
-
-  // return (
-  //   <div className="records-update-form">
-  //     {!toUpdate && 
-  //       <div className="update-form-placeholder">Select an action to update/delete a record.</div>
-  //     }
-  //     {toUpdate &&
-  //       <div className="updateForm">
-  //         {`Update Record No. ${updatedRecord.id}:`}
-  //         <form action="/api/records" method="PUT">
-  //         <div>
-  //           <label for="item">Change Item:</label>
-  //           <input 
-  //             name="item" 
-  //             type="text" 
-  //             id="records-update-item" 
-  //             onChange={(e) => {
-  //               if (e.target.value !== '') {
-  //                 setUpdatedRecord({...updatedRecord, item: e.target.value})
-  //               }
-  //             }} 
-  //           />
-  //         </div>
-  //         <div>
-  //           <label for="cost">Change Cost:</label>
-  //           <input 
-  //             name="cost" 
-  //             type="text" 
-  //             id="records-update-cost" 
-  //             onChange={(e) => {
-  //               if (e.target.value !== '') {
-  //                 setUpdatedRecord({...updatedRecord, cost: e.target.value})
-  //               }
-  //             }} 
-  //           />
-  //         </div>
-  //         <div>
-  //           <label for="perc">Change Your Split:</label>
-  //           <input 
-  //             name="perc" 
-  //             type="number" 
-  //             step="0.01"
-  //             id="records-update-perc" 
-  //             onChange={(e) => {
-  //               if (e.target.value !== '') {
-  //                 setUpdatedRecord({...updatedRecord, perc: e.target.value})
-  //               }
-  //             }} 
-  //           />
-  //         </div>
-  //         <div>
-  //           <button type="submit" onClick={updateRecord}>Update Record No. {updatedRecord.id}</button>
-  //           <button onClick={() => setToUpdate(false)}>Cancel Update</button>
-  //           {console.log('in UpdateRecord render checking updatedRecord: ', updatedRecord)}
-  //         </div>
-  //       </form>
-  //       </div>
-  //     }
-  //   </div>
-  // )
 }
 
 export default UpdateRecord;

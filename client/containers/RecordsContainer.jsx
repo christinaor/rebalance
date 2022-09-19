@@ -43,6 +43,7 @@ const RecordsContainer = props => {
     const controller = new AbortController();
     const signal = controller.signal;
 
+    console.log('recordsContainer fired with populatedRecords', populatedRecords)
     // retrieve records based on the current counterparty
     let records;
     if (!sortedRecords && currentCounterparty !== null && currentCounterparty !== 'All Parties') {
