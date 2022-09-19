@@ -1,6 +1,7 @@
 /*****   MAIN STYLING   *****/
 body {
-  background: $lightPurple;
+  // background: $lightPurple;
+  background: whitesmoke;
   font-family: 'Avenir', Verdana,'Segoe UI', Tahoma, sans-serif;
 };
 
@@ -45,8 +46,9 @@ a, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 
-.nav-logout {
-  margin-left: 15px;
+.right-nav {
+  display: flex;
+  gap: 13px;
 }
 
 .main-wrapper {

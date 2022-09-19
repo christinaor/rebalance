@@ -28,6 +28,9 @@ const NavBar = (props) => {
     <nav className="navigation">
       <a className="nav-logo" href="/">RE:Balance</a>
       <span className="right-nav">
+        <Link className="flex-end" to="/flow/about">
+          <span>About</span>
+        </Link>
         <Link className="flex-end" to="/flow/settings">
           <span>Settings</span>
         </Link>
