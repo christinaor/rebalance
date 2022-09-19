@@ -114,11 +114,11 @@ const UpdateRecord = (props) => {
           }} 
         />
       </div>
-      <div>
+      {/* <div>
         <button type="submit" onClick={updateRecord}>Update Record No. {updatedRecord.id}</button>
         <button onClick={cancelClicked}>Cancel Update</button>
         {console.log('in UpdateRecord render checking updatedRecord: ', updatedRecord)}
-      </div>
+      </div> */}
     </form>
   )
 }

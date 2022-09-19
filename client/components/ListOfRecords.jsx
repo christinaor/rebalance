@@ -168,18 +168,6 @@ const ListOfRecords = props => {
 
           />
         }
-
-      {/* {inEditMode && clickedRecordToEdit &&
-      <UpdateRecord 
-        currentCounterparty={currentCounterparty}
-        setCurrentCounterparty={setCurrentCounterparty}
-        updatedRecord={updatedRecord}
-        setUpdatedRecord={setUpdatedRecord}
-        clickedRecordToEdit={clickedRecordToEdit}
-        setClickedRecordToEdit={setClickedRecordToEdit}
-      />
-      } */}
-
         </div>
       <div className="records-grid-container">
         <div className="center grid-record">
@@ -191,7 +179,6 @@ const ListOfRecords = props => {
           <span>User Split</span>
           <span>Counterparty Split</span>
           <span>User Percentage</span>
-          {/* { inEditMode &&<span>Other Actions</span> } */}
         </div>
         {recordElements}
       </div>

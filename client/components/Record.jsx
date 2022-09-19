@@ -25,12 +25,10 @@ const Record = (props) => {
     setPopulatedRecords,
     updatedRecord, 
     setUpdatedRecord, 
-    toUpdate, 
-    setToUpdate, 
-    actionsValue, 
-    setActionsValue,
-    allButtonsVisible,
-    setAllButtonsVisible,
+    // toUpdate, 
+    // setToUpdate, 
+    // actionsValue, 
+    // setActionsValue,
     inEditMode,
     setInEditMode,
     inDeleteMode,
@@ -144,16 +142,6 @@ const Record = (props) => {
         <div>{userSplit}</div>
         <div>{counterpartySplit}</div>
         <div>{formattedUserPercent}</div>
-
-        {/* {inEditMode &&
-        <div>
-          <select value={actionsValue} onChange={handleChange}>
-            {actionOptions.map(option => (
-              <option key={`${option.value}${id}`} value={option.value}>{option.label}</option>
-            ))}
-          </select>
-        </div>
-        } */}
       </div>
       {inEditMode && clickedRecordToEdit && (updatedRecord.id === id) &&
         <UpdateRecord 
