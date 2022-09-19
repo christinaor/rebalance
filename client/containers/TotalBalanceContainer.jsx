@@ -39,7 +39,7 @@ export const TotalBalanceContainer = (props) => {
         <div className="balances">
           <h3>Current Balances</h3>
           <div>Amount you owe: ${userBalance}</div>
-          <div>Amount owed from {currentCounterparty}: ${counterpartyBalance}</div>
+          <div>Amount {currentCounterparty} owe{currentCounterparty !== 'All Parties' ? 's' : null}: ${counterpartyBalance}</div>
           <div>No. Unpaid: {numUnpaidBalances}</div>
         </div>
       <div className="due-date">
