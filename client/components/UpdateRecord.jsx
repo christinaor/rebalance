@@ -10,14 +10,10 @@ const UpdateRecord = (props) => {
     userSplit,
     counterpartySplit,
     userPercent,
-    recordsList,
-    setRecordsList,
     populatedRecords,
     setPopulatedRecords,
     updatedRecord,
     setUpdatedRecord,
-    toUpdate,
-    setToUpdate,
     clickedRecordToEdit,
     setClickedRecordToEdit
   } = props;
