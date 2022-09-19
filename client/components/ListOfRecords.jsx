@@ -10,6 +10,8 @@
  */
 
 import React, { useEffect, useState } from "react";
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
 
@@ -42,15 +44,37 @@ const ListOfRecords = props => {
     if (currentCounterparty !== 'All Parties') setSortedRecords(false);
   }, [currentCounterparty]);
 
-  const sortByCounterparty = async () => {
-    if (!sortedRecords && currentCounterparty === 'All Parties') {
-      await setRecordsList(recordsList.sort((a, b) => a.counterparty_username.localeCompare(b.counterparty_username)));
-      setSortedRecords(true);
-      console.log('done sorting:')
-    } else {
-      setSortedRecords(false);
-    }
+  const sortOptions = [
+    { value: 'Counterparty', label: 'Counterparty'},
+    { value: 'Date', label: 'Date'},
+    { value: 'Cost', label: 'Cost'},
+    { value: 'User Split', label: 'User Split'},
+    { value: 'Counterparty Split', label: 'Counterparty Split'},
+    { value: 'User Percentage', label: 'User Percentage'}
+  ];
+
+  const animatedComponents = makeAnimated();
+
+  const AnimatedMultiFilter = () => {
+    return (
+      <Select
+        closeMenuOnSelect={false}
+        components={animatedComponents}
+        isMulti
+        options={sortOptions}
+      />
+    )
   };
+
+  // const sortByCounterparty = async () => {
+  //   if (!sortedRecords && currentCounterparty === 'All Parties') {
+  //     await setRecordsList(recordsList.sort((a, b) => a.counterparty_username.localeCompare(b.counterparty_username)));
+  //     setSortedRecords(true);
+  //     console.log('done sorting:')
+  //   } else {
+  //     setSortedRecords(false);
+  //   }
+  // };
 
   // Create array of records to render later
   const recordElements = recordsList.map(record => {
@@ -69,8 +93,6 @@ const ListOfRecords = props => {
         setPopulatedRecords={setPopulatedRecords}
         updatedRecord={updatedRecord}
         setUpdatedRecord={setUpdatedRecord}
-        // toUpdate={toUpdate}
-        // setToUpdate={setToUpdate}
         actionsValue={actionsValue}
         setActionsValue={setActionsValue}
         allButtonsVisible={allButtonsVisible}
@@ -124,8 +146,12 @@ const ListOfRecords = props => {
   return (
     <div className="records-container">
       <h2>Records with {currentCounterparty}:</h2>
-      <div className="add-or-update-wrapper">
-        <div className="record-filters">
+      <div className="add-or-update-wrapper align-items-center">
+        <div className="record-filters align-items-center">
+          <span>Sort by</span>
+          {AnimatedMultiFilter()}
+        </div>
+        {/* <div className="record-filters">
           Sort by:
           {(currentCounterparty === 'All Parties') && <button onClick={sortByCounterparty}>Counterparty</button>}
           <button>Date</button>
@@ -133,10 +159,10 @@ const ListOfRecords = props => {
           <button>User Split</button>
           <button>Counterparty Split</button>
           <button>User Percentage</button>
-        </div>
+        </div> */}
         {allButtonsVisible && (
         <div className="record-buttons">
-          <span>Make a change:</span>
+          <span>Make a change</span>
             <button onClick={clickedInitialAdd}>Add</button>
             <button onClick={clickedInitialEdit}>Edit</button>
             <button onClick={clickedInitialDelete}>Delete</button>
