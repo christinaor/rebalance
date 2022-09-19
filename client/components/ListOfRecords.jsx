@@ -24,8 +24,6 @@ const ListOfRecords = props => {
     setPopulatedRecords,
     updatedRecord,
     setUpdatedRecord,
-    toUpdate,
-    setToUpdate,
     currentCounterparty,
     setCurrentCounterparty,
     sortedRecords,
@@ -93,8 +91,6 @@ const ListOfRecords = props => {
         setPopulatedRecords={setPopulatedRecords}
         updatedRecord={updatedRecord}
         setUpdatedRecord={setUpdatedRecord}
-        actionsValue={actionsValue}
-        setActionsValue={setActionsValue}
         allButtonsVisible={allButtonsVisible}
         setAllButtonsVisible={setAllButtonsVisible}
         inEditMode={inEditMode}
