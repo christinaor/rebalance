@@ -58,7 +58,7 @@ const CounterpartiesContainer = props => {
   
   return (
     <div className="left-counterparties">
-      <h2>Counterparty:</h2>
+      <h2 className="margin-0-10 padding-tb-10">Counterparty</h2>
       <div 
         key={`cp0}`}
         className="cp-hover"

@@ -39,7 +39,7 @@ export const TotalBalanceContainer = (props) => {
   return (
     <div className="total-balance-container">
         <Paper className="balance-info card-style"
-          elevation={5}
+          elevation={3}
         >
           <h3>Current Balances</h3>
           <div>Amount you owe: ${userBalance}</div>
@@ -47,7 +47,7 @@ export const TotalBalanceContainer = (props) => {
           <div>No. Unpaid: {numUnpaidBalances}</div>
         </Paper>
       <Paper className="due-date card-style"
-        elevation={5}
+        elevation={3}
         >
         <h3>Next Reconciliation Due Date</h3>
         <div>{lastDayWithoutTime}</div>

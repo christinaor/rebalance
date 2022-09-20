@@ -12,7 +12,7 @@
 import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { Button, ButtonGroup } from '@mui/material';
+import { Button, ButtonGroup, Paper } from '@mui/material';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
 
@@ -141,8 +141,10 @@ const ListOfRecords = props => {
 
   return (
     <div className="records-container">
-      <h2>Records with {currentCounterparty}:</h2>
-      <div className="add-or-update-wrapper align-items-center">
+      <Paper elevation={0} square><h2 className="records-title">Records with {currentCounterparty}</h2></Paper>
+      <Paper className="alter-records-wrapper align-items-center"
+        elevation={0}
+        square>
         <div className="record-filters align-items-center">
           <span>Sort by</span>
           {AnimatedMultiFilter()}
@@ -172,8 +174,8 @@ const ListOfRecords = props => {
         {!allButtonsVisible && inDeleteMode &&
         <Button onClick={cancelDelete}>Cancel Delete</Button>
         }
-      </div>
-      <div className="add-record-wrapper">   
+      </Paper>
+      <Paper elevation={0} square className="add-record-wrapper">
         {toggleAddRecordForm &&
           <AddRecord 
             recordsList={recordsList}
@@ -189,14 +191,16 @@ const ListOfRecords = props => {
             cancelAdd={cancelAdd}
           />
         }
-      </div>
+      </Paper>
         {inDeleteMode && 
-          <div className="margin-10px">Select a record below to delete...</div>
+          <Paper elevation={0} className="padding-tb-20px" square>Select a record below to delete...</Paper>
         }
         {inEditMode &&
-          <div className="margin-10px">Select a record below to edit...</div>
+          <Paper elevation={0} className="padding-tb-20px" square>Select a record below to edit...</Paper>
         }
-      <div className="records-grid-container">
+      <Paper elevation={0} square className="records-grid-container"
+        elevation={3}
+      >
         <div className="center grid-record">
           <span>Record No.</span>
           <span>Counterparty</span>
@@ -209,7 +213,7 @@ const ListOfRecords = props => {
           <span></span>
         </div>
         {recordElements}
-      </div>
+      </Paper>
       <br />
     </div>
   )

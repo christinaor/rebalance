@@ -87,7 +87,7 @@ const AddRecord = (props) => {
           <label for="userPercent">Your Split (%)</label>
           <input name="userPercent" type="text" placeholder={50}value={postedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setPostedRecord({...postedRecord, userPercent: e.target.value})} />
         </div>
-        <div className="button-gap">
+        <div className="add-cancel-buttons">
           <Button type="submit" variant="contained" size="small" onClick={postRecord}>Add Record</Button>
         </div>
         {!allButtonsVisible && toggleAddRecordForm &&

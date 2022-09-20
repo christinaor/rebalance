@@ -1,12 +1,13 @@
 /*****   MAIN STYLING   *****/
 body {
   // background: $lightPurple;
+  margin: 0;
   background: whitesmoke;
   font-family: 'Avenir', Verdana,'Segoe UI', Tahoma, sans-serif;
 };
 
 nav {
-  margin: 10px;
+  margin: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,6 +16,10 @@ nav {
 a, a:visited, a:hover, a:active {
   color: inherit;
   text-decoration: none;
+}
+
+.footer {
+  padding: 10px;
 }
 
 .align-items-center {
@@ -26,8 +31,14 @@ a, a:visited, a:hover, a:active {
   text-align: center;
 }
 
-.margin-10px {
-  margin: 10px 0;
+.padding-tb-20px {
+  padding: 20px;
+}
+
+.records-title {
+  margin: 0;
+  padding: 13px 10px;
+
 }
 
 .display-flex-column {
@@ -35,9 +46,10 @@ a, a:visited, a:hover, a:active {
   flex-direction: column;
 }
 
-.button-gap {
+.add-cancel-buttons {
   display: flex;
   gap: 5px;
+  align-items: center;
 }
 
 .nav-logo {
@@ -155,7 +167,7 @@ a, a:visited, a:hover, a:active {
 
 /*****   RECORDS CONTAINER STYLING   *****/
 .add-record-wrapper{
-  margin-top: 30px;
+  // margin-top: 30px;
   gap: 10px;
   display: flex;
   flex-direction: row;
@@ -183,7 +195,7 @@ a, a:visited, a:hover, a:active {
 .records-post-inputs {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   gap: 20px;
   margin-bottom: 10px;
   padding-left: 20px;
@@ -205,8 +217,9 @@ a, a:visited, a:hover, a:active {
   width: 50px;
 }
 
-.add-or-update-wrapper {
-  margin: 10px;
+.alter-records-wrapper {
+  // margin: 10px 0;
+  padding: 13px;
   display: flex;
   justify-content: space-between;
 }
@@ -227,6 +240,7 @@ a, a:visited, a:hover, a:active {
 .records-put-form {
   display: grid;
   grid-auto-flow: column;
+  // align-items: center;
 }
 
 /*****   RECORDS GRID STYLING   *****/
@@ -243,6 +257,7 @@ a, a:visited, a:hover, a:active {
 
 
 .grid-record {
+  // margin: 10px;
   display: grid;
   grid-auto-flow: column;
   // grid: 50px / auto auto auto auto auto;
