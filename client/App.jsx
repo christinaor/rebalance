@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import MainContainer from './containers/MainContainer.jsx';
+import Copyright from './components/Copyright.jsx';
 import LoginPage from './components/LoginPage.jsx';
 import SignupPage from './components/SignupPage.jsx';
 import SettingsPage from './components/SettingsPage.jsx';
@@ -59,6 +60,7 @@ function App(props) {
             element={<SettingsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Copyright />
       </main>
     )
   } else {

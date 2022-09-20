@@ -12,9 +12,9 @@
 import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { Button, ButtonGroup } from '@mui/material';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
-
 
 const ListOfRecords = props => {
   const {
@@ -157,21 +157,20 @@ const ListOfRecords = props => {
           <button>User Percentage</button>
         </div> */}
         {allButtonsVisible && (
-        <div className="record-buttons">
-          <span>Make a change</span>
-            <button onClick={clickedInitialAdd}>Add</button>
-            <button onClick={clickedInitialEdit}>Edit</button>
-            <button onClick={clickedInitialDelete}>Delete</button>
+        <div className="record-buttons align-items-center">
+          <span>Alter records</span>
+            <ButtonGroup variant="text" aria-label="text button group" size="medium">
+              <Button onClick={clickedInitialAdd}>Add</Button>
+              <Button onClick={clickedInitialEdit}>Edit</Button>
+              <Button onClick={clickedInitialDelete}>Delete</Button>
+            </ButtonGroup>
         </div>
         )}
-        {!allButtonsVisible && toggleAddRecordForm &&
-        <button onClick={cancelAdd}>Cancel Add</button>
-        }
         {!allButtonsVisible && inEditMode &&
-        <button onClick={cancelEdit}>Cancel Edit</button>
+        <Button variant="contained" size="small" onClick={cancelEdit}>Cancel Edit</Button>
         }
         {!allButtonsVisible && inDeleteMode &&
-        <button onClick={cancelDelete}>Cancel Delete</button>
+        <Button onClick={cancelDelete}>Cancel Delete</Button>
         }
       </div>
       <div className="add-record-wrapper">   
@@ -187,7 +186,7 @@ const ListOfRecords = props => {
             setToggleAddRecordForm={setToggleAddRecordForm}
             allButtonsVisible={allButtonsVisible}
             setAllButtonsVisible={setAllButtonsVisible}
-
+            cancelAdd={cancelAdd}
           />
         }
       </div>

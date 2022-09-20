@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Button } from '@mui/material';
 
 const UpdateRecord = (props) => {
   const {
@@ -108,7 +109,8 @@ const UpdateRecord = (props) => {
         />
       </div>
       <div className="center">
-        <button className="center update-button" type="submit" onClick={updateRecord}>Update No.{updatedRecord.id}</button>
+        <Button className="center update-button" type="submit" variant="contained" size="small" onClick={updateRecord}>Update</Button>
+        {/* <Button className="center update-button" type="submit" variant="contained" size="small" onClick={updateRecord}>Update No.{updatedRecord.id}</Button> */}
         {/* <button onClick={cancelClicked}>Cancel Update</button>
         {console.log('in UpdateRecord render checking updatedRecord: ', updatedRecord)} */}
       </div>

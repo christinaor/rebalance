@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Button } from '@mui/material';
 
 const AddRecord = (props) => {
   const { 
@@ -7,7 +8,10 @@ const AddRecord = (props) => {
     currentCounterparty,
     setCurrentCounterparty,
     allButtonsVisible,
-    setAllButtonsVisible
+    setAllButtonsVisible,
+    toggleAddRecordForm,
+    setToggleAddRecordForm,
+    cancelAdd
   } = props;
 
   const [isEmptyCounterparty, setIsEmptyCounterparty] = useState(false);
@@ -84,8 +88,11 @@ const AddRecord = (props) => {
           <input name="userPercent" type="text" placeholder={50}value={postedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setPostedRecord({...postedRecord, userPercent: e.target.value})} />
         </div>
         <div className="button-gap">
-          <button type="submit" onClick={postRecord}>Add Record</button>
+          <Button type="submit" variant="contained" size="small" onClick={postRecord}>Add Record</Button>
         </div>
+        {!allButtonsVisible && toggleAddRecordForm &&
+        <Button variant="contained" size="small" onClick={cancelAdd}>Cancel Add</Button>
+        }
       </form>
   </div>
   )

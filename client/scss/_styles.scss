@@ -62,13 +62,20 @@ a, a:visited, a:hover, a:active {
   gap: 30px;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 1fr 7fr
+  grid-template-columns: 1fr 8fr
 };
 
 .total-balance-container {
   margin: 10px;
   display: flex;
-  gap: 100px;
+  // justify-content: space-between;
+  gap: 13px;
+}
+
+.card-style {
+  // width: 50%;
+  padding: 13px;
+  // background-color: gray;
 }
 
 /*****   LOGIN AND SIGNUP STYLING   *****/
