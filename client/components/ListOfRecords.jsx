@@ -140,8 +140,8 @@ const ListOfRecords = props => {
   }
 
   return (
-    <div className="records-container">
-      <Paper elevation={0} square><h2 className="records-title">Records with {currentCounterparty}</h2></Paper>
+    <Paper elevation={3} className="records-container">
+      <h2 className="records-title">Records with {currentCounterparty}</h2>
       <Paper className="alter-records-wrapper align-items-center"
         elevation={0}
         square>
@@ -160,12 +160,11 @@ const ListOfRecords = props => {
         </div> */}
         {allButtonsVisible && (
         <div className="record-buttons align-items-center">
-          <span>Alter records</span>
-            <ButtonGroup variant="text" aria-label="text button group" size="medium">
-              <Button onClick={clickedInitialAdd}>Add</Button>
-              <Button onClick={clickedInitialEdit}>Edit</Button>
-              <Button onClick={clickedInitialDelete}>Delete</Button>
-            </ButtonGroup>
+          <ButtonGroup variant="text" aria-label="text button group" size="medium">
+            <Button onClick={clickedInitialAdd}>Add</Button>
+            <Button onClick={clickedInitialEdit}>Edit</Button>
+            <Button onClick={clickedInitialDelete}>Delete</Button>
+          </ButtonGroup>
         </div>
         )}
         {!allButtonsVisible && inEditMode &&
@@ -199,7 +198,6 @@ const ListOfRecords = props => {
           <Paper elevation={0} className="padding-tb-20px" square>Select a record below to edit...</Paper>
         }
       <Paper elevation={0} square className="records-grid-container"
-        elevation={3}
       >
         <div className="center grid-record">
           <span>Record No.</span>
@@ -215,7 +213,7 @@ const ListOfRecords = props => {
         {recordElements}
       </Paper>
       <br />
-    </div>
+    </Paper>
   )
 };
 
