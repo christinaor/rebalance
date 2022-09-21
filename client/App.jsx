@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { StyledEngineProvider } from '@mui/material/styles';
 import MainContainer from './containers/MainContainer.jsx';
 import Copyright from './components/Copyright.jsx';
 import LoginPage from './components/LoginPage.jsx';
@@ -29,7 +30,8 @@ function App(props) {
 
   if (appIsReady) {
     return (
-      <main>
+      <StyledEngineProvider injectFirst>
+      <main className="main-flex-wrapper">
         <Routes>
           <Route path='/*' 
             element={<MainContainer 
@@ -62,6 +64,7 @@ function App(props) {
         </Routes>
         <Copyright />
       </main>
+      </StyledEngineProvider>
     )
   } else {
     return (
