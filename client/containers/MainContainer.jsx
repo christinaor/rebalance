@@ -47,33 +47,35 @@ const MainContainer = props => {
       <Routes>
         <Route path='/flow/settings' element={<SettingsPage />} />
       </Routes>
-      <TotalBalanceContainer
-        currentCounterparty={currentCounterparty}
-        setCurrentCounterparty={setCurrentCounterparty}
-        userBalance={userBalance}
-        setUserBalance={setUserBalance}
-        counterpartyBalance={counterpartyBalance}
-        setCounterpartyBalance={setCounterpartyBalance} 
-        numUnpaidBalances={numUnpaidBalances} 
-        setNumUnpaidBalances={setNumUnpaidBalances} />
-      <div className="main-inner-container">
+      <div className="below-nav-wrapper">
         <CounterpartiesContainer
-          counterpartiesList={counterpartiesList}
-          setCounterpartiesList={setCounterpartiesList}
-          populatedCounterparties={populatedCounterparties}
-          setPopulatedCounterparties={setPopulatedCounterparties}
-          currentCounterparty={currentCounterparty}
-          setCurrentCounterparty={setCurrentCounterparty}
-        />
-        <RecordsContainer
-          currentCounterparty={currentCounterparty}
-          setCurrentCounterparty={setCurrentCounterparty}
-          userBalance={userBalance}
-          setUserBalance={setUserBalance}
-          counterpartyBalance={counterpartyBalance}
-          setCounterpartyBalance={setCounterpartyBalance} 
-          numUnpaidBalances={numUnpaidBalances} 
-          setNumUnpaidBalances={setNumUnpaidBalances} />
+            counterpartiesList={counterpartiesList}
+            setCounterpartiesList={setCounterpartiesList}
+            populatedCounterparties={populatedCounterparties}
+            setPopulatedCounterparties={setPopulatedCounterparties}
+            currentCounterparty={currentCounterparty}
+            setCurrentCounterparty={setCurrentCounterparty}
+          />
+        <div className="summary-and-records">
+          <TotalBalanceContainer
+            currentCounterparty={currentCounterparty}
+            setCurrentCounterparty={setCurrentCounterparty}
+            userBalance={userBalance}
+            setUserBalance={setUserBalance}
+            counterpartyBalance={counterpartyBalance}
+            setCounterpartyBalance={setCounterpartyBalance} 
+            numUnpaidBalances={numUnpaidBalances} 
+            setNumUnpaidBalances={setNumUnpaidBalances} />
+          <RecordsContainer
+            currentCounterparty={currentCounterparty}
+            setCurrentCounterparty={setCurrentCounterparty}
+            userBalance={userBalance}
+            setUserBalance={setUserBalance}
+            counterpartyBalance={counterpartyBalance}
+            setCounterpartyBalance={setCounterpartyBalance} 
+            numUnpaidBalances={numUnpaidBalances} 
+            setNumUnpaidBalances={setNumUnpaidBalances} />
+        </div>
       </div>
     </div>
   );

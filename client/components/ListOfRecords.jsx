@@ -141,10 +141,8 @@ const ListOfRecords = props => {
 
   return (
     <Paper elevation={3} className="records-container">
-      <h2 className="records-title">Records with {currentCounterparty}</h2>
-      <Paper className="alter-records-wrapper align-items-center"
-        elevation={0}
-        square>
+      <h2>Records with {currentCounterparty}</h2>
+      <div className="alter-records-wrapper align-items-center">
         <div className="record-filters align-items-center">
           <span>Sort by</span>
           {AnimatedMultiFilter()}
@@ -173,7 +171,7 @@ const ListOfRecords = props => {
         {!allButtonsVisible && inDeleteMode &&
         <Button onClick={cancelDelete}>Cancel Delete</Button>
         }
-      </Paper>
+      </div>
       <Paper elevation={0} square className="add-record-wrapper">
         {toggleAddRecordForm &&
           <AddRecord 

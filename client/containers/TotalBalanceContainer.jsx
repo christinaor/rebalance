@@ -11,7 +11,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Paper } from '@mui/material';
-import { AddBoxOutlined } from "@mui/icons-material";
 
 export const TotalBalanceContainer = (props) => {
   const {
@@ -38,6 +37,8 @@ export const TotalBalanceContainer = (props) => {
 
   return (
     <div className="total-balance-container">
+      <Paper elevation={0} square className="summary-title">Summary</Paper>
+      <div className="summary-cards">
         <Paper className="balance-info card-style"
           elevation={3}
         >
@@ -46,12 +47,14 @@ export const TotalBalanceContainer = (props) => {
           <div>Amount {currentCounterparty} owe{currentCounterparty !== 'All Parties' ? 's' : null}: ${counterpartyBalance}</div>
           <div>No. Unpaid: {numUnpaidBalances}</div>
         </Paper>
-      <Paper className="due-date card-style"
-        elevation={3}
-        >
-        <h3>Next Reconciliation Due Date</h3>
-        <div>{lastDayWithoutTime}</div>
-      </Paper>      
+        <Paper className="due-date card-style"
+          elevation={3}
+          >
+          <h3>Next Reconciliation Due Date</h3>
+          <div>{lastDayWithoutTime}</div>
+        </Paper>           
+      </div>
+   
     </div>
   )
 }

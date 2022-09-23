@@ -10,7 +10,8 @@
  */
 
 import React, { useEffect, useState } from "react";
- 
+import { Paper } from '@mui/material'
+
 const CounterpartiesContainer = props => {
   const {
     counterpartiesList,
@@ -57,14 +58,14 @@ const CounterpartiesContainer = props => {
   ))
   
   return (
-    <div className="left-counterparties">
-      <h2 className="margin-0-10 padding-tb-10">Counterparty</h2>
+    <Paper elevation={3} className="left-counterparties">
+      <h2>Counterparty</h2>
       <div 
         key={`cp0}`}
         className="cp-hover"
         onClick={() => setCurrentCounterparty('All Parties')}>All Parties</div>
       {counterpartySideElements}
-    </div>
+    </Paper>
   )
 }
 
