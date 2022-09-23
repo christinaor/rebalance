@@ -284,6 +284,18 @@ a, a:visited, a:hover, a:active {
   justify-content: space-between;
 }
 
+.in-delete-mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.in-edit-mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .record-edit-hover, .record-delete-hover {
   background-color: #fafafa;
 }
