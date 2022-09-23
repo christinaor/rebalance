@@ -274,11 +274,14 @@ a, a:visited, a:hover, a:active {
 }
 
 .alter-records-wrapper {
-  // margin: 10px 0;
   padding: 13px;
   display: flex;
+  flex-direction: column;
+}
+
+.initially-visible-alter-actions {
+  display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .record-edit-hover, .record-delete-hover {
