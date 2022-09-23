@@ -100,26 +100,20 @@ const AlterRecordsComponent = props => {
   return (
     <div className="alter-records-wrapper">
       <div className="initially-visible-alter-actions">
-      <div className="records-sort-by">
-        <span>Sort by</span>
-        {AnimatedMultiFilter()}
+        <div className="records-sort-by">
+          <span>Sort by</span>
+          {AnimatedMultiFilter()}
+        </div>
+        {allButtonsVisible && (
+        <div className="record-buttons align-items-center">
+          <ButtonGroup variant="text" aria-label="text button group" size="medium">
+            <Button onClick={clickedInitialAdd}>Add</Button>
+            <Button onClick={clickedInitialEdit}>Edit</Button>
+            <Button onClick={clickedInitialDelete}>Delete</Button>
+          </ButtonGroup>
+        </div>
+        )}
       </div>
-      {allButtonsVisible && (
-      <div className="record-buttons align-items-center">
-        <ButtonGroup variant="text" aria-label="text button group" size="medium">
-          <Button onClick={clickedInitialAdd}>Add</Button>
-          <Button onClick={clickedInitialEdit}>Edit</Button>
-          <Button onClick={clickedInitialDelete}>Delete</Button>
-        </ButtonGroup>
-      </div>
-      )}
-      </div>
-      {!allButtonsVisible && inEditMode &&
-      <Button variant="contained" size="small" onClick={cancelEdit}>Cancel Edit</Button>
-      }
-      {!allButtonsVisible && inDeleteMode &&
-      <Button onClick={cancelDelete}>Cancel Delete</Button>
-      }
     <Paper elevation={0} square className="add-record-wrapper">
       {toggleAddRecordForm &&
         <AddRecord 
@@ -137,12 +131,22 @@ const AlterRecordsComponent = props => {
         />
       }
     </Paper>
+    <div className="in-delete-mode">
     {inDeleteMode && 
       <Paper elevation={0} className="padding-tb-20px" square>Select a record below to delete...</Paper>
     }
+    {!allButtonsVisible && inDeleteMode &&
+    <Button variant="contained" size="small" onClick={cancelDelete}>Cancel Delete</Button>
+    }
+    </div>
+    <div className="in-edit-mode">
     {inEditMode &&
       <Paper elevation={0} className="padding-tb-20px" square>Select a record below to edit...</Paper>
     }
+    {!allButtonsVisible && inEditMode &&
+    <Button variant="contained" size="small" onClick={cancelEdit}>Cancel Edit</Button>
+    }      
+    </div>
   </div>
   )
 };
