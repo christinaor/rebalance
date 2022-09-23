@@ -11,11 +11,12 @@
 
 import React, { useEffect, useState } from "react";
 import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+// import makeAnimated from 'react-select/animated';
 import { Button, ButtonGroup, Paper } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
+import AlterRecordsComponent from "./AlterRecords.jsx";
 
 const ListOfRecords = props => {
   const {
@@ -53,94 +54,94 @@ const ListOfRecords = props => {
   //   }
   // };
 
-  // Create array of records to render later
-  const recordElements = recordsList.map(record => {
-    const { id, counterparty_username, input_date, item_name, item_cost, user_split, user_perc } = record;
-    return (
-      <Record 
-        key={`record${id}`}
-        id={id}
-        counterpartyName={counterparty_username}
-        inputDate={input_date}
-        itemName={item_name}
-        cost={item_cost}
-        userSplit={user_split}
-        userPercent={user_perc}
-        populatedRecords={populatedRecords}
-        setPopulatedRecords={setPopulatedRecords}
-        updatedRecord={updatedRecord}
-        setUpdatedRecord={setUpdatedRecord}
-        allButtonsVisible={allButtonsVisible}
-        setAllButtonsVisible={setAllButtonsVisible}
-        inEditMode={inEditMode}
-        setInEditMode={setInEditMode}
-        inDeleteMode={inDeleteMode}
-        setInDeleteMode={setInDeleteMode}
-        clickedRecordToEdit={clickedRecordToEdit}
-        setClickedRecordToEdit={setClickedRecordToEdit}
-        currentCounterparty={currentCounterparty}
-        setCurrentCounterparty={setCurrentCounterparty}
-      />
-    )
-  });
+  // // Create array of records to render later
+  // const recordElements = recordsList.map(record => {
+  //   const { id, counterparty_username, input_date, item_name, item_cost, user_split, user_perc } = record;
+  //   return (
+  //     <Record 
+  //       key={`record${id}`}
+  //       id={id}
+  //       counterpartyName={counterparty_username}
+  //       inputDate={input_date}
+  //       itemName={item_name}
+  //       cost={item_cost}
+  //       userSplit={user_split}
+  //       userPercent={user_perc}
+  //       populatedRecords={populatedRecords}
+  //       setPopulatedRecords={setPopulatedRecords}
+  //       updatedRecord={updatedRecord}
+  //       setUpdatedRecord={setUpdatedRecord}
+  //       allButtonsVisible={allButtonsVisible}
+  //       setAllButtonsVisible={setAllButtonsVisible}
+  //       inEditMode={inEditMode}
+  //       setInEditMode={setInEditMode}
+  //       inDeleteMode={inDeleteMode}
+  //       setInDeleteMode={setInDeleteMode}
+  //       clickedRecordToEdit={clickedRecordToEdit}
+  //       setClickedRecordToEdit={setClickedRecordToEdit}
+  //       currentCounterparty={currentCounterparty}
+  //       setCurrentCounterparty={setCurrentCounterparty}
+  //     />
+  //   )
+  // });
 
   console.log('this is recordsList in ListOfRecords component: ', recordsList)
 
-  const sortOptions = [
-    { value: 'Counterparty', label: 'Counterparty'},
-    { value: 'Date', label: 'Date'},
-    { value: 'Cost', label: 'Cost'},
-    { value: 'User Split', label: 'User Split'},
-    { value: 'Counterparty Split', label: 'Counterparty Split'},
-    { value: 'User Percentage', label: 'User Percentage'}
-  ];
+  // const sortOptions = [
+  //   { value: 'Counterparty', label: 'Counterparty'},
+  //   { value: 'Date', label: 'Date'},
+  //   { value: 'Cost', label: 'Cost'},
+  //   { value: 'User Split', label: 'User Split'},
+  //   { value: 'Counterparty Split', label: 'Counterparty Split'},
+  //   { value: 'User Percentage', label: 'User Percentage'}
+  // ];
 
-  const animatedComponents = makeAnimated();
+  // const animatedComponents = makeAnimated();
 
-  const AnimatedMultiFilter = () => {
-    return (
-      <Select
-        closeMenuOnSelect={false}
-        components={animatedComponents}
-        isMulti
-        options={sortOptions}
-      />
-    )
-  };
+  // const AnimatedMultiFilter = () => {
+  //   return (
+  //     <Select
+  //       closeMenuOnSelect={false}
+  //       components={animatedComponents}
+  //       isMulti
+  //       options={sortOptions}
+  //     />
+  //   )
+  // };
 
-  // Set button visibilities based on whether one is clicked
-  const clickedInitialAdd = () => {
-    setToggleAddRecordForm(true);
-    setAllButtonsVisible(false);
-  };
-  const cancelAdd = () => {
-    setToggleAddRecordForm(false);
-    setAllButtonsVisible(true);
-  };
-  const clickedInitialEdit = () => {
-    setInEditMode(true);
-    setAllButtonsVisible(false);
-  };
-  const cancelEdit = () => {
-    setInEditMode(false);
-    setAllButtonsVisible(true);
-    // set update object state to null
-    setUpdatedRecord({
-      id: null,
-      item: null,
-      cost: null,
-      perc: null
-    });
-    setClickedRecordToEdit(false);
-  }
-  const clickedInitialDelete = () => {
-    setInDeleteMode(true);    
-    setAllButtonsVisible(false);
-  }
-  const cancelDelete = () => {
-    setInDeleteMode(false);
-    setAllButtonsVisible(true);
-  }
+  // // Set button visibilities based on whether one is clicked
+  // const clickedInitialAdd = () => {
+  //   setToggleAddRecordForm(true);
+  //   setAllButtonsVisible(false);
+  // };
+  // const cancelAdd = () => {
+  //   setToggleAddRecordForm(false);
+  //   setAllButtonsVisible(true);
+  // };
+  // const clickedInitialEdit = () => {
+  //   setInEditMode(true);
+  //   setAllButtonsVisible(false);
+  // };
+  // const cancelEdit = () => {
+  //   setInEditMode(false);
+  //   setAllButtonsVisible(true);
+  //   // set update object state to null
+  //   setUpdatedRecord({
+  //     id: null,
+  //     item: null,
+  //     cost: null,
+  //     perc: null
+  //   });
+  //   setClickedRecordToEdit(false);
+  // }
+  // const clickedInitialDelete = () => {
+  //   setInDeleteMode(true);    
+  //   setAllButtonsVisible(false);
+  // }
+  // const cancelDelete = () => {
+  //   setInDeleteMode(false);
+  //   setAllButtonsVisible(true);
+  // }
 
   // MUI datagrid columns
   let recordCols;
@@ -178,16 +179,18 @@ const ListOfRecords = props => {
         headerName: 'User Split ($)',
         width: 90,
       },
-      // {
-      //   field: 'counterparty_split',
-      //   headerName: 'Counterparty Split ($)',
-      //   description: 'This column has a value getter',
-      //   width: 90,
-      //   valueGetter: (params) => {
-      //     const cpSplit = (params.getValue(params.item_cost, 'item_cost') - (params.getValue(params.item_cost, 'item_cost') * params.getValue(params.user_perc, 'user_perc') / 100)).toFixed(2);
-      //     return cpSplit;
-      //   }
-      // },
+      {
+        field: 'counterparty_split',
+        headerName: 'Counterparty Split ($)',
+        description: 'This column has a value getter',
+        width: 90,
+        valueGetter: (params) => {
+          console.log('params here: ', params)
+          // MUI's getValue is deprecated, use params.row object to access data instead
+          const cpSplit = (params.row.item_cost - params.row.item_cost * params.row.user_perc / 100).toFixed(2);
+          return cpSplit;
+        }
+      },
       {
         field: 'user_perc',
         headerName: 'User Percentage (%)',
@@ -200,11 +203,33 @@ const ListOfRecords = props => {
 
   return (
     <Paper elevation={3} className="records-container">
-      <div className="alter-records-wrapper">
+      <AlterRecordsComponent 
+        allButtonsVisible={allButtonsVisible}
+        setAllButtonsVisible={setAllButtonsVisible}
+        toggleAddRecordForm={toggleAddRecordForm}
+        setToggleAddRecordForm={setToggleAddRecordForm}
+        inEditMode={inEditMode}
+        setInEditMode={setInEditMode}
+        inDeleteMode={inDeleteMode}
+        setInDeleteMode={setInDeleteMode}
+        updatedRecord={updatedRecord}
+        setUpdatedRecord={setUpdatedRecord}
+        clickedRecordToEdit={clickedRecordToEdit}
+        setClickedRecordToEdit={setClickedRecordToEdit}
+        recordsList={recordsList}
+        setRecordsList={setRecordsList}
+        populatedRecords={populatedRecords}
+        setPopulatedRecords={setPopulatedRecords}
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty}
+
+
+      />
+      {/* <div className="alter-records-wrapper">
         <div className="records-sort-by">
           <span>Sort by</span>
           {AnimatedMultiFilter()}
-        </div>
+        </div> */}
         {/* <div className="record-filters">
           Sort by:
           {(currentCounterparty === 'All Parties') && <button onClick={sortByCounterparty}>Counterparty</button>}
@@ -214,7 +239,7 @@ const ListOfRecords = props => {
           <button>Counterparty Split</button>
           <button>User Percentage</button>
         </div> */}
-        {allButtonsVisible && (
+        {/* {allButtonsVisible && (
         <div className="record-buttons align-items-center">
           <ButtonGroup variant="text" aria-label="text button group" size="medium">
             <Button onClick={clickedInitialAdd}>Add</Button>
@@ -229,8 +254,8 @@ const ListOfRecords = props => {
         {!allButtonsVisible && inDeleteMode &&
         <Button onClick={cancelDelete}>Cancel Delete</Button>
         }
-      </div>
-      <Paper elevation={0} square className="add-record-wrapper">
+      </div> */}
+      {/* <Paper elevation={0} square className="add-record-wrapper">
         {toggleAddRecordForm &&
           <AddRecord 
             recordsList={recordsList}
@@ -246,13 +271,13 @@ const ListOfRecords = props => {
             cancelAdd={cancelAdd}
           />
         }
-      </Paper>
-        {inDeleteMode && 
+      </Paper> */}
+        {/* {inDeleteMode && 
           <Paper elevation={0} className="padding-tb-20px" square>Select a record below to delete...</Paper>
         }
         {inEditMode &&
           <Paper elevation={0} className="padding-tb-20px" square>Select a record below to edit...</Paper>
-        }
+        } */}
       <div className="records-list-wrapper"
       >
         {/* MUI datagrid */}
@@ -261,8 +286,8 @@ const ListOfRecords = props => {
           <DataGrid
             rows={recordsList}
             columns={recordCols}
-            pageSize={13}
-            rowsPerPageOptions={[5]}
+            pageSize={10}
+            // rowsPerPageOptions={[5]}
             checkboxSelection
             disableSelectionOnClick
           />
