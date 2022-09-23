@@ -37,7 +37,7 @@ export const TotalBalanceContainer = (props) => {
 
   return (
     <div className="total-balance-container">
-      <Paper elevation={0} square className="summary-title">Summary</Paper>
+      <Paper elevation={0} square className="summary-title">Summary of Balance with {currentCounterparty}</Paper>
       <div className="summary-cards">
         <Paper className="balance-info card-style"
           elevation={3}
