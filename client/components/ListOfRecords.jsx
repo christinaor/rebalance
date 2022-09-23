@@ -141,9 +141,8 @@ const ListOfRecords = props => {
 
   return (
     <Paper elevation={3} className="records-container">
-      <h2>Records with {currentCounterparty}</h2>
-      <div className="alter-records-wrapper align-items-center">
-        <div className="record-filters align-items-center">
+      <div className="alter-records-wrapper">
+        <div className="records-sort-by">
           <span>Sort by</span>
           {AnimatedMultiFilter()}
         </div>
@@ -195,7 +194,7 @@ const ListOfRecords = props => {
         {inEditMode &&
           <Paper elevation={0} className="padding-tb-20px" square>Select a record below to edit...</Paper>
         }
-      <Paper elevation={0} square className="records-grid-container"
+      <div className="records-list-wrapper"
       >
         <div className="center grid-record">
           <span>Record No.</span>
@@ -209,8 +208,8 @@ const ListOfRecords = props => {
           <span></span>
         </div>
         {recordElements}
-      </Paper>
-      <br />
+      </div>
+      {/* <br /> */}
     </Paper>
   )
 };

@@ -10,6 +10,7 @@
  */
 
 import React, { useEffect, useState } from "react";
+import { Paper } from "@mui/material"
 import AddRecord from "../components/AddRecord.jsx";
 import UpdateRecord from "../components/UpdateRecord.jsx";
 import ListOfRecords from '../components/ListOfRecords.jsx';
@@ -95,7 +96,8 @@ const RecordsContainer = props => {
   }, [populatedRecords, currentCounterparty, sortedRecords]);
 
   return (
-    <div>
+    <div className="records-section">
+      <Paper elevation={0} square className="records-title">Records with {currentCounterparty}</Paper>
       <ListOfRecords 
         recordsList={recordsList}
         setRecordsList={setRecordsList}
