@@ -178,16 +178,16 @@ const ListOfRecords = props => {
         headerName: 'User Split ($)',
         width: 90,
       },
-      {
-        field: 'counterparty_split',
-        headerName: 'Counterparty Split ($)',
-        description: 'This column has a value getter',
-        width: 90,
-        valueGetter: (params) => {
-          const cpSplit = (params.getValue(params.item_cost, 'item_cost') - (params.getValue(params.item_cost, 'item_cost') * params.getValue(params.user_perc, 'user_perc') / 100)).toFixed(2);
-          return cpSplit;
-        }
-      },
+      // {
+      //   field: 'counterparty_split',
+      //   headerName: 'Counterparty Split ($)',
+      //   description: 'This column has a value getter',
+      //   width: 90,
+      //   valueGetter: (params) => {
+      //     const cpSplit = (params.getValue(params.item_cost, 'item_cost') - (params.getValue(params.item_cost, 'item_cost') * params.getValue(params.user_perc, 'user_perc') / 100)).toFixed(2);
+      //     return cpSplit;
+      //   }
+      // },
       {
         field: 'user_perc',
         headerName: 'User Percentage (%)',
