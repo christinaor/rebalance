@@ -13,6 +13,7 @@ import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { Button, ButtonGroup, Paper } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
 
@@ -38,31 +39,9 @@ const ListOfRecords = props => {
   const [actionsValue, setActionsValue] = useState('Select')
 
   useEffect(() => {
-    console.log('in listofrecords useeffect: ', populatedRecords)
+    console.log('checking recordsList: ', recordsList)
     if (currentCounterparty !== 'All Parties') setSortedRecords(false);
   }, [currentCounterparty]);
-
-  const sortOptions = [
-    { value: 'Counterparty', label: 'Counterparty'},
-    { value: 'Date', label: 'Date'},
-    { value: 'Cost', label: 'Cost'},
-    { value: 'User Split', label: 'User Split'},
-    { value: 'Counterparty Split', label: 'Counterparty Split'},
-    { value: 'User Percentage', label: 'User Percentage'}
-  ];
-
-  const animatedComponents = makeAnimated();
-
-  const AnimatedMultiFilter = () => {
-    return (
-      <Select
-        closeMenuOnSelect={false}
-        components={animatedComponents}
-        isMulti
-        options={sortOptions}
-      />
-    )
-  };
 
   // const sortByCounterparty = async () => {
   //   if (!sortedRecords && currentCounterparty === 'All Parties') {
@@ -105,6 +84,30 @@ const ListOfRecords = props => {
     )
   });
 
+  console.log('this is recordsList in ListOfRecords component: ', recordsList)
+
+  const sortOptions = [
+    { value: 'Counterparty', label: 'Counterparty'},
+    { value: 'Date', label: 'Date'},
+    { value: 'Cost', label: 'Cost'},
+    { value: 'User Split', label: 'User Split'},
+    { value: 'Counterparty Split', label: 'Counterparty Split'},
+    { value: 'User Percentage', label: 'User Percentage'}
+  ];
+
+  const animatedComponents = makeAnimated();
+
+  const AnimatedMultiFilter = () => {
+    return (
+      <Select
+        closeMenuOnSelect={false}
+        components={animatedComponents}
+        isMulti
+        options={sortOptions}
+      />
+    )
+  };
+
   // Set button visibilities based on whether one is clicked
   const clickedInitialAdd = () => {
     setToggleAddRecordForm(true);
@@ -138,6 +141,62 @@ const ListOfRecords = props => {
     setInDeleteMode(false);
     setAllButtonsVisible(true);
   }
+
+  // MUI datagrid columns
+  let recordCols;
+  if (populatedRecords) {
+    recordCols = [
+      {
+        field: 'id',
+        headerName: 'Record No.',
+        width: 90
+      },
+      {
+        field: 'counterparty_username',
+        headerName: 'Counterparty',
+        width: 90
+      },
+      {
+        field: 'input_date',
+        headerName: 'Date Entered',
+        width: 90
+      },
+      {
+        field: 'item_name',
+        headerName: 'Item',
+        width: 90,
+        editable: true
+      },
+      {
+        field: 'item_cost',
+        headerName: 'Cost',
+        width: 90,
+        editable: true
+      },
+      {
+        field: 'user_split',
+        headerName: 'User Split ($)',
+        width: 90,
+      },
+      {
+        field: 'counterparty_split',
+        headerName: 'Counterparty Split ($)',
+        description: 'This column has a value getter',
+        width: 90,
+        valueGetter: (params) => {
+          const cpSplit = (params.getValue(params.item_cost, 'item_cost') - (params.getValue(params.item_cost, 'item_cost') * params.getValue(params.user_perc, 'user_perc') / 100)).toFixed(2);
+          return cpSplit;
+        }
+      },
+      {
+        field: 'user_perc',
+        headerName: 'User Percentage (%)',
+        width: 90,
+        editable: true
+      }
+    ]
+  };
+
 
   return (
     <Paper elevation={3} className="records-container">
@@ -196,7 +255,19 @@ const ListOfRecords = props => {
         }
       <div className="records-list-wrapper"
       >
-        <div className="center grid-record">
+        {/* MUI datagrid */}
+        {populatedRecords &&
+        <div style={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={recordsList}
+            columns={recordCols}
+            pageSize={13}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        </div>}
+        {/* <div className="center grid-record">
           <span>Record No.</span>
           <span>Counterparty</span>
           <span>Date Entered</span>
@@ -207,9 +278,9 @@ const ListOfRecords = props => {
           <span>User Percentage</span>
           <span></span>
         </div>
-        {recordElements}
+        {recordElements} */}
       </div>
-      {/* <br /> */}
+      <br />
     </Paper>
   )
 };
