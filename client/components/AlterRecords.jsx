@@ -10,12 +10,13 @@
  */
 
 import React, { useEffect, useState } from "react";
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+// import Select from 'react-select';
+// import makeAnimated from 'react-select/animated';
 import { Button, ButtonGroup, Paper } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
+import UpdateRecord from "./UpdateRecord.jsx";
  
 const AlterRecordsComponent = props => {
   const {
@@ -27,8 +28,8 @@ const AlterRecordsComponent = props => {
     setInEditMode,
     inDeleteMode,
     setInDeleteMode,
-    updatedRecord,
-    setUpdatedRecord,
+    recordToUpdate,
+    setRecordToUpdate,
     clickedRecordToEdit,
     setClickedRecordToEdit,
     recordsList,
@@ -36,31 +37,34 @@ const AlterRecordsComponent = props => {
     populatedRecords,
     setPopulatedRecords,
     currentCounterparty,
-    setCurrentCounterparty
+    setCurrentCounterparty,
+    editId,
+    setEditId
   } = props;
 
-  // Options for sorting records on left
-  const sortOptions = [
-    { value: 'Counterparty', label: 'Counterparty'},
-    { value: 'Date', label: 'Date'},
-    { value: 'Cost', label: 'Cost'},
-    { value: 'User Split', label: 'User Split'},
-    { value: 'Counterparty Split', label: 'Counterparty Split'},
-    { value: 'User Percentage', label: 'User Percentage'}
-  ];
+  console.log('checking recordToUpdate: ', recordToUpdate)
+  // // Options for sorting records on left
+  // const sortOptions = [
+  //   { value: 'Counterparty', label: 'Counterparty'},
+  //   { value: 'Date', label: 'Date'},
+  //   { value: 'Cost', label: 'Cost'},
+  //   { value: 'User Split', label: 'User Split'},
+  //   { value: 'Counterparty Split', label: 'Counterparty Split'},
+  //   { value: 'User Percentage', label: 'User Percentage'}
+  // ];
 
-  const animatedComponents = makeAnimated();
+  // const animatedComponents = makeAnimated();
 
-  const AnimatedMultiFilter = () => {
-    return (
-      <Select
-        closeMenuOnSelect={false}
-        components={animatedComponents}
-        isMulti
-        options={sortOptions}
-      />
-    )
-  };
+  // const AnimatedMultiFilter = () => {
+  //   return (
+  //     <Select
+  //       closeMenuOnSelect={false}
+  //       components={animatedComponents}
+  //       isMulti
+  //       options={sortOptions}
+  //     />
+  //   )
+  // };
 
     // Set button visibilities based on whether one is clicked for add/edit/delete options on right
     const clickedInitialAdd = () => {
@@ -79,7 +83,7 @@ const AlterRecordsComponent = props => {
       setInEditMode(false);
       setAllButtonsVisible(true);
       // set update object state to null
-      setUpdatedRecord({
+      setRecordToUpdate({
         id: null,
         item: null,
         cost: null,
@@ -96,14 +100,13 @@ const AlterRecordsComponent = props => {
       setAllButtonsVisible(true);
     }
 
-
   return (
     <div className="alter-records-wrapper">
       <div className="initially-visible-alter-actions">
-        <div className="records-sort-by">
+        {/* <div className="records-sort-by">
           <span>Sort by</span>
           {AnimatedMultiFilter()}
-        </div>
+        </div> */}
         {allButtonsVisible && (
         <div className="record-buttons align-items-center">
           <ButtonGroup variant="text" aria-label="text button group" size="medium">
@@ -147,6 +150,21 @@ const AlterRecordsComponent = props => {
     <Button variant="contained" size="small" onClick={cancelEdit}>Cancel Edit</Button>
     }      
     </div>
+
+    {inEditMode && clickedRecordToEdit && (recordToUpdate.id === editId) &&
+    <UpdateRecord 
+      currentCounterparty={currentCounterparty}
+      setCurrentCounterparty={setCurrentCounterparty}
+      recordToUpdate={recordToUpdate}
+      setRecordToUpdate={setRecordToUpdate}
+      clickedRecordToEdit={clickedRecordToEdit}
+      setClickedRecordToEdit={setClickedRecordToEdit}
+      populatedRecords={populatedRecords}
+      setPopulatedRecords={setPopulatedRecords}
+      editId={editId}
+      setEditId={setEditId}
+    />
+    }
   </div>
   )
 };

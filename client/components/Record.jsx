@@ -23,8 +23,8 @@ const Record = (props) => {
     userPercent,
     populatedRecords, 
     setPopulatedRecords,
-    updatedRecord, 
-    setUpdatedRecord, 
+    recordToUpdate, 
+    setRecordToUpdate, 
     // toUpdate, 
     // setToUpdate, 
     // actionsValue, 
@@ -66,7 +66,7 @@ const Record = (props) => {
     if (inDeleteMode) deleteRecord(e);
     // For update, set updateRecord when record has been clicked
     if (inEditMode && !clickedRecordToEdit) {
-      setUpdatedRecord({
+      setRecordToUpdate({
         id: id,
         item: itemName,
         cost: cost,
@@ -76,19 +76,19 @@ const Record = (props) => {
       setClickedRecordToEdit(true);
     // Reset updateRecord if the same or different record is clicked
     } else if (inEditMode && clickedRecordToEdit) {
-      // If the id is different than the id in updatedRecord, then a different record was clicked, so updatedRecord should reflect info from this clicked record
-      if (updatedRecord.id !== id) {
+      // If the id is different than the id in recordToUpdate, then a different record was clicked, so recordToUpdate should reflect info from this clicked record
+      if (recordToUpdate.id !== id) {
         console.log('in the if statement comparing ids')
-        setUpdatedRecord({
+        setRecordToUpdate({
           id: id,
           item: itemName,
           cost: cost,
           perc: userPercent
         });
         setClickedRecordToEdit(true);
-      // If id is the same, the record already has clicekdRecordToEdit set to true, so clicking the same record should set it to false and reset updatedRecord
+      // If id is the same, the record already has clicekdRecordToEdit set to true, so clicking the same record should set it to false and reset recordToUpdate
       } else {
-        setUpdatedRecord({
+        setRecordToUpdate({
           id: null,
           item: null,
           cost: null,
@@ -131,7 +131,7 @@ const Record = (props) => {
         <div>{formattedUserPercent}</div>
         <div></div>
       </div>
-      {inEditMode && clickedRecordToEdit && (updatedRecord.id === id) &&
+      {inEditMode && clickedRecordToEdit && (recordToUpdate.id === id) &&
         <UpdateRecord 
           id={id}
           counterpartyName={counterpartyName}
@@ -143,8 +143,8 @@ const Record = (props) => {
           userPercent={userPercent}
           currentCounterparty={currentCounterparty}
           setCurrentCounterparty={setCurrentCounterparty}
-          updatedRecord={updatedRecord}
-          setUpdatedRecord={setUpdatedRecord}
+          recordToUpdate={recordToUpdate}
+          setRecordToUpdate={setRecordToUpdate}
           clickedRecordToEdit={clickedRecordToEdit}
           setClickedRecordToEdit={setClickedRecordToEdit}
           populatedRecords={populatedRecords}

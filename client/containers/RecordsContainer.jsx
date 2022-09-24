@@ -30,7 +30,7 @@ const RecordsContainer = props => {
   const [recordsList, setRecordsList] = useState([]);
   const [populatedRecords, setPopulatedRecords] = useState(false);
   const [toUpdate, setToUpdate] = useState(false);
-  const [updatedRecord, setUpdatedRecord] = useState({
+  const [recordToUpdate, setRecordToUpdate] = useState({
     id: null,
     item: null,
     cost: null,
@@ -103,8 +103,8 @@ const RecordsContainer = props => {
         setRecordsList={setRecordsList}
         populatedRecords={populatedRecords}
         setPopulatedRecords={setPopulatedRecords}
-        updatedRecord={updatedRecord}
-        setUpdatedRecord={setUpdatedRecord}
+        recordToUpdate={recordToUpdate}
+        setRecordToUpdate={setRecordToUpdate}
         toUpdate={toUpdate}
         setToUpdate={setToUpdate}
         currentCounterparty={currentCounterparty}

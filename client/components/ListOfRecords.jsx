@@ -24,8 +24,8 @@ const ListOfRecords = props => {
     setRecordsList,
     populatedRecords,
     setPopulatedRecords,
-    updatedRecord,
-    setUpdatedRecord,
+    recordToUpdate,
+    setRecordToUpdate,
     currentCounterparty,
     setCurrentCounterparty,
     sortedRecords,
@@ -35,9 +35,13 @@ const ListOfRecords = props => {
   const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
   const [inEditMode, setInEditMode] = useState(false);
   const [clickedRecordToEdit, setClickedRecordToEdit] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [editItem, setEditItem] = useState(null);
+  const [editCost, setEditCost] = useState(null);
+  const [editUserPerc, setEditUserPerc] = useState(null);
   const [inDeleteMode, setInDeleteMode] = useState(false);
   const [allButtonsVisible, setAllButtonsVisible] = useState(true);
-  const [actionsValue, setActionsValue] = useState('Select')
+  // const [actionsValue, setActionsValue] = useState('Select')
 
   useEffect(() => {
     console.log('checking recordsList: ', recordsList)
@@ -69,8 +73,8 @@ const ListOfRecords = props => {
   //       userPercent={user_perc}
   //       populatedRecords={populatedRecords}
   //       setPopulatedRecords={setPopulatedRecords}
-  //       updatedRecord={updatedRecord}
-  //       setUpdatedRecord={setUpdatedRecord}
+  //       recordToUpdate={recordToUpdate}
+  //       setRecordToUpdate={setRecordToUpdate}
   //       allButtonsVisible={allButtonsVisible}
   //       setAllButtonsVisible={setAllButtonsVisible}
   //       inEditMode={inEditMode}
@@ -84,8 +88,6 @@ const ListOfRecords = props => {
   //     />
   //   )
   // });
-
-  console.log('this is recordsList in ListOfRecords component: ', recordsList)
 
   // const sortOptions = [
   //   { value: 'Counterparty', label: 'Counterparty'},
@@ -126,7 +128,7 @@ const ListOfRecords = props => {
   //   setInEditMode(false);
   //   setAllButtonsVisible(true);
   //   // set update object state to null
-  //   setUpdatedRecord({
+  //   setRecordToUpdate({
   //     id: null,
   //     item: null,
   //     cost: null,
@@ -143,14 +145,85 @@ const ListOfRecords = props => {
   //   setAllButtonsVisible(true);
   // }
 
+  // editOrDeleteRecord with MUI's onCellClick
+  // delete a record clicked based on its id
+  const deleteRecord = (params) => {
+    console.log('deleteRecord fired');
+    fetch('api/records/', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: params.row.id
+      })
+    })
+      .catch(err => `Error deleting record: ${err}`)
+      .finally(() => {
+        console.log('deleted record')
+        setPopulatedRecords(false);
+      })
+  };
+
+  const editOrDeleteRecord = (params) => {
+    if (inDeleteMode) deleteRecord(params);
+    // For update, set recordToUpdate when record has been clicked
+    if (inEditMode && !clickedRecordToEdit) {
+      setRecordToUpdate({
+        id: params.row.id,
+        item: params.row.item_name,
+        cost: params.row.item_cost,
+        perc: params.row.user_perc
+      });
+      console.log('this is params: ',params)
+      setEditId(params.row.id);
+      setEditItem(params.row.item_name);
+      setEditCost(params.row.item_cost);
+      setEditUserPerc(params.row.user_perc);
+      // Opens edit form when clickedRecordToEdit is set to true
+      setClickedRecordToEdit(true);
+    // Reset recordToUpdate if the same or different record is clicked
+    } else if (inEditMode && clickedRecordToEdit) {
+      // If the id is different than the id in recordToUpdate, then a different record was clicked, so recordToUpdate should reflect info from this clicked record
+      if (recordToUpdate.id !== params.row.id) {
+        console.log('in the if statement comparing ids')
+        setRecordToUpdate({
+          id: params.row.id,
+          item: params.row.item_name,
+          cost: params.row.item_cost,
+          perc: params.row.user_perc
+        });
+        setEditId(params.row.id);
+        setEditItem(params.row.item_name);
+        setEditCost(params.row.item_cost);
+        setEditUserPerc(params.row.user_perc);
+        setClickedRecordToEdit(true);
+      // If id is the same, the record already has clicekdRecordToEdit set to true, so clicking the same record should set it to false and reset recordToUpdate
+      } else {
+        setRecordToUpdate({
+          id: null,
+          item: null,
+          cost: null,
+          perc: null
+        });
+        setEditId(null);
+        setEditItem(null);
+        setEditCost(null);
+        setEditUserPerc(null);
+        // Closes edit form for same record clicked when clickedRecordToEdit is set to false
+        setClickedRecordToEdit(false);
+      }
+    }
+  };
+
   // MUI datagrid columns
   let recordCols;
   if (populatedRecords) {
     recordCols = [
       {
         field: 'id',
-        headerName: 'Record No.',
-        width: 90
+        headerName: 'ID',
+        width: 30
       },
       {
         field: 'counterparty_username',
@@ -160,12 +233,23 @@ const ListOfRecords = props => {
       {
         field: 'input_date',
         headerName: 'Date Entered',
-        width: 90
+        width: 120,
+        valueGetter: (params) => {
+          const recordDate = new Date(params.row.input_date);
+          const yyyy = recordDate.getFullYear();
+          let mm = recordDate.getMonth() + 1; // month starts at 0;
+          let dd = recordDate.getDate();
+
+          dd = (dd < 10) ? '0' + dd : dd;
+          mm = (mm < 10) ? '0' + mm : mm;
+
+          return `${mm}/${dd}/${yyyy}`
+        }
       },
       {
         field: 'item_name',
         headerName: 'Item',
-        width: 90,
+        width: 120,
         editable: true
       },
       {
@@ -177,15 +261,14 @@ const ListOfRecords = props => {
       {
         field: 'user_split',
         headerName: 'User Split ($)',
-        width: 90,
+        width: 150,
       },
       {
         field: 'counterparty_split',
         headerName: 'Counterparty Split ($)',
         description: 'This column has a value getter',
-        width: 90,
+        width: 150,
         valueGetter: (params) => {
-          console.log('params here: ', params)
           // MUI's getValue is deprecated, use params.row object to access data instead
           const cpSplit = (params.row.item_cost - params.row.item_cost * params.row.user_perc / 100).toFixed(2);
           return cpSplit;
@@ -193,13 +276,15 @@ const ListOfRecords = props => {
       },
       {
         field: 'user_perc',
-        headerName: 'User Percentage (%)',
-        width: 90,
+        headerName: 'User Percentage',
+        width: 120,
+        valueGetter: (params) => {
+          return params.row.user_perc + '%'
+        },
         editable: true
       }
     ]
   };
-
 
   return (
     <Paper elevation={3} className="records-container">
@@ -212,8 +297,8 @@ const ListOfRecords = props => {
         setInEditMode={setInEditMode}
         inDeleteMode={inDeleteMode}
         setInDeleteMode={setInDeleteMode}
-        updatedRecord={updatedRecord}
-        setUpdatedRecord={setUpdatedRecord}
+        recordToUpdate={recordToUpdate}
+        setRecordToUpdate={setRecordToUpdate}
         clickedRecordToEdit={clickedRecordToEdit}
         setClickedRecordToEdit={setClickedRecordToEdit}
         recordsList={recordsList}
@@ -222,7 +307,12 @@ const ListOfRecords = props => {
         setPopulatedRecords={setPopulatedRecords}
         currentCounterparty={currentCounterparty}
         setCurrentCounterparty={setCurrentCounterparty}
-
+        editId={editId}
+        setEditId={setEditId}
+        editCost={editCost}
+        setEditCost={setEditCost}
+        editUserPerc={editUserPerc}
+        setEditUserPerc={setEditUserPerc}
 
       />
       {/* <div className="alter-records-wrapper">
@@ -287,9 +377,11 @@ const ListOfRecords = props => {
             rows={recordsList}
             columns={recordCols}
             pageSize={10}
-            // rowsPerPageOptions={[5]}
-            checkboxSelection
-            disableSelectionOnClick
+            rowsPerPageOptions={[5]}
+            onCellClick={editOrDeleteRecord}
+            // checkboxSelection
+            // disableSelectionOnClick
+
           />
         </div>}
         {/* <div className="center grid-record">
