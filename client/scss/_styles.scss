@@ -224,6 +224,10 @@ a, a:visited, a:hover, a:active {
   flex-direction: column;
 }
 
+.counterparty-filter-wrapper {
+  min-width: 250px;
+}
+
 
 /*****   RECORDS CONTAINER STYLING   *****/
 .records-container {
@@ -276,9 +280,11 @@ a, a:visited, a:hover, a:active {
 }
 
 .record-buttons {
+  // padding: 13px;
+  color: grey;
   display: flex;
-  justify-content: flex-end;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 .update-button {
@@ -293,7 +299,7 @@ a, a:visited, a:hover, a:active {
 
 .alter-section {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .in-delete-mode {

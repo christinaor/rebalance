@@ -16,6 +16,7 @@ import { Button, ButtonGroup, Paper, FormControl, Select } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DownloadIcon from '@mui/icons-material/Download';
 import { DataGrid } from '@mui/x-data-grid';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
@@ -126,8 +127,7 @@ const AlterRecordsComponent = props => {
         />
 
         {allButtonsVisible && (
-        <div className="record-buttons align-items-center">
-          <ButtonGroup variant="text" aria-label="text button group" size="medium">
+          <ButtonGroup className="record-buttons" variant="text" aria-label="text button group" size="medium" color="inherit">
             <Button onClick={clickedInitialAdd}>
               <AddIcon />
             </Button>
@@ -137,8 +137,10 @@ const AlterRecordsComponent = props => {
             <Button onClick={clickedInitialDelete}>
               <DeleteIcon />
             </Button>
+            <Button>
+              <DownloadIcon />
+            </Button>
           </ButtonGroup>
-        </div>
         )}
       </div>
     <Paper elevation={0} square className="add-record-wrapper">

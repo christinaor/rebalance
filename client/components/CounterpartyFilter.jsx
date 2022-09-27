@@ -92,8 +92,8 @@ const CounterpartiesContainer = props => {
     // const [isCpDrawerOpen, setIsCpDrawerOpen] = useState(false);
 
   return (
-    <>
-      <FormControl fullWidth>
+    <div>
+      <FormControl className="counterparty-filter-wrapper">
         <InputLabel id="counterparty-filter-label">Filter by Counterparty</InputLabel>
         <Select
           labelId="counterparty-filter-label"
@@ -165,7 +165,7 @@ const CounterpartiesContainer = props => {
           onClick={() => setCurrentCounterparty('All Parties')}>All Parties</div> */}
         {/* {counterpartySideElements} */}
 
-    </>
+    </div>
   )
 }
 
