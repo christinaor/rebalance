@@ -29,7 +29,11 @@ const ListOfRecords = props => {
     currentCounterparty,
     setCurrentCounterparty,
     sortedRecords,
-    setSortedRecords
+    setSortedRecords,
+    counterpartiesList,
+    setCounterpartiesList,
+    populatedCounterparties,
+    setPopulatedCounterparties
   } = props;
 
   const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
@@ -44,7 +48,7 @@ const ListOfRecords = props => {
   // const [actionsValue, setActionsValue] = useState('Select')
 
   useEffect(() => {
-    console.log('checking recordsList: ', recordsList)
+    // console.log('checking recordsList: ', recordsList)
     if (currentCounterparty !== 'All Parties') setSortedRecords(false);
   }, [currentCounterparty]);
 
@@ -313,7 +317,11 @@ const ListOfRecords = props => {
         setEditCost={setEditCost}
         editUserPerc={editUserPerc}
         setEditUserPerc={setEditUserPerc}
-
+        counterpartiesList={counterpartiesList}
+        setCounterpartiesList={setCounterpartiesList}
+        populatedCounterparties={populatedCounterparties}
+        setPopulatedCounterparties={setPopulatedCounterparties}
+        
       />
       {/* <div className="alter-records-wrapper">
         <div className="records-sort-by">

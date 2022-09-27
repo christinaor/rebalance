@@ -81,7 +81,11 @@ const MainContainer = props => {
             counterpartyBalance={counterpartyBalance}
             setCounterpartyBalance={setCounterpartyBalance} 
             numUnpaidBalances={numUnpaidBalances} 
-            setNumUnpaidBalances={setNumUnpaidBalances} />
+            setNumUnpaidBalances={setNumUnpaidBalances}
+            counterpartiesList={counterpartiesList}
+            setCounterpartiesList={setCounterpartiesList}
+            populatedCounterparties={populatedCounterparties}
+            setPopulatedCounterparties={setPopulatedCounterparties} />
         </div>
       </div>
     </div>

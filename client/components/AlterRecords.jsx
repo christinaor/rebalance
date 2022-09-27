@@ -12,11 +12,12 @@
 import React, { useEffect, useState } from "react";
 // import Select from 'react-select';
 // import makeAnimated from 'react-select/animated';
-import { Button, ButtonGroup, Paper } from '@mui/material';
+import { Button, ButtonGroup, Paper, FormControl, Select } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
 import UpdateRecord from "./UpdateRecord.jsx";
+import CounterpartyContainer from '../containers/CounterpartiesContainer.jsx'
  
 const AlterRecordsComponent = props => {
   const {
@@ -39,10 +40,14 @@ const AlterRecordsComponent = props => {
     currentCounterparty,
     setCurrentCounterparty,
     editId,
-    setEditId
+    setEditId,
+    counterpartiesList,
+    setCounterpartiesList,
+    populatedCounterparties,
+    setPopulatedCounterparties
   } = props;
 
-  console.log('checking recordToUpdate: ', recordToUpdate)
+  // console.log('checking recordToUpdate: ', recordToUpdate)
   // // Options for sorting records on left
   // const sortOptions = [
   //   { value: 'Counterparty', label: 'Counterparty'},
@@ -107,6 +112,29 @@ const AlterRecordsComponent = props => {
           <span>Sort by</span>
           {AnimatedMultiFilter()}
         </div> */}
+        <CounterpartyContainer 
+          counterpartiesList={counterpartiesList}
+          setCounterpartiesList={setCounterpartiesList}
+          populatedCounterparties={populatedCounterparties}
+          setPopulatedCounterparties={setPopulatedCounterparties}
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
+           
+        />
+
+        {/* <FormControl>
+          <InputLabel id="counterparty-filter-label">Filter by Counterparty</InputLabel>
+          <Select
+            labelId="counterparty-filter-label"
+            id="counterparty-filter"
+            value={}
+            label="Filter by Counterparty"
+            onChange={placeholderHandleChangeFunc}
+          >
+
+          </Select>
+        </FormControl> */}
+
         {allButtonsVisible && (
         <div className="record-buttons align-items-center">
           <ButtonGroup variant="text" aria-label="text button group" size="medium">

@@ -24,7 +24,11 @@ const RecordsContainer = props => {
     counterpartyBalance,
     setCounterpartyBalance,
     numUnpaidBalances,
-    setNumUnpaidBalances
+    setNumUnpaidBalances,
+    counterpartiesList,
+    setCounterpartiesList,
+    populatedCounterparties,
+    setPopulatedCounterparties
   } = props;
 
   const [recordsList, setRecordsList] = useState([]);
@@ -111,6 +115,10 @@ const RecordsContainer = props => {
         setCurrentCounterparty={setCurrentCounterparty}
         sortedRecords={sortedRecords}
         setSortedRecords={setSortedRecords}
+        counterpartiesList={counterpartiesList}
+        setCounterpartiesList={setCounterpartiesList}
+        populatedCounterparties={populatedCounterparties}
+        setPopulatedCounterparties={setPopulatedCounterparties}
       />
     </div>
   )

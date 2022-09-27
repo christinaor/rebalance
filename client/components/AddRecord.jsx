@@ -23,21 +23,21 @@ const AddRecord = (props) => {
     userPercent: 50
   });
 
-  useEffect(() => {
-    setPostedRecord({...postedRecord, counterparty: currentCounterparty})
+  useEffect(async () => {
+    await setPostedRecord({...postedRecord, counterparty: currentCounterparty})
   }, [currentCounterparty])
 
-  const postRecord = (e) => {
-    e.preventDefault();    
+  const postRecord = async (e) => {
+    e.preventDefault();
     console.log('currentCounterparty here', currentCounterparty)
     if (currentCounterparty === null || currentCounterparty === 'All Parties') {
       return setIsEmptyCounterparty(true);
     } else {
       console.log('postRecord fired')
       // Add cases dealing with blanks/nulls in postedRecord
-      const splitCalculation = postedRecord.cost * postedRecord.userPercent / 100;
+      const splitCalculation = await (postedRecord.cost * postedRecord.userPercent / 100);
       console.log('this is split',splitCalculation)
-      fetch('/api/records', {
+      await fetch('/api/records', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

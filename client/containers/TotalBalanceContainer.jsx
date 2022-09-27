@@ -46,14 +46,14 @@ export const TotalBalanceContainer = (props) => {
       <Paper elevation={0} square className="summary-title">
 
         <div>Summary of Balance with {currentCounterparty}</div>
-        <CounterpartiesContainer
+        {/* <CounterpartiesContainer
           counterpartiesList={counterpartiesList}
           setCounterpartiesList={setCounterpartiesList}
           populatedCounterparties={populatedCounterparties}
           setPopulatedCounterparties={setPopulatedCounterparties}
           currentCounterparty={currentCounterparty}
           setCurrentCounterparty={setCurrentCounterparty}
-        />        
+        />         */}
       </Paper>
       <div className="summary-cards">
         <Paper className="balance-info card-style"

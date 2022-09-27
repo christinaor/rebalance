@@ -19,7 +19,11 @@ import {
   IconButton,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  FormControl,
+  Select,
+  InputLabel,
+  MenuItem
  } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -67,22 +71,42 @@ const CounterpartiesContainer = props => {
   //   setCpDrawerButtonClicked(open)
   // };
 
-  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (
-    <div 
-      key={`cp${counterpartyInfo.id}`}
-      className="cp-hover"
-      onClick={() => setCurrentCounterparty(counterpartyInfo.counterparty_name)}
-    >
-      {counterpartyInfo.counterparty_name}
-    </div>
+  // const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (
+  //   <div 
+  //     key={`cp${counterpartyInfo.id}`}
+  //     className="cp-hover"
+  //     onClick={() => setCurrentCounterparty(counterpartyInfo.counterparty_name)}
+  //   >
+  //     {counterpartyInfo.counterparty_name}
+  //   </div>
+  // ))
 
+  const counterpartySideElements = counterpartiesList.map(counterpartyInfo => (
+    <MenuItem 
+      value={counterpartyInfo.counterparty_name}
+      key={`select-${counterpartyInfo.counterparty_name}`} >
+      {counterpartyInfo.counterparty_name}
+    </MenuItem>
   ))
   
-    const [isCpDrawerOpen, setIsCpDrawerOpen] = useState(false);
+    // const [isCpDrawerOpen, setIsCpDrawerOpen] = useState(false);
 
   return (
     <>
-      <IconButton 
+      <FormControl fullWidth>
+        <InputLabel id="counterparty-filter-label">Filter by Counterparty</InputLabel>
+        <Select
+          labelId="counterparty-filter-label"
+          id="counterparty-filter"
+          value={currentCounterparty}
+          label="Filter by Counterparty"
+          onChange={(event) => setCurrentCounterparty(event.target.value)}
+        >
+          {[<MenuItem key="select-all-parties" value={'All Parties'}>All Parties</MenuItem>, ...counterpartySideElements]}
+        </Select>
+      </FormControl>
+
+      {/* <IconButton 
         size="large"
         edge="start"
         color="inherit"
@@ -126,6 +150,7 @@ const CounterpartiesContainer = props => {
               }
             })}
           </List>
+      </Drawer>       */}
 
           {/* <Box p={2} width="250px" textAlign="center" role="presentation">
             <Typography variant="h6" component="div">
@@ -139,9 +164,8 @@ const CounterpartiesContainer = props => {
           className="cp-hover"
           onClick={() => setCurrentCounterparty('All Parties')}>All Parties</div> */}
         {/* {counterpartySideElements} */}
-      </Drawer>      
-    </>
 
+    </>
   )
 }
 
