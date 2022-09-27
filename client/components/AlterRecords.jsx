@@ -17,7 +17,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
 import UpdateRecord from "./UpdateRecord.jsx";
-import CounterpartyContainer from '../containers/CounterpartiesContainer.jsx'
+import CounterpartyFilter from './CounterpartyFilter.jsx'
  
 const AlterRecordsComponent = props => {
   const {
@@ -112,7 +112,7 @@ const AlterRecordsComponent = props => {
           <span>Sort by</span>
           {AnimatedMultiFilter()}
         </div> */}
-        <CounterpartyContainer 
+        <CounterpartyFilter 
           counterpartiesList={counterpartiesList}
           setCounterpartiesList={setCounterpartiesList}
           populatedCounterparties={populatedCounterparties}
@@ -121,19 +121,6 @@ const AlterRecordsComponent = props => {
           setCurrentCounterparty={setCurrentCounterparty}
            
         />
-
-        {/* <FormControl>
-          <InputLabel id="counterparty-filter-label">Filter by Counterparty</InputLabel>
-          <Select
-            labelId="counterparty-filter-label"
-            id="counterparty-filter"
-            value={}
-            label="Filter by Counterparty"
-            onChange={placeholderHandleChangeFunc}
-          >
-
-          </Select>
-        </FormControl> */}
 
         {allButtonsVisible && (
         <div className="record-buttons align-items-center">

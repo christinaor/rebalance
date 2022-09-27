@@ -11,7 +11,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
-import CounterpartiesContainer from './CounterpartiesContainer.jsx';
+import CounterpartyFilter from '../components/CounterpartyFilter.jsx';
 import { TotalBalanceContainer } from "./TotalBalanceContainer.jsx";
 import RecordsContainer from "./RecordsContainer.jsx";
 import NavBar from "../components/NavBar.jsx"
@@ -48,7 +48,7 @@ const MainContainer = props => {
         <Route path='/flow/settings' element={<SettingsPage />} />
       </Routes>
       <div className="below-nav-wrapper">
-        {/* <CounterpartiesContainer
+        {/* <CounterpartyFilter
             counterpartiesList={counterpartiesList}
             setCounterpartiesList={setCounterpartiesList}
             populatedCounterparties={populatedCounterparties}

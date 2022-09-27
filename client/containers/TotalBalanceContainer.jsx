@@ -11,7 +11,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Paper } from '@mui/material';
-import CounterpartiesContainer from "./CounterpartiesContainer.jsx";
+import CounterpartyFilter from "../components/CounterpartyFilter.jsx";
 
 export const TotalBalanceContainer = (props) => {
   const {
@@ -46,7 +46,7 @@ export const TotalBalanceContainer = (props) => {
       <Paper elevation={0} square className="summary-title">
 
         <div>Summary of Balance with {currentCounterparty}</div>
-        {/* <CounterpartiesContainer
+        {/* <CounterpartyFilter
           counterpartiesList={counterpartiesList}
           setCounterpartiesList={setCounterpartiesList}
           populatedCounterparties={populatedCounterparties}
