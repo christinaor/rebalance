@@ -13,6 +13,9 @@ import React, { useEffect, useState } from "react";
 // import Select from 'react-select';
 // import makeAnimated from 'react-select/animated';
 import { Button, ButtonGroup, Paper, FormControl, Select } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { DataGrid } from '@mui/x-data-grid';
 import Record from "./Record.jsx";
 import AddRecord from "./AddRecord.jsx";
@@ -107,7 +110,7 @@ const AlterRecordsComponent = props => {
 
   return (
     <div className="alter-records-wrapper">
-      <div className="initially-visible-alter-actions">
+      <div className="alter-section">
         {/* <div className="records-sort-by">
           <span>Sort by</span>
           {AnimatedMultiFilter()}
@@ -125,9 +128,15 @@ const AlterRecordsComponent = props => {
         {allButtonsVisible && (
         <div className="record-buttons align-items-center">
           <ButtonGroup variant="text" aria-label="text button group" size="medium">
-            <Button onClick={clickedInitialAdd}>Add</Button>
-            <Button onClick={clickedInitialEdit}>Edit</Button>
-            <Button onClick={clickedInitialDelete}>Delete</Button>
+            <Button onClick={clickedInitialAdd}>
+              <AddIcon />
+            </Button>
+            <Button onClick={clickedInitialEdit}>
+              <EditIcon />
+            </Button>
+            <Button onClick={clickedInitialDelete}>
+              <DeleteIcon />
+            </Button>
           </ButtonGroup>
         </div>
         )}
