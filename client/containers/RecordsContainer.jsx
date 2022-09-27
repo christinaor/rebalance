@@ -10,7 +10,8 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { Paper } from "@mui/material"
+import { Paper } from "@mui/material";
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import AddRecord from "../components/AddRecord.jsx";
 import UpdateRecord from "../components/UpdateRecord.jsx";
 import ListOfRecords from '../components/ListOfRecords.jsx';
@@ -101,7 +102,10 @@ const RecordsContainer = props => {
 
   return (
     <div className="records-section">
-      <Paper elevation={0} square className="records-title">Records with {currentCounterparty}</Paper>
+      <Paper elevation={0} square className="records-title">
+        <ArrowRightIcon />
+        <div>Records with {currentCounterparty}</div>
+      </Paper>
       <ListOfRecords 
         recordsList={recordsList}
         setRecordsList={setRecordsList}

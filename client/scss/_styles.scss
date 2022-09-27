@@ -110,7 +110,8 @@ a, a:visited, a:hover, a:active {
 }
 
 .summary-title, .records-title {
-  padding: 10px 40px;
+  padding: 10px;
+  display: flex;
   background-color: #5B5BD7;
   color: #F1F1F8;
   font-size: 20px;
