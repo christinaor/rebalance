@@ -36,7 +36,7 @@ const MainContainer = props => {
 
   return (
     <div className="container">
-      <NavBar 
+      <NavBar
         cookies={cookies}
         removeCookie={removeCookie}
         setCookie={setCookie}
@@ -48,16 +48,21 @@ const MainContainer = props => {
         <Route path='/flow/settings' element={<SettingsPage />} />
       </Routes>
       <div className="below-nav-wrapper">
-        <CounterpartiesContainer
+        {/* <CounterpartiesContainer
             counterpartiesList={counterpartiesList}
             setCounterpartiesList={setCounterpartiesList}
             populatedCounterparties={populatedCounterparties}
             setPopulatedCounterparties={setPopulatedCounterparties}
             currentCounterparty={currentCounterparty}
             setCurrentCounterparty={setCurrentCounterparty}
-          />
+          /> */}
         <div className="summary-and-records">
           <TotalBalanceContainer
+            counterpartiesList={counterpartiesList}
+            setCounterpartiesList={setCounterpartiesList}
+            populatedCounterparties={populatedCounterparties}
+            setPopulatedCounterparties={setPopulatedCounterparties}
+
             currentCounterparty={currentCounterparty}
             setCurrentCounterparty={setCurrentCounterparty}
             userBalance={userBalance}
@@ -65,7 +70,9 @@ const MainContainer = props => {
             counterpartyBalance={counterpartyBalance}
             setCounterpartyBalance={setCounterpartyBalance} 
             numUnpaidBalances={numUnpaidBalances} 
-            setNumUnpaidBalances={setNumUnpaidBalances} />
+            setNumUnpaidBalances={setNumUnpaidBalances} 
+            
+            />
           <RecordsContainer
             currentCounterparty={currentCounterparty}
             setCurrentCounterparty={setCurrentCounterparty}

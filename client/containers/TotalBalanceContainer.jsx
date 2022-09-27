@@ -11,6 +11,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Paper } from '@mui/material';
+import CounterpartiesContainer from "./CounterpartiesContainer.jsx";
 
 export const TotalBalanceContainer = (props) => {
   const {
@@ -21,7 +22,12 @@ export const TotalBalanceContainer = (props) => {
     counterpartyBalance,
     setCounterpartyBalance,
     numUnpaidBalances,
-    setNumUnpaidBalances
+    setNumUnpaidBalances,
+
+    counterpartiesList,
+    setCounterpartiesList,
+    populatedCounterparties,
+    setPopulatedCounterparties
   } = props;
 
   // set last day as tentative due date
@@ -37,7 +43,18 @@ export const TotalBalanceContainer = (props) => {
 
   return (
     <div className="total-balance-container">
-      <Paper elevation={0} square className="summary-title">Summary of Balance with {currentCounterparty}</Paper>
+      <Paper elevation={0} square className="summary-title">
+
+        <div>Summary of Balance with {currentCounterparty}</div>
+        <CounterpartiesContainer
+          counterpartiesList={counterpartiesList}
+          setCounterpartiesList={setCounterpartiesList}
+          populatedCounterparties={populatedCounterparties}
+          setPopulatedCounterparties={setPopulatedCounterparties}
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
+        />        
+      </Paper>
       <div className="summary-cards">
         <Paper className="balance-info card-style"
           elevation={3}
