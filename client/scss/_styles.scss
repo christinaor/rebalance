@@ -230,10 +230,20 @@ a, a:visited, a:hover, a:active {
 
 
 /*****   RECORDS CONTAINER STYLING   *****/
+.records-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .records-container {
-  padding: 0 10px;
+  margin: 25px 0;
+  // padding: 0 10px;
   display: flex;
   flex-direction: column;
+  flex: 0 1 80%;
+  // align-items: center;
+  // max-width: 90%;
 }
 
 .add-record-wrapper{
@@ -244,6 +254,7 @@ a, a:visited, a:hover, a:active {
   justify-content: center;
   align-items: flex-end;
 }
+
 .cp-hover {
   background-color: #fafafa;
   text-align: center;
@@ -293,8 +304,10 @@ a, a:visited, a:hover, a:active {
 
 .alter-records-wrapper {
   padding: 30px;
+  // max-width: 80%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .alter-section {
@@ -314,13 +327,13 @@ a, a:visited, a:hover, a:active {
   align-items: center;
 }
 
-.record-edit-hover, .record-delete-hover {
-  background-color: #fafafa;
-}
+// .record-edit-hover, .record-delete-hover {
+//   background-color: #fafafa;
+// }
 
-.record-edit-hover:hover, .record-delete-hover:hover {
-  background-color: blueviolet;
-}
+// .record-edit-hover:hover, .record-delete-hover:hover {
+//   background-color: blueviolet;
+// }
 
 .records-pending-update {
   display: grid;
@@ -334,13 +347,21 @@ a, a:visited, a:hover, a:active {
 }
 
 /*****   RECORDS GRID STYLING   *****/
-.records-list-wrapper {
-  display: grid;
-  grid: repeat(9, auto);
-  // grid-template-columns: repeat(auto-fill, 400px);
-  grid-auto-flow: row;
-}
+// .MuiDataGrid-cell {
+//   justify-content: center;
+// }
 
+// .records-list-wrapper {
+//   display: grid;
+//   grid: repeat(9, auto);
+//   // grid-template-columns: repeat(auto-fill, 400px);
+//   grid-auto-flow: row;
+// }
+
+.records-list-wrapper {
+  display: flex;
+  justify-content: center;
+}
 
 
 .grid-record {

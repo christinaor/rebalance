@@ -227,17 +227,27 @@ const ListOfRecords = props => {
       {
         field: 'id',
         headerName: 'ID',
-        width: 30
+        minWidth: 30,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1
+        // justifyContent: 'center'
       },
       {
         field: 'counterparty_username',
         headerName: 'Counterparty',
-        width: 90
+        minWidth: 120,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1
       },
       {
         field: 'input_date',
         headerName: 'Date Entered',
-        width: 120,
+        minWidth: 120,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) => {
           const recordDate = new Date(params.row.input_date);
           const yyyy = recordDate.getFullYear();
@@ -253,44 +263,61 @@ const ListOfRecords = props => {
       {
         field: 'item_name',
         headerName: 'Item',
-        width: 120,
-        editable: true
+        minWidth: 120,
+        // editable: true,
+        headerAlign: 'center',
+        align: 'left',
+        flex: 1
       },
       {
         field: 'item_cost',
         headerName: 'Cost',
-        width: 90,
-        editable: true
+        minWidth: 90,
+        // editable: true,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1
       },
       {
         field: 'user_split',
-        headerName: 'User Split ($)',
-        width: 150,
+        headerName: 'User Split',
+        minWidth: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
+        valueGetter: (params) => '$' + params.row.item_cost
       },
       {
         field: 'counterparty_split',
-        headerName: 'Counterparty Split ($)',
+        headerName: 'Counterparty Split',
         description: 'This column has a value getter',
-        width: 150,
+        minWidth: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) => {
           // MUI's getValue is deprecated, use params.row object to access data instead
           const cpSplit = (params.row.item_cost - params.row.item_cost * params.row.user_perc / 100).toFixed(2);
-          return cpSplit;
+          return '$' + cpSplit;
         }
       },
       {
         field: 'user_perc',
         headerName: 'User Percentage',
-        width: 120,
+        minWidth: 150,
+        headerAlign: 'center',
+        align: 'center',
+        flex: 1,
         valueGetter: (params) => {
           return params.row.user_perc + '%'
         },
-        editable: true
+        // editable: true
       }
     ]
   };
 
   return (
+    <div className="records-wrapper">
     <Paper elevation={3} className="records-container">
       <AlterRecordsComponent 
         allButtonsVisible={allButtonsVisible}
@@ -380,13 +407,24 @@ const ListOfRecords = props => {
       >
         {/* MUI datagrid */}
         {populatedRecords &&
-        <div style={{ height: 400, width: '100%' }}>
+        <div style={{ height: 600, width: '90%'}}>
           <DataGrid
             rows={recordsList}
             columns={recordCols}
-            pageSize={10}
-            rowsPerPageOptions={[5]}
-            onCellClick={editOrDeleteRecord}
+            density='comfortable'
+            // autoPageSize='true'
+            // autoHeight='true'
+            pageSize={20}
+            rowsPerPageOptions={[20]}
+            onRowClick={editOrDeleteRecord}
+            // sx={{
+            //   m: 2,
+            //   border: 2,
+            //   borderColor: 'inherit.light',
+            //   '& .MuiDataGrid-cell:hover': {
+            //     color: 'primary.main',
+            //   }
+            // }}
             // checkboxSelection
             // disableSelectionOnClick
 
@@ -407,6 +445,7 @@ const ListOfRecords = props => {
       </div>
       <br />
     </Paper>
+    </div>
   )
 };
 
