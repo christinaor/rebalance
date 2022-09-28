@@ -19,12 +19,13 @@ function App(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!cookies.user) {
-      (pressedSignup) ? navigate('/flow/signup') 
-        : navigate('/flow/login', { replace: true })
+    if (!cookies.user && pressedSignup) {
+      navigate('/flow/signup')
+    } else if (!cookies.user && !pressedSignup) {
+      navigate('/flow/login', { replace: true })
     } else {
       navigate('/', { replace: true })
-    }
+    };
     setAppIsReady(true);
   }, [cookies, pressedSignup])
 
