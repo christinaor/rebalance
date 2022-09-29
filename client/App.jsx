@@ -63,8 +63,9 @@ function App(props) {
             element={<SettingsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Copyright />
+
       </main>
+      <Copyright />
       </StyledEngineProvider>
     )
   } else {
