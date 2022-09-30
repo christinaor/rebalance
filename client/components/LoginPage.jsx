@@ -77,17 +77,15 @@ const LoginPage = (props) => {
         <span className="nav-logo">RE:Balance</span>
       </div> */}
 
-
-
       <div className="login-left">
         <div className="login-text-wrapper">
           <Typography variant="h1" className="login-title-text">RE:Balance</Typography>
-          <Typography variant="h2" className="login-subtitle-text">Manage reconciliations with your circles</Typography>
+          <Typography variant="h2" className="login-subtitle-text">Manage reconciliations with your circles.</Typography>
         </div>
         {/* <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" /> */}
       </div>
 
-      <div className="login-right">
+      <Paper elevation={3} className="login-right">
         <Box
           component="form"
           sx={{
@@ -139,8 +137,10 @@ const LoginPage = (props) => {
         <div>
         { failedLogin &&
           <p>Forgot password?</p>
-        }          
+        }
         </div>
+
+        <hr></hr>
 
         <Box
           component="form"
@@ -151,12 +151,12 @@ const LoginPage = (props) => {
           autoComplete="off"
           className="login-signup-wrapper"
         >
-            <Button className="signup-link" type="submit" variant="contained" size="medium" onClick={() => setPressedSignup(true)}>Create a new account</Button>
-          </Box>
+          <Button className="signup-link-button" type="submit" variant="contained" size="medium" onClick={() => setPressedSignup(true)}>Create new account</Button>
+        </Box>
           {/* <span>First time at RE:balance?</span>
           <Link className="signup-link" to="/flow/signup" onClick={() => setPressedSignup(true)}>Create a new account</Link> */}
 
-      </div>
+      </Paper>
     </div>
   )
 }

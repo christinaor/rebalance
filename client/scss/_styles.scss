@@ -1,23 +1,35 @@
 /*****   MAIN STYLING   *****/
 body {
-  // background: $lightPurple;
-  margin: 0;
+  min-width: 720px;
+  margin: 0 auto;
   background: #F0F1FB;
   font-family: 'Avenir', Verdana,'Segoe UI', Tahoma, sans-serif;
-};
 
-
-.main-flex-wrapper {
-  margin: 0 auto;
-  position: relative;
-  zoom: 1;
+  // width: 85%;
+  align-items: center;
+  // zoom: 1;
   // display: flex;
-  min-height: 100vh;
+  // min-height: 100vh;
   // flex-direction: column;
   // justify-content: space-between;
   // justify-content: center;
   // align-items: center;
 }
+
+#root {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content-wrapper {
+  // width: 100%;
+  display: flex;
+  justify-content: center;
+  flex: 1 0 auto;
+  // padding: 500px;
+};
 
 nav {
   // max-width: var(--site-width);
@@ -35,9 +47,19 @@ a, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 
+.main-container {
+  width: 100%;
+  height: auto;
+  // border: 5px solid #FFFF00;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  // align-items: center;
+}
+
 .footer {
   padding: 15px;
-  background-color: #5B5BD7;
+  background-color: #b1b6d4;
   color: #F1F1F8;
   text-align: center;
   // font-size: 200px;
@@ -85,10 +107,7 @@ a, a:visited, a:hover, a:active {
   gap: 1em;
 }
 
-.main-wrapper {
-  display: flex;
-  flex-direction: column;
-};
+
 
 // flex: 1 1 auto needed to grow .summary-and-records into remaining space available
 .summary-and-records {
@@ -115,14 +134,14 @@ a, a:visited, a:hover, a:active {
 .summary-title, .records-title {
   padding: 10px;
   display: flex;
-  background-color: #5B5BD7;
+  background-color: #4c4ce6;
   color: #F1F1F8;
   font-size: 20px;
 }
 
 // .summary-title {
 //   padding: 0 40px;
-//   background-color: #5B5BD7;
+//   background-color: #4c4ce6;
 //   color: #F1F1F8;
 //   font-size: 20px;
 //   display: flex;
@@ -154,18 +173,36 @@ a, a:visited, a:hover, a:active {
 
 /*****   LOGIN AND SIGNUP STYLING   *****/
 .login-page-wrapper {
+  // position: absolute;
+  // width: 2000px;
+  height: auto;
+  // margin: auto;
+  // border: 5px solid #FFFF00;
+  // padding: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 32px;
   // margin: 30px auto 0;
   // position: relative;
 }
 
 .login-left {
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 0 1 auto;
+
+
+  // width: 50%;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // flex: 1 0 auto;
+  // position: relative;
 }
 
 .login-text-wrapper {
@@ -173,43 +210,66 @@ a, a:visited, a:hover, a:active {
   flex-direction: column;
 }
 
-// .login-title-text {
-//   text-align: left;
-// }
+.login-title-text {
+  color: #0C0C31;
+  font-weight: 700;
+}
 
 // .login-subtitle-text {
 
 // }
 
-.login-left-img {
-  width: 50%;
-  flex: 1 1 25%;
-}
+// .login-left-img {
+//   width: 50%;
+//   flex: 1 1 25%;
+// }
 
-.login-right, .login-only-wrapper {
+.login-right {
+  background-color: white;
   width: 50%;
+  // display: flex;
+  // flex-direction: column;
+  // // text-align: center;
+  // justify-content: center;
+  // align-items: center;
+  // flex: 0 1 auto;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 25px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  // margin: 40px auto 0;
+};
+
+.login-only-wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1 0 auto;
-  position: relative;
-  // margin: 40px auto 0;
-};
-
-
-
-.login-signup-wrapper {
-  display: flex;
-  flex-direction: column;
 }
 
+hr {
+  display: inline-block; 
+  height: 1px;
+  border: 0; 
+  border-top: 1px solid #b1b6d4;
+  margin: 1em 0; 
+  padding: 0;
+  width: 60%;
+  text-align: center;
+  // border-color: #b1b6d4;
+}
 
+// .login-signup-wrapper {
+//   display: flex;
+//   flex-direction: column;
+// }
 
-
-
-
-
+.login-button {
+  background-color: #0C0C31;
+}
 
 .login-form {
   display: flex;
@@ -224,8 +284,9 @@ a, a:visited, a:hover, a:active {
 };
 
 // button
-.signup-login-button {
-  width: 150px;
+.signup-link-button {
+  // width: 150px;
+  background-color: #4c4ce6;
 };
 
 .signup-page-wrapper {

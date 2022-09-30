@@ -35,7 +35,7 @@ const MainContainer = props => {
   const [numUnpaidBalances, setNumUnpaidBalances] = useState(0);
 
   return (
-    <div className="container">
+    <div className="main-container">
       <NavBar
         cookies={cookies}
         removeCookie={removeCookie}

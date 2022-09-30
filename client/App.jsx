@@ -32,7 +32,7 @@ function App(props) {
   if (appIsReady) {
     return (
       <StyledEngineProvider injectFirst>
-      <main className="main-flex-wrapper">
+      <div className="main-content-wrapper">
         <Routes>
           <Route path='/*' 
             element={<MainContainer 
@@ -64,13 +64,13 @@ function App(props) {
           <Route path="*" element={<NotFound />} />
         </Routes>
 
-      </main>
+      </div>
       <Copyright />
       </StyledEngineProvider>
     )
   } else {
     return (
-      <div>Rebalance is loading...</div>
+      <div>RE:Balance is loading...</div>
     )
   }
 };
