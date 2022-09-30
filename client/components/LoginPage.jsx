@@ -10,8 +10,10 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
+import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { Paper, Button, Box, TextField, Typography } from '@mui/material'
 import piggybank from './../../assets/piggybank.png'
+// import balanceImg from './../../assets/reshot-icon-balance-VST9DRGPJF.svg';
 
 const LoginPage = (props) => {
   const [loginCreds, setLoginCreds] = useState({
@@ -67,15 +69,51 @@ const LoginPage = (props) => {
           pass: ''
         })
       )
-  }
+  };
 
   return (
     <div className="login-page-wrapper">
-      <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" />
+      {/* <div className="login-top">
+        <span className="nav-logo">RE:Balance</span>
+      </div> */}
+
+
+
+      <div className="login-left">
+        <div className="login-text-wrapper">
+          <Typography variant="h1" className="login-title-text">RE:Balance</Typography>
+          <Typography variant="h2" className="login-subtitle-text">Manage reconciliations with your circles</Typography>
+        </div>
+        {/* <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" /> */}
+      </div>
 
       <div className="login-right">
-        <h1>RE:balance<br /> Manage Your Reconciliations</h1>
-        <form className="login-form" action="/authorize/signin" method="GET">
+        <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+          className="login-only-wrapper"
+        >
+          <TextField
+            id="login-email"
+            label="Email"
+            variant="outlined"
+            value={loginCreds.email}
+            onInput={(e) => setLoginCreds({...loginCreds, email: e.target.value})}
+          />
+          <TextField
+            id="login-pass"
+            label="Password"
+            variant="outlined"
+            onInput={(e) => setLoginCreds({...loginCreds, pass: e.target.value})}
+          />
+          <Button className="login-button" type="submit" variant="contained" size="medium" onClick={handleLogin}>Log in</Button>
+        </Box>
+
+        {/* <form className="login-form" action="/authorize/signin" method="GET">
           <input 
             id="email" 
             name="email" 
@@ -97,18 +135,27 @@ const LoginPage = (props) => {
             type="submit" 
             onClick={handleLogin}
           >Log In!</button>
-        </form>
+        </form> */}
+        <div>
         { failedLogin &&
-          <div>Forget your password or a new user?</div>
-        }
-        <br />
-
-        <div className="login-signup-wrapper">
-          <h4>First time at RE:balance? Let's sign you up!</h4>
-          <button 
-            className="signup-login-button"
-            onClick={() => setPressedSignup(true)}>Sign Up Here!</button>
+          <p>Forgot password?</p>
+        }          
         </div>
+
+        <Box
+          component="form"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+          className="login-signup-wrapper"
+        >
+            <Button className="signup-link" type="submit" variant="contained" size="medium" onClick={() => setPressedSignup(true)}>Create a new account</Button>
+          </Box>
+          {/* <span>First time at RE:balance?</span>
+          <Link className="signup-link" to="/flow/signup" onClick={() => setPressedSignup(true)}>Create a new account</Link> */}
+
       </div>
     </div>
   )
