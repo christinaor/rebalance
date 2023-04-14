@@ -12,7 +12,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { Paper, Button, Box, TextField, Typography } from '@mui/material'
-import piggybank from './../../assets/piggybank.png'
+import piggybank from '../../../assets/piggybank.png'
 // import balanceImg from './../../assets/reshot-icon-balance-VST9DRGPJF.svg';
 
 const LoginPage = (props) => {

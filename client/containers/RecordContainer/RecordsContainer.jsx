@@ -12,9 +12,9 @@
 import React, { useEffect, useState } from "react";
 import { Paper } from "@mui/material";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import AddRecord from "../components/AddRecord.jsx";
-import UpdateRecord from "../components/UpdateRecord.jsx";
-import ListOfRecords from '../components/ListOfRecords.jsx';
+import AddRecord from "../../components/AddRecord/AddRecord.jsx";
+import UpdateRecord from "../../components/UpdateRecord/UpdateRecord.jsx";
+import ListOfRecords from '../../components/ListOfRecords/ListOfRecords.jsx';
 
 const RecordsContainer = props => {
   const { 

@@ -12,7 +12,7 @@
 import React, { useEffect, useState } from "react";
 import { Paper } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import CounterpartyFilter from "../components/CounterpartyFilter.jsx";
+import CounterpartyFilter from "../../components/CounterpartyFilter/CounterpartyFilter.jsx";
 import ArrowRight from "@mui/icons-material/ArrowRight";
 
 export const TotalBalanceContainer = (props) => {

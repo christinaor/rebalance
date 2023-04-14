@@ -14,9 +14,9 @@ import Select from 'react-select';
 // import makeAnimated from 'react-select/animated';
 import { Button, ButtonGroup, Paper } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import Record from "./Record.jsx";
-import AddRecord from "./AddRecord.jsx";
-import AlterRecordsComponent from "./AlterRecords.jsx";
+import Record from "../Record/Record.jsx"
+import AddRecord from "../AddRecord/AddRecord.jsx";
+import AlterRecordsComponent from "../AlterRecords/AlterRecords.jsx";
 
 const ListOfRecords = props => {
   const {

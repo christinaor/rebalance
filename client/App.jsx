@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { StyledEngineProvider } from '@mui/material/styles';
-import MainContainer from './containers/MainContainer.jsx';
-import Copyright from './components/Copyright.jsx';
-import LoginPage from './components/LoginPage.jsx';
-import SignupPage from './components/SignupPage.jsx';
-import SettingsPage from './components/SettingsPage.jsx';
-import NotFound from './components/NotFound.jsx';
+import MainContainer from './containers/MainContainer/MainContainer.jsx';
+import Copyright from './components/Copyright/Copyright.jsx';
+import LoginPage from './components/LoginPage/LoginPage.jsx';
+import SignupPage from './components/SignupPage/SignupPage.jsx';
+import SettingsPage from './components/SettingsPage/SettingsPage.jsx';
+import NotFound from './components/NotFound/NotFound.jsx';
 
 function App(props) {
   const [pressedSignup, setPressedSignup] = useState(false);

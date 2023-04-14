@@ -10,7 +10,7 @@
  */
 
 import React, { useEffect, useState } from 'react'
-import UpdateRecord from './UpdateRecord.jsx';
+import UpdateRecord from '../UpdateRecord/UpdateRecord.jsx';
 
 const Record = (props) => {
   const { 

@@ -11,11 +11,11 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
-import CounterpartyFilter from '../components/CounterpartyFilter.jsx';
-import { TotalBalanceContainer } from "./TotalBalanceContainer.jsx";
-import RecordsContainer from "./RecordsContainer.jsx";
-import NavBar from "../components/NavBar.jsx"
-import SettingsPage from "../components/SettingsPage.jsx"
+import CounterpartyFilter from '../../components/CounterpartyFilter/CounterpartyFilter.jsx';
+import { TotalBalanceContainer } from "../TotalBalanceContainer/TotalBalanceContainer.jsx"
+import RecordsContainer from "../RecordContainer/RecordsContainer.jsx";
+import NavBar from "../../components/NavBar/NavBar.jsx"
+import SettingsPage from "../../components/SettingsPage/SettingsPage.jsx"
 
 const MainContainer = props => {
   const { 

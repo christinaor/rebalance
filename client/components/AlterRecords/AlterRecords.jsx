@@ -18,10 +18,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DownloadIcon from '@mui/icons-material/Download';
 import { DataGrid } from '@mui/x-data-grid';
-import Record from "./Record.jsx";
-import AddRecord from "./AddRecord.jsx";
-import UpdateRecord from "./UpdateRecord.jsx";
-import CounterpartyFilter from './CounterpartyFilter.jsx'
+import Record from "../Record/Record.jsx";
+import AddRecord from "../AddRecord/AddRecord.jsx";
+import UpdateRecord from "../UpdateRecord/UpdateRecord.jsx";
+import CounterpartyFilter from '../CounterpartyFilter/CounterpartyFilter.jsx'
  
 const AlterRecordsComponent = props => {
   const {
