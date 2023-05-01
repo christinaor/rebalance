@@ -1,0 +1,36 @@
+@import '/client/scss/_colors';
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 1.8rem;
+
+  background-color: #0C0C31;
+  color: $mainTextWhite;
+  font-size: 1.2rem;
+}
+
+.navigation {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.navLogo {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.rightNav {
+  display: flex;
+  gap: 2rem;
+
+  list-style: none;
+}
+
+.rightNavLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
