@@ -11,11 +11,13 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
-import CounterpartyFilter from '../components/CounterpartyFilter.jsx';
-import { TotalBalanceContainer } from "./TotalBalanceContainer.jsx";
-import RecordsContainer from "./RecordsContainer.jsx";
-import NavBar from "../components/NavBar/NavBar.jsx"
-import SettingsPage from "../components/SettingsPage.jsx"
+import CounterpartyFilter from '../../components/CounterpartyFilter.jsx';
+import { TotalBalanceContainer } from "../TotalBalanceContainer.jsx";
+import RecordsContainer from "../RecordsContainer.jsx";
+import NavBar from "../../components/NavBar/NavBar.jsx";
+import SettingsPage from "../../components/SettingsPage.jsx";
+
+import styles from './styles.module.scss';
 
 const MainContainer = props => {
   const { 
@@ -35,7 +37,7 @@ const MainContainer = props => {
   const [numUnpaidBalances, setNumUnpaidBalances] = useState(0);
 
   return (
-    <div className="main-container">
+    <div className={styles.mainContainer}>
       <NavBar
         cookies={cookies}
         removeCookie={removeCookie}
@@ -56,7 +58,7 @@ const MainContainer = props => {
             currentCounterparty={currentCounterparty}
             setCurrentCounterparty={setCurrentCounterparty}
           /> */}
-        <div className="summary-and-records">
+        <div className={styles.summaryAndRecords}>
           <TotalBalanceContainer
             counterpartiesList={counterpartiesList}
             setCounterpartiesList={setCounterpartiesList}
