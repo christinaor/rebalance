@@ -12,9 +12,11 @@
 import React, { useEffect, useState } from "react";
 import { Paper } from "@mui/material";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import AddRecord from "../components/AddRecord.jsx";
-import UpdateRecord from "../components/UpdateRecord.jsx";
-import ListOfRecords from '../components/ListOfRecords.jsx';
+import AddRecord from "../../components/AddRecord.jsx";
+import UpdateRecord from "../../components/UpdateRecord.jsx";
+import ListOfRecords from '../../components/ListOfRecords.jsx';
+
+import styles from './styles.module.scss';
 
 const RecordsContainer = props => {
   const { 
@@ -102,9 +104,9 @@ const RecordsContainer = props => {
 
   return (
     <div className="records-section">
-      <Paper elevation={0} square className="records-title">
+      <Paper elevation={0} square className={styles.recordsTitleBar}>
         <ArrowRightIcon />
-        <div>Records with {currentCounterparty}</div>
+        <h2>Records with {currentCounterparty}</h2>
       </Paper>
       <ListOfRecords 
         recordsList={recordsList}

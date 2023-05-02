@@ -30,6 +30,13 @@ html {
   scroll-behavior: smooth;
 }
 
+h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
 .main-content-wrapper {
   display: flex;
   justify-content: center;
@@ -92,7 +99,7 @@ a, a:visited, a:hover, a:active {
   // gap: 13px;
 }
 
-.summary-title, .records-title {
+.summary-title {
   padding: 10px;
   display: flex;
   background-color: #4c4ce6;
