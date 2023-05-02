@@ -11,7 +11,6 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
-import CounterpartyFilter from '../../components/CounterpartyFilter.jsx';
 import { TotalBalanceContainer } from "../TotalBalanceContainer/TotalBalanceContainer.jsx";
 import RecordsContainer from "../RecordsContainer/RecordsContainer.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";

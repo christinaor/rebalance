@@ -19,7 +19,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DownloadIcon from '@mui/icons-material/Download';
 import AddRecord from "../AddRecord/AddRecord.jsx";
 import UpdateRecord from "../UpdateRecord/UpdateRecord.jsx";
-import CounterpartyFilter from '../CounterpartyFilter.jsx';
+import CounterpartyFilter from '../CounterpartyFilter/CounterpartyFilter.jsx';
 
 import styles from './styles.module.scss';
  
