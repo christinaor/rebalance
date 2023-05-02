@@ -15,7 +15,7 @@ import CounterpartyFilter from '../../components/CounterpartyFilter.jsx';
 import { TotalBalanceContainer } from "../TotalBalanceContainer/TotalBalanceContainer.jsx";
 import RecordsContainer from "../RecordsContainer/RecordsContainer.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";
-import SettingsPage from "../../components/SettingsPage.jsx";
+import SettingsPage from "../../components/SettingsPage/SettingsPage.jsx";
 
 import styles from './styles.module.scss';
 
