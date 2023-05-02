@@ -33,7 +33,7 @@ html {
 h2 {
   margin: 0;
   padding: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
@@ -86,51 +86,8 @@ a, a:visited, a:hover, a:active {
   align-items: center;
 }
 
-
-
-
 .below-nav-wrapper {
   display: flex;
-}
-
-.total-balance-container {
-  display: flex;
-  flex-direction: column;
-  // gap: 13px;
-}
-
-.summary-title {
-  padding: 10px;
-  display: flex;
-  background-color: #4c4ce6;
-  color: #F1F1F8;
-  font-size: 20px;
-}
-
-// .summary-title {
-//   padding: 0 40px;
-//   background-color: #4c4ce6;
-//   color: #F1F1F8;
-//   font-size: 20px;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-
-// }
-
-.summary-cards {
-  margin: 25px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.card-style {
-  box-sizing: border-box;
-  // color: #bfc1ed;
-  // width: 50%;
-  padding: 22px 50px 42px;
-  // background-color: gray;
 }
 
 /*****   MUI Components   *****/

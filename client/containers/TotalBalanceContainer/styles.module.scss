@@ -1,0 +1,29 @@
+.totalBalanceContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.summaryTitleBar {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  display: flex;
+  background-color: #4c4ce6;
+  color: #F1F1F8;
+  font-size: 20px;
+}
+
+.summaryCards {
+  margin: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.card {
+  box-sizing: border-box;
+  // color: #bfc1ed;
+  // width: 50%;
+  padding: 22px 50px 42px;
+  // background-color: gray;
+}
