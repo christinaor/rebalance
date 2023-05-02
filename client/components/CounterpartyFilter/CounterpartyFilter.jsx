@@ -27,6 +27,8 @@ import {
  } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 
+import styles from './styles.module.scss';
+
 const CounterpartiesContainer = props => {
   const {
     counterpartiesList,
@@ -93,7 +95,7 @@ const CounterpartiesContainer = props => {
 
   return (
     <div>
-      <FormControl className="counterparty-filter-wrapper">
+      <FormControl className={styles.counterpartyFilterWrapper}>
         <InputLabel id="counterparty-filter-label">Filter by Counterparty</InputLabel>
         <Select
           labelId="counterparty-filter-label"

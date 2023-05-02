@@ -4,8 +4,8 @@ import { useCookies } from 'react-cookie';
 import { StyledEngineProvider } from '@mui/material/styles';
 import MainContainer from './containers/MainContainer/MainContainer.jsx';
 import Copyright from './components/Copyright/Copyright.jsx';
-import LoginPage from './components/LoginPage.jsx';
-import SignupPage from './components/SignupPage.jsx';
+import LoginPage from './components/LoginPage/LoginPage.jsx';
+import SignupPage from './components/SignupPage/SignupPage.jsx';
 import SettingsPage from './components/SettingsPage/SettingsPage.jsx';
 import NotFound from './components/NotFound/NotFound.jsx';
 

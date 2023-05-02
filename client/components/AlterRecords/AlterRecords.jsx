@@ -112,10 +112,6 @@ const AlterRecordsComponent = props => {
   return (
     <div className={styles.alterRecordsWrapper}>
       <div className={styles.alterSection}>
-        {/* <div className="records-sort-by">
-          <span>Sort by</span>
-          {AnimatedMultiFilter()}
-        </div> */}
         <CounterpartyFilter 
           counterpartiesList={counterpartiesList}
           setCounterpartiesList={setCounterpartiesList}

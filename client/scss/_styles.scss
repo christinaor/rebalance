@@ -92,76 +92,6 @@ a, a:visited, a:hover, a:active {
 
 
 /*****   LOGIN AND SIGNUP STYLING   *****/
-.login-page-wrapper {
-  // position: absolute;
-  // width: 2000px;
-  height: auto;
-  // margin: auto;
-  // border: 5px solid #FFFF00;
-  // padding: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 32px;
-  // margin: 30px auto 0;
-  // position: relative;
-}
-
-.login-left {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 0 1 auto;
-
-
-  // width: 50%;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
-  // flex: 1 0 auto;
-  // position: relative;
-}
-
-.login-text-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.login-title-text {
-  color: #0C0C31;
-  font-weight: 700;
-}
-
-// .login-subtitle-text {
-
-// }
-
-// .login-left-img {
-//   width: 50%;
-//   flex: 1 1 25%;
-// }
-
-.login-right {
-  background-color: white;
-  width: 50%;
-  // display: flex;
-  // flex-direction: column;
-  // // text-align: center;
-  // justify-content: center;
-  // align-items: center;
-  // flex: 0 1 auto;
-  display: inline-block;
-  text-align: center;
-  box-sizing: border-box;
-  border-radius: 25px;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  // margin: 40px auto 0;
-};
-
 .login-only-wrapper {
   width: 100%;
   display: flex;
@@ -179,16 +109,6 @@ hr {
   padding: 0;
   width: 60%;
   text-align: center;
-  // border-color: #b1b6d4;
-}
-
-// .login-signup-wrapper {
-//   display: flex;
-//   flex-direction: column;
-// }
-
-.login-button {
-  background-color: #0C0C31;
 }
 
 .login-form {
@@ -203,31 +123,6 @@ hr {
   align-items: center;
 };
 
-// button
-.signup-link-button {
-  // width: 150px;
-  background-color: #4c4ce6;
-};
-
-.signup-page-wrapper {
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-};
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.signup-page-format {
-  min-width: 250px;
-  display: flex;
-  justify-content: space-between;
-}
 
 
 /*****   COUNTERPARTIES STYLING   *****/
@@ -237,35 +132,12 @@ hr {
   flex-direction: column;
 }
 
-.counterparty-filter-wrapper {
-  min-width: 250px;
-}
-
-
-/*****   RECORDS CONTAINER STYLING   *****/
-
-
-
-
-
-
 .cp-hover {
   background-color: #fafafa;
   text-align: center;
 }
 .cp-hover:hover {
   background-color: #c83f49;
-}
-
-
-
-
-
-.records-sort-by {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 5px;
 }
 
 .record-buttons {

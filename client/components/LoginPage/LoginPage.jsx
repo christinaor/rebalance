@@ -10,10 +10,9 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
-import { Paper, Button, Box, TextField, Typography } from '@mui/material'
-import piggybank from './../../assets/piggybank.png'
-// import balanceImg from './../../assets/reshot-icon-balance-VST9DRGPJF.svg';
+import { Paper, Button, Box, TextField, Typography } from '@mui/material';
+
+import styles from './styles.module.scss';
 
 const LoginPage = (props) => {
   const [loginCreds, setLoginCreds] = useState({
@@ -72,20 +71,20 @@ const LoginPage = (props) => {
   };
 
   return (
-    <div className="login-page-wrapper">
+    <div className={styles.loginPageWrapper}>
       {/* <div className="login-top">
         <span className="nav-logo">RE:Balance</span>
       </div> */}
 
-      <div className="login-left">
-        <div className="login-text-wrapper">
-          <Typography variant="h1" className="login-title-text">RE:Balance</Typography>
+      <div className={styles.loginLeft}>
+        <div className={styles.loginTextWrapper}>
+          <Typography variant="h1" className={styles.loginTitleText}>RE:Balance</Typography>
           <Typography variant="h2" className="login-subtitle-text">Manage reconciliations with your circles.</Typography>
         </div>
         {/* <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" /> */}
       </div>
 
-      <Paper elevation={3} className="login-right">
+      <Paper elevation={3} className={styles.loginRight}>
         <Box
           component="form"
           sx={{
@@ -108,7 +107,7 @@ const LoginPage = (props) => {
             variant="outlined"
             onInput={(e) => setLoginCreds({...loginCreds, pass: e.target.value})}
           />
-          <Button className="login-button" type="submit" variant="contained" size="medium" onClick={handleLogin}>Log in</Button>
+          <Button className={styles.loginButton} type="submit" variant="contained" size="medium" onClick={handleLogin}>Log in</Button>
         </Box>
 
         {/* <form className="login-form" action="/authorize/signin" method="GET">
@@ -151,11 +150,8 @@ const LoginPage = (props) => {
           autoComplete="off"
           className="login-signup-wrapper"
         >
-          <Button className="signup-link-button" type="submit" variant="contained" size="medium" onClick={() => setPressedSignup(true)}>Create new account</Button>
+          <Button className={styles.signupLinkButton} type="submit" variant="contained" size="medium" onClick={() => setPressedSignup(true)}>Create new account</Button>
         </Box>
-          {/* <span>First time at RE:balance?</span>
-          <Link className="signup-link" to="/flow/signup" onClick={() => setPressedSignup(true)}>Create a new account</Link> */}
-
       </Paper>
     </div>
   )
