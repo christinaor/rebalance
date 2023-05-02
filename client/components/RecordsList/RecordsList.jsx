@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module  ListOfRecords
+ * @module  RecordsList
  * @author
  * @date
  * @description Component holding state consisting of records list and conditional rendering
@@ -14,11 +14,11 @@ import Select from 'react-select';
 // import makeAnimated from 'react-select/animated';
 import { Button, ButtonGroup, Paper } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import Record from "./Record.jsx";
-import AddRecord from "./AddRecord.jsx";
-import AlterRecordsComponent from "./AlterRecords.jsx";
+import AlterRecordsComponent from "../AlterRecords/AlterRecords.jsx";
 
-const ListOfRecords = props => {
+import styles from './styles.module.scss';
+
+const RecordsList = props => {
   const {
     recordsList,
     setRecordsList,
@@ -48,7 +48,6 @@ const ListOfRecords = props => {
   // const [actionsValue, setActionsValue] = useState('Select')
 
   useEffect(() => {
-    // console.log('checking recordsList: ', recordsList)
     if (currentCounterparty !== 'All Parties') setSortedRecords(false);
   }, [currentCounterparty]);
 
@@ -317,8 +316,8 @@ const ListOfRecords = props => {
   };
 
   return (
-    <div className="records-wrapper">
-    <Paper elevation={3} className="records-container">
+    <div className={styles.recordsWrapper}>
+    <Paper elevation={3} className={styles.recordsContainer}>
       <AlterRecordsComponent 
         allButtonsVisible={allButtonsVisible}
         setAllButtonsVisible={setAllButtonsVisible}
@@ -350,59 +349,6 @@ const ListOfRecords = props => {
         setPopulatedCounterparties={setPopulatedCounterparties}
         
       />
-      {/* <div className="alter-records-wrapper">
-        <div className="records-sort-by">
-          <span>Sort by</span>
-          {AnimatedMultiFilter()}
-        </div> */}
-        {/* <div className="record-filters">
-          Sort by:
-          {(currentCounterparty === 'All Parties') && <button onClick={sortByCounterparty}>Counterparty</button>}
-          <button>Date</button>
-          <button>Cost</button>
-          <button>User Split</button>
-          <button>Counterparty Split</button>
-          <button>User Percentage</button>
-        </div> */}
-        {/* {allButtonsVisible && (
-        <div className="record-buttons align-items-center">
-          <ButtonGroup variant="text" aria-label="text button group" size="medium">
-            <Button onClick={clickedInitialAdd}>Add</Button>
-            <Button onClick={clickedInitialEdit}>Edit</Button>
-            <Button onClick={clickedInitialDelete}>Delete</Button>
-          </ButtonGroup>
-        </div>
-        )}
-        {!allButtonsVisible && inEditMode &&
-        <Button variant="contained" size="small" onClick={cancelEdit}>Cancel Edit</Button>
-        }
-        {!allButtonsVisible && inDeleteMode &&
-        <Button onClick={cancelDelete}>Cancel Delete</Button>
-        }
-      </div> */}
-      {/* <Paper elevation={0} square className="add-record-wrapper">
-        {toggleAddRecordForm &&
-          <AddRecord 
-            recordsList={recordsList}
-            setRecordsList={setRecordsList}
-            populatedRecords={populatedRecords}
-            setPopulatedRecords={setPopulatedRecords}
-            currentCounterparty={currentCounterparty}
-            setCurrentCounterparty={setCurrentCounterparty}
-            toggleAddRecordForm={toggleAddRecordForm}
-            setToggleAddRecordForm={setToggleAddRecordForm}
-            allButtonsVisible={allButtonsVisible}
-            setAllButtonsVisible={setAllButtonsVisible}
-            cancelAdd={cancelAdd}
-          />
-        }
-      </Paper> */}
-        {/* {inDeleteMode && 
-          <Paper elevation={0} className="padding-tb-20px" square>Select a record below to delete...</Paper>
-        }
-        {inEditMode &&
-          <Paper elevation={0} className="padding-tb-20px" square>Select a record below to edit...</Paper>
-        } */}
       <div className="records-list-wrapper"
       >
         {/* MUI datagrid */}
@@ -430,18 +376,6 @@ const ListOfRecords = props => {
 
           />
         </div>}
-        {/* <div className="center grid-record">
-          <span>Record No.</span>
-          <span>Counterparty</span>
-          <span>Date Entered</span>
-          <span>Item</span>
-          <span>Cost</span>
-          <span>User Split</span>
-          <span>Counterparty Split</span>
-          <span>User Percentage</span>
-          <span></span>
-        </div>
-        {recordElements} */}
       </div>
       <br />
     </Paper>
@@ -449,4 +383,4 @@ const ListOfRecords = props => {
   )
 };
 
-export default ListOfRecords;
+export default RecordsList;

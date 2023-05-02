@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { Button } from '@mui/material';
 
+import styles from './styles.module.scss';
+
 const AddRecord = (props) => {
   const { 
     populatedRecords,
@@ -70,11 +72,11 @@ const AddRecord = (props) => {
   };
 
   return (
-    <div className="records-post-form">
+    <div className={styles.recordsPostForm}>
       {isEmptyCounterparty &&
       <div>Please choose a counterparty before adding!</div>
       }
-      <form className="records-post-inputs" action="/api/records" method="POST">
+      <form className={styles.recordsPostInputs} action="/api/records" method="POST">
         <div className="display-flex-column">
           <label for="item">Item Purchased</label>
           <input name="item" type="text" value={postedRecord.item} id="records-post-item" onChange={(e) => setPostedRecord({...postedRecord, item: e.target.value})} />
@@ -87,7 +89,7 @@ const AddRecord = (props) => {
           <label for="userPercent">Your Split (%)</label>
           <input name="userPercent" type="text" placeholder={50}value={postedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setPostedRecord({...postedRecord, userPercent: e.target.value})} />
         </div>
-        <div className="add-cancel-buttons">
+        <div className={styles.addCancelButtons}>
           <Button type="submit" variant="contained" size="small" onClick={postRecord}>Add Record</Button>
         </div>
         {!allButtonsVisible && toggleAddRecordForm &&

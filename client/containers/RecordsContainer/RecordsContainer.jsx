@@ -12,9 +12,7 @@
 import React, { useEffect, useState } from "react";
 import { Paper } from "@mui/material";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import AddRecord from "../../components/AddRecord.jsx";
-import UpdateRecord from "../../components/UpdateRecord.jsx";
-import ListOfRecords from '../../components/ListOfRecords.jsx';
+import RecordsList from '../../components/RecordsList/RecordsList.jsx';
 
 import styles from './styles.module.scss';
 
@@ -108,7 +106,7 @@ const RecordsContainer = props => {
         <ArrowRightIcon />
         <h2>Records with {currentCounterparty}</h2>
       </Paper>
-      <ListOfRecords 
+      <RecordsList 
         recordsList={recordsList}
         setRecordsList={setRecordsList}
         populatedRecords={populatedRecords}

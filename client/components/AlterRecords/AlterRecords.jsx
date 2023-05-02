@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module  ListOfRecords
+ * @module  
  * @author
  * @date
  * @description Component holding state consisting of records list and conditional rendering
@@ -17,11 +17,11 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DownloadIcon from '@mui/icons-material/Download';
-import { DataGrid } from '@mui/x-data-grid';
-import Record from "./Record.jsx";
-import AddRecord from "./AddRecord.jsx";
-import UpdateRecord from "./UpdateRecord.jsx";
-import CounterpartyFilter from './CounterpartyFilter.jsx'
+import AddRecord from "../AddRecord/AddRecord.jsx";
+import UpdateRecord from "../UpdateRecord/UpdateRecord.jsx";
+import CounterpartyFilter from '../CounterpartyFilter.jsx';
+
+import styles from './styles.module.scss';
  
 const AlterRecordsComponent = props => {
   const {
@@ -110,8 +110,8 @@ const AlterRecordsComponent = props => {
     }
 
   return (
-    <div className="alter-records-wrapper">
-      <div className="alter-section">
+    <div className={styles.alterRecordsWrapper}>
+      <div className={styles.alterSection}>
         {/* <div className="records-sort-by">
           <span>Sort by</span>
           {AnimatedMultiFilter()}
@@ -143,7 +143,7 @@ const AlterRecordsComponent = props => {
           </ButtonGroup>
         )}
       </div>
-    <Paper elevation={0} square className="add-record-wrapper">
+    <Paper elevation={0} square className={styles.addRecordWrapper}>
       {toggleAddRecordForm &&
         <AddRecord 
           recordsList={recordsList}
@@ -160,7 +160,7 @@ const AlterRecordsComponent = props => {
         />
       }
     </Paper>
-    <div className="in-delete-mode">
+    <div className={styles.inDeleteMode}>
     {inDeleteMode && 
       <Paper elevation={0} className="padding-tb-20px" square>Select a record below to delete...</Paper>
     }
@@ -168,7 +168,7 @@ const AlterRecordsComponent = props => {
     <Button variant="contained" size="small" onClick={cancelDelete}>Cancel Delete</Button>
     }
     </div>
-    <div className="in-edit-mode">
+    <div className={styles.inEditMode}>
     {inEditMode &&
       <Paper elevation={0} className="padding-tb-20px" square>Select a record below to edit...</Paper>
     }
