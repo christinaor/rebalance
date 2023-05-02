@@ -77,6 +77,7 @@ const AddRecord = (props) => {
       <div>Please choose a counterparty before adding!</div>
       }
       <form className={styles.recordsPostInputs} action="/api/records" method="POST">
+
         <div className="display-flex-column">
           <label for="item">Item Purchased</label>
           <input name="item" type="text" value={postedRecord.item} id="records-post-item" onChange={(e) => setPostedRecord({...postedRecord, item: e.target.value})} />

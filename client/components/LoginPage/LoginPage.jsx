@@ -83,7 +83,6 @@ const LoginPage = (props) => {
         </div>
         {/* <img className="login-left-img" src={piggybank} alt="minimalist piggy bank image" /> */}
       </div>
-
       <Paper elevation={3} className={styles.loginRight}>
         <Box
           component="form"

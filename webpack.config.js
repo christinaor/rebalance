@@ -54,13 +54,13 @@ module.exports = {
       // directory: path.resolve(__dirname, 'build')
     },
     // 
-    proxy: {
-      // will not know what to do with /api without this line since nothing in client-side routes (endpoints) match /api
-      '/api': 'http://localhost:8888',
-      '/authorize': 'http://localhost:8888'
-    },
+    // proxy: {
+    //   // will not know what to do with /api without this line since nothing in client-side routes (endpoints) match /api
+    //   '/api': 'http://localhost:8888',
+    //   '/authorize': 'http://localhost:8888'
+    // },
     // specific to client-side routing
-    // automatically routes all endpoints to index.html if not 404, and then returns
+    // routes all endpoints to index.html if not 404, and then returns
     // historyApiFallback is false by default
     // related to * route on backend
     historyApiFallback: true,
