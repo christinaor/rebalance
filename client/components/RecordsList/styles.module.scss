@@ -10,3 +10,15 @@
   flex-direction: column;
   flex: 0 1 80%;
 }
+
+// .records-list-wrapper {
+//   display: grid;
+//   grid: repeat(9, auto);
+//   // grid-template-columns: repeat(auto-fill, 400px);
+//   grid-auto-flow: row;
+// }
+
+.recordsListWrapper {
+  display: flex;
+  justify-content: center;
+}

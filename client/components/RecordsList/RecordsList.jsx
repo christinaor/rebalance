@@ -349,7 +349,7 @@ const RecordsList = props => {
         setPopulatedCounterparties={setPopulatedCounterparties}
         
       />
-      <div className="records-list-wrapper"
+      <div className={styles.recordsListWrapper}
       >
         {/* MUI datagrid */}
         {populatedRecords &&

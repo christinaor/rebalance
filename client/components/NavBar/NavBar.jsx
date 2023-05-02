@@ -28,35 +28,35 @@ const NavBar = (props) => {
   } = props;
   
   return (
-    <Paper className={styles.navBar} elevation={3} square>
-      <nav className={styles.navigation}>
-        <a className={styles.navLogo} href="/">RE:Balance</a>
-        <ul className={styles.rightNav}>
-          <li className={styles.rightNavLink}>
-            <Link to="/flow/about">
-              <span>About</span>
-            </Link>
-          </li>
-          <li className={styles.rightNavLink}>
-            <Link to="/flow/settings">
-              <span>Settings</span>
-            </Link>
-          </li>
-          <li className={styles.rightNavLink}>
-            <Link to="/flow/login">
-              <Logout
-                cookies={cookies}
-                removeCookie={removeCookie}
-                setCookie={setCookie}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
-                cookieTimeout={cookieTimeout}
-                setCookieTimeout={setCookieTimeout} />
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </Paper>
+    <nav className={styles.navigation}>
+      <a className={styles.navLogo} href="/">
+        <h1><span className={styles.logoPart1}>RE:</span>Balance</h1>
+      </a>
+      <ul className={styles.navLinkList}>
+        <li className={styles.navLink}>
+          <Link to="/flow/about">
+            <span>About</span>
+          </Link>
+        </li>
+        <li className={styles.navLink}>
+          <Link to="/flow/settings">
+            <span>Settings</span>
+          </Link>
+        </li>
+        <li className={styles.navLink}>
+          <Link to="/flow/login">
+            <Logout
+              cookies={cookies}
+              removeCookie={removeCookie}
+              setCookie={setCookie}
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+              cookieTimeout={cookieTimeout}
+              setCookieTimeout={setCookieTimeout} />
+          </Link>
+        </li>
+      </ul>
+    </nav>
   )
 };
 

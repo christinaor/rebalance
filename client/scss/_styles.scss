@@ -8,7 +8,9 @@
   font-family: 'Avenir', Verdana,'Segoe UI', Tahoma, sans-serif;
   font-weight: 400;
   line-height: 1.5;
+  
   color: $mainTextColorBlack;
+  background-color: $backgroundColorWhite;
 }
 
 html, body {
@@ -20,7 +22,7 @@ html, body {
   padding: 0px;
   overflow-x: hidden;
 
-  background: #F0F1FB;
+  // background: $backgroundColorSmokeWhite;
   align-items: center;
 }
 
@@ -30,9 +32,12 @@ html {
   scroll-behavior: smooth;
 }
 
-h2 {
+h1, h2, h3 {
   margin: 0;
   padding: 0;
+}
+
+h2 {
   font-size: 1.2rem;
   font-weight: 500;
 }
@@ -80,11 +85,6 @@ a, a:visited, a:hover, a:active {
   flex-direction: column;
 }
 
-
-.below-nav-wrapper {
-  display: flex;
-}
-
 /*****   MUI Components   *****/
 .Paper {
   background-color: #bfc1ed;
@@ -111,27 +111,7 @@ hr {
   text-align: center;
 }
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.login-signup-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-};
-
-
-
 /*****   COUNTERPARTIES STYLING   *****/
-.left-counterparties {
-  padding: 0 10px;
-  display: flex;
-  flex-direction: column;
-}
-
 .cp-hover {
   background-color: #fafafa;
   text-align: center;
@@ -152,23 +132,6 @@ hr {
   width: 50px;
 }
 
-
-
-
-
-
-
-
-// .record-edit-hover, .record-delete-hover {
-//   background-color: #fafafa;
-// }
-
-// .record-edit-hover:hover, .record-delete-hover:hover {
-//   background-color: blueviolet;
-// }
-
-
-
 .records-put-form {
   display: grid;
   grid-auto-flow: column;
@@ -180,19 +143,6 @@ hr {
 //   justify-content: center;
 // }
 
-// .records-list-wrapper {
-//   display: grid;
-//   grid: repeat(9, auto);
-//   // grid-template-columns: repeat(auto-fill, 400px);
-//   grid-auto-flow: row;
-// }
-
-.records-list-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-
 .grid-record {
   display: grid;
   grid-auto-flow: column;
@@ -202,10 +152,10 @@ hr {
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
-.records-update-form {
-  box-sizing: border-box;
-  border: 1px solid black;
-  min-height: 120px;
-  padding: 10px;
-  flex-grow: 1;
-}
+// .records-update-form {
+//   box-sizing: border-box;
+//   border: 1px solid black;
+//   min-height: 120px;
+//   padding: 10px;
+//   flex-grow: 1;
+// }

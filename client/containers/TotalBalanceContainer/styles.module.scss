@@ -1,29 +1,86 @@
+@import '/client/scss/_colors';
+@import '/client/scss/_layout';
+
 .totalBalanceContainer {
   display: flex;
   flex-direction: column;
+
+  margin-bottom: 1.5rem;
+  padding: 2rem 1.5rem 2.5rem;
+  gap: 2rem;
+
+  // max-width: 800px;
+  background-color: $backgroundColorBlue;
+  // border-radius: 8px;
 }
 
 .summaryTitleBar {
   display: flex;
-  align-items: center;
-  padding: 10px;
-  display: flex;
-  background-color: #4c4ce6;
-  color: #F1F1F8;
-  font-size: 20px;
+
+  color: $mainTextWhite;
 }
 
-.summaryCards {
-  margin: 25px;
+.summaryTitleBar .currentPartyInTitle {
+  text-decoration: underline 3px;
+  text-decoration-color: $backgroundColorRed;
+  text-underline-offset: 8px;
+
+  // color: $backgroundColorRed;
+}
+
+.summaryCardsWrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+.summaryCards {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
 }
 
 .card {
-  box-sizing: border-box;
+  // box-sizing: border-box;
   // color: #bfc1ed;
   // width: 50%;
-  padding: 22px 50px 42px;
+  // padding: 22px 50px 42px;
   // background-color: gray;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  min-width: 300px;
+}
+
+.cardTitle {
+  padding: 1.5rem;
+
+  height: 2rem;
+
+  color: $backgroundColorWhite;
+  background-color: $backgroundColorBlack;
+  border: 1px solid $backgroundColorBlack;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.cardDetails {
+  padding: 2rem 1.5rem;
+
+  height: 5rem;
+
+  background-color: $backgroundColorWhite;
+  border: 1px solid $backgroundColorWhite;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+@media only screen and (min-width: $tablet-mid-start) {
+  .summaryCards {
+    flex-direction: row;
+
+    // gap: clamp(2rem, 6vw, 4rem);
+    gap: 4rem;
+  }
 }

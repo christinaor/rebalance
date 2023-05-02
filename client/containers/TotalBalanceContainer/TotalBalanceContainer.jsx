@@ -45,31 +45,36 @@ export const TotalBalanceContainer = (props) => {
 
   return (
     <div className={styles.totalBalanceContainer}>
-      <Paper elevation={0} square className={styles.summaryTitleBar}>
-          <ArrowRightIcon />
-          <h2>Summary of Balance with {currentCounterparty}</h2>
-        {/* <CounterpartyFilter
-          counterpartiesList={counterpartiesList}
-          setCounterpartiesList={setCounterpartiesList}
-          populatedCounterparties={populatedCounterparties}
-          setPopulatedCounterparties={setPopulatedCounterparties}
-          currentCounterparty={currentCounterparty}
-          setCurrentCounterparty={setCurrentCounterparty}
-        />         */}
-      </Paper>
-      <div className={styles.summaryCards}>
-        <Paper className={styles.card} elevation={3}>
-          <h3>Current Balances</h3>
-          <div>Amount you owe: ${userBalance}</div>
-          <div>Amount {currentCounterparty} owe{currentCounterparty !== 'All Parties' ? 's' : null}: ${counterpartyBalance}</div>
-          <div>No. Unpaid: {numUnpaidBalances}</div>
-        </Paper>
-        <Paper className={styles.card} elevation={3}>
-          <h3>Next Reconciliation Due Date</h3>
-          <div>{lastDayWithoutTime}</div>
-        </Paper>           
+      <div className={styles.summaryTitleBar}>
+        <ArrowRightIcon />
+        <h2>Summary with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
+      {/* <CounterpartyFilter
+        counterpartiesList={counterpartiesList}
+        setCounterpartiesList={setCounterpartiesList}
+        populatedCounterparties={populatedCounterparties}
+        setPopulatedCounterparties={setPopulatedCounterparties}
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty}
+      />         */}
       </div>
-   
+      <div className={styles.summaryCardsWrapper}>
+        <div className={styles.summaryCards}>
+          <div className={styles.card}>
+            <h3 className={styles.cardTitle}>Current Balances</h3>
+            <div className={styles.cardDetails}>
+              <div>Amount you owe: ${userBalance}</div>
+              <div>Amount {currentCounterparty} owe{currentCounterparty !== 'All Parties' ? 's' : null}: ${counterpartyBalance}</div>
+              <div>No. Unpaid: {numUnpaidBalances}</div>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <h3 className={styles.cardTitle}>Upcoming Due Date</h3>
+            <div className={styles.cardDetails}>
+              <div>{lastDayWithoutTime}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

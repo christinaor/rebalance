@@ -148,7 +148,7 @@ const LoginPage = (props) => {
           }}
           noValidate
           autoComplete="off"
-          className="login-signup-wrapper"
+          className={styles.loginSignupWrapper}
         >
           <Button className={styles.signupLinkButton} type="submit" variant="contained" size="medium" onClick={() => setPressedSignup(true)}>Create new account</Button>
         </Box>

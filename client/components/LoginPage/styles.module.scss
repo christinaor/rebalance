@@ -63,6 +63,13 @@
   background-color: #0C0C31;
 }
 
+.loginSignupWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+};
+
+
 .signupLinkButton {
   // width: 150px;
   background-color: #4c4ce6;

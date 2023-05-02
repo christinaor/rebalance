@@ -48,7 +48,6 @@ const MainContainer = props => {
       <Routes>
         <Route path='/flow/settings' element={<SettingsPage />} />
       </Routes>
-      <div className="below-nav-wrapper">
         {/* <CounterpartyFilter
             counterpartiesList={counterpartiesList}
             setCounterpartiesList={setCounterpartiesList}
@@ -57,37 +56,36 @@ const MainContainer = props => {
             currentCounterparty={currentCounterparty}
             setCurrentCounterparty={setCurrentCounterparty}
           /> */}
-        <div className={styles.summaryAndRecords}>
-          <TotalBalanceContainer
-            counterpartiesList={counterpartiesList}
-            setCounterpartiesList={setCounterpartiesList}
-            populatedCounterparties={populatedCounterparties}
-            setPopulatedCounterparties={setPopulatedCounterparties}
+      <div className={styles.mainContent}>
+        <TotalBalanceContainer
+          counterpartiesList={counterpartiesList}
+          setCounterpartiesList={setCounterpartiesList}
+          populatedCounterparties={populatedCounterparties}
+          setPopulatedCounterparties={setPopulatedCounterparties}
 
-            currentCounterparty={currentCounterparty}
-            setCurrentCounterparty={setCurrentCounterparty}
-            userBalance={userBalance}
-            setUserBalance={setUserBalance}
-            counterpartyBalance={counterpartyBalance}
-            setCounterpartyBalance={setCounterpartyBalance} 
-            numUnpaidBalances={numUnpaidBalances} 
-            setNumUnpaidBalances={setNumUnpaidBalances} 
-            
-            />
-          <RecordsContainer
-            currentCounterparty={currentCounterparty}
-            setCurrentCounterparty={setCurrentCounterparty}
-            userBalance={userBalance}
-            setUserBalance={setUserBalance}
-            counterpartyBalance={counterpartyBalance}
-            setCounterpartyBalance={setCounterpartyBalance} 
-            numUnpaidBalances={numUnpaidBalances} 
-            setNumUnpaidBalances={setNumUnpaidBalances}
-            counterpartiesList={counterpartiesList}
-            setCounterpartiesList={setCounterpartiesList}
-            populatedCounterparties={populatedCounterparties}
-            setPopulatedCounterparties={setPopulatedCounterparties} />
-        </div>
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
+          userBalance={userBalance}
+          setUserBalance={setUserBalance}
+          counterpartyBalance={counterpartyBalance}
+          setCounterpartyBalance={setCounterpartyBalance} 
+          numUnpaidBalances={numUnpaidBalances} 
+          setNumUnpaidBalances={setNumUnpaidBalances} 
+          
+          />
+        <RecordsContainer
+          currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
+          userBalance={userBalance}
+          setUserBalance={setUserBalance}
+          counterpartyBalance={counterpartyBalance}
+          setCounterpartyBalance={setCounterpartyBalance} 
+          numUnpaidBalances={numUnpaidBalances} 
+          setNumUnpaidBalances={setNumUnpaidBalances}
+          counterpartiesList={counterpartiesList}
+          setCounterpartiesList={setCounterpartiesList}
+          populatedCounterparties={populatedCounterparties}
+          setPopulatedCounterparties={setPopulatedCounterparties} />
       </div>
     </div>
   );
