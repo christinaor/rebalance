@@ -1,1 +1,26 @@
-@import './../../scss/_colors.scss'
+.recordsPostForm {
+  margin-bottom: 20px;
+  // // box-sizing: border-box;
+  // display: flex;
+  // // border: 1px solid black;
+  // // min-height: 120px;
+  // // padding: 10px;
+  // flex-grow: 1;
+  // flex-basis: 50%;
+}
+
+.recordsPostInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.addCancelButtons {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+

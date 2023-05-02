@@ -1,0 +1,12 @@
+.recordsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.recordsContainer {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 80%;
+}

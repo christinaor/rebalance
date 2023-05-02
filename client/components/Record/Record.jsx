@@ -4,13 +4,15 @@
  * @module  Record
  * @author
  * @date
- * @description Functional component conditionally renders other components in ListOfRecords through state changes
+ * @description Functional component conditionally renders other components in RecordsList through state changes
  *
  * ************************************
  */
 
 import React, { useEffect, useState } from 'react'
-import UpdateRecord from '../UpdateRecord/UpdateRecord.jsx';
+import UpdateRecord from './UpdateRecord/UpdateRecord.jsx';
+
+import styles from './styles.module.scss';
 
 const Record = (props) => {
   const { 
@@ -116,7 +118,7 @@ const Record = (props) => {
 
 
   return (
-    <div className='records-pending-update'>
+    <div className={styles.recordsPendingUpdate}>
       <div 
         className={`grid-record center ${inEditMode ? `record-edit-hover` : `record-edit`} ${inDeleteMode ? `record-delete-hover` : `record-delete`}`}
         onClick={editOrDeleteRecord}

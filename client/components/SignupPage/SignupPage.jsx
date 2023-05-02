@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom';
 
+import styles from './styles.module.scss';
+
 const SignupPage = (props) => {
   const { pressedSignup, setPressedSignup } = props;
   
@@ -52,20 +54,20 @@ const SignupPage = (props) => {
   }
 
   return (
-    <div className="signup-page-wrapper">
+    <div className={styles.signupPageWrapper}>
       <h2>Sign Up Here:</h2>
       <br />
       {!signedUp &&
-      <form className="signup-form" action="/authorize/signup" method="POST">
-        <div className="signup-page-format">
+      <form className={styles.signupForm} action="/authorize/signup" method="POST">
+        <div className={styles.signupPageFormat}>
           <label for="username">Username</label>
           <input name="username" type="text" value={signupCreds.username} id="signup-post-username" onChange={(e) => setSignupCreds({...signupCreds, username: e.target.value})} />
         </div>
-        <div className="signup-page-format">
+        <div className={styles.signupPageFormat}>
           <label for="email">Email</label>
           <input name="email" type="text" value={signupCreds.email} id="signup-post-email" onChange={(e) => setSignupCreds({...signupCreds, email: e.target.value})} />
         </div>
-        <div className="signup-page-format">
+        <div className={styles.signupPageFormat}>
           <label for="pass">Password</label>
           <input name="pass" type={ showPass ? "text" : "password"} value={signupCreds.pass} id="signup-post-pass" onChange={(e) => setSignupCreds({...signupCreds, pass: e.target.value})} />
         </div>

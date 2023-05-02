@@ -1,1 +1,4 @@
-@import './../../scss/_colors.scss'
+.recordsPendingUpdate {
+  display: grid;
+  flex-direction: column;
+}

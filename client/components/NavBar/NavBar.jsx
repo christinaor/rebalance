@@ -11,8 +11,11 @@
 
 import React, {useEffect, useState} from "react";
 import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
-import { Paper } from '@mui/material'
+
+import { Paper } from '@mui/material';
 import Logout from "../Logout/Logout.jsx";
+
+import styles from './styles.module.scss';
 
 const NavBar = (props) => {
   const { 
@@ -26,27 +29,33 @@ const NavBar = (props) => {
   } = props;
   
   return (
-    <Paper elevation={3} square>
-      <nav className="navigation">
-        <a className="nav-logo" href="/">RE:Balance</a>
-        <span className="right-nav">
-          <Link className="flex-end" to="/flow/about">
-            <span>About</span>
-          </Link>
-          <Link className="flex-end" to="/flow/settings">
-            <span>Settings</span>
-          </Link>
-          <Link className="flex-end" to="/flow/login">
-            <Logout
-              cookies={cookies}
-              removeCookie={removeCookie}
-              setCookie={setCookie}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              cookieTimeout={cookieTimeout}
-              setCookieTimeout={setCookieTimeout} />
-          </Link>
-        </span>
+    <Paper className={styles.navBar} elevation={3} square>
+      <nav className={styles.navigation}>
+        <a className={styles.navLogo} href="/">RE:Balance</a>
+        <ul className={styles.rightNav}>
+          <li className={styles.rightNavLink}>
+            <Link to="/flow/about">
+              <span>About</span>
+            </Link>
+          </li>
+          <li className={styles.rightNavLink}>
+            <Link to="/flow/settings">
+              <span>Settings</span>
+            </Link>
+          </li>
+          <li className={styles.rightNavLink}>
+            <Link to="/flow/login">
+              <Logout
+                cookies={cookies}
+                removeCookie={removeCookie}
+                setCookie={setCookie}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                cookieTimeout={cookieTimeout}
+                setCookieTimeout={setCookieTimeout} />
+            </Link>
+          </li>
+        </ul>
       </nav>
     </Paper>
   )
