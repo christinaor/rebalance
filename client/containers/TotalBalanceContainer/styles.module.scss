@@ -6,7 +6,8 @@
   flex-direction: column;
 
   margin-bottom: 1.5rem;
-  padding: 2rem 1.5rem 2.5rem;
+  // padding: 2rem 1.5rem 2.5rem;
+  padding: 2rem 0 2.5rem;
   gap: 2rem;
 
   background-color: $backgroundColorBlue;
@@ -14,9 +15,18 @@
 }
 
 .currentPartyInTitle {
-  text-decoration: underline 3px;
-  text-decoration-color: $backgroundColorRed;
-  text-underline-offset: 8px;
+  display: inline-block;
+  // text-decoration: underline 3px;
+  // text-decoration-color: $backgroundColorRed;
+  // text-underline-offset: 8px;
+}
+.currentPartyInTitle::after {
+  content: '';
+  display: block;
+  height: 4px;
+
+  background-color: $backgroundColorWhite;
+  border-radius: 8px;
 }
 
 .summaryCardsWrapper {
@@ -29,6 +39,72 @@
   flex-direction: column;
 
   gap: 2rem;
+}
+
+.userBalanceAndDueDate {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  // padding: 2rem 0;
+  padding: 0 1rem;
+}
+
+.userBalance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem 2rem;
+  width: 180px;
+  height: 200px;
+
+  font-size: 1.5rem;
+  word-break: break-word;
+  // text-align: center;
+  background-color: $backgroundColorBlack;
+  color: $backgroundColorWhite;
+  // border-radius: 40px;
+  // border: 0.5rem solid $backgroundColorBlack;
+  border-radius: 0.5rem;
+}
+
+.userBalanceTitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.userBalanceAmount {
+  font-size: 2rem;
+  font-weight: 800;
+  color: $backgroundColorRed;
+}
+
+.dueDateText {
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+
+  margin-top: -4rem;
+  // margin-left: 7rem;
+  padding: 1.5rem 1.5rem 2rem;
+  // width: 200px;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: $mainTextColorBlack;
+  background-color: $backgroundColorSmokeWhite;
+  // border: 0.5rem solid $backgroundColorRed;
+  border-radius: 0 40px 40px 40px;
+}
+
+.date {
+  text-decoration: underline 2px;
+  text-decoration-color: $backgroundColorRed;
+  text-underline-offset: 8px;
+  white-space: nowrap;
 }
 
 .card {

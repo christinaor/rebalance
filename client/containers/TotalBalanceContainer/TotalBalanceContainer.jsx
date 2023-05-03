@@ -44,7 +44,7 @@ export const TotalBalanceContainer = (props) => {
   const lastDayWithoutTime = `${day}, ${month} ${lastDayWithTime.getDate()}, ${dateYear}`  
 
   return (
-    <div className={styles.totalBalanceSection}>
+    <section className={styles.totalBalanceSection}>
       <div className="titleBar">
         <ArrowRightIcon />
         <h2>Summary with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
@@ -59,6 +59,18 @@ export const TotalBalanceContainer = (props) => {
       </div>
       <div className={styles.summaryCardsWrapper}>
         <div className={styles.summaryCards}>
+          <div className={styles.userBalanceAndDueDate}>
+            <div className={styles.userBalance}>
+              <h3 className={styles.userBalanceTitle}>Your Current Balance:</h3>
+              <h3 className={styles.userBalanceAmount}>${userBalance}</h3>
+            </div>
+
+            <h3 className={styles.dueDateText}>
+              <span>Due by <div className={styles.date}>{lastDayWithoutTime}</div></span>
+            </h3>
+          </div>
+          
+          
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Current Balances</h3>
             <div className={styles.cardDetails}>
@@ -67,14 +79,14 @@ export const TotalBalanceContainer = (props) => {
               <div>Unpaid Balances: {numUnpaidBalances}</div>
             </div>
           </div>
-          <div className={styles.card}>
+          {/* <div className={styles.card}>
             <h3 className={styles.cardTitle}>Upcoming Due Date</h3>
             <div className={styles.cardDetails}>
               <div>{lastDayWithoutTime}</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
