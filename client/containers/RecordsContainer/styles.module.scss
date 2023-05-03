@@ -1,9 +1,25 @@
-.recordsTitleBar {
+@import '/client/scss/_colors';
+@import '/client/scss/_layout';
+
+.recordsSection {
   display: flex;
-  align-items: center;
-  padding: 10px;
-  display: flex;
-  background-color: #4c4ce6;
-  color: #F1F1F8;
-  font-size: 20px;
+  flex-direction: column;
+
+  padding: 2rem 1.5rem 2.5rem;
+  gap: 2rem;
+
+  background-color: $backgroundColorBlue;
+  // box-shadow: 0 0 5px 0 $backgroundColorBlack;
+}
+
+.currentPartyInTitle {
+  text-decoration: underline 3px;
+  text-decoration-color: $backgroundColorRed;
+  text-underline-offset: 8px;
+}
+
+@media only screen and (min-width: $tablet-mid-start) {
+  .recordsSection {
+    padding: 2.5rem 3rem 3rem;
+  }
 }

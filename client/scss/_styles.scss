@@ -38,8 +38,16 @@ h1, h2, h3 {
 }
 
 h2 {
+
+  
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.titleBar {
+  display: flex;
+
+  color: $backgroundColorWhite;
 }
 
 .main-content-wrapper {
@@ -53,13 +61,12 @@ a, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 
-.footer {
+footer {
   padding: 15px;
-  background-color: #b1b6d4;
-  color: #F1F1F8;
+  background-color: $backgroundColorSmokeWhite;
+  color: $mainTextColorBlack;
   text-align: center;
-  // font-size: 200px;
-  
+  font-size: 0.8rem;
 }
 
 .MuiTypography-root {

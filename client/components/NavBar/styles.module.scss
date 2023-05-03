@@ -12,6 +12,7 @@
 
   box-shadow: 0 1px 0 0 $borderGray;
   // border-bottom: 1px solid $borderGray;
+  box-shadow: 0 4px 5px 0 $backgroundColorBlack;
 }
 
 .navLogo h1 {
@@ -42,8 +43,13 @@
 
 @media only screen and (min-width: $tablet-mid-start) {
   .navigation {
+    padding: 1rem 3rem;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .navLinkList {
+    gap: 2rem;
   }
 }

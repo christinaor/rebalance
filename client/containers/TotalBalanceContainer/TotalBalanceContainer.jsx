@@ -44,8 +44,8 @@ export const TotalBalanceContainer = (props) => {
   const lastDayWithoutTime = `${day}, ${month} ${lastDayWithTime.getDate()}, ${dateYear}`  
 
   return (
-    <div className={styles.totalBalanceContainer}>
-      <div className={styles.summaryTitleBar}>
+    <div className={styles.totalBalanceSection}>
+      <div className="titleBar">
         <ArrowRightIcon />
         <h2>Summary with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
       {/* <CounterpartyFilter
@@ -62,9 +62,9 @@ export const TotalBalanceContainer = (props) => {
           <div className={styles.card}>
             <h3 className={styles.cardTitle}>Current Balances</h3>
             <div className={styles.cardDetails}>
-              <div>Amount you owe: ${userBalance}</div>
-              <div>Amount {currentCounterparty} owe{currentCounterparty !== 'All Parties' ? 's' : null}: ${counterpartyBalance}</div>
-              <div>No. Unpaid: {numUnpaidBalances}</div>
+              <div>Your balance: ${userBalance}</div>
+              <div>Balance from {currentCounterparty} {currentCounterparty !== 'All Parties' ? 's' : null}: ${counterpartyBalance}</div>
+              <div>Unpaid Balances: {numUnpaidBalances}</div>
             </div>
           </div>
           <div className={styles.card}>

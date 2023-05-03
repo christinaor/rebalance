@@ -101,11 +101,11 @@ const RecordsContainer = props => {
   }, [populatedRecords, currentCounterparty, sortedRecords]);
 
   return (
-    <div className="records-section">
-      <Paper elevation={0} square className={styles.recordsTitleBar}>
+    <div className={styles.recordsSection}>
+      <div className="titleBar">
         <ArrowRightIcon />
-        <h2>Records with {currentCounterparty}</h2>
-      </Paper>
+        <h2>Records with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
+      </div>
       <RecordsList 
         recordsList={recordsList}
         setRecordsList={setRecordsList}
