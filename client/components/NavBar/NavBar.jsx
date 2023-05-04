@@ -29,9 +29,12 @@ const NavBar = (props) => {
   
   return (
     <nav className={styles.navigation}>
-      <a className={styles.navLogo} href="/">
-        <h1><span className={styles.logoPart1}>RE:</span>Balance</h1>
-      </a>
+      <h1 className={styles.navLogo}>
+        <a href="/">
+          <span className={styles.logoPart1}>RE:</span>
+          <span>Balance</span>
+        </a>
+      </h1>
       <ul className={styles.navLinkList}>
         <li className={styles.navLink}>
           <Link to="/flow/about">
