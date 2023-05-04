@@ -13,9 +13,18 @@
 }
 
 .currentPartyInTitle {
-  text-decoration: underline 3px;
-  text-decoration-color: $backgroundColorRed;
-  text-underline-offset: 8px;
+  display: inline-block;
+  // text-decoration: underline 3px;
+  // text-decoration-color: $backgroundColorRed;
+  // text-underline-offset: 8px;
+}
+.currentPartyInTitle::after {
+  content: '';
+  display: block;
+  height: 4px;
+
+  background-color: $backgroundColorWhite;
+  border-radius: 8px;
 }
 
 @media only screen and (min-width: $tablet-mid-start) {

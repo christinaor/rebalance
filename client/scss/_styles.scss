@@ -47,7 +47,10 @@ h2 {
 .titleBar {
   display: flex;
 
-  color: $backgroundColorWhite;
+  // padding-bottom: 1rem;
+
+  // color: $backgroundColorWhite;
+  // border-bottom: 1px solid $backgroundColorWhite;
 }
 
 .main-content-wrapper {
@@ -61,12 +64,11 @@ a, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 
-footer {
+.footer {
   padding: 15px;
   background-color: $backgroundColorSmokeWhite;
   color: $mainTextColorBlack;
   text-align: center;
-  font-size: 0.8rem;
 }
 
 .MuiTypography-root {
