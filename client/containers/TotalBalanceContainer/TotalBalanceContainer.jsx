@@ -34,7 +34,7 @@ export const TotalBalanceContainer = (props) => {
     setPopulatedCounterparties
   } = props;
 
-  const reconciliationAmount = Math.round(100 * (userBalance - counterpartyBalance) / 100).toFixed(2);
+  const reconciliationAmount = 0.00 - (parseFloat(userBalance) - parseFloat(counterpartyBalance)).toFixed(2);
 
   // set last day as tentative due date
   const dateToday = new Date();
@@ -93,7 +93,7 @@ export const TotalBalanceContainer = (props) => {
             <h3 className={styles.dueDateText}>
               {counterpartyBalance > userBalance 
               ? <div>
-                <div>{currentCounterparty} must pay ${Math.abs(reconciliationAmount)}.</div>
+                <div>{currentCounterparty} must pay ${reconciliationAmount}.</div>
                 <div>Due by <span className={styles.date}>{lastDayWithoutTime}</span></div>
               </div>
               : <span>Nothing to reconcile!</span>
