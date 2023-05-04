@@ -101,8 +101,8 @@ const RecordsContainer = props => {
   }, [populatedRecords, currentCounterparty, sortedRecords]);
 
   return (
-    <div className={styles.recordsSection}>
-      <div className="titleBar">
+    <section className={styles.recordsSection}>
+      <div className={`${styles.titleBar} titleBar`}>
         <ArrowRightIcon />
         <h2>Records with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
       </div>
@@ -124,7 +124,7 @@ const RecordsContainer = props => {
         populatedCounterparties={populatedCounterparties}
         setPopulatedCounterparties={setPopulatedCounterparties}
       />
-    </div>
+    </section>
   )
 }
 
