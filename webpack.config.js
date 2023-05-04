@@ -38,6 +38,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
     ]
   },
   devtool: "inline-source-map",
