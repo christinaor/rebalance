@@ -44,6 +44,10 @@ h2 {
   font-weight: 500;
 }
 
+button:focus {
+  outline: none;
+}
+
 .titleBar {
   display: flex;
 

@@ -30,28 +30,40 @@
   color: $backgroundColorBlue;
 }
 
+.linksAndFilter {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+  padding: 1.5rem 0 2rem 0.5rem;
+
+  background-color: $backgroundColorDarkBlue;
+}
+
 .navLinkList {
   display: flex;
   align-items: flex-start;
 
   margin: 0;
-  padding: 1rem 1.5rem 1.5rem;
+  padding: 0;
+  // padding: 1rem 1.5rem 1.5rem;
   gap: 1rem;
   // width: 100%;
 
-  background-color: $backgroundColorDarkBlue;
   list-style: none;
 }
 
 .navLink {
   display: inline-block;
-  height: 1rem;
+  height: 2rem;
   
   color: $backgroundColorWhite;
 }
 .navLink:hover::after {
   content: '';
   display: block;
+
+  margin: 3px 0;
   height: 5px;
 
   background-color: $backgroundColorWhite;
@@ -62,6 +74,73 @@
   // text-underline-offset: 0.5rem;
 }
 
+.counterpartyFilterContainer {
+  // margin: 0;
+  // padding: 0.5rem 1.5rem 1.5rem;
+
+  color: $backgroundColorWhite;
+}
+
+.counterpartyFilterDropdown {
+  position: relative;
+  display: inline-block;
+
+  margin-left: 1rem;
+  padding: 0.5rem;
+  width: 10rem;
+
+  color: $backgroundColorWhite;
+  background-color: transparent;
+  border: 1px solid $backgroundColorWhite;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.counterpartyFilterDropdown:focus {
+  outline: none;
+}
+.counterpartyFilterDropdown.openMenu {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  color: $backgroundColorBlack;
+  background-color: $backgroundColorWhite;
+  border: 1px solid $backgroundColorBlue;
+}
+
+.dropdownMenuArrow {
+  width: 10px;
+  height: 10px;
+}
+
+.dropdownMenuList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  border: 1px solid $backgroundColorBlue;
+  border-top: 1px solid $backgroundColorBlue;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  list-style-type: none;
+
+  color: $backgroundColorWhite;
+  background-color: $backgroundColorBlue;
+}
+
+.dropdownMenuItem {
+  // margin: 0;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+.dropdownMenuItem:hover {
+  font-weight: 600;
+  color: $backgroundColorBlack;
+  background-color: $backgroundColorLightBlue;
+}
+
 @media only screen and (min-width: $tablet-mid-start) {
   // .navigation {
   //   padding: 1rem 3rem;
@@ -69,6 +148,17 @@
   //   justify-content: space-between;
   //   align-items: center;
   // }
+
+  .linksAndFilter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem 2rem;
+
+    // height: 4rem;
+  }
 
   .navLinkList {
     gap: 2rem;

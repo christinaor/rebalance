@@ -44,7 +44,10 @@ const MainContainer = props => {
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
         cookieTimeout={cookieTimeout}
-        setCookieTimeout={setCookieTimeout} />
+        setCookieTimeout={setCookieTimeout}
+        counterpartiesList={counterpartiesList}
+        currentCounterparty={currentCounterparty}
+        setCurrentCounterparty={setCurrentCounterparty} />
       <Routes>
         <Route path='/flow/settings' element={<SettingsPage />} />
       </Routes>
