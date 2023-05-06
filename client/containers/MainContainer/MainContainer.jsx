@@ -35,6 +35,31 @@ const MainContainer = props => {
   const [populatedCounterparties, setPopulatedCounterparties] = useState(false);
   const [numUnpaidBalances, setNumUnpaidBalances] = useState(0);
 
+  // Fetch all counterparties first
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch('/api/counterparties', {
+      signal: signal
+    })
+      .then(response => response.json())
+      .then(data => {
+        // console.log('cp data here: ', data);
+        setCounterpartiesList(data);
+      })
+      .catch((err) => {
+        if (err.name === 'AbortError') {
+          return 'Successfully aborted!';
+        } else return `Error getting records: ${err}`
+      })
+      .finally(setPopulatedCounterparties(false))
+
+    // return () => {
+    //   second
+    // }
+  }, [])
+
   return (
     <div className={styles.mainContainer}>
       <NavBar
