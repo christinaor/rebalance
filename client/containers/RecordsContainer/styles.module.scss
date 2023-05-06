@@ -29,6 +29,12 @@
   border-radius: 8px;
 }
 
-@media only screen and (min-width: $tablet-mid-start) {
+// .alterRecords {
+//   display: flex;
+// }
 
+@media only screen and (min-width: $tablet-mid-start) {
+  .titleBar {
+    padding-left: 1rem;
+  }
 }
