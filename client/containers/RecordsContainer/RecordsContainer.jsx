@@ -10,7 +10,6 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { Paper, Button } from "@mui/material";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import RecordsList from '../../components/RecordsList/RecordsList.jsx';
 
@@ -100,10 +99,10 @@ const RecordsContainer = props => {
     setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
   }, [populatedRecords, currentCounterparty, sortedRecords]);
 
+  const [isAltering, setIsAltering] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [clickedCancel, setClickedCancel] = useState(true);
 
   // For adding records
   const [addedRecord, setAddedRecord] = useState({
@@ -119,46 +118,46 @@ const RecordsContainer = props => {
 
   const addRecord = async (e) => {
     e.preventDefault();
-    console.log('currentCounterparty here', currentCounterparty)
-    if (currentCounterparty === null || currentCounterparty === 'All Parties') {
-      return setIsEmptyCounterparty(true);
-    } else {
-      console.log('addRecord fired')
-      // Add cases dealing with blanks/nulls in postedRecord
-      const splitCalculation = await (postedRecord.cost * postedRecord.userPercent / 100);
-      console.log('this is split',splitCalculation)
-      await fetch('/api/records', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: postedRecord.name,
-          counterparty: postedRecord.counterparty,
-          item: postedRecord.item,
-          cost: postedRecord.cost,
-          split: splitCalculation,
-          percentage: postedRecord.userPercent
-        })
+    console.log('addRecord fired')
+    // Add cases dealing with blanks/nulls in postedRecord
+    const splitCalculation = await (postedRecord.cost * postedRecord.userPercent / 100);
+    console.log('this is split',splitCalculation)
+    await fetch('/api/records', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: postedRecord.name,
+        counterparty: postedRecord.counterparty,
+        item: postedRecord.item,
+        cost: postedRecord.cost,
+        split: splitCalculation,
+        percentage: postedRecord.userPercent
       })
-        .then(() => {
-          console.log('added record!')
-          setPopulatedRecords(false);
-          setIsEmptyCounterparty(false);
+    })
+      .then(() => {
+        console.log('added record!')
+        setPopulatedRecords(false);
+        setIsEmptyCounterparty(false);
+      })
+      .catch(err => `Error adding record: ${err}`)
+      .finally(
+        setPostedRecord({
+          name: 'CO',
+          counterparty: currentCounterparty,
+          item: '',
+          cost: '',
+          userPercent: 50
         })
-        .catch(err => `Error adding record: ${err}`)
-        .finally(
-          setPostedRecord({
-            name: 'CO',
-            counterparty: currentCounterparty,
-            item: '',
-            cost: '',
-            userPercent: 50
-          })
-        )
-    }
+      )
   };
 
+  const handleToggleAdd = () => {
+
+    setIsAdding(true);
+    setIsAltering(true);
+  }
   const handleCancel = () => {
     if (isAdding) {
       setIsAdding(false);
@@ -167,7 +166,7 @@ const RecordsContainer = props => {
     } else if (isDeleting) {
       setIsDeleting(false);
     }
-    setClickedCancel(true);
+    setIsAltering(false);
   }
 
   return (
@@ -178,32 +177,33 @@ const RecordsContainer = props => {
       </div>
 
       <div className={styles.alterRecords}>
-        {clickedCancel &&
-          <div className={styles.alterRecordsButtons}>
-            <button onClick={() => setIsAdding(true)}>ADD</button>
-            <button onClick={() => setIsEditing(true)}>EDIT</button>
-            <button onClick={() => setIsDeleting(true)}>DELETE</button>
-          </div>
-        }
-        {(isAdding || isEditing || isDeleting) && <button onClick={handleCancel}>CANCEL</button>}
+        <>
+          {!isAltering && <div className={styles.alterRecordsButtons}>
+            <button className={styles.addButton} onClick={handleToggleAdd}>ADD</button>
+            <button className={styles.editButton} onClick={() => setIsEditing(true)}>EDIT</button>
+            <button className={styles.deleteButton} onClick={() => setIsDeleting(true)}>DELETE</button>
+          </div>}
+        </>
+        {/* {isAltering && <button className={styles.cancelButton} onClick={handleCancel}>CANCEL</button>} */}
       </div>
 
       {isAdding && 
-      <form className={styles.recordsPostInputs} action="/api/records" method="POST">
+      <form className={styles.recordsAddForm} action="/api/records" method="POST">
         <div className="display-flex-column">
           <label htmlFor="item">Item Purchased</label>
-          <input name="item" type="text" value={addedRecord.item} id="records-post-item" onChange={(e) => setAddedRecord({...addedRecord, item: e.target.value})} />
+          <input name="item" type="text" value={addedRecord.item} id="records-post-item" onChange={(e) => setAddedRecord({...addedRecord, item: e.target.value})} required />
         </div>
         <div className="display-flex-column">
           <label htmlFor="cost">Item Cost ($)</label>
-          <input name="cost" type="text" value={addedRecord.cost} id="records-post-cost" onChange={(e) => setAddedRecord({...addedRecord, cost: e.target.value})} />
+          <input name="cost" type="text" value={addedRecord.cost} id="records-post-cost" onChange={(e) => setAddedRecord({...addedRecord, cost: e.target.value})} required />
         </div>
         <div className="display-flex-column">
           <label htmlFor="userPercent">Your Split (%)</label>
-          <input name="userPercent" type="text" placeholder={50}value={addedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setAddedRecord({...addedRecord, userPercent: e.target.value})} />
+          <input name="userPercent" type="text" placeholder={50}value={addedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setAddedRecord({...addedRecord, userPercent: e.target.value})} required />
         </div>
         <div className={styles.addCancelButtons}>
-          <Button type="submit" variant="contained" size="small" onClick={addRecord}>Add Record</Button>
+          <button className={styles.submitNewRecordButton} onClick={addRecord}>Add Record</button>
+          <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
         </div>
         {/* {!allButtonsVisible && toggleAddRecordForm &&
         <Button variant="contained" size="small" onClick={cancelAdd}>Cancel Add</Button>
