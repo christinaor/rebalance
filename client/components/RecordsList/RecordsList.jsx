@@ -9,7 +9,7 @@
  * ************************************
  */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Select from 'react-select';
 // import makeAnimated from 'react-select/animated';
 import { Button, ButtonGroup, Paper } from '@mui/material';
@@ -33,7 +33,11 @@ const RecordsList = props => {
     counterpartiesList,
     setCounterpartiesList,
     populatedCounterparties,
-    setPopulatedCounterparties
+    setPopulatedCounterparties,
+
+    isEditing,
+    editedRecord,
+    setEditedRecord,
   } = props;
   
   const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
@@ -216,6 +220,25 @@ const RecordsList = props => {
       // }
     ]
   };
+
+  const handleRecordRowClick = useCallback(e => {
+    if (isEditing) {
+      console.log(e.currentTarget)
+      const recordId = e.currentTarget.id;
+      const recordItem = e.currentTarget.querySelector('.recordItemName').textContent;
+      const recordCost = e.currentTarget.querySelector('.recordCost').textContent;
+      const recordPercent = e.currentTarget.querySelector('.recordSplitPercent').textContent;
+
+      setEditedRecord({
+        id: recordId,
+        item: recordItem,
+        cost: recordCost,
+        perc: recordPercent,
+      })
+      console.log(recordId, recordItem, recordCost, recordPercent)
+    }
+  }, [isEditing]);
+
 console.log(recordsList)
   return (
     <div className={styles.recordsContainer}>
@@ -228,20 +251,20 @@ console.log(recordsList)
         <div className={`${styles.listTitleDate} ${styles.mobileHidden}`}>Date Entered</div>
       </div>
 
-      {recordsList && recordsList.map(record => (<div key={`record-${record.id}`} className={styles.recordRow}>
-        <div className={styles.recordCounterparty}>{record.counterparty_username}</div>
-        <div className={styles.recordItemName}>{record.item_name}</div>
-        <div className={styles.recordCost}>{record.item_cost}</div>
-        <div className={styles.recordSplitDollar}>{record.user_split}</div>
-        <div className={`${styles.recordSplitPercent} ${styles.mobileHidden}`}>{record.user_perc}</div>
-        <div className={`${styles.recordDate} ${styles.mobileHidden}`}>{record.input_date}</div>
+      {recordsList && recordsList.map(record => (<div key={`record-${record.id}`} id={record.id} className={styles.recordRow} onClick={handleRecordRowClick}>
+        <div className={`recordCounterparty ${styles.recordCounterparty}`}>{record.counterparty_username}</div>
+        <div className={`recordItemName ${styles.recordItemName}`}>{record.item_name}</div>
+        <div className={`recordCost ${styles.recordCost}`}>{record.item_cost}</div>
+        <div className={`recordSplitDollar ${styles.recordSplitDollar}`}>{record.user_split}</div>
+        <div className={`recordSplitPercent ${styles.recordSplitPercent} ${styles.mobileHidden}`}>{record.user_perc}</div>
+        <div className={`recordDate ${styles.recordDate} ${styles.mobileHidden}`}>{record.input_date}</div>
       </div>
       ))}
 
 
 
       
-    {/* <Paper elevation={3} className={styles.recordsContainer}>
+    <Paper elevation={3} className={styles.recordsContainer}>
       <AlterRecordsComponent 
         allButtonsVisible={allButtonsVisible}
         setAllButtonsVisible={setAllButtonsVisible}
@@ -288,7 +311,7 @@ console.log(recordsList)
         </div>}
       </div>
       <br />
-    </Paper> */}
+    </Paper>
     </div>
   )
 };

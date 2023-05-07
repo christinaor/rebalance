@@ -179,42 +179,45 @@ const RecordsContainer = props => {
     setIsAltering(true);
   };
 
-  const updateRecord = (e) => {
+  const updateRecord = useCallback(e => {
     console.log('updateRecord fired: ', recordToUpdate);
     console.log('current populated records is: ', populatedRecords)
     e.preventDefault();
-    fetch('api/records/', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: editedRecord.id,
-        item_name: editedRecord.item,
-        item_cost: editedRecord.cost,
-        perc_split: editedRecord.perc
-      })
-    })
-      .then(() => {
-        setClickedRecordToEdit(false);
-        setEditId(null);
-        setEditItem(null);
-        setEditCost(null);
-        setEditUserPerc(null);
-        setRecordToUpdate({
-          id: null,
-          item: null,
-          cost: null,
-          perc: null
+    const putEditedRecord = async () => {
+      await fetch('api/records/', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: editedRecord.id,
+          item_name: editedRecord.item,
+          item_cost: editedRecord.cost,
+          perc_split: editedRecord.perc
         })
-
-        setIsEditing(false);
-        setEditedRecord(null);
-        
       })
-      .catch(err => `Error updating record: ${err}`)
-      .finally(setPopulatedRecords(false))
-  };
+        .then(() => {
+          setClickedRecordToEdit(false);
+          setEditId(null);
+          setEditItem(null);
+          setEditCost(null);
+          setEditUserPerc(null);
+          setRecordToUpdate({
+            id: null,
+            item: null,
+            cost: null,
+            perc: null
+          })
+        })
+        .catch(err => `Error updating record: ${err}`)
+        .finally(() => {
+          setEditedRecord(null);
+          setIsEditing(false);
+          setIsAltering(false);
+        })
+      };
+      putEditedRecord();
+  }, [editedRecord]);
 
 
   const handleToggleDelete = () => {
