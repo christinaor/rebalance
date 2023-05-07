@@ -9,7 +9,7 @@
  * ************************************
  */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import RecordsList from '../../components/RecordsList/RecordsList.jsx';
 
@@ -101,7 +101,7 @@ const RecordsContainer = props => {
 
   const [isAltering, setIsAltering] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+
   const [isDeleting, setIsDeleting] = useState(false);
 
   // For adding records
@@ -116,48 +116,111 @@ const RecordsContainer = props => {
   // const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
 
 
-  const addRecord = async (e) => {
+  const addRecord = useCallback(e => {
     e.preventDefault();
-    console.log('addRecord fired')
+    console.log(addedRecord)
     // Add cases dealing with blanks/nulls in postedRecord
-    const splitCalculation = await (postedRecord.cost * postedRecord.userPercent / 100);
+    const splitCalculation =  addedRecord.cost * addedRecord.userPercent / 100;
     console.log('this is split',splitCalculation)
-    await fetch('/api/records', {
-      method: 'POST',
+    const postAddedRecord = async () => {
+      await fetch('/api/records', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: addedRecord.name,
+          counterparty: currentCounterparty,
+          item: addedRecord.item,
+          cost: addedRecord.cost,
+          split: splitCalculation,
+          percentage: addedRecord.userPercent
+        })
+      })
+        .then(() => {
+          console.log('added record!')
+          setPopulatedRecords(false);
+          setIsEmptyCounterparty(false);
+        })
+        .catch(err => `Error adding record: ${err}`)
+        .finally(() => {
+          setAddedRecord({
+            name: 'CO',
+            counterparty: currentCounterparty,
+            item: '',
+            cost: '',
+            userPercent: 50
+          })
+          setIsAdding(false);
+          setIsAltering(false);
+        })
+      };
+      postAddedRecord();
+  }, [addedRecord, currentCounterparty]);
+
+  const handleToggleAdd = () => {
+    setIsAdding(true);
+    setIsAltering(true);
+  };
+
+  // For editing a record
+  const [isEditing, setIsEditing] = useState(false);
+  // Format: 
+  // {
+  //   id: null,
+  //   item: null,
+  //   cost: null,
+  //   perc: null
+  // }
+  const [editedRecord, setEditedRecord] = useState(null);
+
+  const handleToggleEdit = () => {
+    setIsEditing(true);
+    setIsAltering(true);
+  };
+
+  const updateRecord = (e) => {
+    console.log('updateRecord fired: ', recordToUpdate);
+    console.log('current populated records is: ', populatedRecords)
+    e.preventDefault();
+    fetch('api/records/', {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: postedRecord.name,
-        counterparty: postedRecord.counterparty,
-        item: postedRecord.item,
-        cost: postedRecord.cost,
-        split: splitCalculation,
-        percentage: postedRecord.userPercent
+        id: editedRecord.id,
+        item_name: editedRecord.item,
+        item_cost: editedRecord.cost,
+        perc_split: editedRecord.perc
       })
     })
       .then(() => {
-        console.log('added record!')
-        setPopulatedRecords(false);
-        setIsEmptyCounterparty(false);
-      })
-      .catch(err => `Error adding record: ${err}`)
-      .finally(
-        setPostedRecord({
-          name: 'CO',
-          counterparty: currentCounterparty,
-          item: '',
-          cost: '',
-          userPercent: 50
+        setClickedRecordToEdit(false);
+        setEditId(null);
+        setEditItem(null);
+        setEditCost(null);
+        setEditUserPerc(null);
+        setRecordToUpdate({
+          id: null,
+          item: null,
+          cost: null,
+          perc: null
         })
-      )
+
+        setIsEditing(false);
+        setEditedRecord(null);
+        
+      })
+      .catch(err => `Error updating record: ${err}`)
+      .finally(setPopulatedRecords(false))
   };
 
-  const handleToggleAdd = () => {
 
-    setIsAdding(true);
+  const handleToggleDelete = () => {
+    setIsDeleting(true);
     setIsAltering(true);
-  }
+  };
   const handleCancel = () => {
     if (isAdding) {
       setIsAdding(false);
@@ -169,6 +232,14 @@ const RecordsContainer = props => {
     setIsAltering(false);
   }
 
+
+  // Format: 
+  // {
+  //   id: null,
+  //   item: null,
+  //   cost: null,
+  //   perc: null
+  // }
   return (
     <section className={styles.recordsSection}>
       <div className={`${styles.titleBar} titleBar`}>
@@ -180,26 +251,26 @@ const RecordsContainer = props => {
         <>
           {!isAltering && <div className={styles.alterRecordsButtons}>
             <button className={styles.addButton} onClick={handleToggleAdd}>ADD</button>
-            <button className={styles.editButton} onClick={() => setIsEditing(true)}>EDIT</button>
-            <button className={styles.deleteButton} onClick={() => setIsDeleting(true)}>DELETE</button>
+            <button className={styles.editButton} onClick={handleToggleEdit}>EDIT</button>
+            <button className={styles.deleteButton} onClick={handleToggleDelete}>DELETE</button>
           </div>}
         </>
-        {/* {isAltering && <button className={styles.cancelButton} onClick={handleCancel}>CANCEL</button>} */}
+        {isAltering && (isEditing || isDeleting) && <button className={styles.cancelButton} onClick={handleCancel}>CANCEL</button>}
       </div>
 
       {isAdding && 
       <form className={styles.recordsAddForm} action="/api/records" method="POST">
-        <div className="display-flex-column">
-          <label htmlFor="item">Item Purchased</label>
-          <input name="item" type="text" value={addedRecord.item} id="records-post-item" onChange={(e) => setAddedRecord({...addedRecord, item: e.target.value})} required />
+        <div>
+          <label htmlFor="added-item">Item Purchased</label>
+          <input name="added-item" type="text" value={addedRecord.item} onChange={(e) => setAddedRecord({...addedRecord, item: e.target.value})} required />
         </div>
-        <div className="display-flex-column">
-          <label htmlFor="cost">Item Cost ($)</label>
-          <input name="cost" type="text" value={addedRecord.cost} id="records-post-cost" onChange={(e) => setAddedRecord({...addedRecord, cost: e.target.value})} required />
+        <div>
+          <label htmlFor="added-cost">Item Cost ($)</label>
+          <input name="added-cost" type="text" value={addedRecord.cost} onChange={(e) => setAddedRecord({...addedRecord, cost: e.target.value})} required />
         </div>
-        <div className="display-flex-column">
-          <label htmlFor="userPercent">Your Split (%)</label>
-          <input name="userPercent" type="text" placeholder={50}value={addedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setAddedRecord({...addedRecord, userPercent: e.target.value})} required />
+        <div>
+          <label htmlFor="added-userPercent">Your Split (%)</label>
+          <input name="added-userPercent" type="text" placeholder={50} value={addedRecord.userPercent} id="records-post-user-percent" onChange={(e) => setAddedRecord({...addedRecord, userPercent: e.target.value})} required />
         </div>
         <div className={styles.addCancelButtons}>
           <button className={styles.submitNewRecordButton} onClick={addRecord}>Add Record</button>
@@ -209,6 +280,29 @@ const RecordsContainer = props => {
         <Button variant="contained" size="small" onClick={cancelAdd}>Cancel Add</Button>
         } */}
       </form>}
+
+      {isEditing && <>
+        {!editedRecord && <div className={styles.chooseRecordText}>Choose a record to update.</div>}
+        {editedRecord && <form className={styles.editRecordForm}>
+          {/* <div>
+            <label htmlFor="ID">ID</label>
+            <input name="ID" type="number" value={editedRecord.id} onChange={(e) => setEditedRecord({...editedRecord, id: e.target.value})} required />
+          </div> */}
+          <div>
+            <label htmlFor="edited-item-name">Item Name</label>
+            <input name="edited-item-name" type="text" value={editedRecord.item} onChange={(e) => setEditedRecord({...editedRecord, item: e.target.value})} />
+          </div>
+          <div>
+            <label htmlFor="edited-cost">Cost ($)</label>
+            <input name="edited-cost" type="text" value={editedRecord.cost} onChange={(e) => setEditedRecord({...editedRecord, cost: e.target.value})} />
+          </div>
+          <div>
+            <label htmlFor="edited-user-percentage">Your Split (%)</label>
+            <input name="edited-user-percentage" type="number" value={editedRecord.perc} onChange={(e) => setEditedRecord({...editedRecord, perc: e.target.value})} />
+          </div>
+          <button onClick={updateRecord}>Update Record</button>
+        </form>}
+      </>}
 
 
       <RecordsList 
@@ -228,6 +322,10 @@ const RecordsContainer = props => {
         setCounterpartiesList={setCounterpartiesList}
         populatedCounterparties={populatedCounterparties}
         setPopulatedCounterparties={setPopulatedCounterparties}
+
+        isEditing={isEditing}
+        editedRecord={editedRecord}
+        setEditedRecord={setEditedRecord}
       />
     </section>
   )
