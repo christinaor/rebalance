@@ -17,7 +17,7 @@ router.post('/records/counterparty', recordsController.getCounterpartyRecords, (
 })
 
 router.post('/records', recordsController.postRecord, (req, res) => {
-  res.status(200).end();
+  res.status(200).json(res.locals.id);
 });
 
 router.put('/records', recordsController.updateRecord, (req, res) => {

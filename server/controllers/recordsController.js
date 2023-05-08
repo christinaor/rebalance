@@ -75,9 +75,11 @@ recordsController.postRecord = async (req, res, next) => {
     // console.log(split)
     const postQuery = `
       INSERT INTO rebalance.records (username, counterparty_username, item_name, item_cost, user_split, user_perc)
-      VALUES ($1, $2, $3, $4, $5, $6);
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING id;
     `;
     const executePost = await db.query(postQuery, params);
+    res.locals.id = executePost.rows[0].id;
     next();
   } catch(err) {
     return next({
