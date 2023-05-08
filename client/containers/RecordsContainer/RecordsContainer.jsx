@@ -47,12 +47,12 @@ const RecordsContainer = props => {
  * useEffect runs when currentCounterparty changes so the RecordsList will reflect records with the counterparty selected only.
  */
   useEffect(() => {
-    // const controller = new AbortController();
-    // const signal = controller.signal;
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-    // Retrieve records based on the current counterparty
-
-    fetch('/api/records')
+    fetch('/api/records', {
+      signal: signal
+    })
       .then(response => response.json())
       .then(records => {
         console.log(records)
@@ -67,35 +67,50 @@ const RecordsContainer = props => {
         setUserBalance(calculatedUserBalance.toFixed(2));
         setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
       })
-      .catch(err => console.log(`Error encountered: ${err}`))
-      // .finally(data => setRecordsList(data))
-  //   let records;
-  // if (!sortedRecords) {
-  //     console.log('in the else grabbing all records')
-  //     records = await fetch('/api/records', {
-  //       signal: signal
-  //     })
-  //       .then(response => response.json())
-  //       .catch((err) => {
-  //         if (err.name === 'AbortError') {
-  //           return 'Successfully aborted!';
-  //         } else return `Error getting records: ${err}`
-  //       })
-  //       .finally(setPopulatedRecords(true))
-  //   }
-    // setNumUnpaidBalances(records.length);
-    // if (!sortedRecords) setRecordsList(records);
-
-    // // Calculate user and counterparty balances
-    // let calculatedUserBalance = 0;
-    // let calculatedCounterpartyBalance = 0;
-    // for (const record of records) {
-    //   calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
-    //   calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
-    // }
-    // setUserBalance(calculatedUserBalance.toFixed(2));
-    // setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
+      .catch(err => {
+        if (err.name === 'AbortError') {
+            return 'Successfully aborted!';
+          } else return `Error getting records: ${err}`
+        })
   }, []);
+
+  // Sort records if counterparty is filtered
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    if (currentCounterparty !== 'All Parties') {
+      fetch('/api/records/counterparty', {
+        signal: signal,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          counterparty: currentCounterparty
+        })
+      })
+        .then(response => response.json())
+        .then(records => {
+          console.log(records)
+          setRecordsList(records)
+          setNumUnpaidBalances(records.length)
+          let calculatedUserBalance = 0;
+          let calculatedCounterpartyBalance = 0;
+          for (const record of records) {
+            calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
+            calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
+          }
+          setUserBalance(calculatedUserBalance.toFixed(2));
+          setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
+        })
+        .catch((err) => {
+          if (err.name === 'AbortError') {
+            return 'Successfully aborted!';
+          } else return `Error getting records for specific counterparty: ${err}`
+        })
+    }
+  }, [currentCounterparty])
 
   // useEffect(async () => {
   //   const controller = new AbortController();
