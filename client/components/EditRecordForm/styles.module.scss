@@ -1,7 +1,17 @@
 @import '/client/scss/_colors';
 @import '/client/scss/_layout';
 
-.recordsAddForm {
+.chooseRecordPrompt {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+
+  color: $backgroundColorSmokeWhite;
+}
+
+.editRecordForm {
   display: flex;
   flex-direction: column;
 
@@ -30,7 +40,7 @@
   border-radius: 4px;
 }
 
-.addCancelButtons {
+.updateCancelButtons {
   margin-top: 0.5rem;
   display: flex;
   justify-content: center;
@@ -38,7 +48,7 @@
   gap: 0.5rem;
 }
 
-.cancelButton, .submitNewRecordButton {
+.cancelButton, .updateButton {
   padding: 0.5rem 1rem;
 
   color: $backgroundColorWhite;

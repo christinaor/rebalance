@@ -32,7 +32,7 @@ const RecordsList = props => {
 
   useEffect(() => {
     if (currentCounterparty !== 'All Parties') setSortedRecords(false);
-  }, [currentCounterparty]);
+  }, [currentCounterparty, recordsList]);
 
   const handleRecordRowClick = useCallback(e => {
     console.log(e.currentTarget)
