@@ -25,15 +25,10 @@ const RecordsContainer = props => {
     setCounterpartyBalance,
     numUnpaidBalances,
     setNumUnpaidBalances,
-    counterpartiesList,
-    setCounterpartiesList,
-    populatedCounterparties,
-    setPopulatedCounterparties
   } = props;
 
   const [recordsList, setRecordsList] = useState([]);
   const [populatedRecords, setPopulatedRecords] = useState(false);
-  const [toUpdate, setToUpdate] = useState(false);
   const [recordToUpdate, setRecordToUpdate] = useState({
     id: null,
     item: null,
@@ -44,37 +39,10 @@ const RecordsContainer = props => {
 
 /**
  * RecordsList is rendered for all counterparties the user has on inital render.
- * useEffect runs when currentCounterparty changes so the RecordsList will reflect records with the counterparty selected only.
- */
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    fetch('/api/records', {
-      signal: signal
-    })
-      .then(response => response.json())
-      .then(records => {
-        console.log(records)
-        setRecordsList(records)
-        setNumUnpaidBalances(records.length)
-        let calculatedUserBalance = 0;
-        let calculatedCounterpartyBalance = 0;
-        for (const record of records) {
-          calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
-          calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
-        }
-        setUserBalance(calculatedUserBalance.toFixed(2));
-        setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
-      })
-      .catch(err => {
-        if (err.name === 'AbortError') {
-            return 'Successfully aborted!';
-          } else return `Error getting records: ${err}`
-        })
-  }, []);
-
-  // Sort records if counterparty is filtered
+ * useEffect runs when currentCounterparty changes so the RecordsList will 
+ * reflect records with the counterparty selected only.
+*/
+  // Fetch records based on counterparty
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -93,8 +61,8 @@ const RecordsContainer = props => {
         .then(response => response.json())
         .then(records => {
           console.log(records)
-          setRecordsList(records)
-          setNumUnpaidBalances(records.length)
+          setRecordsList(records);
+          setNumUnpaidBalances(records.length);
           let calculatedUserBalance = 0;
           let calculatedCounterpartyBalance = 0;
           for (const record of records) {
@@ -109,65 +77,36 @@ const RecordsContainer = props => {
             return 'Successfully aborted!';
           } else return `Error getting records for specific counterparty: ${err}`
         })
+    } else {
+      fetch('/api/records', {
+        signal: signal
+      })
+        .then(response => response.json())
+        .then(records => {
+          console.log(records)
+          setRecordsList(records)
+          setNumUnpaidBalances(records.length)
+          let calculatedUserBalance = 0;
+          let calculatedCounterpartyBalance = 0;
+          for (const record of records) {
+            calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
+            calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
+          }
+          setUserBalance(calculatedUserBalance.toFixed(2));
+          setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
+        })
+        .catch(err => {
+          if (err.name === 'AbortError') {
+              return 'Successfully aborted!';
+            } else return `Error getting records: ${err}`
+          })
     }
   }, [currentCounterparty])
-
-  // useEffect(async () => {
-  //   const controller = new AbortController();
-  //   const signal = controller.signal;
-
-  //   console.log('recordsContainer fired with populatedRecords', populatedRecords)
-  //   // Retrieve records based on the current counterparty
-  //   let records;
-  //   if (!sortedRecords && currentCounterparty !== null && currentCounterparty !== 'All Parties') {
-  //     records = await fetch('/api/records/counterparty', {
-  //       signal: signal,
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         counterparty: currentCounterparty
-  //       })
-  //     })
-  //       .then(response => response.json())
-  //       .catch((err) => {
-  //         if (err.name === 'AbortError') {
-  //           return 'Successfully aborted!';
-  //         } else return `Error getting records for specific counterparty: ${err}`
-  //       })
-  //       .finally(setPopulatedRecords(true))
-  //   // Otherwise all records will be retrieved
-  //   } else if (!sortedRecords) {
-  //     console.log('in the else grabbing all records')
-  //     records = await fetch('/api/records', {
-  //       signal: signal
-  //     })
-  //       .then(response => response.json())
-  //       .catch((err) => {
-  //         if (err.name === 'AbortError') {
-  //           return 'Successfully aborted!';
-  //         } else return `Error getting records: ${err}`
-  //       })
-  //       .finally(setPopulatedRecords(true))
-  //   }
-  //   setNumUnpaidBalances(records.length);
-  //   if (!sortedRecords) setRecordsList(records);
-
-  //   // Calculate user and counterparty balances
-  //   let calculatedUserBalance = 0;
-  //   let calculatedCounterpartyBalance = 0;
-  //   for (const record of records) {
-  //     calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
-  //     calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
-  //   }
-  //   setUserBalance(calculatedUserBalance.toFixed(2));
-  //   setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
-  // }, [populatedRecords, currentCounterparty, sortedRecords]);
 
   const [isAltering, setIsAltering] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
 
+  // TODO: Split into smaller components
   const [isDeleting, setIsDeleting] = useState(false);
 
   // For adding records
@@ -178,14 +117,10 @@ const RecordsContainer = props => {
     cost: '',
     userPercent: 50
   });
-  // const [allButtonsVisible, setAllButtonsVisible] = useState(true);
-  // const [toggleAddRecordForm, setToggleAddRecordForm] = useState(false);
-
 
   const addRecord = useCallback(e => {
     e.preventDefault();
-    console.log(addedRecord)
-    // Add cases dealing with blanks/nulls in postedRecord
+    // TODO Add cases dealing with blanks/nulls in postedRecord
     const splitCalculation =  addedRecord.cost * addedRecord.userPercent / 100;
     const postAddedRecord = async () => {
       await fetch('/api/records', {
@@ -231,6 +166,7 @@ const RecordsContainer = props => {
   // For editing a record
   const [isEditing, setIsEditing] = useState(false);
   const [editedRecord, setEditedRecord] = useState({
+    name: null,
     id: null,
     item: null,
     cost: null,
@@ -244,7 +180,6 @@ const RecordsContainer = props => {
 
   const updateRecord = useCallback(e => {
     console.log('updateRecord fired: ', recordToUpdate);
-    console.log('current populated records is: ', populatedRecords)
     e.preventDefault();
     const putEditedRecord = async () => {
       await fetch('api/records/', {
@@ -266,20 +201,8 @@ const RecordsContainer = props => {
         .finally(() => {
           // Filter out record that was edited, then add editedRecord
           const filteredRecords = recordsList.filter(record => record.id != editedRecord.id)
-          console.log(filteredRecords)
-          console.log(recordsList.filter(record => record.id == editedRecord.id))
-          console.log([...filteredRecords, {
-            counterparty_username: currentCounterparty,
-            id: editedRecord.id,
-            input_date: new Date(),
-            item_cost: editedRecord.cost,
-            item_name: editedRecord.item,
-            user_perc: editedRecord.perc,
-            user_split: editedRecord.cost * editedRecord.perc / 100,
-            username: "CO",
-          }])
           setRecordsList([...filteredRecords, {
-            counterparty_username: currentCounterparty,
+            counterparty_username: editedRecord.name,
             id: parseInt(editedRecord.id),
             input_date: new Date().toISOString(), // need to look like 2022-08-25T09:02:16.386Z
             item_cost: editedRecord.cost,
@@ -289,6 +212,7 @@ const RecordsContainer = props => {
             username: "CO",
           }]);
           setEditedRecord({
+            name: null,
             id: null,
             item: null,
             cost: null,
@@ -301,6 +225,12 @@ const RecordsContainer = props => {
       putEditedRecord();
   }, [currentCounterparty, editedRecord, recordsList]);
 
+  const [deletedRecord, setDeletedRecord] = useState({
+    id: null,
+    item: null,
+    cost: null,
+    perc: null,
+  });
 
   const handleToggleDelete = () => {
     setIsDeleting(true);
@@ -315,16 +245,38 @@ const RecordsContainer = props => {
       setIsDeleting(false);
     }
     setIsAltering(false);
-  }
+  };
 
+  const deleteRecord = useCallback(e => {
+    e.preventDefault();
+    const deleteChosenRecord = async () => {
+      await fetch('api/records/', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: deletedRecord.id,
+        })
+      })
+        .then(() => {
+          // Filter out deleted record
+          const filteredRecords = recordsList.filter(record => record.id != deletedRecord.id)
+          setRecordsList([...filteredRecords]);
+          setDeletedRecord({
+            id: null,
+            item: null,
+            cost: null,
+            perc: null,
+          });
+          setIsDeleting(false);
+          setIsAltering(false);
+        })
+        .catch(err => `Error updating record: ${err}`)
+      };
+      deleteChosenRecord();
+  }, [deletedRecord, recordsList]);
 
-  // Format: 
-  // {
-  //   id: null,
-  //   item: null,
-  //   cost: null,
-  //   perc: null
-  // }
   return (
     <section className={styles.recordsSection}>
       <div className={`${styles.titleBar} titleBar`}>
@@ -361,18 +313,11 @@ const RecordsContainer = props => {
           <button className={styles.submitNewRecordButton} onClick={addRecord}>Add Record</button>
           <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
         </div>
-        {/* {!allButtonsVisible && toggleAddRecordForm &&
-        <Button variant="contained" size="small" onClick={cancelAdd}>Cancel Add</Button>
-        } */}
       </form>}
 
       {isEditing && <>
         {!editedRecord?.id && <div className={styles.chooseRecordText}>Choose a record to update.</div>}
         {editedRecord?.id && <form className={styles.editRecordForm}>
-          {/* <div>
-            <label htmlFor="ID">ID</label>
-            <input name="ID" type="number" value={editedRecord.id} onChange={(e) => setEditedRecord({...editedRecord, id: e.target.value})} required />
-          </div> */}
           <div>
             <label htmlFor="edited-item-name">Item Name</label>
             <input name="edited-item-name" type="text" value={editedRecord.item} onChange={(e) => setEditedRecord({...editedRecord, item: e.target.value})} />
@@ -386,31 +331,40 @@ const RecordsContainer = props => {
             <input name="edited-user-percentage" type="number" value={editedRecord.perc} onChange={(e) => setEditedRecord({...editedRecord, perc: e.target.value})} />
           </div>
           <button onClick={updateRecord}>Update Record</button>
+          <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
         </form>}
       </>}
 
-
+      {isDeleting && <>
+        {!deletedRecord?.id && <div className={styles.chooseRecordText}>Choose a record to delete.</div>}
+        {deletedRecord?.id && <div>
+          <div>Are you sure you want to delete this record?</div>
+          <div className={styles.deletedRecordDetails}>
+            <div>{deletedRecord.item}</div>
+            <div>{deletedRecord.cost}</div>
+            <div>{deletedRecord.perc}</div>
+          </div>
+          <div>
+            <button onClick={deleteRecord}>Yes</button>
+            <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
+          </div>
+        </div>}
+      </>}
+      
       <RecordsList 
         recordsList={recordsList}
         setRecordsList={setRecordsList}
-        populatedRecords={populatedRecords}
-        setPopulatedRecords={setPopulatedRecords}
-        recordToUpdate={recordToUpdate}
-        setRecordToUpdate={setRecordToUpdate}
-        // toUpdate={toUpdate}
-        // setToUpdate={setToUpdate}
         currentCounterparty={currentCounterparty}
         setCurrentCounterparty={setCurrentCounterparty}
         sortedRecords={sortedRecords}
         setSortedRecords={setSortedRecords}
-        counterpartiesList={counterpartiesList}
-        setCounterpartiesList={setCounterpartiesList}
-        populatedCounterparties={populatedCounterparties}
-        setPopulatedCounterparties={setPopulatedCounterparties}
 
         isEditing={isEditing}
         editedRecord={editedRecord}
         setEditedRecord={setEditedRecord}
+        isDeleting={isDeleting}
+        deletedRecord={deletedRecord}
+        setDeletedRecord={setDeletedRecord}
       />
     </section>
   )
