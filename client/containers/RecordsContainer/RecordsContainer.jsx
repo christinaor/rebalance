@@ -46,58 +46,109 @@ const RecordsContainer = props => {
  * RecordsList is rendered for all counterparties the user has on inital render.
  * useEffect runs when currentCounterparty changes so the RecordsList will reflect records with the counterparty selected only.
  */
-  useEffect(async () => {
-    const controller = new AbortController();
-    const signal = controller.signal;
+  useEffect(() => {
+    // const controller = new AbortController();
+    // const signal = controller.signal;
 
-    console.log('recordsContainer fired with populatedRecords', populatedRecords)
     // Retrieve records based on the current counterparty
-    let records;
-    if (!sortedRecords && currentCounterparty !== null && currentCounterparty !== 'All Parties') {
-      records = await fetch('/api/records/counterparty', {
-        signal: signal,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          counterparty: currentCounterparty
-        })
-      })
-        .then(response => response.json())
-        .catch((err) => {
-          if (err.name === 'AbortError') {
-            return 'Successfully aborted!';
-          } else return `Error getting records for specific counterparty: ${err}`
-        })
-        .finally(setPopulatedRecords(true))
-    // Otherwise all records will be retrieved
-    } else if (!sortedRecords) {
-      console.log('in the else grabbing all records')
-      records = await fetch('/api/records', {
-        signal: signal
-      })
-        .then(response => response.json())
-        .catch((err) => {
-          if (err.name === 'AbortError') {
-            return 'Successfully aborted!';
-          } else return `Error getting records: ${err}`
-        })
-        .finally(setPopulatedRecords(true))
-    }
-    setNumUnpaidBalances(records.length);
-    if (!sortedRecords) setRecordsList(records);
 
-    // Calculate user and counterparty balances
-    let calculatedUserBalance = 0;
-    let calculatedCounterpartyBalance = 0;
-    for (const record of records) {
-      calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
-      calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
-    }
-    setUserBalance(calculatedUserBalance.toFixed(2));
-    setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
-  }, [populatedRecords, currentCounterparty, sortedRecords]);
+    fetch('/api/records')
+      .then(response => response.json())
+      .then(records => {
+        console.log(records)
+        setRecordsList(records)
+        setNumUnpaidBalances(records.length)
+        let calculatedUserBalance = 0;
+        let calculatedCounterpartyBalance = 0;
+        for (const record of records) {
+          calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
+          calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
+        }
+        setUserBalance(calculatedUserBalance.toFixed(2));
+        setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
+      })
+      .catch(err => console.log(`Error encountered: ${err}`))
+      // .finally(data => setRecordsList(data))
+  //   let records;
+  // if (!sortedRecords) {
+  //     console.log('in the else grabbing all records')
+  //     records = await fetch('/api/records', {
+  //       signal: signal
+  //     })
+  //       .then(response => response.json())
+  //       .catch((err) => {
+  //         if (err.name === 'AbortError') {
+  //           return 'Successfully aborted!';
+  //         } else return `Error getting records: ${err}`
+  //       })
+  //       .finally(setPopulatedRecords(true))
+  //   }
+    // setNumUnpaidBalances(records.length);
+    // if (!sortedRecords) setRecordsList(records);
+
+    // // Calculate user and counterparty balances
+    // let calculatedUserBalance = 0;
+    // let calculatedCounterpartyBalance = 0;
+    // for (const record of records) {
+    //   calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
+    //   calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
+    // }
+    // setUserBalance(calculatedUserBalance.toFixed(2));
+    // setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
+  }, []);
+
+  // useEffect(async () => {
+  //   const controller = new AbortController();
+  //   const signal = controller.signal;
+
+  //   console.log('recordsContainer fired with populatedRecords', populatedRecords)
+  //   // Retrieve records based on the current counterparty
+  //   let records;
+  //   if (!sortedRecords && currentCounterparty !== null && currentCounterparty !== 'All Parties') {
+  //     records = await fetch('/api/records/counterparty', {
+  //       signal: signal,
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         counterparty: currentCounterparty
+  //       })
+  //     })
+  //       .then(response => response.json())
+  //       .catch((err) => {
+  //         if (err.name === 'AbortError') {
+  //           return 'Successfully aborted!';
+  //         } else return `Error getting records for specific counterparty: ${err}`
+  //       })
+  //       .finally(setPopulatedRecords(true))
+  //   // Otherwise all records will be retrieved
+  //   } else if (!sortedRecords) {
+  //     console.log('in the else grabbing all records')
+  //     records = await fetch('/api/records', {
+  //       signal: signal
+  //     })
+  //       .then(response => response.json())
+  //       .catch((err) => {
+  //         if (err.name === 'AbortError') {
+  //           return 'Successfully aborted!';
+  //         } else return `Error getting records: ${err}`
+  //       })
+  //       .finally(setPopulatedRecords(true))
+  //   }
+  //   setNumUnpaidBalances(records.length);
+  //   if (!sortedRecords) setRecordsList(records);
+
+  //   // Calculate user and counterparty balances
+  //   let calculatedUserBalance = 0;
+  //   let calculatedCounterpartyBalance = 0;
+  //   for (const record of records) {
+  //     calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
+  //     calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
+  //   }
+  //   setUserBalance(calculatedUserBalance.toFixed(2));
+  //   setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
+  // }, [populatedRecords, currentCounterparty, sortedRecords]);
 
   const [isAltering, setIsAltering] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
@@ -198,18 +249,30 @@ const RecordsContainer = props => {
         })
         .catch(err => `Error updating record: ${err}`)
         .finally(() => {
-          // // Filter out record that was edited, then add editedRecord
-          // const filteredRecords = recordsList.filter(record => record.id !== editedRecord.id)
-          // setRecordsList([...filteredRecords, {
-          //   counterparty_username: currentCounterparty,
-          //   id: editedRecord.id,
-          //   input_date: new Date(),
-          //   item_cost: editedRecord.cost,
-          //   item_name: editedRecord.item,
-          //   user_perc: editedRecord.perc,
-          //   user_split: editedRecord.cost * editedRecord.perc / 100,
-          //   username: "CO",
-          // }]);
+          // Filter out record that was edited, then add editedRecord
+          const filteredRecords = recordsList.filter(record => record.id != editedRecord.id)
+          console.log(filteredRecords)
+          console.log(recordsList.filter(record => record.id == editedRecord.id))
+          console.log([...filteredRecords, {
+            counterparty_username: currentCounterparty,
+            id: editedRecord.id,
+            input_date: new Date(),
+            item_cost: editedRecord.cost,
+            item_name: editedRecord.item,
+            user_perc: editedRecord.perc,
+            user_split: editedRecord.cost * editedRecord.perc / 100,
+            username: "CO",
+          }])
+          setRecordsList([...filteredRecords, {
+            counterparty_username: currentCounterparty,
+            id: parseInt(editedRecord.id),
+            input_date: new Date().toISOString(), // need to look like 2022-08-25T09:02:16.386Z
+            item_cost: editedRecord.cost,
+            item_name: editedRecord.item,
+            user_perc: editedRecord.perc,
+            user_split: parseFloat(editedRecord.cost * editedRecord.perc / 100).toString(),
+            username: "CO",
+          }]);
           setEditedRecord({
             id: null,
             item: null,
@@ -221,7 +284,7 @@ const RecordsContainer = props => {
         })
       };
       putEditedRecord();
-  }, [editedRecord]);
+  }, [currentCounterparty, editedRecord, recordsList]);
 
 
   const handleToggleDelete = () => {

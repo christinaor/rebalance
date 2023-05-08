@@ -251,7 +251,7 @@ console.log(recordsList)
         <div className={`${styles.listTitleDate} ${styles.mobileHidden}`}>Date Entered</div>
       </div>
 
-      {recordsList?.map(record => (<div key={`record-${record.id}`} id={record.id} className={styles.recordRow} onClick={handleRecordRowClick}>
+      {(recordsList ?? []).map(record => (<div key={`record-${record.id}`} id={record.id} className={styles.recordRow} onClick={handleRecordRowClick}>
         <div className={`recordCounterparty ${styles.recordCounterparty}`}>{record.counterparty_username}</div>
         <div className={`recordItemName ${styles.recordItemName}`}>{record.item_name}</div>
         <div className={`recordCost ${styles.recordCost}`}>{record.item_cost}</div>
