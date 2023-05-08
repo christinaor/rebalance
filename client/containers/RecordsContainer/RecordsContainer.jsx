@@ -121,7 +121,6 @@ const RecordsContainer = props => {
     console.log(addedRecord)
     // Add cases dealing with blanks/nulls in postedRecord
     const splitCalculation =  addedRecord.cost * addedRecord.userPercent / 100;
-    console.log('this is split',splitCalculation)
     const postAddedRecord = async () => {
       await fetch('/api/records', {
         method: 'POST',
@@ -165,14 +164,12 @@ const RecordsContainer = props => {
 
   // For editing a record
   const [isEditing, setIsEditing] = useState(false);
-  // Format: 
-  // {
-  //   id: null,
-  //   item: null,
-  //   cost: null,
-  //   perc: null
-  // }
-  const [editedRecord, setEditedRecord] = useState(null);
+  const [editedRecord, setEditedRecord] = useState({
+    id: null,
+    item: null,
+    cost: null,
+    perc: null,
+  });
 
   const handleToggleEdit = () => {
     setIsEditing(true);
@@ -197,21 +194,28 @@ const RecordsContainer = props => {
         })
       })
         .then(() => {
-          setClickedRecordToEdit(false);
-          setEditId(null);
-          setEditItem(null);
-          setEditCost(null);
-          setEditUserPerc(null);
-          setRecordToUpdate({
-            id: null,
-            item: null,
-            cost: null,
-            perc: null
-          })
+          console.log('updated record!')
         })
         .catch(err => `Error updating record: ${err}`)
         .finally(() => {
-          setEditedRecord(null);
+          // // Filter out record that was edited, then add editedRecord
+          // const filteredRecords = recordsList.filter(record => record.id !== editedRecord.id)
+          // setRecordsList([...filteredRecords, {
+          //   counterparty_username: currentCounterparty,
+          //   id: editedRecord.id,
+          //   input_date: new Date(),
+          //   item_cost: editedRecord.cost,
+          //   item_name: editedRecord.item,
+          //   user_perc: editedRecord.perc,
+          //   user_split: editedRecord.cost * editedRecord.perc / 100,
+          //   username: "CO",
+          // }]);
+          setEditedRecord({
+            id: null,
+            item: null,
+            cost: null,
+            perc: null,
+          });
           setIsEditing(false);
           setIsAltering(false);
         })
@@ -285,8 +289,8 @@ const RecordsContainer = props => {
       </form>}
 
       {isEditing && <>
-        {!editedRecord && <div className={styles.chooseRecordText}>Choose a record to update.</div>}
-        {editedRecord && <form className={styles.editRecordForm}>
+        {!editedRecord?.id && <div className={styles.chooseRecordText}>Choose a record to update.</div>}
+        {editedRecord?.id && <form className={styles.editRecordForm}>
           {/* <div>
             <label htmlFor="ID">ID</label>
             <input name="ID" type="number" value={editedRecord.id} onChange={(e) => setEditedRecord({...editedRecord, id: e.target.value})} required />
