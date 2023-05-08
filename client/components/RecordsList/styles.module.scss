@@ -1,14 +1,58 @@
-.recordsWrapper {
-  width: 100%;
+@import '/client/scss/_colors';
+@import '/client/scss/_layout';
+
+.recordsContainer {
+  // // margin: 25px 0;
+  // display: flex;
+  // flex-direction: column;
+  // flex: 0 1 80%;
+
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  margin: 0 0.5rem;
+  padding: 1.5rem 1rem;
+
+  border-radius: 8px;
+  background-color: $backgroundColorSmokeWhite;
+}
+
+.listTitleRow, .recordRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 50px 80px;
+  // grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
+  column-gap: 1rem;
+  // column-gap: 
+
+  font-size: 0.8rem;
+}
+.listTitleRow {
+  // margin-bottom: 0.25rem;
+  padding-bottom: 0.5rem;
+
+  font-weight: 500;
+  color: $backgroundColorDarkBlue;
+  border-bottom: 2px solid $backgroundColorBlack;
+}
+.recordRow {
+  padding: 0.5rem;
+  border-bottom: 1px solid $backgroundColorBlue;
+}
+.recordRow:hover {
+  background-color: $backgroundColorLightBlue;
+}
+
+.listTitleCounterparty, .listTitleCost, .listTitleSplitDollar, .recordCounterparty, .recordCost, .recordSplitDollar {
   display: flex;
   justify-content: center;
 }
+.recordCounterparty {
+  font-weight: 500;
+}
 
-.recordsContainer {
-  margin: 25px 0;
-  display: flex;
-  flex-direction: column;
-  flex: 0 1 80%;
+.mobileHidden {
+  display: none;
 }
 
 // .records-list-wrapper {
