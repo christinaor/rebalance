@@ -35,10 +35,10 @@ export const TotalBalanceContainer = (props) => {
   } = props;
 
   let reconciliationAmount = null;
-  if (userBalance > counterpartyBalance) {
-    reconciliationAmount = (parseFloat(userBalance) - parseFloat(counterpartyBalance)).toFixed(2);
+  if ((userBalance) > counterpartyBalance) {
+    reconciliationAmount = (userBalance - counterpartyBalance).toFixed(2);
   } else {
-    reconciliationAmount = (parseFloat(counterpartyBalance) - parseFloat(userBalance)).toFixed(2);
+    reconciliationAmount = (counterpartyBalance - userBalance).toFixed(2);
   }
   
 

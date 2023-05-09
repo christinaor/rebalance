@@ -111,8 +111,8 @@ const RecordsContainer = props => {
         calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
         calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
       }
-      setUserBalance(calculatedUserBalance.toFixed(2));
-      setCounterpartyBalance(calculatedCounterpartyBalance.toFixed(2));
+      setUserBalance(parseFloat(calculatedUserBalance.toFixed(2)));
+      setCounterpartyBalance(parseFloat(calculatedCounterpartyBalance.toFixed(2)));
     }
   }, [recordsList]);
 
@@ -157,7 +157,6 @@ const RecordsContainer = props => {
             <button className={styles.deleteButton} onClick={handleToggleDelete}>DELETE</button>
           </div>}
         </>
-        {/* {isAltering && (isEditing || isDeleting) && <button className={styles.cancelButton} onClick={handleCancel}>CANCEL</button>} */}
       </div>
 
       {isAdding && 
