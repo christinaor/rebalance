@@ -64,7 +64,7 @@ const RecordsContainer = props => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    if (currentCounterparty !== 'All Parties') {
+    if (currentCounterparty !== 'All Counterparties') {
       fetch('/api/records/counterparty', {
         signal: signal,
         method: 'POST',
@@ -131,17 +131,6 @@ const RecordsContainer = props => {
     setIsAltering(true);
   };
 
-  const handleCancel = () => {
-    if (isAdding) {
-      setIsAdding(false);
-    } else if (isEditing) {
-      setIsEditing(false);
-    } else if (isDeleting) {
-      setIsDeleting(false);
-    }
-    setIsAltering(false);
-  };
-
   return (
     <section className={styles.recordsSection}>
       <div className={`${styles.titleBar} titleBar`}>
@@ -199,7 +188,6 @@ const RecordsContainer = props => {
         setCurrentCounterparty={setCurrentCounterparty}
         sortedRecords={sortedRecords}
         setSortedRecords={setSortedRecords}
-
         isEditing={isEditing}
         editedRecord={editedRecord}
         setEditedRecord={setEditedRecord}

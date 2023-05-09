@@ -27,11 +27,6 @@ export const TotalBalanceContainer = (props) => {
     setCounterpartyBalance,
     numUnpaidBalances,
     setNumUnpaidBalances,
-
-    counterpartiesList,
-    setCounterpartiesList,
-    populatedCounterparties,
-    setPopulatedCounterparties
   } = props;
 
   let reconciliationAmount = null;
@@ -41,7 +36,6 @@ export const TotalBalanceContainer = (props) => {
     reconciliationAmount = (counterpartyBalance - userBalance).toFixed(2);
   }
   
-
   // set last day as tentative due date
   const dateToday = new Date();
   const dateMonth = dateToday.getMonth() + 1;

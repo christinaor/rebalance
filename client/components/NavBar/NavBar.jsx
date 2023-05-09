@@ -98,7 +98,7 @@ const NavBar = (props) => {
             {currentCounterparty} <DropdownMenuArrow className={styles.dropdownMenuArrow}/>
 
             {isOpen && <ul className={styles.dropdownMenuList}>
-              <li key={`counterparty-All Parties`} className={styles.dropdownMenuItem} onClick={() => setCurrentCounterparty('All Parties')}>All Parties</li>
+              <li key={`counterparty-All Counterparties`} className={styles.dropdownMenuItem} onClick={() => setCurrentCounterparty('All Counterparties')}>All Counterparties</li>
               {counterpartiesList && counterpartiesList.map(counterparty => (
                 <li 
                   key={`counterparty-${counterparty.counterparty_name}`} 

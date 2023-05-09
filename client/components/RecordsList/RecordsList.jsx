@@ -16,26 +16,19 @@ import styles from './styles.module.scss';
 const RecordsList = props => {
   const {
     recordsList,
-    setRecordsList,
     currentCounterparty,
-    setCurrentCounterparty,
-    sortedRecords,
     setSortedRecords,
-
     isEditing,
-    editedRecord,
     setEditedRecord,
     isDeleting,
-    deletedRecord,
     setDeletedRecord,
   } = props;
 
   useEffect(() => {
-    if (currentCounterparty !== 'All Parties') setSortedRecords(false);
+    if (currentCounterparty !== 'All Counterparties') setSortedRecords(false);
   }, [currentCounterparty, recordsList]);
 
   const handleRecordRowClick = useCallback(e => {
-    console.log(e.currentTarget)
     const recordId = e.currentTarget.id;
     const recordCounterparty = e.currentTarget.querySelector('.recordCounterparty').textContent;
     const recordItem = e.currentTarget.querySelector('.recordItemName').textContent;
@@ -49,7 +42,6 @@ const RecordsList = props => {
         cost: recordCost,
         perc: recordPercent,
       });
-      console.log(recordId, recordItem, recordCost, recordPercent)
     }
     if (isDeleting) {
       setDeletedRecord({
@@ -58,7 +50,6 @@ const RecordsList = props => {
         cost: recordCost,
         perc: recordPercent,
       });
-      console.log(recordId, recordItem, recordCost, recordPercent)
     }
   }, [isEditing, isDeleting]);
 

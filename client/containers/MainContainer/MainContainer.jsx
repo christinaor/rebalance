@@ -29,7 +29,7 @@ const MainContainer = props => {
     setCookieTimeout
   } = props;
   const [counterpartiesList, setCounterpartiesList] = useState([]);
-  const [currentCounterparty, setCurrentCounterparty] = useState('All Parties')
+  const [currentCounterparty, setCurrentCounterparty] = useState('All Counterparties')
   const [userBalance, setUserBalance] = useState(null);
   const [counterpartyBalance, setCounterpartyBalance] = useState(null);
   const [populatedCounterparties, setPopulatedCounterparties] = useState(false);

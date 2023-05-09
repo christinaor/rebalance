@@ -104,7 +104,7 @@ const CounterpartiesContainer = props => {
           label="Filter by Counterparty"
           onChange={(event) => setCurrentCounterparty(event.target.value)}
         >
-          {[<MenuItem key="select-all-parties" value={'All Parties'}>All Parties</MenuItem>, ...counterpartySideElements]}
+          {[<MenuItem key="select-all-parties" value={'All Counterparties'}>All Counterparties</MenuItem>, ...counterpartySideElements]}
         </Select>
       </FormControl>
 
@@ -126,8 +126,8 @@ const CounterpartiesContainer = props => {
             Select a Counterparty
           </Typography>
           <List>
-          {['All Parties', ...counterpartiesList].map(counterpartyInfo => {
-              if (counterpartyInfo !== 'All Parties') {
+          {['All Counterparties', ...counterpartiesList].map(counterpartyInfo => {
+              if (counterpartyInfo !== 'All Counterparties') {
                 return (
                   <ListItem 
                     button
@@ -144,9 +144,9 @@ const CounterpartiesContainer = props => {
                     button
                     key={`cpdefault`}
                     className="cp-hover"
-                    onClick={() => setCurrentCounterparty('All Parties')}
+                    onClick={() => setCurrentCounterparty('All Counterparties')}
                   >
-                    <ListItemText primary="All Parties" />
+                    <ListItemText primary="All Counterparties" />
                   </ListItem>                  
                 )
               }
@@ -164,7 +164,7 @@ const CounterpartiesContainer = props => {
         <div 
           key={`cp0}`}
           className="cp-hover"
-          onClick={() => setCurrentCounterparty('All Parties')}>All Parties</div> */}
+          onClick={() => setCurrentCounterparty('All Counterparties')}>All Counterparties</div> */}
         {/* {counterpartySideElements} */}
 
     </div>
