@@ -3,7 +3,8 @@ import { useNavigate, Routes, Route, Navigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { StyledEngineProvider } from '@mui/material/styles';
 import MainContainer from './containers/MainContainer/MainContainer.jsx';
-import Copyright from './components/Copyright/Copyright.jsx';
+import Footer from './containers/Footer/Footer.jsx';
+// import Copyright from './components/Copyright/Copyright.jsx';
 import LoginPage from './components/LoginPage/LoginPage.jsx';
 import SignupPage from './components/SignupPage/SignupPage.jsx';
 import SettingsPage from './components/SettingsPage/SettingsPage.jsx';
@@ -65,7 +66,7 @@ function App(props) {
         </Routes>
 
       </div>
-      <Copyright />
+      <Footer />
       </StyledEngineProvider>
     )
   } else {

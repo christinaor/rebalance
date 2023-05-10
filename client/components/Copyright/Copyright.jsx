@@ -1,17 +1,16 @@
-import React, {useEffect, useState} from "react";
-import { Button, Paper, Typography, Link } from '@mui/material';
+import React from "react";
 
+import styles from './styles.module.scss';
 
 const Copyright = (props) => {
   return (
-    <footer>
-      {'© '}
-      <Link color="inherit" href="https://github.com/christinaor">
-        Christina Or
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {' | MIT License'}
-    </footer>
+    <div className={styles.copyright}>
+      <span>
+        {`© `}
+        <a href="https://github.com/christinaor">Christina Or</a>
+        {` ${new Date().getFullYear()} | MIT License`}
+      </span>
+    </div>
   );
 };
 

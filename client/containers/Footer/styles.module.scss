@@ -1,0 +1,13 @@
+@import '/client/scss/_colors';
+@import '/client/scss/_layout';
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 5rem;
+
+  color: $backgroundColorWhite;
+  background-color: $backgroundColorBlack;
+  font-size: 0.8rem;
+}
