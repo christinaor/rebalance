@@ -35,6 +35,7 @@ const RecordsContainer = props => {
     setNumUnpaidBalances,
   } = props;
 
+  const [displayRecords, setDisplayRecords] = useState(true);
   const [recordsList, setRecordsList] = useState([]);
   const [isAltering, setIsAltering] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
@@ -56,7 +57,10 @@ const RecordsContainer = props => {
 
   const [sortedRecords, setSortedRecords] = useState(false);
 
-  console.log(recordsList)
+  const handleDisplayToggle = () => {
+    setDisplayRecords(!displayRecords);
+  };
+
 /**
  * RecordsList is rendered for all counterparties the user has on inital render.
  * useEffect runs when currentCounterparty changes so the RecordsList will 
@@ -137,71 +141,73 @@ const RecordsContainer = props => {
   return (
     <section className={styles.recordsSection}>
       <div className={`${styles.titleBar} titleBar`}>
-        <ArrowRightIcon />
-        <h2>Records with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
+        <ArrowRightIcon className={displayRecords ? 'arrowDown' : ''} />
+        <h2 className={styles.titleBarText} onClick={handleDisplayToggle}>Records with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
       </div>
 
-      <div className={styles.alterRecords}>
-        {!isAltering && <div className={styles.alterRecordsButtons}>
-          <button className={styles.addButton} onClick={handleToggleAdd}>
-            <AddRecordIcon className={styles.buttonIcon} /> 
-            <span>ADD</span></button>
-          <button className={styles.editButton} onClick={handleToggleEdit}>
-            <EditRecordIcon className={styles.buttonIcon} /> 
-            <span>EDIT</span></button>
-          <button className={styles.deleteButton} onClick={handleToggleDelete}>
-            <DeleteRecordIcon className={styles.buttonIcon} /> 
-            <span>DELETE</span></button>
-          </div>}
-      </div>
+      {displayRecords && <div className={styles.content}>
+        <div className={styles.alterRecords}>
+          {!isAltering && <div className={styles.alterRecordsButtons}>
+            <button className={styles.addButton} onClick={handleToggleAdd}>
+              <AddRecordIcon className={styles.buttonIcon} /> 
+              <span>ADD</span></button>
+            <button className={styles.editButton} onClick={handleToggleEdit}>
+              <EditRecordIcon className={styles.buttonIcon} /> 
+              <span>EDIT</span></button>
+            <button className={styles.deleteButton} onClick={handleToggleDelete}>
+              <DeleteRecordIcon className={styles.buttonIcon} /> 
+              <span>DELETE</span></button>
+            </div>}
+        </div>
 
-      {isAdding && 
-        <AddRecordForm 
-          currentCounterparty={currentCounterparty}
+        {isAdding && 
+          <AddRecordForm 
+            currentCounterparty={currentCounterparty}
+            recordsList={recordsList}
+            setIsAdding={setIsAdding}
+            setIsAltering={setIsAltering}
+            setRecordsList={setRecordsList}
+          />
+        }
+
+        {isEditing && 
+          <EditRecordForm 
+            currentCounterparty={currentCounterparty}
+            editedRecord={editedRecord}
+            setEditedRecord={setEditedRecord}
+            recordsList={recordsList}
+            setRecordsList={setRecordsList}
+            setIsAltering={setIsAltering}
+            setIsEditing={setIsEditing}
+          />
+        }
+
+        {isDeleting && 
+          <DeleteRecordForm
+            deletedRecord={deletedRecord}
+            setDeletedRecord={setDeletedRecord}
+            recordsList={recordsList}
+            setRecordsList={setRecordsList}
+            setIsAltering={setIsAltering}
+            setIsDeleting={setIsDeleting}
+          />      
+        }
+        
+        <RecordsList 
           recordsList={recordsList}
-          setIsAdding={setIsAdding}
-          setIsAltering={setIsAltering}
           setRecordsList={setRecordsList}
-        />
-      }
-
-      {isEditing && 
-        <EditRecordForm 
           currentCounterparty={currentCounterparty}
+          setCurrentCounterparty={setCurrentCounterparty}
+          sortedRecords={sortedRecords}
+          setSortedRecords={setSortedRecords}
+          isEditing={isEditing}
           editedRecord={editedRecord}
           setEditedRecord={setEditedRecord}
-          recordsList={recordsList}
-          setRecordsList={setRecordsList}
-          setIsAltering={setIsAltering}
-          setIsEditing={setIsEditing}
-        />
-      }
-
-      {isDeleting && 
-        <DeleteRecordForm
+          isDeleting={isDeleting}
           deletedRecord={deletedRecord}
           setDeletedRecord={setDeletedRecord}
-          recordsList={recordsList}
-          setRecordsList={setRecordsList}
-          setIsAltering={setIsAltering}
-          setIsDeleting={setIsDeleting}
-        />      
-      }
-      
-      <RecordsList 
-        recordsList={recordsList}
-        setRecordsList={setRecordsList}
-        currentCounterparty={currentCounterparty}
-        setCurrentCounterparty={setCurrentCounterparty}
-        sortedRecords={sortedRecords}
-        setSortedRecords={setSortedRecords}
-        isEditing={isEditing}
-        editedRecord={editedRecord}
-        setEditedRecord={setEditedRecord}
-        isDeleting={isDeleting}
-        deletedRecord={deletedRecord}
-        setDeletedRecord={setDeletedRecord}
-      />
+        />
+      </div>}
     </section>
   )
 }

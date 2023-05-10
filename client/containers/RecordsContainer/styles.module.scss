@@ -10,10 +10,21 @@
   background-color: $backgroundColorBlue;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+
+  background-color: $backgroundColorBlue;
+}
+
 .titleBar {
   padding-left: 0.5rem;
 
   color: $backgroundColorWhite;
+}
+
+.titleBarText {
+  cursor: pointer;
 }
 
 .currentPartyInTitle {

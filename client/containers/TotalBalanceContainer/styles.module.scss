@@ -11,8 +11,12 @@
   background-color: $backgroundColorSmokeWhite;
 }
 
-.titleBar {
+.titleBar {  
   padding-left: 0.5rem;
+}
+
+.titleBarText {
+  cursor: pointer;
 }
 
 .currentPartyInTitle {

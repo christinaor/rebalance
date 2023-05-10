@@ -12,7 +12,6 @@
 import React, { useEffect, useState } from "react";
 
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-
 import DownArrow from '../../../assets/down-arrow.svg';
 
 import styles from './styles.module.scss';
@@ -28,6 +27,12 @@ export const TotalBalanceContainer = (props) => {
     numUnpaidBalances,
     setNumUnpaidBalances,
   } = props;
+
+  const [displaySummary, setDisplaySummary] = useState(true);
+
+  const handleDisplayToggle = () => {
+    setDisplaySummary(!displaySummary);
+  };
 
   let reconciliationAmount = null;
   if ((userBalance) > counterpartyBalance) {
@@ -49,9 +54,9 @@ export const TotalBalanceContainer = (props) => {
 
   return (
     <section className={styles.totalBalanceSection}>
-      <div className={`${styles.titleBar} titleBar`}>
-        <ArrowRightIcon />
-        <h2>Summary with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
+      <div className={`titleBar ${styles.titleBar}`}>
+        <ArrowRightIcon className={displaySummary ? 'arrowDown' : ''} />
+        <h2 className={styles.titleBarText} onClick={handleDisplayToggle}>Summary with <span className={styles.currentPartyInTitle}>{currentCounterparty}</span></h2>
       </div>
       {/* <CounterpartyFilter
         counterpartiesList={counterpartiesList}
@@ -63,7 +68,7 @@ export const TotalBalanceContainer = (props) => {
       />         */}
       
 
-      <div className={styles.content}>
+      {displaySummary && <div className={styles.content}>
         <div className={styles.balances}>
           <div className={styles.userBalanceAndDueDate}>
             <div className={styles.userBalance}>
@@ -101,7 +106,7 @@ export const TotalBalanceContainer = (props) => {
             </h3>
           </div>
         </div>
-      </div>
+      </div>}
     </section>
   )
 }

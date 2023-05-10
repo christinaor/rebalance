@@ -50,11 +50,10 @@ button:focus {
 
 .titleBar {
   display: flex;
+}
 
-  // padding-bottom: 1rem;
-
-  // color: $backgroundColorWhite;
-  // border-bottom: 1px solid $backgroundColorWhite;
+.arrowDown {
+  transform: rotate(90deg);
 }
 
 .main-content-wrapper {
