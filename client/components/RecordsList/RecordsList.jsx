@@ -10,6 +10,7 @@
  */
 
 import React, { useCallback, useEffect, useState } from "react";
+import Record from "../Record/Record.jsx";
 
 import styles from './styles.module.scss';
 
@@ -64,14 +65,25 @@ const RecordsList = props => {
         <div className={`${styles.listTitleDate} ${styles.mobileHidden}`}>Date Entered</div>
       </div>
 
-      {(recordsList ?? []).map(record => (<div key={`record-${record.id}`} id={record.id} className={styles.recordRow} onClick={handleRecordRowClick}>
-        <div className={`recordCounterparty ${styles.recordCounterparty}`}>{record.counterparty_username}</div>
-        <div className={`recordItemName ${styles.recordItemName}`}>{record.item_name}</div>
-        <div className={`recordCost ${styles.recordCost}`}>{record.item_cost}</div>
-        <div className={`recordSplitDollar ${styles.recordSplitDollar}`}>{record.user_split}</div>
-        <div className={`recordSplitPercent ${styles.recordSplitPercent} ${styles.mobileHidden}`}>{record.user_perc}</div>
-        <div className={`recordDate ${styles.recordDate} ${styles.mobileHidden}`}>{record.input_date}</div>
-      </div>
+      {(recordsList ?? []).map(record => (
+        <Record
+          id={record.id}
+          handleOnClick={handleRecordRowClick}
+          counterparty={record.counterparty_username}
+          itemName={record.item_name}
+          itemCost={record.item_cost}
+          userSplitDollar={record.user_split}
+          userSplitPercent={record.user_perc}
+          date={record.input_date}
+        />
+      // <div key={`record-${record.id}`} id={record.id} className={styles.recordRow} onClick={handleRecordRowClick}>
+      //   <div className={`recordCounterparty ${styles.recordCounterparty}`}>{record.counterparty_username}</div>
+      //   <div className={`recordItemName ${styles.recordItemName}`}>{record.item_name}</div>
+      //   <div className={`recordCost ${styles.recordCost}`}>{record.item_cost}</div>
+      //   <div className={`recordSplitDollar ${styles.recordSplitDollar}`}>{record.user_split}</div>
+      //   <div className={`recordSplitPercent ${styles.recordSplitPercent} ${styles.mobileHidden}`}>{record.user_perc}</div>
+      //   <div className={`recordDate ${styles.recordDate} ${styles.mobileHidden}`}>{record.input_date}</div>
+      // </div>
       ))}
     </div>
   )

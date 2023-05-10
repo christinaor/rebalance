@@ -13,16 +13,19 @@
 
   margin: 0 0.5rem;
   padding: 1.5rem 1rem;
+  width: clamp(20rem, 50vw, 40rem);
 
   border-radius: 8px;
   background-color: $backgroundColorWhite;
 }
 
-.listTitleRow, .recordRow {
+.listTitleRow {
   display: grid;
-  grid-template-columns: 1fr 1fr 50px 80px;
+
+  grid-template-columns: 1fr 1fr max-content 1fr;  
+  // grid-template-columns: 1fr 1fr 50px 80px;
   // grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
-  column-gap: 1rem;
+  // column-gap: 1rem;
   // column-gap: 
 
   font-size: 0.8rem;
@@ -35,32 +38,16 @@
   color: $backgroundColorDarkBlue;
   border-bottom: 2px solid $backgroundColorBlack;
 }
-.recordRow {
-  padding: 0.5rem;
-  border-bottom: 1px solid $backgroundColorBlue;
-}
-.recordRow:hover {
-  background-color: $backgroundColorLightBlue;
-}
 
-.listTitleCounterparty, .listTitleCost, .listTitleSplitDollar, .recordCounterparty, .recordCost, .recordSplitDollar {
+
+.listTitleCounterparty, .listTitleCost, .listTitleSplitDollar {
   display: flex;
   justify-content: center;
-}
-.recordCounterparty {
-  font-weight: 500;
 }
 
 .mobileHidden {
   display: none;
 }
-
-// .records-list-wrapper {
-//   display: grid;
-//   grid: repeat(9, auto);
-//   // grid-template-columns: repeat(auto-fill, 400px);
-//   grid-auto-flow: row;
-// }
 
 .recordsListWrapper {
   display: flex;

@@ -1,158 +1,38 @@
 /**
  * ************************************
  *
- * @module  Record
+ * @module  RecordsContainer
  * @author
  * @date
- * @description Functional component conditionally renders other components in RecordsList through state changes
+ * @description stateful component that renders other components related to balance of all parties
  *
  * ************************************
  */
 
-import React, { useEffect, useState } from 'react'
-import UpdateRecord from './UpdateRecord/UpdateRecord.jsx';
+import React, { useCallback, useEffect, useState } from "react";
 
 import styles from './styles.module.scss';
 
 const Record = (props) => {
-  const { 
-    id, 
-    counterpartyName,
-    inputDate,
-    itemName, 
-    cost, 
-    userSplit,
-    userPercent,
-    populatedRecords, 
-    setPopulatedRecords,
-    recordToUpdate, 
-    setRecordToUpdate, 
-    // toUpdate, 
-    // setToUpdate, 
-    // actionsValue, 
-    // setActionsValue,
-    inEditMode,
-    setInEditMode,
-    inDeleteMode,
-    setInDeleteMode,
-    clickedRecordToEdit,
-    setClickedRecordToEdit,
-    currentCounterparty,
-    setCurrentCounterparty
+  const {
+    id,
+    handleOnClick,
+    counterparty,
+    itemName,
+    itemCost,
+    userSplitDollar,
+    userSplitPercent,
+    date,
   } = props;
 
-  // useEffect(() => {
-  //   console.log('populatedRecords in record: ', populatedRecords)
-  // }, [populatedRecords])
-
-  // delete a record clicked based on its id
-  const deleteRecord = (e) => {
-    console.log('deleteRecord fired');
-    fetch('api/records/', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: id
-      })
-    })
-      .catch(err => `Error deleting record: ${err}`)
-      .finally(() => {
-        console.log('deleted record')
-        setPopulatedRecords(false);
-      })
-  };
-
-  const editOrDeleteRecord = (e) => {
-    if (inDeleteMode) deleteRecord(e);
-    // For update, set updateRecord when record has been clicked
-    if (inEditMode && !clickedRecordToEdit) {
-      setRecordToUpdate({
-        id: id,
-        item: itemName,
-        cost: cost,
-        perc: userPercent
-      });
-      // Opens edit form when clickedRecordToEdit is set to true
-      setClickedRecordToEdit(true);
-    // Reset updateRecord if the same or different record is clicked
-    } else if (inEditMode && clickedRecordToEdit) {
-      // If the id is different than the id in recordToUpdate, then a different record was clicked, so recordToUpdate should reflect info from this clicked record
-      if (recordToUpdate.id !== id) {
-        console.log('in the if statement comparing ids')
-        setRecordToUpdate({
-          id: id,
-          item: itemName,
-          cost: cost,
-          perc: userPercent
-        });
-        setClickedRecordToEdit(true);
-      // If id is the same, the record already has clicekdRecordToEdit set to true, so clicking the same record should set it to false and reset recordToUpdate
-      } else {
-        setRecordToUpdate({
-          id: null,
-          item: null,
-          cost: null,
-          perc: null
-        });
-        // Closes edit form for same record clicked when clickedRecordToEdit is set to false
-        setClickedRecordToEdit(false);
-      }
-    }
-  }
-
-  // Parse out date to be human-readable
-  const recordDate = new Date(inputDate);
-  const yyyy = recordDate.getFullYear();
-  let mm = recordDate.getMonth() + 1; // month starts at 0;
-  let dd = recordDate.getDate();
-
-  dd = (dd < 10) ? '0' + dd : dd;
-  mm = (mm < 10) ? '0' + mm : mm;
-
-
-  // Calculate counterpartySplit using cost and userPercent
-  const counterpartySplit = (cost - (cost * userPercent / 100)).toFixed(2);
-  const formattedUserPercent = (parseInt(userPercent)).toString() + '%'
-
-
   return (
-    <div className={styles.recordsPendingUpdate}>
-      <div 
-        className={`grid-record center ${inEditMode ? `record-edit-hover` : `record-edit`} ${inDeleteMode ? `record-delete-hover` : `record-delete`}`}
-        onClick={editOrDeleteRecord}
-      >
-        <div>{id}</div>
-        <div>{counterpartyName}</div>
-        <div>{`${mm}/${dd}/${yyyy}`}</div>
-        <div>{itemName}</div>
-        <div>{cost}</div>
-        <div>{userSplit}</div>
-        <div>{counterpartySplit}</div>
-        <div>{formattedUserPercent}</div>
-        <div></div>
-      </div>
-      {inEditMode && clickedRecordToEdit && (recordToUpdate.id === id) &&
-        <UpdateRecord 
-          id={id}
-          counterpartyName={counterpartyName}
-          dateEntered={`${mm}/${dd}/${yyyy}`}
-          itemName={itemName}
-          cost={cost}
-          userSplit={userSplit}
-          counterpartySplit={counterpartySplit}
-          userPercent={userPercent}
-          currentCounterparty={currentCounterparty}
-          setCurrentCounterparty={setCurrentCounterparty}
-          recordToUpdate={recordToUpdate}
-          setRecordToUpdate={setRecordToUpdate}
-          clickedRecordToEdit={clickedRecordToEdit}
-          setClickedRecordToEdit={setClickedRecordToEdit}
-          populatedRecords={populatedRecords}
-          setPopulatedRecords={setPopulatedRecords}
-        />
-        }
+    <div key={`record-${id}`} id={id} className={styles.recordRow} onClick={handleOnClick}>
+      <div className={`recordCounterparty ${styles.recordCounterparty}`}>{counterparty}</div>
+      <div className={`recordItemName ${styles.recordItemName}`}>{itemName}</div>
+      <div className={`recordCost ${styles.recordCost}`}>{itemCost}</div>
+      <div className={`recordSplitDollar ${styles.recordSplitDollar}`}>{userSplitDollar}</div>
+      <div className={`recordSplitPercent ${styles.recordSplitPercent} ${styles.mobileHidden}`}>{userSplitPercent}</div>
+      <div className={`recordDate ${styles.recordDate} ${styles.mobileHidden}`}>{date}</div>
     </div>
   )
 };
