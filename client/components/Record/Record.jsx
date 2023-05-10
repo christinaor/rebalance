@@ -1,15 +1,15 @@
 /**
  * ************************************
  *
- * @module  RecordsContainer
+ * @module  Record
  * @author
  * @date
- * @description stateful component that renders other components related to balance of all parties
+ * @description
  *
  * ************************************
  */
 
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 
 import styles from './styles.module.scss';
 
