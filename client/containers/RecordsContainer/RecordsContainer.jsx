@@ -12,6 +12,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import AddRecordIcon from '/assets/add-record.svg';
+import EditRecordIcon from '/assets/edit-record.svg';
+import DeleteRecordIcon from '/assets/delete-record.svg';
 
 import AddRecordForm from '../../components/AddRecordForm/AddRecordForm.jsx';
 import EditRecordForm from "../../components/EditRecordForm/EditRecordForm.jsx";
@@ -139,13 +142,17 @@ const RecordsContainer = props => {
       </div>
 
       <div className={styles.alterRecords}>
-        <>
-          {!isAltering && <div className={styles.alterRecordsButtons}>
-            <button className={styles.addButton} onClick={handleToggleAdd}>ADD</button>
-            <button className={styles.editButton} onClick={handleToggleEdit}>EDIT</button>
-            <button className={styles.deleteButton} onClick={handleToggleDelete}>DELETE</button>
+        {!isAltering && <div className={styles.alterRecordsButtons}>
+          <button className={styles.addButton} onClick={handleToggleAdd}>
+            <AddRecordIcon className={styles.buttonIcon} /> 
+            <span>ADD</span></button>
+          <button className={styles.editButton} onClick={handleToggleEdit}>
+            <EditRecordIcon className={styles.buttonIcon} /> 
+            <span>EDIT</span></button>
+          <button className={styles.deleteButton} onClick={handleToggleDelete}>
+            <DeleteRecordIcon className={styles.buttonIcon} /> 
+            <span>DELETE</span></button>
           </div>}
-        </>
       </div>
 
       {isAdding && 

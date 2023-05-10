@@ -26,7 +26,7 @@ const Record = (props) => {
   } = props;
 
   return (
-    <div key={`record-${id}`} id={id} className={styles.recordRow} onClick={handleOnClick}>
+    <div id={id} className={styles.recordRow} onClick={handleOnClick}>
       <div className={`recordCounterparty ${styles.recordCounterparty}`}>{counterparty}</div>
       <div className={`recordItemName ${styles.recordItemName}`}>{itemName}</div>
       <div className={`recordCost ${styles.recordCost}`}>{itemCost}</div>
