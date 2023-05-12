@@ -17,7 +17,7 @@ import styles from './styles.module.scss';
 
 const RecordsList = props => {
   const {
-    recordsList,
+    recordsList = [],
     currentCounterparty,
     setSortedRecords,
     isEditing,
@@ -59,7 +59,7 @@ const RecordsList = props => {
     <div className={styles.recordsList}>
       <RecordsListHeader />
 
-      {(recordsList ?? []).map(record => (
+      {recordsList?.map(record => (
         <Record
           key={`record-${record.id}`}
           id={record.id}
