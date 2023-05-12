@@ -4,6 +4,7 @@
 .recordRow {
   display: grid;
   grid-template-columns: 1fr 1fr max-content 1fr;
+  justify-content: center;
   // grid-template-columns: 1fr 1fr 50px 80px;
 
   column-gap: 1rem;
@@ -25,4 +26,20 @@
 
 .mobileHidden {
   display: none;
+}
+
+@media only screen and (min-width: $tablet-mid-start) {
+  .recordRow {
+    grid-template-columns: 110px 80px 70px 70px 60px 100px;
+  }
+
+  .recordCounterparty, .recordCost, .recordSplitDollar {
+    justify-content: flex-start;
+  }
+  .recordDate {
+    justify-content: center;
+  }
+  .mobileHidden {
+    display: flex;
+  }
 }

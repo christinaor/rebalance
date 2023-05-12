@@ -25,6 +25,8 @@ const Record = (props) => {
     date,
   } = props;
 
+  const [yyyy,mm,dd,hh,mi] = date.split(/[/:\-T]/)
+
   return (
     <div id={id} className={styles.recordRow} onClick={handleOnClick}>
       <div className={`recordCounterparty ${styles.recordCounterparty}`}>{counterparty}</div>
@@ -32,7 +34,7 @@ const Record = (props) => {
       <div className={`recordCost ${styles.recordCost}`}>{itemCost}</div>
       <div className={`recordSplitDollar ${styles.recordSplitDollar}`}>{userSplitDollar}</div>
       <div className={`recordSplitPercent ${styles.recordSplitPercent} ${styles.mobileHidden}`}>{userSplitPercent}</div>
-      <div className={`recordDate ${styles.recordDate} ${styles.mobileHidden}`}>{date}</div>
+      <div className={`recordDate ${styles.recordDate} ${styles.mobileHidden}`}>{`${mm}/${dd}/${yyyy}`}</div>
     </div>
   )
 };

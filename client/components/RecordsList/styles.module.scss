@@ -18,3 +18,9 @@
   border-radius: 8px;
   background-color: $backgroundColorWhite;
 }
+
+@media only screen and (min-width: $tablet-mid-start) {
+  .recordsList {
+    width: clamp(40rem, 60vw, 60rem);
+  }
+}

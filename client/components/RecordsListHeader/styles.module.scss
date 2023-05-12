@@ -4,7 +4,8 @@
 
 .listTitleRow {
   display: grid;
-  grid-template-columns: 1fr 1fr max-content 1fr;  
+  grid-template-columns: 1fr 1fr max-content 1fr; 
+  justify-content: center;
   column-gap: 1rem;
 
   padding-bottom: 0.5rem;
@@ -22,4 +23,23 @@
 
 .mobileHidden {
   display: none;
+}
+
+@media only screen and (min-width: $tablet-mid-start) {
+  .listTitleRow {
+    grid-template-columns: 110px 80px 60px 70px 70px 100px;
+
+    font-size: 1rem;
+  }
+
+  .listTitleCounterparty, .listTitleCost, .listTitleSplitDollar {
+    justify-content: flex-start;
+  }
+  .listTitleDate {
+    justify-content: center;
+  }
+
+  .mobileHidden {
+    display: flex;
+  }
 }
