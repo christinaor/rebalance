@@ -1,11 +1,12 @@
 // const fs = require('fs/promises');
-// const path = require('path')
+// const path = require('path');
+require('dotenv').config();
 const db = require('../models/model');
 const recordsController = {};
 
 recordsController.getAllRecords = async (req, res, next) => {
   try {
-    const getQuery = `SELECT * FROM rebalance.records;`;
+    const getQuery = `SELECT * FROM ${process.env.SCHEMA}.records;`;
     const allRecords = await db.query(getQuery);
     res.locals.allRecords = allRecords.rows;
     next();
@@ -21,7 +22,7 @@ recordsController.getCounterpartyRecords = async (req, res, next) => {
   try {
     const { counterparty } = req.body;
     const params = [ counterparty ];
-    const getCounterpartyQuery = `SELECT * FROM rebalance.records WHERE counterparty_username=$1`
+    const getCounterpartyQuery = `SELECT * FROM ${process.env.SCHEMA}.records WHERE counterparty_username=$1`
     const records = await db.query(getCounterpartyQuery, params);
     res.locals.counterpartyRecords = records.rows;
     next();
@@ -37,7 +38,7 @@ recordsController.getOneRecordToUpdate = async (req, res, next) => {
   try {
     const { id } = req.params;
     const params = [ id ];
-    const getOneQuery = `SELECT * FROM rebalance.records WHERE id=$1;`;
+    const getOneQuery = `SELECT * FROM ${process.env.SCHEMA}.records WHERE id=$1;`;
     const oneRecord = await db.query(getOneQuery, params);
     res.locals.oneRecord = oneRecord.rows;
     next();
@@ -74,7 +75,7 @@ recordsController.postRecord = async (req, res, next) => {
     // split = 1
     // console.log(split)
     const postQuery = `
-      INSERT INTO rebalance.records (username, counterparty_username, item_name, item_cost, user_split, user_perc)
+      INSERT INTO ${process.env.SCHEMA}.records (username, counterparty_username, item_name, item_cost, user_split, user_perc)
       VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING id;
     `;
@@ -100,7 +101,7 @@ recordsController.updateRecord = async (req, res, next) => {
     const params = [ id, item_name, item_cost, perc_split, user_split ];
 
     let updateQuery = `
-      UPDATE rebalance.records
+      UPDATE ${process.env.SCHEMA}.records
       SET item_name=$2, item_cost=$3, user_perc=$4, user_split=$5
       WHERE ID=$1
     `;
@@ -120,7 +121,7 @@ recordsController.deleteRecord = async (req, res, next) => {
     const { id } = req.body;
     const params = [ id ];
     const deleteQuery = `
-      DELETE FROM rebalance.records WHERE id=$1;
+      DELETE FROM ${process.env.SCHEMA}.records WHERE id=$1;
   `;
   const executeDelete = await db.query(deleteQuery, params);
   next();

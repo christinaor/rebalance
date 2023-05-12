@@ -1,9 +1,10 @@
+require('dotenv').config()
 const db = require('../models/model');
 const counterpartiesController = {};
 
 counterpartiesController.getAllCounterparties = async (req, res, next) => {
   try {
-    const getQuery = `SELECT * FROM rebalance.counterparties;`;
+    const getQuery = `SELECT * FROM ${process.env.SCHEMA}.counterparties;`;
     const allCounterparties = await db.query(getQuery);
     res.locals.allCounterparties = allCounterparties.rows;
     next();
