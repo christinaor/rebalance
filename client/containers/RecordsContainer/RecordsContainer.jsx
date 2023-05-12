@@ -112,14 +112,14 @@ const RecordsContainer = props => {
   useEffect(() => {
     if (recordsList.length > 0) {
       setNumUnpaidBalances(recordsList.length);
-      let calculatedUserBalance = 0;
-      let calculatedCounterpartyBalance = 0;
+      let calculatedUserBalance = 0.00;
+      let calculatedCounterpartyBalance = 0.00;
       for (const record of recordsList) {
-        calculatedUserBalance += parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100;
+        calculatedUserBalance += (parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
         calculatedCounterpartyBalance += (parseFloat(record.item_cost) - parseFloat(record.item_cost) * parseFloat(record.user_perc) / 100);
       }
-      setUserBalance(parseFloat(calculatedUserBalance.toFixed(2)));
-      setCounterpartyBalance(parseFloat(calculatedCounterpartyBalance.toFixed(2)));
+      setUserBalance(parseFloat(calculatedUserBalance).toFixed(2));
+      setCounterpartyBalance(parseFloat(calculatedCounterpartyBalance).toFixed(2));
     }
   }, [recordsList]);
 
