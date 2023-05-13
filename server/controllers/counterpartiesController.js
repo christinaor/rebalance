@@ -16,4 +16,25 @@ counterpartiesController.getAllCounterparties = async (req, res, next) => {
   }
 };
 
+counterpartiesController.addCounterparty = async (req, res, next) => {
+  try {
+    const { counterpartyName, email } = req.body;
+    const params = [counterpartyName, email];
+    
+    const postQuery = `
+      INSERT INTO ${process.env.SCHEMA}.counterparties (counterparty_name, email)
+      VALUES ($1, $2)
+      RETURNING id
+    `;
+    const executePost = await db.query(postQuery, params);
+    res.locals.isAdded = true;
+    next();
+  } catch(err) {
+    return next({
+      log: `counterpartiesController.addCounterparty contains an error: ${err}`,
+      message: {err: 'Error in counterpartiesController.addCounterparty. Check server logs for more details!'}
+    })
+  }
+};
+
 module.exports = counterpartiesController;
