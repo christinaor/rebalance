@@ -13,6 +13,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Logout from "../Logout/Logout.jsx";
 
+import AddCounterpartyIcon from '/assets/add-counterparty.svg'
 import DropdownMenuArrow from '/assets/dropdown-menu-arrow.svg';
 
 import styles from './styles.module.scss';
@@ -33,12 +34,21 @@ const NavBar = (props) => {
   
   const buttonRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [addingCounterparty, setAddingCounterparty] = useState(false);
+  const [addedCounterparty, setAddedCounterparty] = useState({
+    name: '',
+    email: ''
+  });
 
   const handleDropdownMenuClick = () => {
     setIsOpen(!isOpen)
     return () => {
       document.removeEventListener('click', handleClickOutside);
     }
+  }
+
+  const handleToggleAddCounterparty = () => {
+    setAddingCounterparty(true);
   }
 
   useEffect(() => {
@@ -59,14 +69,14 @@ const NavBar = (props) => {
   console.log(counterpartiesList)
   return (
     <nav className={styles.navigation}>
-      <h1 className={styles.navLogo}>
-        <a href="/">
-          <span className={styles.logoPart1}>RE:</span>
-          <span>Balance</span>
-        </a>
-      </h1>
+      <div className={styles.navMain}>
+        <h1 className={styles.navLogo}>
+          <a href="/">
+            <span className={styles.logoPart1}>RE:</span>
+            <span>Balance</span>
+          </a>
+        </h1>
 
-      <div className={styles.linksAndFilter}>
         <ul className={styles.navLinkList}>
           <li className={styles.navLink}>
             <Link to="/flow/about">
@@ -91,9 +101,11 @@ const NavBar = (props) => {
             </Link>
           </li>
         </ul>
-        
+      </div>
+
+      <div className={styles.navCounterparty}>
         <div className={styles.counterpartyFilterContainer}>
-          <span>Transactions with</span>
+          <span className={styles.counterpartyFilterText}>Filtered by:</span>
           <button ref={buttonRef} className={`${styles.counterpartyFilterDropdown} ${isOpen ? styles.openMenu : ''}`} onClick={handleDropdownMenuClick}> 
             {currentCounterparty} <DropdownMenuArrow className={styles.dropdownMenuArrow}/>
 
@@ -110,7 +122,26 @@ const NavBar = (props) => {
               ))}
             </ul>}
           </button>
+          <button className={styles.addCounterparty} onClick={handleToggleAddCounterparty}>
+            <AddCounterpartyIcon className={styles.addCounterpartyIcon} />
+            <span className={styles.addCounterpartyText}>Add Counterparty</span>
+          </button>
         </div>
+
+        {addingCounterparty && <form className={styles.addCounterpartyForm} action="/api/counterparty/add" method="POST">
+          <div className={styles.formField}>
+            <label className={styles.addCounterpartyFormLabel} htmlFor="add-name">Counterparty Name:</label>
+            <input className={addCounterpartyFormInput} name="add-name" type="text" onChange={(e) => setAddedCounterparty({...addedCounterparty, name: e.target.value})} required />
+          </div>
+          <div className={styles.formField}>
+            <label className={styles.addCounterpartyFormLabel} htmlFor="add-email">Counterparty Email:</label>
+            <input className={addCounterpartyFormInput} name="add-email" type="text" onChange={(e) => setAddedCounterparty({...addedCounterparty, email: e.target.value})} required />
+          </div>
+          <div className={styles.addCancelButtons}>
+            <button className={styles.submitNewCounterpartyButton} onClick={addCounterparty}>Add Record</button>
+            <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
+          </div>
+        </form>}
       </div>
     </nav>
   )
