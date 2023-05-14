@@ -18,8 +18,8 @@ counterpartiesController.getAllCounterparties = async (req, res, next) => {
 
 counterpartiesController.addCounterparty = async (req, res, next) => {
   try {
-    const { counterpartyName, email } = req.body;
-    const params = [counterpartyName, email];
+    const { name, email } = req.body;
+    const params = [name, email];
     
     const postQuery = `
       INSERT INTO ${process.env.SCHEMA}.counterparties (counterparty_name, email)

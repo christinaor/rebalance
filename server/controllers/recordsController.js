@@ -71,9 +71,6 @@ recordsController.postRecord = async (req, res, next) => {
   try {
     const { username, counterparty, item, cost, split, percentage } = req.body;
     const params = [ username, counterparty, item, cost, split, percentage ];
-    console.log('this is split: ',split)
-    // split = 1
-    // console.log(split)
     const postQuery = `
       INSERT INTO ${process.env.SCHEMA}.records (username, counterparty_username, item_name, item_cost, user_split, user_perc)
       VALUES ($1, $2, $3, $4, $5, $6)
@@ -93,9 +90,7 @@ recordsController.postRecord = async (req, res, next) => {
 recordsController.updateRecord = async (req, res, next) => {
   try {
     const { id, item_name, item_cost, perc_split } = req.body;
-
     const user_split = item_cost * perc_split / 100;
-    // const counterparty_split = item_cost - user_split;
     
     // calculating new splits based on updated percentage
     const params = [ id, item_name, item_cost, perc_split, user_split ];

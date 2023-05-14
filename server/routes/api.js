@@ -16,10 +16,6 @@ router.post('/records/counterparty', recordsController.getCounterpartyRecords, (
   res.status(201).json(res.locals.counterpartyRecords);
 });
 
-router.post('/records/counterparty/add', recordsController.addCounterparty, (req, res) => {
-  res.status(201).json(res.locals.isAdded);
-});
-
 router.post('/records', recordsController.postRecord, (req, res) => {
   res.status(200).json(res.locals.id);
 });
@@ -35,6 +31,10 @@ router.delete('/records', recordsController.deleteRecord, (req, res) => {
 /* Counterparties routes */
 router.get('/counterparties', counterpartiesController.getAllCounterparties, (req, res) => {
   res.status(200).json(res.locals.allCounterparties);
+});
+
+router.post('/counterparties', counterpartiesController.addCounterparty, (req, res) => {
+  res.status(201).json(res.locals.isAdded);
 });
 
 module.exports = router;
