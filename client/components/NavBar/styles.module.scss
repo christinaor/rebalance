@@ -75,7 +75,7 @@
   flex-direction: column;
 
   gap: 1.5rem;
-  padding: 1.5rem 0 2rem 1.5rem;
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
 
   background-color: $backgroundColorDarkBlue;
 }
@@ -193,6 +193,64 @@
   display: none;
 }
 
+.addCounterpartyFormWrapper {
+  display: flex;
+  justify-content: center;
+}
+.addCounterpartyForm {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+  max-width: 400px;
+
+  border: 1px solid $backgroundColorWhite;
+  border-radius: 8px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.25rem;
+}
+
+.addCounterpartyFormLabel {
+  padding: 0 2px;
+
+  font-size: 0.7rem;
+  color: $backgroundColorWhite;
+}
+
+.addCounterpartyFormInput {
+  border: 1px solid $backgroundColorWhite;
+  border-radius: 4px;
+
+  opacity: 0.8;
+}
+
+.addCancelButtons {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+
+  gap: 0.5rem;
+}
+
+.cancelButton, .submitNewCounterpartyButton {
+  padding: 0.5rem 1rem;
+
+  color: $backgroundColorWhite;
+  background-color: $backgroundColorBlue;
+  border: 1px solid $backgroundColorBlue;
+  border-radius: 8px;
+  box-shadow: none;
+
+  font-size: 0.6rem;
+}
+
 @media only screen and (min-width: $tablet-mid-start) {
   // .navigation {
   //   padding: 1rem 3rem;
@@ -227,9 +285,13 @@
   }
 
   .navCounterparty {
-    align-items: flex-end;
+    // align-items: flex-end;
 
     padding: 1.5rem;
+  }
+
+  .counterpartyFilterContainer {
+    align-self: flex-end;
   }
 
   .addCounterparty {
@@ -244,5 +306,14 @@
     display: inline-block;
 
     white-space: nowrap;
+  }
+
+  .addCounterpartyFormWrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .addCounterpartyForm {
+    flex-grow: 1;
   }
 }

@@ -9,7 +9,7 @@
  * ************************************
  */
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useNavigate, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Logout from "../Logout/Logout.jsx";
 
@@ -28,6 +28,7 @@ const NavBar = (props) => {
     cookieTimeout,
     setCookieTimeout,
     counterpartiesList,
+    setCounterpartiesList,
     currentCounterparty,
     setCurrentCounterparty,
   } = props;
@@ -45,11 +46,54 @@ const NavBar = (props) => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     }
-  }
+  };
+
+  // TODO - add user id after authentication implemented
+  const addCounterparty = useCallback(e => {
+    e.preventDefault();
+
+    console.log(addedCounterparty)
+    const postAddedCounterparty = async () => {
+      await fetch('/api/counterparties', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: addedCounterparty.email,
+          name: addedCounterparty.name,
+        })
+      })
+        .then(res => res.json())
+        .then(counterpartyId => {
+          console.log(counterpartyId)
+          setCounterpartiesList([...counterpartiesList, {
+            id: counterpartyId,
+            counterparty_name: addedCounterparty.name,
+            email: addedCounterparty.email,
+          }]);
+          setAddedCounterparty({
+            name: '',
+            email: ''
+          });
+          setAddingCounterparty(false);
+        })
+        .catch(err => `Error adding counterparty: ${err}`)
+    }
+    postAddedCounterparty();
+  }, [addedCounterparty, counterpartiesList]);
 
   const handleToggleAddCounterparty = () => {
     setAddingCounterparty(true);
   }
+
+  const handleCancel = () => {
+    setAddedCounterparty({
+      name: '',
+      email: '',
+    });
+    setAddingCounterparty(false);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -128,20 +172,22 @@ const NavBar = (props) => {
           </button>
         </div>
 
-        {addingCounterparty && <form className={styles.addCounterpartyForm} action="/api/counterparty/add" method="POST">
-          <div className={styles.formField}>
-            <label className={styles.addCounterpartyFormLabel} htmlFor="add-name">Counterparty Name:</label>
-            <input className={addCounterpartyFormInput} name="add-name" type="text" onChange={(e) => setAddedCounterparty({...addedCounterparty, name: e.target.value})} required />
-          </div>
-          <div className={styles.formField}>
-            <label className={styles.addCounterpartyFormLabel} htmlFor="add-email">Counterparty Email:</label>
-            <input className={addCounterpartyFormInput} name="add-email" type="text" onChange={(e) => setAddedCounterparty({...addedCounterparty, email: e.target.value})} required />
-          </div>
-          <div className={styles.addCancelButtons}>
-            <button className={styles.submitNewCounterpartyButton} onClick={addCounterparty}>Add Record</button>
-            <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
-          </div>
-        </form>}
+        {addingCounterparty && <div className={styles.addCounterpartyFormWrapper}>
+          <form className={styles.addCounterpartyForm} action="/api/counterparty/add" method="POST">
+            <div className={styles.formField}>
+              <label className={styles.addCounterpartyFormLabel} htmlFor="add-name">Counterparty Name:</label>
+              <input className={styles.addCounterpartyFormInput} name="add-name" type="text" onChange={(e) => setAddedCounterparty({...addedCounterparty, name: e.target.value})} required />
+            </div>
+            <div className={styles.formField}>
+              <label className={styles.addCounterpartyFormLabel} htmlFor="add-email">Counterparty Email:</label>
+              <input className={styles.addCounterpartyFormInput} name="add-email" type="email" onChange={(e) => setAddedCounterparty({...addedCounterparty, email: e.target.value})} required />
+            </div>
+            <div className={styles.addCancelButtons}>
+              <button className={styles.submitNewCounterpartyButton} onClick={addCounterparty}>Add Counterparty</button>
+              <button className={styles.cancelButton} onClick={handleCancel}>Cancel</button>
+            </div>
+          </form>
+        </div>}
       </div>
     </nav>
   )

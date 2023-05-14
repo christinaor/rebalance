@@ -71,6 +71,7 @@ const MainContainer = props => {
         cookieTimeout={cookieTimeout}
         setCookieTimeout={setCookieTimeout}
         counterpartiesList={counterpartiesList}
+        setCounterpartiesList={setCounterpartiesList}
         currentCounterparty={currentCounterparty}
         setCurrentCounterparty={setCurrentCounterparty} />
       <Routes>
