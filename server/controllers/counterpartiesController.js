@@ -27,7 +27,7 @@ counterpartiesController.addCounterparty = async (req, res, next) => {
       RETURNING id
     `;
     const executePost = await db.query(postQuery, params);
-    res.locals.isAdded = true;
+    res.locals.isAdded = executePost.rows[0].id;
     next();
   } catch(err) {
     return next({
