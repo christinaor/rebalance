@@ -1,48 +1,55 @@
-.loginPageWrapper {
-  // position: absolute;
-  // width: 2000px;
-  height: auto;
-  // margin: auto;
-  // border: 5px solid #FFFF00;
-  // padding: 100px;
+@import '/client/scss/_colors';
+@import '/client/scss/_layout';
+
+
+.loginPage {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  // justify-content: space-between;
   align-items: center;
-  gap: 32px;
-  // margin: 30px auto 0;
-  // position: relative;
+  // gap: 2rem;
+
+  // margin: auto;
+  height: 100vh;
+
+  background-color: $backgroundColorDarkBlue;
 }
 
-.loginLeft {
-  width: 50%;
+.loginPageMainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
+  padding: 0.5rem;
+  
+  background-color: $backgroundColorSmokeWhite;
+  border-radius: 8px;
+}
+
+.loginLogoAndSubtext {
+  // width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 0 1 auto;
+  // flex: 0 1 auto;
 
-
-  // width: 50%;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
-  // flex: 1 0 auto;
-  // position: relative;
-}
-
-.loginTextWrapper {
-  display: flex;
-  flex-direction: column;
+  // background-color: $backgroundColorSmokeWhite;
+  border-radius: 8px;
 }
 
 .loginTitleText {
-  color: #0C0C31;
+  color: $mainTextColorBlack;
   font-weight: 700;
+}
+.title1 {
+  color: $backgroundColorBlue;
 }
 
 .loginRight {
-  background-color: white;
+  // background-color: $backgroundColorSmokeWhite;
   width: 50%;
   // display: flex;
   // flex-direction: column;
