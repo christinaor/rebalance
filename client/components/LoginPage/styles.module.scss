@@ -6,11 +6,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // justify-content: space-between;
   align-items: center;
-  // gap: 2rem;
 
-  // margin: auto;
   height: 100vh;
 
   background-color: $backgroundColorDarkBlue;
@@ -19,65 +16,94 @@
 .loginPageMainContent {
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   gap: 1rem;
-  padding: 0.5rem;
+  margin: 1rem;
+  padding: 3rem 2rem;
   
-  background-color: $backgroundColorSmokeWhite;
+  background-color: $backgroundColorWhite;
   border-radius: 8px;
 }
 
 .loginLogoAndSubtext {
-  // width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  // flex: 0 1 auto;
+  align-items: flex-start;
 
-  // background-color: $backgroundColorSmokeWhite;
-  border-radius: 8px;
+  gap: 1rem;
 }
 
 .loginTitleText {
   color: $mainTextColorBlack;
+  font-size: 2.5rem;
   font-weight: 700;
 }
 .title1 {
   color: $backgroundColorBlue;
 }
 
-.loginRight {
-  // background-color: $backgroundColorSmokeWhite;
-  width: 50%;
-  // display: flex;
-  // flex-direction: column;
-  // // text-align: center;
-  // justify-content: center;
-  // align-items: center;
-  // flex: 0 1 auto;
-  display: inline-block;
-  text-align: center;
-  box-sizing: border-box;
-  border-radius: 25px;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  // margin: 40px auto 0;
-};
-
-.loginButton {
-  background-color: #0C0C31;
+.loginSubtext {
+  font-size: 1rem;
 }
 
-.loginSignupWrapper {
+.loginForm {
   display: flex;
   flex-direction: column;
+  
+  // flex: 0 1 auto;
+  
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+};
+
+.formField {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+}
+
+.formFieldLabel {
+  display: flex;
   align-items: center;
-};
+  padding: 0 2px;
 
+  font-size: 0.8rem;
+}
 
-.signupLinkButton {
-  // width: 150px;
-  background-color: #4c4ce6;
-};
+.formFieldInput {
+  padding: 0.4rem;
+
+  border: 1px solid $gray;
+  border-radius: 4px;
+}
+
+.loginButton, .loginPageSignupButton {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+
+  padding: 0.5rem 1rem;
+  width: clamp(8rem, 5vw, 10rem);
+
+  color: $backgroundColorWhite;
+  background-color: $backgroundColorDarkBlue;
+  border: 1px solid $backgroundColorSmokeWhite;
+  border-radius: 8px;
+  box-shadow: none;
+  
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.loginButton {
+  margin-top: 0.5rem;
+}
+
+.newMemberSignup {
+  display: flex;
+  justify-content: center;
+  
+  gap: 1rem;
+  padding-top: 1.5rem;
+
+  border-top: 1px solid $backgroundColorBlack;
+}
