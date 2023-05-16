@@ -55,7 +55,8 @@ function App(props) {
               pressedSignup={pressedSignup}
               setPressedSignup={setPressedSignup}
               cookieTimeout={cookieTimeout}
-              setCookieTimeout={setCookieTimeout} />} />
+              setCookieTimeout={setCookieTimeout} />} 
+              setPressedSignup={setPressedSignup} />
           <Route path='/flow/signup' 
             element={<SignupPage 
               pressedSignup={pressedSignup}

@@ -4,11 +4,13 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const SignupPage = (props) => {
-  const { pressedSignup, setPressedSignup } = props;
+  const {
+    setPressedSignup,
+  } = props;
   
   const [signedUp, setSignedUp] = useState(false);
   const [accountExists, setAccountExists] = useState(false);
-  const [signupCreds, setSignupCreds] = useState({
+  const [signupCredentials, setSignupCredentials] = useState({
     username: '',
     email: '',
     pass: ''
@@ -17,7 +19,7 @@ const SignupPage = (props) => {
 
   const navigate = useNavigate();
 
-  const postSignupCreds = (e) => {
+  const postSignupCredentials = (e) => {
     e.preventDefault();
     fetch('/authorize/signup', {
       method: 'POST',
@@ -25,9 +27,9 @@ const SignupPage = (props) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: signupCreds.username,
-        email: signupCreds.email,
-        pass: signupCreds.pass
+        username: signupCredentials.username,
+        email: signupCredentials.email,
+        pass: signupCredentials.pass
       })
     })
       .then(response => response.json())
@@ -46,42 +48,50 @@ const SignupPage = (props) => {
       })
       .catch(err => `Error adding user: ${err}`)
       .finally(
-        setSignupCreds({
+        setSignupCredentials({
           username: '',
           email: '',
           pass: ''
       }))
   }
 
+  const handleReturnToLogin = () => {
+    setPressedSignup(false);
+  }
+
   return (
-    <div className={styles.signupPageWrapper}>
-      <h2>Sign Up Here:</h2>
-      <br />
-      {!signedUp &&
-      <form className={styles.signupForm} action="/authorize/signup" method="POST">
-        <div className={styles.signupPageFormat}>
-          <label for="username">Username</label>
-          <input name="username" type="text" value={signupCreds.username} id="signup-post-username" onChange={(e) => setSignupCreds({...signupCreds, username: e.target.value})} />
+    <div className={styles.signupPage}>
+      <div className={styles.signupPageMainContent}>
+        <div className={styles.loginLogoAndSubtext}>
+          <h1 className={styles.loginTitleText}><span className={styles.title1}>RE:</span><span>Balance</span></h1>
+          <h2 className={styles.loginSubtext}>Sign Up Here:</h2>
         </div>
-        <div className={styles.signupPageFormat}>
-          <label for="email">Email</label>
-          <input name="email" type="text" value={signupCreds.email} id="signup-post-email" onChange={(e) => setSignupCreds({...signupCreds, email: e.target.value})} />
-        </div>
-        <div className={styles.signupPageFormat}>
-          <label for="pass">Password</label>
-          <input name="pass" type={ showPass ? "text" : "password"} value={signupCreds.pass} id="signup-post-pass" onChange={(e) => setSignupCreds({...signupCreds, pass: e.target.value})} />
-        </div>
-        <div>
-          <button type="submit" onClick={postSignupCreds}>Create Account</button>
-        </div>
-      </form>
-      }
-      {signedUp && 
-          <div>Success signing up! Now go login {':)'}</div>
-      }
-      {accountExists &&
-        <div>An account already exists - forget your password?</div>
-      }
+
+        {!signedUp &&
+        <form className={styles.signupForm} action="/authorize/signup" method="POST">
+          <div className={styles.formField}>
+            <label className={styles.formFieldLabel} for="username">Username:</label>
+            <input className={styles.formFieldInput} name="username" type="text" value={signupCredentials.username} id="signup-post-username" onChange={(e) => setSignupCredentials({...signupCredentials, username: e.target.value})} />
+          </div>
+          <div className={styles.formField}>
+            <label className={styles.formFieldLabel} for="email">Email:</label>
+            <input className={styles.formFieldInput} name="email" type="text" value={signupCredentials.email} id="signup-post-email" onChange={(e) => setSignupCredentials({...signupCredentials, email: e.target.value})} />
+          </div>
+          <div className={styles.formField}>
+            <label className={styles.formFieldLabel} for="pass">Password:</label>
+            <input className={styles.formFieldInput} name="pass" type={ showPass ? "text" : "password"} value={signupCredentials.pass} id="signup-post-pass" onChange={(e) => setSignupCredentials({...signupCredentials, pass: e.target.value})} />
+          </div>
+          <button className={styles.createAccountButton} type="submit" onClick={postSignupCredentials}>CREATE ACCOUNT</button>
+          <button className={styles.loginButton} type="submit" onClick={handleReturnToLogin}>BACK TO LOGIN</button>
+        </form>
+        }
+        {signedUp && 
+            <>Success signing up! Now go login {':)'}</>
+        }
+        {accountExists &&
+          <>An account already exists - forget your password?</>
+        }
+      </div>
     </div>
   )
 };
