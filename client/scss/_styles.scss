@@ -56,12 +56,6 @@ button:focus {
   transform: rotate(90deg);
 }
 
-// .main-content-wrapper {
-//   display: flex;
-//   justify-content: center;
-//   flex: 1 0 auto;
-// };
-
 a, a:visited, a:hover, a:active {
   color: inherit;
   text-decoration: none;
@@ -163,11 +157,3 @@ hr {
   // grid-template-columns: repeat(auto-fill, 200px);
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
-
-// .records-update-form {
-//   box-sizing: border-box;
-//   border: 1px solid black;
-//   min-height: 120px;
-//   padding: 10px;
-//   flex-grow: 1;
-// }
