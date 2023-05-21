@@ -70,15 +70,15 @@ const SignupPage = (props) => {
         {!signedUp &&
         <form className={styles.signupForm} action="/authorize/register" method="POST">
           <div className={styles.formField}>
-            <label className={styles.formFieldLabel} for="username">Username:</label>
+            <label className={styles.formFieldLabel} htmlFor="username">Username:</label>
             <input className={styles.formFieldInput} name="username" type="text" value={signupCredentials.username} id="signup-post-username" onChange={(e) => setSignupCredentials({...signupCredentials, username: e.target.value})} />
           </div>
           <div className={styles.formField}>
-            <label className={styles.formFieldLabel} for="email">Email:</label>
+            <label className={styles.formFieldLabel} htmlFor="email">Email:</label>
             <input className={styles.formFieldInput} name="email" type="text" value={signupCredentials.email} id="signup-post-email" onChange={(e) => setSignupCredentials({...signupCredentials, email: e.target.value})} />
           </div>
           <div className={styles.formField}>
-            <label className={styles.formFieldLabel} for="pass">Password:</label>
+            <label className={styles.formFieldLabel} htmlFor="pass">Password:</label>
             <input className={styles.formFieldInput} name="pass" type={ showPass ? "text" : "password"} value={signupCredentials.pass} id="signup-post-pass" onChange={(e) => setSignupCredentials({...signupCredentials, pass: e.target.value})} />
           </div>
           <button className={styles.createAccountButton} type="submit" onClick={postSignupCredentials}>CREATE ACCOUNT</button>
