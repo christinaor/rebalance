@@ -78,14 +78,14 @@ CREATE TABLE rebalance.counterparties (
 DELETE FROM rebalance.counterparties WHERE email='someemail@email.com';
 
 -- LOGIN TABLE
-CREATE TABLE rebalance.login (
+CREATE TABLE rebalance.users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   pass VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL
 );
 
-INSERT INTO rebalance.login (username, pass, email)
+INSERT INTO rebalance.users (username, pass, email)
 VALUES ('user1', 'pw', 'user1@test.com');
 
 -- RECORDS TABLE

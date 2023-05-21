@@ -21,7 +21,7 @@ const SignupPage = (props) => {
 
   const postSignupCredentials = (e) => {
     e.preventDefault();
-    fetch('/authorize/signup', {
+    fetch('/authorize/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ const SignupPage = (props) => {
         </div>
 
         {!signedUp &&
-        <form className={styles.signupForm} action="/authorize/signup" method="POST">
+        <form className={styles.signupForm} action="/authorize/register" method="POST">
           <div className={styles.formField}>
             <label className={styles.formFieldLabel} for="username">Username:</label>
             <input className={styles.formFieldInput} name="username" type="text" value={signupCredentials.username} id="signup-post-username" onChange={(e) => setSignupCredentials({...signupCredentials, username: e.target.value})} />
