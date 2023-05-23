@@ -17,7 +17,7 @@ const LoginPage = (props) => {
   const [loginCredentials, setLoginCredentials] = useState({
     email: '',
     pass: ''
-  })
+  });
   // TODO - show password
   // const [showPass, setShowPass] = useState(false);
   const [failedLogin, setFailedLogin] = useState(false);
@@ -81,11 +81,25 @@ const LoginPage = (props) => {
         <form className={styles.loginForm} action="/authorize/signin" method="POST">
           <div className={styles.formField}>
             <label className={styles.formFieldLabel}  htmlFor="login-email">Email:</label>
-            <input className={styles.formFieldInput} name="login-email" type="email" value={loginCredentials.email} onChange={(e) => setLoginCredentials({...loginCredentials, email: e.target.value})} required />
+            <input 
+              className={styles.formFieldInput} 
+              name="login-email" 
+              type="email" 
+              value={loginCredentials.email} 
+              onChange={(e) => setLoginCredentials({...loginCredentials, email: e.target.value})} 
+              required 
+            />
           </div>
           <div className={styles.formField}>
             <label className={styles.formFieldLabel}  htmlFor="login-pass">Password:</label>
-            <input className={styles.formFieldInput} name="login-pass" type="password" value={loginCredentials.pass} onChange={(e) => setLoginCredentials({...loginCredentials, pass: e.target.value})} required />
+            <input 
+              className={styles.formFieldInput} 
+              name="login-pass" 
+              type="password" 
+              value={loginCredentials.pass} 
+              onChange={(e) => setLoginCredentials({...loginCredentials, pass: e.target.value})} 
+              required 
+            />
           </div>
           <button className={styles.loginButton} onClick={handleLogin}>LOG IN</button>
         </form>
