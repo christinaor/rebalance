@@ -7,12 +7,26 @@ authorizeController.checkUser = async (req, res, next) => {
   try {
     const { email, pass } = req.body;
     const params = [ email, pass ];
+
     const getQuery = `SELECT * FROM ${process.env.SCHEMA}.users WHERE email=$1 AND pass=$2;`;
     const userInfo = await db.query(getQuery, params);
+
+    const userExists = userInfo.rows.length > 0;
+    let checkSaltedPass = null;
+    let hashOnly = null;
+    let checkHashedPass = null;
+    
+    if (userExists) {
+      checkSaltedPass = pass + userInfo.rows[0].salt;
+      hashOnly = crypto.createHash('sha512');
+      checkHashedPass = hashOnly.update(checkSaltedPass).digest('hex');
+    }
+
     res.locals.loginResults = {
-      loginSuccess: userInfo.rows.length > 0,
-      user: (userInfo.rows.length > 0) ? userInfo.rows[0].username : null
+      loginSuccess: userExists && (checkHashedPass === userInfo.rows[0].hash),
+      user: userExists && (checkHashedPass === userInfo.rows[0].hash) ? userInfo.rows[0].username : null,
     };
+    console.log(res.locals.loginResults)
     next();
   } catch(err) {
     return next({
@@ -62,7 +76,7 @@ authorizeController.addUser = async (req, res, next) => {
   } catch(err) {
     return next({
       log: `authorizeController.addUser contains an error: ${err}`,
-      message: {err: `Error in authorizeController.addUser. Check server logs for more details! ${err}`}
+      message: {err: 'Error in authorizeController.addUser. Check server logs for more details!'}
     })
   }
 }
